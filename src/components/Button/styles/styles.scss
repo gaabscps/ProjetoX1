@@ -1,0 +1,18 @@
+.buttonContainer {
+  background-color: #ffffff;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 24px;
+  transform: skew(-20deg);
+  transition: background-color 0.3s;
+}
+.buttonContent {
+  color: #5f5c6b;
+  transform: skew(10deg);
+}

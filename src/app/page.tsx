@@ -1,6 +1,6 @@
 "use client";
 
-import { Landing } from "./landing/page";
+import Landing from "./tests/page";
 
 export default function Home() {
   return (

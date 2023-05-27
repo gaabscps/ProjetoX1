@@ -1,0 +1,20 @@
+.accordion-header {
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  transition: border-bottom 0.3s;
+}
+
+.accordion-header:hover {
+  border-bottom: 1px solid #aaa;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+}
+
+.accordion-content p {
+  margin: 0;
+  padding: 10px;
+}
