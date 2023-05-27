@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Accordion from "@/components/Accordion";
@@ -6,17 +8,17 @@ import Carousel from "@/components/Carousel";
 import { Modal } from "@/components/Modal";
 import { useState } from "react";
 
-export default function Landing() {
+export default function Tests() {
   const [isModalOpen, setisModalOpen] = useState(false);
 
   const items =
     // 5 random images from https://picsum.photos/
     [
-      <img title="1" src="https://picsum.photos/201/300"></img>,
-      <img title="2" src="https://picsum.photos/199/300"></img>,
-      <img title="3" src="https://picsum.photos/200/301"></img>,
-      <img title="4" src="https://picsum.photos/200/299"></img>,
-      <img title="5" src="https://picsum.photos/200/302"></img>,
+      <img alt="image" title="1" src="https://picsum.photos/201/300"></img>,
+      <img alt="image" title="2" src="https://picsum.photos/199/300"></img>,
+      <img alt="image" title="3" src="https://picsum.photos/200/301"></img>,
+      <img alt="image" title="4" src="https://picsum.photos/200/299"></img>,
+      <img alt="image" title="5" src="https://picsum.photos/200/302"></img>,
     ];
 
   return (

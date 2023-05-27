@@ -5,14 +5,14 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 12px;
+  font-weight: 700;
   cursor: pointer;
-  padding: 10px 24px;
   transform: skew(-20deg);
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 .buttonContent {
   color: #5f5c6b;
-  transform: skew(10deg);
+  transform: skew(20deg);
 }

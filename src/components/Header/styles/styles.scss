@@ -1,0 +1,33 @@
+.headerModule {
+  background: #5f5c6b;
+  height: 80px;
+  .headerContainer {
+    margin: 0 165px;
+    background: #5f5c6b;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1110px;
+    min-width: 1110px;
+    height: 80px;
+    margin: 0 auto;
+    align-items: center;
+    .headerLogo {
+      padding: 0 30px;
+    }
+    .headerItemsContainer {
+      display: flex;
+      width: 100%;
+      gap: 35px;
+      align-items: center;
+      span {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+    .headerButtonGroup {
+      gap: 5px;
+      margin: 0 35px;
+    }
+  }
+}
