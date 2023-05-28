@@ -27,7 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const styleValidation = () => {
     if (theme === "large") {
-      return { padding: "10px 170px", transform: "skew(-40deg)" };
+      return { padding: "16px 146px", transform: "skew(-40deg)" };
     }
     if (padding) {
       return { padding: "10px 24px" };
@@ -53,9 +53,11 @@ export const Button: React.FC<ButtonProps> = ({
         className={`buttonContainer button${theme || ""} ${className || ""}`}
         style={styleValidation()}
       >
-        <div className="buttonIcon" style={{ color: "black" }}>
-          {icon}
-        </div>
+        {icon && (
+          <div className="buttonIcon" style={{ color: "black" }}>
+            {icon}
+          </div>
+        )}
         <div
           style={theme === "large" ? { transform: "skew(40deg)" } : {}}
           className="buttonContent"

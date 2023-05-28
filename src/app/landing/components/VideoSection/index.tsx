@@ -11,7 +11,7 @@ export function VideoSection() {
         Desculpe, seu navegador não suporta vídeos HTML5.
       </video>
       <div className="centered-content">
-        <div>
+        <div className="videoSectionText">
           <span>Prove que você é o melhor e seja muito recompesado</span>
         </div>
         <h1>PLAY X1 (logo)</h1>

@@ -20,7 +20,12 @@
   transition: transform 0.3s ease;
   transform: translateX(0);
   position: relative;
-  margin-left: 733px;
+}
+
+.carouselTitle {
+  font-weight: 500;
+  font-size: 37px;
+  margin-bottom: 40px;
 }
 
 .carousel-item-wrapper {

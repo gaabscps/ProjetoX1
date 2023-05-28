@@ -10,7 +10,7 @@ interface PageProps {}
 
 //TODO componentizar os items do carousel
 export default function Landing({}: PageProps) {
-  const carouselItems = [
+  const lastNews = [
     <div style={{ width: "231px" }} key={1}>
       <EmptyBanner />
       <div className="d-flex flex-column bannerCardText">
@@ -64,13 +64,38 @@ export default function Landing({}: PageProps) {
       </div>
     </div>,
   ];
+
+  const availableGames = [
+    <div style={{ width: "231px" }} key={1}>
+      <EmptyBanner />
+    </div>,
+    <div style={{ width: "231px" }} key={2}>
+      <EmptyBanner />
+    </div>,
+    <div style={{ width: "231px" }} key={3}>
+      <EmptyBanner />
+    </div>,
+    <div style={{ width: "231px" }} key={4}>
+      <EmptyBanner />
+    </div>,
+    <div style={{ width: "231px" }} key={5}>
+      <EmptyBanner />
+    </div>,
+  ];
   return (
     <>
       <Header />
       <VideoSection />
       <StatsSection />
-      <div style={{ maxWidth: "1110px", margin: "0 auto" }}>
-        <Carrossel items={carouselItems} />
+      <div
+        style={{ maxWidth: "1110px", margin: "0 auto", marginBottom: "80px" }}
+      >
+        <Carrossel title="Últimas notícias e atualizações" items={lastNews} />
+      </div>
+      <div
+        style={{ maxWidth: "1110px", margin: "0 auto", marginBottom: "80px" }}
+      >
+        <Carrossel title="Jogos disponíveis" items={availableGames} />
       </div>
     </>
   );

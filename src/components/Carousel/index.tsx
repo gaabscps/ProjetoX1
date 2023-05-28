@@ -5,9 +5,10 @@ import { RightArrow } from "@/assets/svg/RightArrow";
 
 interface CarouselProps {
   items: any[];
+  title?: string;
 }
 
-export function Carrossel({ items }: CarouselProps) {
+export function Carrossel({ items, title }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
@@ -24,7 +25,6 @@ export function Carrossel({ items }: CarouselProps) {
 
   const totalPages = Math.ceil(items.length / 4); // Calcula o número total de páginas
 
-  // const visibleItems = items.slice(currentIndex, currentIndex + 4);
   const visibleItems = items;
 
   const emptyItems = 4 - visibleItems.length;
@@ -35,8 +35,8 @@ export function Carrossel({ items }: CarouselProps) {
 
   return (
     <>
-      <div className="d-flex justify-content-between">
-        <span>Title</span>
+      <div className="d-flex justify-content-between carouselTitle">
+        <span>{title}</span>
         <div className="carousel-page-indicator">
           {Array.from({ length: totalPages }, (_, index) => (
             <div
@@ -55,7 +55,12 @@ export function Carrossel({ items }: CarouselProps) {
         <div className="carousel-container">
           <div
             className="carousel-items-container"
-            style={{ transform: `translateX(-${currentIndex * (231 + 19)}px)` }}
+            style={{
+              transform: `translateX(-${currentIndex * (231 + 19)}px)`,
+              marginLeft:
+                //Logica para adicionar margem à esquerda e adequar à quantidade de itens
+                `${(-231 - 19) * (4 - visibleItems.length)}px`,
+            }}
           >
             <div className="carouselVisibleItem">
               {visibleItems.map((item, index) => (
