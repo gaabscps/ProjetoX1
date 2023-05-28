@@ -7,8 +7,7 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   icon?: React.ReactNode | string;
-  bold?: boolean;
-  theme?: "";
+  theme?: "large";
   type?: "button" | "submit" | "reset";
   padding?: boolean;
   width?: string;
@@ -20,7 +19,6 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   theme,
   type,
-  bold,
   className,
   padding,
   width,
@@ -28,6 +26,9 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
 }) => {
   const styleValidation = () => {
+    if (theme === "large") {
+      return { padding: "10px 170px", transform: "skew(-40deg)" };
+    }
     if (padding) {
       return { padding: "10px 24px" };
     }
@@ -56,7 +57,7 @@ export const Button: React.FC<ButtonProps> = ({
           {icon}
         </div>
         <div
-          style={bold ? { fontWeight: "700" } : {}}
+          style={theme === "large" ? { transform: "skew(40deg)" } : {}}
           className="buttonContent"
         >
           {content}
