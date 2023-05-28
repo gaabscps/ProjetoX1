@@ -1,42 +1,81 @@
 import React, { useState } from "react";
 import { CarouselItem } from "./components/CarouselItem";
+import { LeftArrow } from "@/assets/svg/LeftArrow";
+import { RightArrow } from "@/assets/svg/RightArrow";
 
 interface CarouselProps {
   items: any[];
 }
 
-const Carrossel: React.FC<CarouselProps> = ({ items }) => {
+export function Carrossel({ items }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex: number) =>
-      prevIndex >= items.length - 1 ? 0 : prevIndex + 1
+      prevIndex >= items.length - 4 ? 0 : prevIndex + 4
     );
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex: number) =>
-      prevIndex === 0 ? items.length - 1 : prevIndex - 1
+      prevIndex >= items.length - 4 ? 0 : prevIndex - 4 < 0 ? 0 : prevIndex - 4
     );
   };
 
-  const visibleItems = items
-    .slice(currentIndex, currentIndex + 4)
-    .concat(items.slice(0, Math.max(0, 4 - items.length + currentIndex)));
+  const totalPages = Math.ceil(items.length / 4); // Calcula o número total de páginas
+
+  // const visibleItems = items.slice(currentIndex, currentIndex + 4);
+  const visibleItems = items;
+
+  const emptyItems = 4 - visibleItems.length;
+
+  for (let i = 0; i < emptyItems; i++) {
+    visibleItems.push(null);
+  }
 
   return (
-    <div style={{ display: "flex" }}>
-      <button style={{ color: "black" }} onClick={handlePrev}>
-        Anterior
-      </button>
-      {visibleItems.map((item, index) => (
-        <CarouselItem key={index} item={item} />
-      ))}
-      <button style={{ color: "black" }} onClick={handleNext}>
-        Próximo
-      </button>
-    </div>
+    <>
+      <div className="d-flex justify-content-between">
+        <span>Title</span>
+        <div className="carousel-page-indicator">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <div
+              key={index}
+              className={`carousel-page ${
+                Math.floor(currentIndex / 4) === index ? "active" : ""
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+      <div style={{ width: "100%" }} className="d-flex carousel-align">
+        <button className="carousel-button left" onClick={handlePrev}>
+          <LeftArrow />
+        </button>
+        <div className="carousel-container">
+          <div
+            className="carousel-items-container"
+            style={{ transform: `translateX(-${currentIndex * (231 + 19)}px)` }}
+          >
+            <div className="carouselVisibleItem">
+              {visibleItems.map((item, index) => (
+                <div key={index} className="carousel-item">
+                  <div className="carousel-item-wrapper">
+                    {item ? (
+                      <CarouselItem item={item} />
+                    ) : (
+                      <div className="empty-item" />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <button className="carousel-button right" onClick={handleNext}>
+          <RightArrow />
+        </button>
+      </div>
+    </>
   );
-};
-
-export default Carrossel;
+}
