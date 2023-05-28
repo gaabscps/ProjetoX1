@@ -4,7 +4,7 @@
 
 import Accordion from "@/components/Accordion";
 import { Button } from "@/components/Button";
-import Carousel from "@/components/Carousel";
+import { Carrossel } from "@/components/Carousel";
 import { Modal } from "@/components/Modal";
 import { useState } from "react";
 
@@ -57,7 +57,9 @@ export default function Tests() {
       >
         Hello World!
       </div>
-      <Carousel items={items} />
+      <div style={{ maxWidth: "1110px", margin: "0 auto" }}>
+        <Carrossel items={items} />
+      </div>
       <div>
         <h1>Accordion Example</h1>
         <Accordion title="Section 1" content={<p>Content for section 1</p>} />

@@ -5,6 +5,9 @@ import { VideoSection } from "./components/VideoSection";
 import { StatsSection } from "./components/StatsSection";
 import { Carrossel } from "@/components/Carousel";
 import { EmptyBanner } from "@/assets/svg/EmptyBanner";
+import { Card } from "@/components/Card";
+import { EmptyUser } from "@/assets/svg/EmptyUser";
+import { Button } from "@/components/Button";
 
 interface PageProps {}
 
@@ -96,6 +99,67 @@ export default function Landing({}: PageProps) {
         style={{ maxWidth: "1110px", margin: "0 auto", marginBottom: "80px" }}
       >
         <Carrossel title="Jogos disponíveis" items={availableGames} />
+      </div>
+      <div
+        className="d-flex"
+        style={{ maxWidth: "1110px", margin: "0 auto", gap: "30px" }}
+      >
+        <Card
+          width="350px"
+          height="260px"
+          content={
+            <div className="d-flex flex-column cardContent">
+              <div style={{ marginTop: "50px" }}>
+                <EmptyUser backgroundColor="#8c8a9766" />
+              </div>
+              <span className="text-large-ff mb-1">Pagamento instantâneo</span>
+              <span className="text-center text-regular-b6 mlr-3">
+                Descrição desse benefício de pagamento instantâneo
+              </span>
+            </div>
+          }
+        />
+        <Card
+          width="350px"
+          height="260px"
+          content={
+            <div className="d-flex flex-column cardContent">
+              <div style={{ marginTop: "50px" }}>
+                <EmptyUser backgroundColor="#8c8a9766" />
+              </div>
+              <span className="text-large-ff mb-1">Aposta segura</span>
+              <span className="text-center text-regular-b6 mlr-3">
+                Descrição desse benefício de aposta segura
+              </span>
+            </div>
+          }
+        />
+        <Card
+          width="350px"
+          height="260px"
+          content={
+            <div className="d-flex flex-column cardContent">
+              <div style={{ marginTop: "50px" }}>
+                <EmptyUser backgroundColor="#8c8a9766" />
+              </div>
+              <span className="text-large-ff mb-1">Placar de liderança</span>
+              <span className="text-center text-regular-b6 mlr-3">
+                Descrição desse benefício de placar de liderança
+              </span>
+            </div>
+          }
+        />
+      </div>
+      <div
+        className="d-flex justify-content-center"
+        style={{
+          maxWidth: "1110px",
+          margin: "0 auto",
+          marginTop: "50px",
+          marginBottom: "80px",
+        }}
+      >
+        <Button theme="large" content="Criar a minha conta" />
       </div>
     </>
   );

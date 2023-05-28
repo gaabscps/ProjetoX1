@@ -1,4 +1,8 @@
-export function EmptyUser() {
+interface EmptyUserProps {
+  backgroundColor?: string;
+}
+
+export function EmptyUser({ backgroundColor }: EmptyUserProps) {
   return (
     <svg
       width="43"
@@ -7,7 +11,12 @@ export function EmptyUser() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="21.5" cy="21.5" r="21.5" fill="#5F5C6B" />
+      <circle
+        cx="21.5"
+        cy="21.5"
+        r="21.5"
+        fill={(backgroundColor = backgroundColor || "#5F5C6B")}
+      />
       <path
         d="M25.8182 29.5455V27.8182C25.8182 26.902 25.4542 26.0233 24.8064 25.3755C24.1585 24.7276 23.2798 24.3636 22.3636 24.3636H15.4545C14.5383 24.3636 13.6597 24.7276 13.0118 25.3755C12.364 26.0233 12 26.902 12 27.8182V29.5455"
         stroke="white"
