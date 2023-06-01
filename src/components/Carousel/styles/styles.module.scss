@@ -54,19 +54,18 @@
   transition: transform 0.3s ease;
 }
 
-.carousel-page-indicator {
+.carousel-pagination-indicator {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-.carousel-page {
+.carousel-pagination {
   width: 25px;
   height: 4px;
   background-color: gray;
   border-radius: 2px;
   margin-right: 5px;
-  cursor: pointer;
 }
 
 .carousel-page.active {

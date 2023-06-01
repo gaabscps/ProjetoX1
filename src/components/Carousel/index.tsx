@@ -37,16 +37,18 @@ export function Carrossel({ items, title }: CarouselProps) {
     <>
       <div className="d-flex justify-content-between carouselTitle">
         <span>{title}</span>
-        <div className="carousel-page-indicator">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <div
-              key={index}
-              className={`carousel-page ${
-                Math.floor(currentIndex / 4) === index ? "active" : ""
-              }`}
-            />
-          ))}
-        </div>
+        {totalPages > 1 && (
+          <div className="carousel-pagination-indicator">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <div
+                key={index}
+                className={`carousel-pagination ${
+                  Math.floor(currentIndex / 4) === index ? "active" : ""
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
       <div style={{ width: "100%" }} className="d-flex carousel-align">
         <button className="carousel-button left" onClick={handlePrev}>

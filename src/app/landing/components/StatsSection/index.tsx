@@ -1,9 +1,10 @@
 import { EmptyUser } from "@/assets/svg/EmptyUser";
+import { Body } from "@/components/Body";
 
 export function StatsSection() {
   return (
     <>
-      <div className="statsSectionModule">
+      <Body className="statsSectionModule">
         <div className="d-flex align-items-center stats-flex">
           <div className="statsSectionContainer align-items-center">
             <div>Confira os resultados da PLAY X1 e faça parte você também</div>
@@ -38,7 +39,7 @@ export function StatsSection() {
             </div>
           </div>
         </div>
-      </div>
+      </Body>
     </>
   );
 }
