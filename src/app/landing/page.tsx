@@ -8,7 +8,7 @@ import { LastNewsSection } from "./components/LastNewsSection";
 import { GamesSection } from "./components/GamesSection";
 import { FeaturesSection } from "./components/FeaturesSection";
 import { Body } from "@/components/Body";
-import { LandingEffect } from "@/assets/svg/landingEffect";
+import HowToPlay from "./components/HowToPlay";
 
 interface PageProps {}
 
@@ -22,9 +22,10 @@ export default function Landing({}: PageProps) {
       <LastNewsSection />
       <GamesSection />
       <FeaturesSection />
-      <Body marginBottom="80px" className="d-flex justify-content-center">
+      <Body marginBottom="130px" className="d-flex justify-content-center">
         <Button size="large" content="Criar a minha conta" />
       </Body>
+      <HowToPlay />
     </>
   );
 }
