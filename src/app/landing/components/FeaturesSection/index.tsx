@@ -1,4 +1,5 @@
 import { EmptyUser } from "@/assets/svg/EmptyUser";
+import { LandingEffect } from "@/assets/svg/landingEffect";
 import { Body } from "@/components/Body";
 import { Card } from "@/components/Card";
 
@@ -45,6 +46,7 @@ export function FeaturesSection() {
           }
         />
       ))}
+      <LandingEffect />
     </Body>
   );
 }

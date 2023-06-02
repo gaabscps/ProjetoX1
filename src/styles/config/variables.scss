@@ -48,7 +48,14 @@
   --header-background-color: var(--color-black1);
 
   --button-backgroundColor-primary: var(--color-primary-2);
+  --button-backgroundColor-primary-hover: var(--color-primary-3);
+  --button-backgroundColor-primary-active: var(--color-primary1);
+  --buton--backgroundColor-effect-hover: rgba(255, 255, 255, 0.2);
+  --buton--backgroundColor-effect-active: rgba(255, 255, 255, 0.4);
+
   ---button-backgroundColor-outline: transparent;
+  ---button-backgroundColor-outline-hover: rgba(255, 255, 255, 0.1);
+  ---button-backgroundColor-outline-active: rgba(255, 255, 255, 0.3);
 
   --card-background-color: var(--color-black-1);
 }

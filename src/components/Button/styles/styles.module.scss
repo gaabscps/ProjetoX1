@@ -9,13 +9,24 @@
   white-space: nowrap;
   position: relative;
   z-index: 1;
+  &:hover {
+    background-color: var(--button-backgroundColor-primary-hover);
+  }
+  &:active {
+    background-color: var(--button-backgroundColor-primary-active);
+  }
 }
 .buttonContainerEffect {
-  background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid #ffffff;
   position: relative;
   z-index: -1;
   height: 46px;
+}
+.buttonContainerEffecthover {
+  background-color: var(--buton--backgroundColor-effect-hover);
+}
+.buttonContainerEffectActive {
+  background-color: var(--buton--backgroundColor-effect-active);
 }
 .buttonContentEffect {
   color: var(---button-backgroundColor-outline);
@@ -35,4 +46,10 @@
 .outline {
   background: var(---button-backgroundColor-outline);
   border: 1px solid #ffffff;
+  &:hover {
+    background: var(---button-backgroundColor-outline-hover);
+  }
+  &:active {
+    background: var(---button-backgroundColor-outline-active);
+  }
 }

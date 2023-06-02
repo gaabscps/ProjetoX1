@@ -45,7 +45,7 @@ export function Header() {
           </div>
           <div className="headerButtonGroup">
             <div className="d-flex">
-              <div style={{ marginRight: "5px" }}>
+              <div style={{ marginRight: "15px" }}>
                 <Button
                   theme="outline"
                   width="94px"

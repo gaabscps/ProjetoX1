@@ -8,6 +8,7 @@ import { LastNewsSection } from "./components/LastNewsSection";
 import { GamesSection } from "./components/GamesSection";
 import { FeaturesSection } from "./components/FeaturesSection";
 import { Body } from "@/components/Body";
+import { LandingEffect } from "@/assets/svg/landingEffect";
 
 interface PageProps {}
 

@@ -15,6 +15,7 @@ export function Body({
     <div
       className={`${className || ""}`}
       style={{
+        position: "relative",
         maxWidth: "1110px",
         margin: "0 auto",
         marginBottom: marginBottom || "0px",

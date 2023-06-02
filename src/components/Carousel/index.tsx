@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { CarouselItem } from "./components/CarouselItem";
 import { LeftArrow } from "@/assets/svg/LeftArrow";
+import { LeftArrowHover } from "@/assets/svg/LeftArrowHover";
+import { RightArrowHover } from "@/assets/svg/RightArrowHover";
 import { RightArrow } from "@/assets/svg/RightArrow";
 
 interface CarouselProps {
@@ -10,6 +12,8 @@ interface CarouselProps {
 
 export function Carrossel({ items, title }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoverLeft, setHoverLeft] = useState(false);
+  const [hoverRight, setHoverRight] = useState(false);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex: number) =>
@@ -21,6 +25,19 @@ export function Carrossel({ items, title }: CarouselProps) {
     setCurrentIndex((prevIndex: number) =>
       prevIndex >= items.length - 4 ? 0 : prevIndex - 4 < 0 ? 0 : prevIndex - 4
     );
+  };
+
+  const handleMouseEnterLeft = () => {
+    setHoverLeft(true);
+  };
+  const handleMouseLeaveLeft = () => {
+    setHoverLeft(false);
+  };
+  const handleMouseEnterRight = () => {
+    setHoverRight(true);
+  };
+  const handleMouseLeaveRight = () => {
+    setHoverRight(false);
   };
 
   const totalPages = Math.ceil(items.length / 4); // Calcula o número total de páginas
@@ -51,8 +68,13 @@ export function Carrossel({ items, title }: CarouselProps) {
         )}
       </div>
       <div style={{ width: "100%" }} className="d-flex carousel-align">
-        <button className="carousel-button left" onClick={handlePrev}>
-          <LeftArrow />
+        <button
+          onMouseEnter={handleMouseEnterLeft}
+          onMouseLeave={handleMouseLeaveLeft}
+          className="carousel-button left"
+          onClick={handlePrev}
+        >
+          {hoverLeft ? <LeftArrowHover /> : <LeftArrow />}
         </button>
         <div className="carousel-container">
           <div
@@ -79,8 +101,13 @@ export function Carrossel({ items, title }: CarouselProps) {
             </div>
           </div>
         </div>
-        <button className="carousel-button right" onClick={handleNext}>
-          <RightArrow />
+        <button
+          onMouseEnter={handleMouseEnterRight}
+          onMouseLeave={handleMouseLeaveRight}
+          className="carousel-button right"
+          onClick={handleNext}
+        >
+          {hoverRight ? <RightArrowHover /> : <RightArrow />}
         </button>
       </div>
     </>
