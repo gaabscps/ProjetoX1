@@ -1,5 +1,7 @@
-html {
-  font-family: "DM Sans", sans-serif;
+@import "variables";
+
+body {
+  font-family: var(--font-family);
   min-width: 1110px;
   background: #4e4b59;
 }
