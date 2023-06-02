@@ -9,6 +9,7 @@ import { GamesSection } from "./components/GamesSection";
 import { FeaturesSection } from "./components/FeaturesSection";
 import { Body } from "@/components/Body";
 import HowToPlay from "./components/HowToPlay";
+import LandingPageFaq from "./components/FAQ";
 
 interface PageProps {}
 
@@ -26,6 +27,7 @@ export default function Landing({}: PageProps) {
         <Button size="large" content="Criar a minha conta" />
       </Body>
       <HowToPlay />
+      <LandingPageFaq />
     </>
   );
 }
