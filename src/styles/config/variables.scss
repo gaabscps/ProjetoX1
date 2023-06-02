@@ -29,6 +29,8 @@
   --color-black: #29272a;
   --color-black1: #19181a;
 
+  --color-random-gray: #b6b6b6;
+
   --text-size-h1: 89px;
   --text-size-h2: 67px;
   --text-size-h3: 50px;
@@ -38,9 +40,15 @@
   --text-size-normal: 16px;
   --text-size-small: 12px;
 
-  --text-weight-light: 400;
-  --text-weight-normal: 500;
+  --text-weight-regular: 400;
+  --text-weight-medium: 500;
   --text-weight-bold: 700;
 
-  --font-family: "Montserrat", sans-serif;
+  --background-color: var(--color-black);
+  --header-background-color: var(--color-black1);
+
+  --button-backgroundColor-primary: var(--color-primary-2);
+  ---button-backgroundColor-outline: transparent;
+
+  --card-background-color: var(--color-black-1);
 }

@@ -28,17 +28,17 @@ export function FeaturesSection() {
   ];
 
   return (
-    <Body className="d-flex flex-gap-2">
+    <Body marginBottom="50px" className="d-flex flex-gap-2">
       {featuresMock.map((item, index) => (
         <Card
           key={index}
           width="350px"
           height="260px"
           content={
-            <div className="d-flex flex-column cardContent">
+            <div className="d-flex flex-column align-items-center justify-content-center">
               <div style={{ marginTop: "50px" }}>{item.image}</div>
-              <span className="text-large-ff mb-1">{item.title}</span>
-              <span className="text-center text-regular-b6 mlr-3">
+              <h6 className="h6 mb-1 mt-1">{item.title}</h6>
+              <span className="text-center color-black-7 text-normal-400 mlr-3">
                 {item.description}
               </span>
             </div>

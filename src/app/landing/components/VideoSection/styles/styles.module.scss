@@ -21,20 +21,11 @@
   text-align: center;
   .videoSectionText {
     margin-bottom: 15px;
-    span {
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 21px;
-      color: #ffffff;
-    }
   }
-  h1 {
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 52px;
-    margin-bottom: 50px;
-  }
+}
+
+.videoTitle {
+  margin-bottom: 4.75rem;
 }
 
 .centered-button {

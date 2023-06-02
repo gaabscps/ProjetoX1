@@ -36,7 +36,7 @@ export function Carrossel({ items, title }: CarouselProps) {
   return (
     <>
       <div className="d-flex justify-content-between carouselTitle">
-        <span>{title}</span>
+        <h4 className="h4-500">{title}</h4>
         {totalPages > 1 && (
           <div className="carousel-pagination-indicator">
             {Array.from({ length: totalPages }, (_, index) => (

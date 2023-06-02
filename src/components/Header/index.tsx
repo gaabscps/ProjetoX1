@@ -38,7 +38,7 @@ export function Header() {
               <EmptyImage />
             </div>
             {headerList.map((item, key) => (
-              <span className="action-icon" key={key}>
+              <span className="action-icon text-small-400" key={key}>
                 {item.name}
               </span>
             ))}
@@ -46,7 +46,12 @@ export function Header() {
           <div className="headerButtonGroup">
             <div className="d-flex">
               <div style={{ marginRight: "5px" }}>
-                <Button width="94px" height="35px" content={"Entrar"} />
+                <Button
+                  theme="outline"
+                  width="94px"
+                  height="35px"
+                  content="Entrar"
+                />
               </div>
               <div>
                 <Button width="94px" height="35px" content={"Criar conta"} />

@@ -2,16 +2,23 @@ interface BodyProps {
   children: React.ReactNode;
   className?: string;
   padding?: string;
+  marginBottom?: string;
+  marginTop?: string;
 }
-export function Body({ children, className }: BodyProps) {
+export function Body({
+  children,
+  className,
+  marginBottom,
+  marginTop,
+}: BodyProps) {
   return (
     <div
-      className={`${className}`}
+      className={`${className || ""}`}
       style={{
         maxWidth: "1110px",
         margin: "0 auto",
-        marginTop: "50px",
-        marginBottom: "80px",
+        marginBottom: marginBottom || "0px",
+        marginTop: marginTop || "0px",
       }}
     >
       {children}

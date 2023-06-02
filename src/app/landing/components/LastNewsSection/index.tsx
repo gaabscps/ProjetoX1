@@ -53,14 +53,14 @@ export function LastNewsSection() {
     <div style={{ width: "231px" }} key={index}>
       {item.image}
       <div className="d-flex flex-column bannerCardText">
-        <span>{item.date}</span>
-        <h6>{item.title}</h6>
+        <span className="text-small-400">{item.date}</span>
+        <p className="line-height-150 text-regular-400">{item.title}</p>
       </div>
     </div>
   ));
 
   return (
-    <Body className="mb-5">
+    <Body marginBottom="100px" marginTop="60px">
       <Carrossel title="Últimas notícias e atualizações" items={lastNews} />
     </Body>
   );

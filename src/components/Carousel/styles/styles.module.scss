@@ -23,8 +23,6 @@
 }
 
 .carouselTitle {
-  font-weight: 500;
-  font-size: 37px;
   margin-bottom: 40px;
 }
 
@@ -44,14 +42,8 @@
 }
 
 .carousel-button {
-  color: black;
-  background-color: transparent;
-  border: none;
   cursor: pointer;
-  outline: none;
-  padding: 0;
   font-size: 24px;
-  transition: transform 0.3s ease;
 }
 
 .carousel-pagination-indicator {
@@ -63,7 +55,7 @@
 .carousel-pagination {
   width: 25px;
   height: 4px;
-  background-color: gray;
+  background-color: #525054;
   border-radius: 2px;
   margin-right: 5px;
 }
@@ -75,7 +67,6 @@
 .empty-item {
   width: 231px;
   height: 100%;
-  background-color: #4e4b59;
 }
 
 .carouselVisibleItem {

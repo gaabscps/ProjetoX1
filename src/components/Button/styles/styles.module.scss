@@ -1,18 +1,38 @@
 .buttonContainer {
-  background-color: #ffffff;
+  background-color: var(--button-backgroundColor-primary);
   border: none;
-  color: white;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
   transform: skew(-20deg);
-  transition: background-color 0.3s;
   white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+.buttonContainerEffect {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #ffffff;
+  position: relative;
+  z-index: -1;
+  height: 46px;
+}
+.buttonContentEffect {
+  color: var(---button-backgroundColor-outline);
 }
 .buttonContent {
-  color: #5f5c6b;
+  color: #fff;
   transform: skew(20deg);
+  &.-large {
+    font-size: 16px;
+  }
+}
+
+.buttonContainerEffectWrapper {
+  transform: translate(5px, -38px);
+}
+
+.outline {
+  background: var(---button-backgroundColor-outline);
+  border: 1px solid #ffffff;
 }

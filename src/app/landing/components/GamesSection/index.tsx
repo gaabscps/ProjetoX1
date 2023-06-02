@@ -29,7 +29,7 @@ export function GamesSection() {
   ));
 
   return (
-    <Body className="mb-5">
+    <Body marginBottom="100px">
       <Carrossel title="Jogos disponíveis" items={availableGames} />
     </Body>
   );

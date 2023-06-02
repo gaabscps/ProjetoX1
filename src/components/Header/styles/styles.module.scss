@@ -1,9 +1,9 @@
 .headerModule {
-  background: #5f5c6b;
+  background: var(--header-background-color);
   height: 80px;
   .headerContainer {
     margin: 0 165px;
-    background: #5f5c6b;
+    background: var(--header-background-color);
     display: flex;
     justify-content: space-between;
     max-width: 1110px;
@@ -19,11 +19,6 @@
       width: 100%;
       gap: 25px;
       align-items: center;
-      span {
-        color: #fff;
-        font-size: 12px;
-        font-weight: 400;
-      }
     }
     .headerButtonGroup {
       gap: 5px;

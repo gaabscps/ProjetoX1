@@ -1,5 +1,5 @@
 .statsSectionModule {
-  padding: 56px 35px;
+  padding: 55px 0;
   .statsSectionContainer {
     display: flex;
     gap: 20px;
@@ -8,20 +8,12 @@
     }
   }
 }
-.stats-flex {
-  gap: 67px;
-}
 
 .statsTitle {
-  font-size: 21px;
-  color: #ffffff;
-  line-height: 150%;
   margin-bottom: 4px;
 }
 .statsDescription {
-  font-weight: 400;
-  font-size: 16px;
   text-align: center;
-  color: #b6b6b6;
+  color: var(--color-random-gray);
   white-space: nowrap;
 }
