@@ -61,7 +61,11 @@ export function LastNewsSection() {
 
   return (
     <Body marginBottom="100px" marginTop="60px">
-      <Carrossel title="Últimas notícias e atualizações" items={lastNews} />
+      <Carrossel
+        centerButton
+        title="Últimas notícias e atualizações"
+        items={lastNews}
+      />
     </Body>
   );
 }

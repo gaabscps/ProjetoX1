@@ -8,12 +8,15 @@ import { RightArrow } from "@/assets/svg/RightArrow";
 interface CarouselProps {
   items: any[];
   title?: string;
+  centerButton?: boolean;
 }
 
-export function Carrossel({ items, title }: CarouselProps) {
+export function Carrossel({ items, title, centerButton }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoverLeft, setHoverLeft] = useState(false);
   const [hoverRight, setHoverRight] = useState(false);
+  const [activeLeft, setActiveLeft] = useState(false);
+  const [activeRight, setActiveRight] = useState(false);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex: number) =>
@@ -30,14 +33,33 @@ export function Carrossel({ items, title }: CarouselProps) {
   const handleMouseEnterLeft = () => {
     setHoverLeft(true);
   };
+
   const handleMouseLeaveLeft = () => {
     setHoverLeft(false);
   };
+
   const handleMouseEnterRight = () => {
     setHoverRight(true);
   };
+
   const handleMouseLeaveRight = () => {
     setHoverRight(false);
+  };
+
+  const handleMouseDownLeft = () => {
+    setActiveLeft(true);
+  };
+
+  const handleMouseUpLeft = () => {
+    setActiveLeft(false);
+  };
+
+  const handleMouseDownRight = () => {
+    setActiveRight(true);
+  };
+
+  const handleMouseUpRight = () => {
+    setActiveRight(false);
   };
 
   const totalPages = Math.ceil(items.length / 4); // Calcula o número total de páginas
@@ -69,9 +91,13 @@ export function Carrossel({ items, title }: CarouselProps) {
       </div>
       <div style={{ width: "100%" }} className="d-flex carousel-align">
         <button
+          onMouseDown={handleMouseDownLeft}
+          onMouseUp={handleMouseUpLeft}
           onMouseEnter={handleMouseEnterLeft}
           onMouseLeave={handleMouseLeaveLeft}
-          className="carousel-button left"
+          className={`carousel-button left
+          ${activeLeft && "arrowClick"}
+          ${centerButton && "arrowMargin"}`}
           onClick={handlePrev}
         >
           {hoverLeft ? <LeftArrowHover /> : <LeftArrow />}
@@ -102,9 +128,13 @@ export function Carrossel({ items, title }: CarouselProps) {
           </div>
         </div>
         <button
+          onMouseDown={handleMouseDownRight}
+          onMouseUp={handleMouseUpRight}
           onMouseEnter={handleMouseEnterRight}
           onMouseLeave={handleMouseLeaveRight}
-          className="carousel-button right"
+          className={`carousel-button right
+           ${activeRight && "arrowClick"}
+            ${centerButton && "arrowMargin"}`}
           onClick={handleNext}
         >
           {hoverRight ? <RightArrowHover /> : <RightArrow />}
