@@ -10,6 +10,7 @@ import { FeaturesSection } from "./components/FeaturesSection";
 import { Body } from "@/components/Body";
 import HowToPlay from "./components/HowToPlay";
 import LandingPageFaq from "./components/FAQ";
+import { Footer } from "@/components/Footer";
 
 interface PageProps {}
 
@@ -28,6 +29,7 @@ export default function Landing({}: PageProps) {
       </Body>
       <HowToPlay />
       <LandingPageFaq />
+      <Footer />
     </>
   );
 }
