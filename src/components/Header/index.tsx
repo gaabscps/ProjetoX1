@@ -65,7 +65,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
             </li>
             {headerList.map((item, key) => (
               <li className="action-icon text-small-400 headerItem" key={key}>
-                {item.name}
+                <a>{item.name}</a>
               </li>
             ))}
           </ul>

@@ -1,0 +1,27 @@
+.input-container {
+  position: relative;
+}
+
+.input {
+  padding: 20px;
+  background-color: var(--color-black-2);
+  border-radius: 5px;
+  position: relative;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 10px;
+  top: 30%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999999;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.toggle-password-btn.show {
+  color: #000000;
+}
