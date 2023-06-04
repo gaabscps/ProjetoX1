@@ -1,0 +1,20 @@
+.statsSectionModule {
+  padding: 55px 0;
+  .statsSectionContainer {
+    display: flex;
+    gap: 20px;
+
+    p {
+      max-width: 300px;
+    }
+  }
+}
+
+.statsTitle {
+  margin-bottom: 4px;
+}
+.statsDescription {
+  text-align: center;
+  color: var(--color-random-gray);
+  white-space: nowrap;
+}

@@ -1,0 +1,11 @@
+.cardContainer {
+  min-width: 50px;
+  min-height: 50px;
+  background: var(--card-background-color);
+  border-radius: 10px;
+  .cardContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

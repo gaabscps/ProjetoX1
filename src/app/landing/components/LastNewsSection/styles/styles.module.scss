@@ -1,0 +1,14 @@
+// TODO refatorar este codigo no lugar certo
+.bannerCardText {
+  margin-top: 18px;
+  span {
+    color: var(--color-random-gray);
+    margin-bottom: 5px;
+  }
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

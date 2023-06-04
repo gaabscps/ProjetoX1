@@ -1,0 +1,62 @@
+:root {
+  --color-primary-7: #f5f0ff;
+  --color-primary-6: #ede4ff;
+  --color-primary-5: #ddcdff;
+  --color-primary-4: #c6a6ff;
+  --color-primary-3: #ac73ff;
+  --color-primary-2: #963bff;
+  --color-primary-1: #8e14ff;
+  --color-primary: #8200ff;
+  --color-primary1: #6e01d6;
+  --color-primary2: #5b03af;
+  --color-primary3: #370077;
+
+  --color-success: #8fd845;
+  --color-error: #e54f49;
+  --color-pending: #ffe352;
+  --color-info: #60b9cd;
+
+  --color-black-10: #f7f7f8;
+  --color-black-9: #efefef;
+  --color-black-8: #dcdadd;
+  --color-black-7: #bdbbbe;
+  --color-black-6: #99959b;
+  --color-black-5: #807c83;
+  --color-black-4: #666168;
+  --color-black-3: #525054;
+  --color-black-2: #464448;
+  --color-black-1: #3e3b3f;
+  --color-black: #29272a;
+  --color-black1: #19181a;
+
+  --color-random-gray: #b6b6b6;
+
+  --text-size-h1: 89px;
+  --text-size-h2: 67px;
+  --text-size-h3: 50px;
+  --text-size-h4: 37px;
+  --text-size-h5: 28px;
+  --text-size-h6: 21px;
+  --text-size-normal: 16px;
+  --text-size-small: 12px;
+
+  --text-weight-regular: 300;
+  --text-weight-medium: 400;
+  --text-weight-bold: 600;
+  --text-weight-extrabold: 700;
+
+  --background-color: var(--color-black);
+  --header-background-color: var(--color-black1);
+
+  --button-backgroundColor-primary: var(--color-primary-2);
+  --button-backgroundColor-primary-hover: var(--color-primary-3);
+  --button-backgroundColor-primary-active: var(--color-primary1);
+  --buton--backgroundColor-effect-hover: rgba(255, 255, 255, 0.2);
+  --buton--backgroundColor-effect-active: rgba(255, 255, 255, 0.4);
+
+  ---button-backgroundColor-outline: transparent;
+  ---button-backgroundColor-outline-hover: rgba(255, 255, 255, 0.1);
+  ---button-backgroundColor-outline-active: rgba(255, 255, 255, 0.3);
+
+  --card-background-color: var(--color-black-1);
+}

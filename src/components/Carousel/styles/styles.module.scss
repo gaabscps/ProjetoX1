@@ -1,0 +1,80 @@
+.carousel-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.carousel-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.carousel-items-container {
+  display: flex;
+  gap: 19px;
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+  position: relative;
+}
+
+.carousel-item-wrapper {
+  flex: 0 0 auto;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.carousel-button {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.carousel-pagination-indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.carousel-pagination {
+  width: 25px;
+  height: 4px;
+  background-color: #525054;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+
+.carousel-pagination.active {
+  background-color: var(--color-primary-2);
+}
+
+.empty-item {
+  width: 231px;
+  height: 100%;
+}
+
+.carouselVisibleItem {
+  display: flex;
+  gap: 19px;
+  width: 100%;
+}
+
+.arrowClick {
+  transform: translateY(1px);
+}
+
+.arrowMargin {
+  margin-bottom: 85px;
+}

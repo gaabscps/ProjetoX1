@@ -1,0 +1,11 @@
+@import "./../components/FeaturesSection/styles/styles.module.scss";
+@import "./../components/HowToPlay/styles/styles.module.scss";
+@import "./../components/LastNewsSection/styles/styles.module.scss";
+@import "./../components/StatsSection/styles/styles.module.scss";
+@import "./../components/VideoSection/styles/styles.module.scss";
+
+.statsLine {
+  width: 100%;
+  height: 1.5px;
+  background-color: #3e3b3f;
+}
