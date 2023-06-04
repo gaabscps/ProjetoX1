@@ -1,49 +1,59 @@
 import { EmptyUser } from "@/assets/svg/EmptyUser";
+import { Game } from "@/assets/svg/Game";
+import { Trending } from "@/assets/svg/Trending";
 import { Body } from "@/components/Body";
 
 export function StatsSection() {
+  type Content = {
+    title: string;
+    icon?: JSX.Element;
+    description?: string;
+  };
+
+  const content: Content[] = [
+    {
+      title: "Confira os resultados da PLAY X1 e faça parte você também",
+    },
+    {
+      title: "+2 mil",
+      icon: <EmptyUser />,
+      description: "Usuários ativos",
+    },
+    {
+      title: "+10",
+      icon: <Game />,
+      description: "Jogos na plataforma",
+    },
+    {
+      title: "+R$ 2 milhões",
+      icon: <Trending />,
+      description: "Movimentados na plataforma",
+    },
+  ];
+
   return (
     <>
-      <Body className="statsSectionModule">
-        <div className="d-flex align-items-center stats-flex">
-          <div className="statsSectionContainer align-items-center">
-            <p className="text-normal-400 line-height-150">
-              Confira os resultados da PLAY X1 e faça parte você também
-            </p>
-            <div className="d-flex">
-              <div className="d-flex align-items-center mr-1">
-                <EmptyUser />
+      <Body className="statsSectionModule ">
+        <div className="d-flex align-items-center stats-flex statsSectionContainer justify-content-between">
+          {content.map((item, index) =>
+            !item.icon ? (
+              <p key={index} className="text-normal-400 line-height-150">
+                {item.title}
+              </p>
+            ) : (
+              <div key={index} className="d-flex">
+                <div className="d-flex align-items-center mr-1">
+                  {item.icon}
+                </div>
+                <div className="d-flex flex-column">
+                  <h6 className="statsTitle h6-400">{item.title}</h6>
+                  <p className="statsDescription text-normal-400">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-              <div className="d-flex flex-column">
-                <h6 className="statsTitle h6-400">+2 mil</h6>
-                <p className="statsDescription text-normal-400">
-                  Usuários ativos
-                </p>
-              </div>
-            </div>
-            <div className="d-flex">
-              <div className="d-flex align-items-center mr-1">
-                <EmptyUser />
-              </div>
-              <div className="d-flex flex-column">
-                <h6 className="statsTitle h6-400">+10</h6>
-                <p className="statsDescription text-normal-400">
-                  Jogos na plataforma
-                </p>
-              </div>
-            </div>
-            <div className="d-flex">
-              <div className="d-flex align-items-center mr-1">
-                <EmptyUser />
-              </div>
-              <div className="d-flex flex-column">
-                <h6 className="statsTitle h6-400">+R$ 2 milhões</h6>
-                <p className="statsDescription text-normal-400">
-                  Movimentados na plataforma
-                </p>
-              </div>
-            </div>
-          </div>
+            )
+          )}
         </div>
       </Body>
     </>

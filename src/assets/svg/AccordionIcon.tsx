@@ -1,4 +1,10 @@
-export default function AccordionIcon() {
+interface AccordionIconProps {
+  fill?: string | undefined;
+}
+
+export default function AccordionIcon({
+  fill = "#BDBBBE",
+}: AccordionIconProps) {
   return (
     <svg
       width="19"
@@ -9,7 +15,7 @@ export default function AccordionIcon() {
     >
       <path
         d="M2.2325 -7.32931e-07L9.5 7.417L16.7675 -9.75857e-08L19 2.2834L9.5 12L-9.98106e-08 2.2834L2.2325 -7.32931e-07Z"
-        fill="#BDBBBE"
+        fill={fill}
       />
     </svg>
   );

@@ -29,7 +29,7 @@ export function GamesSection() {
   ));
 
   return (
-    <Body marginBottom="100px">
+    <Body marginBottom="130px">
       <Carrossel title="Jogos disponíveis" items={availableGames} />
     </Body>
   );

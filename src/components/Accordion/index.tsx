@@ -9,6 +9,7 @@ interface AccordionProps {
 
 const Accordion: React.FC<AccordionProps> = ({ title, content, style }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hover, setHover] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState<string>("0px");
 
@@ -41,13 +42,29 @@ const Accordion: React.FC<AccordionProps> = ({ title, content, style }) => {
         <div className="text-normal-400">{title}</div>
         {isOpen ? (
           <div
-            style={{ transform: "rotate(180deg)", transition: "all ease 0.3s" }}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            style={{
+              transform: "rotate(180deg)",
+              transition: "all ease 0.3s",
+              width: "20px",
+              height: "20px",
+            }}
           >
-            <AccordionIcon />
+            <AccordionIcon fill={hover ? "#fff" : "#BDBBBE"} />
           </div>
         ) : (
-          <div style={{ transform: "rotate(0)", transition: "all ease 0.3s" }}>
-            <AccordionIcon />
+          <div
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            style={{
+              transform: "rotate(0)",
+              transition: "all ease 0.3s",
+              width: "20px",
+              height: "20px",
+            }}
+          >
+            <AccordionIcon fill={hover ? "#fff" : "#BDBBBE"} />
           </div>
         )}
       </div>
@@ -58,7 +75,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, content, style }) => {
         style={accordionStyle}
         ref={contentRef}
       >
-        <div>{content}</div>
+        {content}
       </div>
     </div>
   );

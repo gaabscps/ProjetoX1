@@ -74,8 +74,10 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
 
   return (
     <>
-      <div className="d-flex justify-content-between carouselTitle">
-        <h4 className="h4-500">{title}</h4>
+      <div className="d-flex justify-content-between">
+        <h4 className="h4-500 h4-mb">{title}</h4>
+        {/* Esta div serve para que caso não haja um titulo, o componente de paginação continue sendo renderizado no canto direito */}
+        {!title && <div></div>}
         {totalPages > 1 && (
           <div className="carousel-pagination-indicator">
             {Array.from({ length: totalPages }, (_, index) => (
@@ -112,9 +114,9 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
                 `${(-231 - 19) * (4 - visibleItems.length)}px`,
             }}
           >
-            <div className="carouselVisibleItem">
+            <ul className="carouselVisibleItem">
               {visibleItems.map((item, index) => (
-                <div key={index} className="carousel-item">
+                <li key={index} className="carousel-item">
                   <div className="carousel-item-wrapper">
                     {item ? (
                       <CarouselItem item={item} />
@@ -122,9 +124,9 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
                       <div className="empty-item" />
                     )}
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
         <button

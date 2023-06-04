@@ -50,17 +50,17 @@ export function LastNewsSection() {
   ];
 
   const lastNews = newsMock.map((item, index) => (
-    <div style={{ width: "231px" }} key={index}>
-      {item.image}
+    <div className="newsContainer" style={{ width: "231px" }} key={index}>
+      <div className="simpleStates action-icon">{item.image}</div>
       <div className="d-flex flex-column bannerCardText">
         <span className="text-small-400">{item.date}</span>
-        <p className="line-height-150 text-regular-400">{item.title}</p>
+        <p className="line-height-150 text-normal-400">{item.title}</p>
       </div>
     </div>
   ));
 
   return (
-    <Body marginBottom="100px" marginTop="60px">
+    <Body marginBottom="130px" marginTop="60px">
       <Carrossel
         centerButton
         title="Últimas notícias e atualizações"

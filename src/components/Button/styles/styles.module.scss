@@ -2,35 +2,47 @@
   background-color: var(--button-backgroundColor-primary);
   border: none;
   text-align: center;
-  font-size: 12px;
-  font-weight: 700;
   cursor: pointer;
   transform: skew(-20deg);
   white-space: nowrap;
   position: relative;
   z-index: 1;
-  &:hover {
-    background-color: var(--button-backgroundColor-primary-hover);
-  }
-  &:active {
-    background-color: var(--button-backgroundColor-primary-active);
-  }
 }
+
+.buttonContainerHover {
+  background-color: var(--button-backgroundColor-primary-hover);
+}
+
+.buttonContainerActive {
+  background-color: var(--button-backgroundColor-primary-active);
+}
+
 .buttonContainerEffect {
   border: 1px solid #ffffff;
   position: relative;
-  z-index: -1;
+  z-index: 0;
   height: 46px;
+  text-align: center;
+  cursor: pointer;
+  transform: skew(-20deg);
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
 }
+
 .buttonContainerEffecthover {
   background-color: var(--buton--backgroundColor-effect-hover);
 }
+
 .buttonContainerEffectActive {
   background-color: var(--buton--backgroundColor-effect-active);
 }
+
 .buttonContentEffect {
   color: var(---button-backgroundColor-outline);
+  font-size: 16px;
 }
+
 .buttonContent {
   color: #fff;
   transform: skew(20deg);
@@ -40,7 +52,8 @@
 }
 
 .buttonContainerEffectWrapper {
-  transform: translate(5px, -38px);
+  transform: translate(5px, -40px) ; 
+  width: 100%;
 }
 
 .outline {

@@ -2,7 +2,7 @@ import { Button } from "@/components/Button";
 
 export function VideoSection() {
   return (
-    <section className="videoSection">
+    <section id="videoSection" className="videoSection">
       <video className="background-video" autoPlay loop muted>
         <source
           src="https://www.w3schools.com/html/mov_bbb.mp4"
@@ -13,7 +13,7 @@ export function VideoSection() {
       <div className="centered-content">
         <div className="videoSectionText">
           <span className="text-normal-500">
-            Prove que você é o melhor e seja muito recompesado
+            Desafie. Aposte. Vença. Mostre ao mundo do que você é capaz.
           </span>
         </div>
         <h4 className="h4-500 videoTitle">PLAY X1 (logo)</h4>

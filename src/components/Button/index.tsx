@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styles from "./styles/styles.module.scss";
 
 interface ButtonProps {
@@ -11,9 +11,9 @@ interface ButtonProps {
   size?: "large";
   theme?: "primary" | "outline";
   type?: "button" | "submit" | "reset";
-  padding?: boolean;
   width?: string;
   height?: string;
+  margin?: string;
   effect?: boolean;
 }
 
@@ -25,13 +25,11 @@ export const Button: React.FC<ButtonProps> = ({
   size,
   type,
   className,
-  padding,
   width,
   height,
+  margin,
   onClick,
 }) => {
-  const ref = useRef();
-
   const [hover, setHover] = useState(false);
   const [active, setActive] = useState(false);
 
@@ -51,39 +49,78 @@ export const Button: React.FC<ButtonProps> = ({
     setActive(false);
   };
 
+  // const styleValidation = () => {
+  //   if (size === "large") {
+  //     return { padding: "16px 125px", transform: "skew(-33deg)" };
+  //   }
+  //   if (width) {
+  //     if (margin) {
+  //       return { width: width, margin: margin };
+  //     }
+  //     if (height) {
+  //       if (margin) {
+  //         return { width: width, height: height, margin: margin };
+  //       }
+  //       return { width: width, height: height };
+  //     }
+  //     return { width: width };
+  //   }
+  //   if (margin) {
+  //     return { margin: margin };
+  //   }
+  //   if (height) {
+  //     if (margin) {
+  //       return { height: height, margin: margin };
+  //     }
+  //     return { height: height };
+  //   } else {
+  //     return {};
+  //   }
+  // };
+
   const styleValidation = () => {
+    const style = {
+      padding: "",
+      transform: "",
+      width: "",
+      height: "",
+      margin: "",
+    };
+
     if (size === "large") {
-      return { padding: "16px 125px", transform: "skew(-40deg)" };
+      style.padding = "16px 125px";
+      style.transform = "skew(-33deg)";
     }
-    if (padding) {
-      return { padding: "10px 24px" };
-    }
+
     if (width) {
-      if (height) {
-        return { width: width, height: height };
-      }
-      return { width: width };
+      style.width = width;
     }
+
     if (height) {
-      return { height: height };
-    } else {
-      return {};
+      style.height = height;
     }
+
+    if (margin) {
+      style.margin = margin;
+    }
+
+    return style;
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <>
       <button
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        ref={ref.current}
         type={type}
         onClick={() => (onClick && onClick()) || undefined}
-        className={`buttonContainer button${size || ""} ${theme || "primary"} ${
-          className || ""
-        }`}
+        className={`buttonContainer text-small-700
+        ${hover && styles.buttonContainerHover}
+        ${active && styles.buttonContainerActive} button${size || ""} ${
+          theme || "primary"
+        } ${className || ""}`}
         style={styleValidation()}
       >
         {icon && (
@@ -93,21 +130,25 @@ export const Button: React.FC<ButtonProps> = ({
         )}
         <div
           className={`buttonContent ${size === "large" && "-large"}`}
-          style={size === "large" ? { transform: "skew(40deg)" } : {}}
+          style={size === "large" ? { transform: "skew(33deg)" } : {}}
         >
           {content}
         </div>
       </button>
       {effect && (
-        <div className={`buttonContainerEffectWrapper`}>
+        <div className="buttonContainerEffectWrapper">
           <button
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
             type={type}
             onClick={() => (onClick && onClick()) || undefined}
-            className={`buttonContainerEffect 
+            className={`buttonContainerEffect action-icon text-small-700
             ${hover && styles.buttonContainerEffecthover}
             ${active && styles.buttonContainerEffectActive}
              button${size || ""} ${className || ""}`}
-            style={{ padding: "16px 146px", transform: "skew(-40deg)" }}
+            style={{ padding: "16px 125px", transform: "skew(-33deg)" }}
           >
             {icon && (
               <div className="buttonIcon" style={{ color: "black" }}>
@@ -118,6 +159,6 @@ export const Button: React.FC<ButtonProps> = ({
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 };

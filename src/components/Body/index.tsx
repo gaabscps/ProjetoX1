@@ -12,7 +12,7 @@ export function Body({
   marginTop,
 }: BodyProps) {
   return (
-    <div
+    <section
       className={`${className || ""}`}
       style={{
         position: "relative",
@@ -23,6 +23,6 @@ export function Body({
       }}
     >
       {children}
-    </div>
+    </section>
   );
 }

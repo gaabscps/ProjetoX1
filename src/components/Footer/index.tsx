@@ -1,20 +1,29 @@
+import { Facebook } from "@/assets/svg/Facebook";
+import { Instagram } from "@/assets/svg/Instagram";
+import { Youtube } from "@/assets/svg/Youtube";
 import { EmptyImageFooter } from "@/assets/svg/emptyImageFooter";
 
 export function Footer() {
   return (
     <>
-      <div className="footer-module">
+      <footer className="footer-module">
         <div className="footer-container">
-          <div className="d-flex footer-icon-container">
-            <div className="mr-1">icone 1</div>
-            <div className="mr-1">icone 2</div>
-            <div className="mr-1">icone 3</div>
+          <div className="d-flex footer-icon-container justify-content-between align-items-center">
+            <button className="action-icon">
+              <Instagram />
+            </button>
+            <button className="action-icon">
+              <Youtube />
+            </button>
+            <button className="action-icon">
+              <Facebook />
+            </button>
           </div>
           <div className="footer-image-margin">
             <EmptyImageFooter />
           </div>
           <div className="footer-institutional">
-            <p className="text-small-400">
+            <p style={{ marginBottom: "9px" }} className="text-small-400">
               Play X1, CNPJ: 000000000000000, Endereço
             </p>
             <p className="text-small-400">
@@ -22,16 +31,22 @@ export function Footer() {
             </p>
           </div>
           <div className="footer-institutional">
-            <p className="text-small-400">Fale conosco:</p>
+            <p style={{ marginBottom: "6px" }} className="text-small-400">
+              Fale conosco:
+            </p>
             <p className="text-small-400">suporte@playx1.com.br</p>
           </div>
 
           <div className="d-flex justify-content-around w-100 footer-terms">
-            <p className="text-small-400 color-black-6">Termos de uso</p>
-            <p className="text-small-400 color-black-6">Privacidade</p>
+            <a className="text-small-400 color-black-6 action-icon">
+              Termos de uso
+            </a>
+            <a className="text-small-400 color-black-6 action-icon">
+              Privacidade
+            </a>
           </div>
         </div>
-      </div>
+      </footer>
     </>
   );
 }

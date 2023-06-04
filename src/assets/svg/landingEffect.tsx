@@ -6,7 +6,7 @@ export function LandingEffect() {
       style={{
         position: "absolute",
         left: "303px",
-        top: "40px",
+        top: "110px",
         zIndex: "-1",
       }}
     >
