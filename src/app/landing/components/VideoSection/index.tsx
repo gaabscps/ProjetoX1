@@ -1,6 +1,10 @@
 import { Button } from "@/components/Button";
 
-export function VideoSection() {
+interface VideoSectionProps {
+  setOpenRegister: (open: boolean) => void;
+}
+
+export function VideoSection({ setOpenRegister }: VideoSectionProps) {
   return (
     <section id="videoSection" className="videoSection">
       <video className="background-video" autoPlay loop muted>
@@ -17,7 +21,12 @@ export function VideoSection() {
           </span>
         </div>
         <h4 className="h4-500 videoTitle">PLAY X1 (logo)</h4>
-        <Button effect size="large" content="Criar a minha conta" />
+        <Button
+          onClick={() => setOpenRegister(true)}
+          effect
+          size="large"
+          content="Criar a minha conta"
+        />
       </div>
     </section>
   );

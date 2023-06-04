@@ -14,6 +14,25 @@ export const Modal: React.FC<ModalProps> = ({
   modalFooter,
   setOpen,
 }) => {
+  {
+    /* 
+    Para usar este componente, copie exemplo abaixo, adicione novos body pelo hook useModal:
+      import { Modal } from "@/components/Modal";
+      import { useModal } from "@/hooks/useModal";
+
+      const modal = useModal();
+
+      return (
+    {(modal.openLogin || modal.openRegister) && (
+      <Modal
+        setOpen={modal.handleSetModal}
+        modalBody={modal.handleModalBody()}
+      />
+      )}
+      )
+  */
+  }
+
   return (
     <>
       <div className="modalModule">
