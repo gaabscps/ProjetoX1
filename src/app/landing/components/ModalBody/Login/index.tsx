@@ -2,8 +2,22 @@ import { EmptyImage } from "@/assets/svg/EmptyImage";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import Input from "@/components/Input";
+import { useModal } from "@/hooks/useModal";
+import { useEffect } from "react";
 
-export function ModalLoginBody() {
+interface ModalLoginBodyProps {
+  handleRegisterButton: (open: boolean) => void;
+}
+
+export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
+  const modal = useModal();
+
+  useEffect(() => {
+    if (modal.openLogin) {
+      modal.setOpenLogin(true);
+    }
+  }, [modal]);
+
   return (
     <div className="d-flex flex-column align-items-center w-100 h-100">
       <EmptyImage className="modal-logo" />
@@ -39,9 +53,14 @@ export function ModalLoginBody() {
       </div>
       <div>
         <span>Ainda não tem uma conta? </span>
-        <a className="action-icon color-primary1 text-normal-700">
+        <span
+          onClick={() => {
+            handleRegisterButton(false);
+          }}
+          className="action-icon color-primary1 text-normal-700"
+        >
           Criar conta
-        </a>
+        </span>
       </div>
     </div>
   );

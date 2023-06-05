@@ -7,9 +7,14 @@ export function useModal() {
   const [openRegister, setOpenRegister] = useState(false);
   const [openNewBody, setOpenNewBody] = useState(false);
 
+  const handleRegisterButton = () => {
+    setOpenLogin(false);
+    setOpenRegister(true);
+  };
+
   function handleModalBody() {
     if (openLogin) {
-      return <ModalLoginBody />;
+      return <ModalLoginBody handleRegisterButton={handleRegisterButton} />;
     }
     if (openRegister) {
       return <ModalRegisterBody />;
@@ -17,7 +22,7 @@ export function useModal() {
     if (openNewBody) {
       return <div> teste</div>;
     } else {
-      return <ModalLoginBody />;
+      return <ModalLoginBody handleRegisterButton={handleRegisterButton} />;
     }
   }
   function handleSetModal() {
