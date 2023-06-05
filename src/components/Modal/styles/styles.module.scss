@@ -15,15 +15,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #000;
   width: 730px;
   padding-bottom: 30px;
-  border-radius: 16px;
   margin: 0 auto;
   max-height: 90%;
-  overflow: auto;
   position: fixed;
-  top: 110px;
+  bottom: 50px;
 }
 
 .modalHeader {
@@ -32,6 +29,8 @@
   align-items: center;
   width: 100%;
   padding: 0 30px 0 40px;
+  border-radius: 10px 10px 0 0;
+  background-color: var(--color-black);
 
   .buttonRoundEffect {
     transition: all 0.2s ease-in-out;
@@ -54,9 +53,12 @@
     display: flex;
     justify-content: center;
     flex: 5;
-    margin-bottom: 12px;
     margin-left: 1px;
   }
+}
+
+.modalHeader--content {
+  min-height: auto;
 }
 
 .modalBody {
@@ -72,21 +74,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .blur {
-    backdrop-filter: blur(12px);
-    background-color: rgba(0, 0, 0, 0.65);
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    height: 50px;
-  }
-  .modalHeader {
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    height: 50px;
-  }
-
   .modalContainer {
     width: 100%;
     max-height: 100%;
@@ -111,8 +98,11 @@
 .modalBodyFooterContainer {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  padding: 20px 0;
   width: 100%;
+  background-color: var(--color-black);
+  border-radius: 0 0 10px 10px;
+  overflow: auto;
 }
 
 @media screen and (max-width: 425px) {

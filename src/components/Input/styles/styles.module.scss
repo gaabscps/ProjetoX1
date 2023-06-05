@@ -12,7 +12,7 @@
 .toggle-password-btn {
   position: absolute;
   right: 10px;
-  top: 30%;
+  top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -23,5 +23,10 @@
 }
 
 .toggle-password-btn.show {
-  color: #000000;
+  color: #999999;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Inverte a cor do ícone */
+  transform: scale(1.3); /* Aumenta o ícone */
 }

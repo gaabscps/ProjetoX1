@@ -12,12 +12,17 @@ export function useModal() {
     setOpenRegister(true);
   };
 
+  const handleLoginButton = () => {
+    setOpenRegister(false);
+    setOpenLogin(true);
+  };
+
   function handleModalBody() {
     if (openLogin) {
       return <ModalLoginBody handleRegisterButton={handleRegisterButton} />;
     }
     if (openRegister) {
-      return <ModalRegisterBody />;
+      return <ModalRegisterBody handleLoginButton={handleLoginButton} />;
     }
     if (openNewBody) {
       return <div> teste</div>;
@@ -30,9 +35,8 @@ export function useModal() {
       /* 
        Para adicionar um novo body, adicione um novo estado e um novo bloco else if
        e adicione o novo estado como false nos outros blocos else if
-    */
-    }
-    if (!openLogin && !openRegister && !openNewBody) {
+
+           if (!openLogin && !openRegister && !openNewBody) {
       setOpenLogin(true);
       setOpenRegister(false);
       setOpenNewBody(false);
@@ -48,6 +52,22 @@ export function useModal() {
       setOpenLogin(false);
       setOpenRegister(false);
       setOpenNewBody(false);
+    }
+    */
+    }
+    switch (true) {
+      case !openLogin && !openRegister && !openNewBody:
+        setOpenLogin(true);
+        setOpenRegister(false);
+        setOpenNewBody(false);
+        break;
+      case openLogin:
+      case openRegister:
+      case openNewBody:
+        setOpenLogin(false);
+        setOpenRegister(false);
+        setOpenNewBody(false);
+        break;
     }
   }
 

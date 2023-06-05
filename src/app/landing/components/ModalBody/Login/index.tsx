@@ -23,13 +23,9 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
       <EmptyImage className="modal-logo" />
       <h5 className="h5-500 h5-modal-margin h5-modal">Entre com a sua conta</h5>
       <form style={{ width: "540px" }} action="">
-        <Input placeholder="Digite seu e-mail" type="email" name="email" />
-        <Input
-          marginBottom="40px"
-          placeholder="Digite sua senha"
-          type="password"
-          name="password"
-        />
+        <Input placeholder="Seu e-mail" type="email" name="email" />
+        <Input placeholder="Sua senha" type="password" name="password" />
+        <div className="action-icon forgotPassword">Esqueceu a sua senha?</div>
         <div className="d-flex align-items-center justify-content-center">
           <Button size="large" content="Entrar" />
         </div>

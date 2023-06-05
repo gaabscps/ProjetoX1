@@ -6,13 +6,13 @@ interface InputProps {
   label?: string;
   placeholder?: string;
   type?: string;
-  forgotPassword?: string;
   className?: string;
   name?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
   required?: boolean;
   marginBottom?: string;
+  maxLength?: number;
 }
 
 export default function Input({
@@ -21,13 +21,13 @@ export default function Input({
   label,
   placeholder,
   type,
-  forgotPassword,
   className,
   name,
   style,
   disabled,
   required,
   marginBottom = "20px",
+  maxLength,
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -54,6 +54,7 @@ export default function Input({
         style={style}
         disabled={disabled}
         required={required}
+        maxLength={maxLength}
       />
       {type === "password" && (
         <>
@@ -64,9 +65,6 @@ export default function Input({
           >
             {showPassword ? "Hide" : "Show"}
           </button>
-          <a href={forgotPassword} className="mt-1 action-icon">
-            Esqueceu a sua senha?
-          </a>
         </>
       )}
     </div>
