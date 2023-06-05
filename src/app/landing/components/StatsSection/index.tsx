@@ -41,11 +41,11 @@ export function StatsSection() {
                 {item.title}
               </p>
             ) : (
-              <div key={index} className="d-flex">
-                <div className="d-flex align-items-center mr-1">
+              <div key={index} className="d-flex statsItem">
+                <div className="d-flex align-items-center statsIcon">
                   {item.icon}
                 </div>
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column statsItem">
                   <h6 className="statsTitle h6-400">{item.title}</h6>
                   <p className="statsDescription text-normal-400">
                     {item.description}

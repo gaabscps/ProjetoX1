@@ -1,9 +1,13 @@
 import React from "react";
 
-interface CarrosselItemProps {
+interface CarouselItemProps {
   item: string;
 }
 
-export const CarouselItem: React.FC<CarrosselItemProps> = ({ item }) => {
-  return <div style={{ color: "black" }}>{item}</div>;
+export const CarouselItem: React.FC<CarouselItemProps> = ({ item }) => {
+  return (
+    <div className="carousel-item-wrapper" style={{ color: "black" }}>
+      {item}
+    </div>
+  );
 };

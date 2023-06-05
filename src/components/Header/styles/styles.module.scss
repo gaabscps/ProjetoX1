@@ -7,6 +7,7 @@
   opacity: 80%;
   top: 0;
   transition: all ease 0.2s;
+  transform: translateX(0);
   .headerContainer {
     margin: 0 165px;
     background: var(--header-background-color);
@@ -45,5 +46,58 @@
 }
 .header-opacity {
   opacity: 100%;
+  transition: all ease 0.2s;
+}
+
+@media screen and (max-width: 1110px) {
+  .closeButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 101;
+    .hamburg {
+      background-color: var(--color-primary-3);
+    }
+  }
+  .headerModule {
+    width: auto;
+    height: 100vh;
+    opacity: 95%;
+    .headerContainer {
+      padding: 40px 0;
+      min-width: 0px;
+      flex-direction: column;
+      height: 100%;
+      .headerItemsContainer {
+        flex-direction: column;
+        gap: 30px;
+        width: auto;
+        align-items: normal;
+        .headerLogo {
+          margin-bottom: 20px;
+          display: flex;
+          justify-content: center;
+        }
+        .headerItem {
+          padding: 10px 10px;
+          border-radius: 10px;
+          font-size: var(--text-size-normal);
+          margin: 0 10px;
+          &:hover {
+            background: var(--color-black-5);
+            font-weight: var(--text-weight-regular);
+          }
+          &:active {
+            background: var(--color-black-6);
+            font-weight: var(--text-weight-regular);
+          }
+        }
+      }
+    }
+  }
+}
+.headerMobile {
+  transform: translateX(-100%);
   transition: all ease 0.2s;
 }

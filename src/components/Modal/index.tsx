@@ -2,6 +2,7 @@
 
 import React, { ReactElement, useState } from "react";
 import { ModalHeader } from "./components/ModalHeader";
+import useScrollLock from "@/hooks/useScrollLock";
 
 interface ModalProps {
   modalHeader?: ReactElement | null;
@@ -18,6 +19,8 @@ export const Modal: React.FC<ModalProps> = ({
   modalFooter,
   setOpen,
 }) => {
+  useScrollLock(true);
+
   {
     /* 
     Para usar este componente, copie exemplo abaixo, adicione novos body pelo hook useModal:

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CarouselItem } from "./components/CarouselItem";
 import { LeftArrow } from "@/assets/svg/LeftArrow";
 import { LeftArrowHover } from "@/assets/svg/LeftArrowHover";
 import { RightArrowHover } from "@/assets/svg/RightArrowHover";
 import { RightArrow } from "@/assets/svg/RightArrow";
+import { useMediaQuery } from "react-responsive";
 
 interface CarouselProps {
   items: any[];
@@ -12,6 +13,15 @@ interface CarouselProps {
 }
 
 export function Carrossel({ items, title, centerButton }: CarouselProps) {
+  const desktop = useMediaQuery({
+    query: "(min-width: 1110px)",
+  });
+
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    setIsDesktop(desktop);
+  }, [desktop]);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoverLeft, setHoverLeft] = useState(false);
   const [hoverRight, setHoverRight] = useState(false);
@@ -20,14 +30,30 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
 
   const handleNext = () => {
     setCurrentIndex((prevIndex: number) =>
-      prevIndex >= items.length - 4 ? 0 : prevIndex + 4
+      isDesktop
+        ? prevIndex > items.length - 5
+          ? 0
+          : prevIndex + 1
+        : prevIndex > items.length - 3
+        ? 0
+        : prevIndex + 1
     );
+    console.log({ currentIndex });
+    console.log({ items });
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex: number) =>
-      prevIndex >= items.length - 4 ? 0 : prevIndex - 4 < 0 ? 0 : prevIndex - 4
+      isDesktop
+        ? prevIndex === 0
+          ? items.length - 4
+          : prevIndex - 1
+        : prevIndex === 0
+        ? items.length - 2
+        : prevIndex - 1
     );
+    console.log({ currentIndex });
+    console.log({ items });
   };
 
   const handleMouseEnterLeft = () => {
@@ -62,15 +88,8 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
     setActiveRight(false);
   };
 
-  const totalPages = Math.ceil(items.length / 4); // Calcula o número total de páginas
-
-  const visibleItems = items;
-
-  const emptyItems = 4 - visibleItems.length;
-
-  for (let i = 0; i < emptyItems; i++) {
-    visibleItems.push(null);
-  }
+  const pages = items.length;
+  const totalPages = items.length;
 
   return (
     <>
@@ -78,16 +97,19 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
         <h4 className="h4-500 h4-mb">{title}</h4>
         {/* Esta div serve para que caso não haja um titulo, o componente de paginação continue sendo renderizado no canto direito */}
         {!title && <div></div>}
-        {totalPages > 1 && (
+        {pages > 1 && (
           <div className="carousel-pagination-indicator">
-            {Array.from({ length: totalPages }, (_, index) => (
-              <div
-                key={index}
-                className={`carousel-pagination ${
-                  Math.floor(currentIndex / 4) === index ? "active" : ""
-                }`}
-              />
-            ))}
+            {Array.from(
+              { length: isDesktop ? totalPages - 3 : totalPages - 1 },
+              (_, index) => (
+                <div
+                  key={index}
+                  className={`carousel-pagination ${
+                    Math.floor(currentIndex) === index ? "active" : ""
+                  }`}
+                />
+              )
+            )}
           </div>
         )}
       </div>
@@ -110,20 +132,19 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
             style={{
               transform: `translateX(-${currentIndex * (231 + 19)}px)`,
               marginLeft:
-                //Logica para adicionar margem à esquerda e adequar à quantidade de itens
-                `${(-231 - 19) * (4 - visibleItems.length)}px`,
+                isDesktop && totalPages > 4
+                  ? `${(totalPages - 4) * (231 + 19)}px`
+                  : `${(totalPages - 2) * (231 + 19)}px`,
             }}
           >
             <ul className="carouselVisibleItem">
-              {visibleItems.map((item, index) => (
+              {items.map((item, index) => (
                 <li key={index} className="carousel-item">
-                  <div className="carousel-item-wrapper">
-                    {item ? (
-                      <CarouselItem item={item} />
-                    ) : (
-                      <div className="empty-item" />
-                    )}
-                  </div>
+                  {item ? (
+                    <CarouselItem item={item} />
+                  ) : (
+                    <div className="empty-item" />
+                  )}
                 </li>
               ))}
             </ul>

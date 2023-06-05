@@ -2,14 +2,7 @@ import { Body } from "@/components/Body";
 
 export function LandingEffect() {
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: "303px",
-        top: "110px",
-        zIndex: "-1",
-      }}
-    >
+    <div className="landingEffect">
       <svg
         width="504"
         height="504"

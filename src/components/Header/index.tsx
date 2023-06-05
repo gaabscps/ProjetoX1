@@ -1,6 +1,7 @@
 import { EmptyImage } from "@/assets/svg/EmptyImage";
 import { Button } from "../Button";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 interface HeaderProps {
   setOpenLogin: (open: boolean) => void;
@@ -8,7 +9,12 @@ interface HeaderProps {
 }
 
 export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
+  const desktop = useMediaQuery({
+    query: "(min-width: 1110px)",
+  });
+  const [isDesktop, setIsDesktop] = useState(false);
   const [isOpacity, setIsOpacity] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,17 +61,32 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
     },
   ];
 
+  useEffect(() => {
+    setIsDesktop(desktop);
+  }, [desktop]);
+
   return (
     <>
-      <header className={`headerModule ${isOpacity && "header-opacity"}`}>
-        <nav className="headerContainer">
+      {!isDesktop && (
+        <div onClick={() => setIsOpen(!isOpen)} className="closeButton">
+          <div className="hamburg" />
+          <div className="hamburg" />
+          <div className="hamburg" />
+        </div>
+      )}
+      <header
+        className={`headerModule ${isOpacity ? "header-opacity" : ""} ${
+          isOpen ? "headerMobile" : ""
+        }`}
+      >
+        <nav className={`headerContainer `}>
           <ul className="headerItemsContainer">
             <li className="headerLogo">
               <EmptyImage />
             </li>
             {headerList.map((item, key) => (
               <li className="action-icon text-small-400 headerItem" key={key}>
-                <a>{item.name}</a>
+                <p>{item.name}</p>
               </li>
             ))}
           </ul>
