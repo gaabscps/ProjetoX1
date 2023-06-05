@@ -49,35 +49,6 @@ export const Button: React.FC<ButtonProps> = ({
     setActive(false);
   };
 
-  // const styleValidation = () => {
-  //   if (size === "large") {
-  //     return { padding: "16px 125px", transform: "skew(-33deg)" };
-  //   }
-  //   if (width) {
-  //     if (margin) {
-  //       return { width: width, margin: margin };
-  //     }
-  //     if (height) {
-  //       if (margin) {
-  //         return { width: width, height: height, margin: margin };
-  //       }
-  //       return { width: width, height: height };
-  //     }
-  //     return { width: width };
-  //   }
-  //   if (margin) {
-  //     return { margin: margin };
-  //   }
-  //   if (height) {
-  //     if (margin) {
-  //       return { height: height, margin: margin };
-  //     }
-  //     return { height: height };
-  //   } else {
-  //     return {};
-  //   }
-  // };
-
   const styleValidation = () => {
     const style = {
       padding: "",
@@ -118,20 +89,13 @@ export const Button: React.FC<ButtonProps> = ({
         onClick={() => (onClick && onClick()) || undefined}
         className={`buttonContainer text-small-700
         ${hover && styles.buttonContainerHover}
-        ${active && styles.buttonContainerActive} button${size || ""} ${
+        ${active && styles.buttonContainerActive} button${size || ""} button-${
           theme || "primary"
         } ${className || ""}`}
         style={styleValidation()}
       >
-        {icon && (
-          <div className="buttonIcon" style={{ color: "black" }}>
-            {icon}
-          </div>
-        )}
-        <div
-          className={`buttonContent ${size === "large" && "-large"}`}
-          style={size === "large" ? { transform: "skew(33deg)" } : {}}
-        >
+        {icon && <div className="buttonIcon">{icon}</div>}
+        <div className={`buttonContent ${size === "large" && "-large"}`}>
           {content}
         </div>
       </button>

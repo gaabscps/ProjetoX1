@@ -48,15 +48,16 @@
   transform: skew(20deg);
   &.-large {
     font-size: 16px;
+    transform: skew(33deg);
   }
 }
 
 .buttonContainerEffectWrapper {
-  transform: translate(5px, -40px) ; 
+  transform: translate(5px, -40px);
   width: 100%;
 }
 
-.outline {
+.button-outline {
   background: var(---button-backgroundColor-outline);
   border: 1px solid #ffffff;
   &:hover {

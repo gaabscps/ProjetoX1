@@ -1,4 +1,8 @@
-export const EmptyImage = () => {
+interface EmptyImageProps {
+  className?: string;
+}
+
+export const EmptyImage = ({ className }: EmptyImageProps) => {
   return (
     <svg
       width="72"
@@ -6,6 +10,7 @@ export const EmptyImage = () => {
       viewBox="0 0 72 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         fill-rule="evenodd"

@@ -2,7 +2,12 @@ import { EmptyImage } from "@/assets/svg/EmptyImage";
 import { Button } from "../Button";
 import { useEffect, useState } from "react";
 
-export function Header() {
+interface HeaderProps {
+  setOpenLogin: (open: boolean) => void;
+  setOpenRegister: (open: boolean) => void;
+}
+
+export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
   const [isOpacity, setIsOpacity] = useState(false);
 
   useEffect(() => {
@@ -60,18 +65,24 @@ export function Header() {
             </li>
             {headerList.map((item, key) => (
               <li className="action-icon text-small-400 headerItem" key={key}>
-                {item.name}
+                <a>{item.name}</a>
               </li>
             ))}
           </ul>
           <div className="headerButtonGroup d-flex">
             <Button
+              onClick={() => setOpenLogin(true)}
               content="Entrar"
               theme="outline"
               width="94px"
               height="35px"
             />
-            <Button content="Criar conta" width="94px" height="35px" />
+            <Button
+              onClick={() => setOpenRegister(true)}
+              content="Criar conta"
+              width="94px"
+              height="35px"
+            />
           </div>
         </nav>
       </header>

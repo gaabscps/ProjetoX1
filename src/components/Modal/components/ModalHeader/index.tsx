@@ -1,35 +1,35 @@
 "use client";
 
-import React, { Dispatch, SetStateAction } from "react";
-// import { CloseX } from "../../../../assets/images/svg/closeX";
-import Link from "next/link";
+import React from "react";
+import { CloseX } from "@/assets/svg/CloseX";
 
 interface ModalHeaderProps {
-  content: string | JSX.Element;
+  content: string | JSX.Element | null;
   setOpen: (open: boolean) => void;
+  modalHeaderBg?: string | null;
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
+  modalHeaderBg = "#000",
   content,
   setOpen,
 }) => {
   return (
     <>
-      <div className="modalHeader">
-        <div className="modalHeader--icon">
-          <div
-            onClick={() => {
-              setOpen(false);
-            }}
-            className="buttonRoundEffect"
-          >
-            <Link href="/404">
-              {/* <CloseX color="white" width={20} height={20} /> */}
-            </Link>
-          </div>
-        </div>
+      <div
+        style={{ background: modalHeaderBg || "" }}
+        className={`modalHeader ${content ? "modalHeader--content" : ""}`}
+      >
         <div className="modalHeader--content">{content}</div>
-        <div className="modalHeader--icon"></div>
+        <div
+          onClick={() => {
+            setOpen(false);
+          }}
+          className="buttonRoundEffect action-icon"
+          style={content ? { position: "relative", top: "-10px" } : {}}
+        >
+          <CloseX />
+        </div>
       </div>
     </>
   );

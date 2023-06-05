@@ -1,11 +1,19 @@
 .cardContainer {
   min-width: 50px;
   min-height: 50px;
-  background: var(--card-background-color);
-  border-radius: 10px;
+
   .cardContent {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+}
+.card-filled {
+  background: var(--card-background-color);
+  border-radius: 10px;
+}
+
+.card-outline {
+  border: 1px solid #5f5c6b;
+  border-radius: 5px;
 }
