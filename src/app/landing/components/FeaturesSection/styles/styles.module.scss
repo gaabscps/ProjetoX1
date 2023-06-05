@@ -1,3 +1,14 @@
 .featuresH6Margin {
   margin: 11px 0;
+  text-align: center;
+}
+
+.landingEffect {
+  position: absolute;
+
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

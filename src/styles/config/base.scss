@@ -3,6 +3,12 @@ body {
   background: var(--background-color);
 }
 
+@media screen and (max-width: 1110px) {
+  body {
+    min-width: 320px;
+  }
+}
+
 //Flexbox
 .d-flex {
   display: flex;
@@ -462,6 +468,12 @@ body {
 .text-small-700 {
   font-size: var(--text-size-small);
   font-weight: var(--text-weight-bold);
+}
+
+@media screen and (max-width: 1110px) {
+  .h4-500 {
+    font-size: 22px;
+  }
 }
 
 .line-height-150 {

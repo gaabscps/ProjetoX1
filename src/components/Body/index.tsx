@@ -13,11 +13,8 @@ export function Body({
 }: BodyProps) {
   return (
     <section
-      className={`${className || ""}`}
+      className={`${className || ""} sectionBody`}
       style={{
-        position: "relative",
-        maxWidth: "1110px",
-        margin: "0 auto",
         marginBottom: marginBottom || "0px",
         marginTop: marginTop || "0px",
       }}

@@ -20,6 +20,9 @@ export function GamesSection() {
     {
       image: <EmptyBanner />,
     },
+    {
+      image: <EmptyBanner />,
+    },
   ];
 
   const availableGames = gamesMock.map((item) => (

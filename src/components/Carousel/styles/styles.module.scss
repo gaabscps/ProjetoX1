@@ -12,7 +12,14 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-width: 600px;
 }
+
+// @media screen and (max-width: 600px) {
+//   .carousel-align {
+//     transform: scale(0.5) translate(-280px, -100px);
+//   }
+// }
 
 .carousel-items-container {
   display: flex;
