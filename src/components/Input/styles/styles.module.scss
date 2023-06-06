@@ -7,6 +7,13 @@
   background-color: var(--color-black-2);
   border-radius: 5px;
   position: relative;
+  &:hover {
+    background: var(--color-black-3);
+  }
+
+  &:active {
+    background: var(--color-black-4);
+  }
 }
 
 .toggle-password-btn {

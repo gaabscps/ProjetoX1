@@ -28,19 +28,15 @@ export default function Landing({}: PageProps) {
           modalHeader={
             modal.openRegister ? (
               <span
-                className="h-100 line-height-150"
-                style={{
-                  width: "442px",
-                  textAlign: "center",
-                  padding: "35px 0",
-                }}
+                className="h-100 line-height-150 registerHeaderContent"
+                style={{}}
               >
                 Crie a sua conta e ganhe R$ 50,00 para começar a desafiar outros
                 jogadores
               </span>
             ) : null
           }
-          modalHeaderBg={modal.openRegister ? "#5F5C6B" : null}
+          modalHeaderBg={modal.openRegister ? "#3E3B3F" : null}
         />
       )}
       <Header

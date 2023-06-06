@@ -22,12 +22,12 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
     <div className="d-flex flex-column align-items-center w-100 h-100">
       <EmptyImage className="modal-logo" />
       <h5 className="h5-500 h5-modal-margin h5-modal">Entre com a sua conta</h5>
-      <form style={{ width: "540px" }} action="">
+      <form className="loginRegisterForm" action="">
         <Input placeholder="Seu e-mail" type="email" name="email" />
         <Input placeholder="Sua senha" type="password" name="password" />
         <div className="action-icon forgotPassword">Esqueceu a sua senha?</div>
         <div className="d-flex align-items-center justify-content-center">
-          <Button size="large" content="Entrar" />
+          <button className="loginRegisterButton"> Entrar </button>
         </div>
       </form>
       <div
@@ -53,7 +53,7 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
           onClick={() => {
             handleRegisterButton(false);
           }}
-          className="action-icon color-primary1 text-normal-700"
+          className="action-icon color-primary-3 text-normal-500"
         >
           Criar conta
         </span>

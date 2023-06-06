@@ -21,10 +21,11 @@
   max-height: 95%;
   position: fixed;
   top: 50px;
+  transition: all ease 0.2s;
 }
 
 .modalHeader {
-  min-height: 70px;
+  // min-height: 70px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -54,11 +55,12 @@
     justify-content: center;
     flex: 5;
     margin-left: 1px;
+    padding: 35px 0;
+    span {
+      width: 80%;
+      text-align: center;
+    }
   }
-}
-
-.modalHeader--content {
-  min-height: auto;
 }
 
 .modalBody {
@@ -81,4 +83,37 @@
   background-color: var(--color-black);
   border-radius: 0 0 10px 10px;
   overflow: auto;
+}
+
+@media screen and (max-width: 840px) {
+  .modalModule {
+    min-height: 100%;
+    background: var(--color-black);
+  }
+  .modalHeader {
+    border-radius: 0;
+    padding: 20px;
+  }
+  .registerHeaderContent {
+    padding: 20px 0;
+  }
+  .h5-modal {
+    font-size: 1.5rem;
+  }
+  .modalContainer {
+    .modalHeader--content {
+      padding: 0 30px 0 40px;
+    }
+    width: 100%;
+    max-height: 100%;
+    top: 0;
+    padding-bottom: 0;
+    transition: all ease 0.2s;
+  }
+  .modal-socialMedia {
+    margin-bottom: 30px;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
 }
