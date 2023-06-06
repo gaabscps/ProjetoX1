@@ -24,3 +24,29 @@
   margin-bottom: 20px;
   padding: 0 15px;
 }
+
+.loginRegisterForm {
+  width: 540px;
+}
+
+.loginRegisterButton {
+  padding: 20px !important;
+  width: 100%;
+  text-align: center;
+  background: var(--color-black-2);
+  border-radius: 5px;
+
+  &:hover {
+    background: var(--color-black-3);
+  }
+
+  &:active {
+    background: var(--color-black-4);
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .loginRegisterForm {
+    width: 90% !important;
+  }
+}

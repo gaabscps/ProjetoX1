@@ -24,7 +24,7 @@ export function ModalRegisterBody({
     <div className="d-flex flex-column align-items-center w-100 h-100">
       <EmptyImage className="modal-logo" />
       <h5 className="h5-500 h5-modal-margin h5-modal">Crie a sua conta</h5>
-      <form style={{ width: "540px" }} action="">
+      <form className="loginRegisterForm" action="">
         <Input placeholder="Seu e-mail" type="email" name="email" />
         <Input placeholder="Seu CPF" type="text" name="cpf" />
         <Input placeholder="Sua senha" type="password" name="password" />
@@ -52,7 +52,7 @@ export function ModalRegisterBody({
           <span style={{ color: "white" }}>Política de Privacidade</span>
         </p>
         <div className="d-flex align-items-center justify-content-center">
-          <Button size="large" content="Criar a minha conta" />
+          <button className="loginRegisterButton"> Criar a minha conta </button>
         </div>
       </form>
       <div
@@ -78,7 +78,7 @@ export function ModalRegisterBody({
           onClick={() => {
             handleLoginButton();
           }}
-          className="action-icon color-primary1 text-normal-700"
+          className="action-icon color-primary-3 text-normal-500"
         >
           Entrar
         </span>
