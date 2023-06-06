@@ -4,7 +4,8 @@ import { LeftArrow } from "@/assets/svg/LeftArrow";
 import { LeftArrowHover } from "@/assets/svg/LeftArrowHover";
 import { RightArrowHover } from "@/assets/svg/RightArrowHover";
 import { RightArrow } from "@/assets/svg/RightArrow";
-import { useMediaQuery } from "react-responsive";
+import { useTabletHook } from "@/hooks/useMediaQuery/isTablet";
+import { useMobileHook } from "@/hooks/useMediaQuery/isMobile";
 
 interface CarouselProps {
   items: any[];
@@ -13,14 +14,8 @@ interface CarouselProps {
 }
 
 export function Carrossel({ items, title, centerButton }: CarouselProps) {
-  const desktop = useMediaQuery({
-    query: "(min-width: 1110px)",
-  });
-
-  const [isDesktop, setIsDesktop] = useState(false);
-  useEffect(() => {
-    setIsDesktop(desktop);
-  }, [desktop]);
+  const isTablet = useTabletHook();
+  const isMobile = useMobileHook();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoverLeft, setHoverLeft] = useState(false);
@@ -29,32 +24,114 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
   const [activeRight, setActiveRight] = useState(false);
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex: number) =>
-      isDesktop
-        ? prevIndex > items.length - 5
-          ? 0
-          : prevIndex + 1
-        : prevIndex > items.length - 3
-        ? 0
-        : prevIndex + 1
-    );
-    console.log({ currentIndex });
-    console.log({ items });
+    setCurrentIndex((prevIndex: number) => {
+      let newIndex;
+
+      if (isTablet && isMobile) {
+        if (prevIndex > items.length - 2) {
+          newIndex = 0;
+        } else {
+          newIndex = prevIndex + 1;
+        }
+      } else if (isTablet) {
+        if (prevIndex > items.length - 3) {
+          newIndex = 0;
+        } else {
+          newIndex = prevIndex + 1;
+        }
+      } else if (isMobile) {
+        if (prevIndex > items.length - 2) {
+          newIndex = 0;
+        } else {
+          newIndex = prevIndex + 1;
+        }
+      } else {
+        if (prevIndex > items.length - 5) {
+          newIndex = 0;
+        } else {
+          newIndex = prevIndex + 1;
+        }
+      }
+
+      return newIndex;
+    });
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex: number) =>
-      isDesktop
-        ? prevIndex === 0
-          ? items.length - 4
-          : prevIndex - 1
-        : prevIndex === 0
-        ? items.length - 2
-        : prevIndex - 1
-    );
-    console.log({ currentIndex });
-    console.log({ items });
+    setCurrentIndex((prevIndex: number) => {
+      let newIndex;
+
+      if (isTablet && isMobile) {
+        if (prevIndex === 0) {
+          newIndex = items.length - 1;
+        } else {
+          newIndex = prevIndex - 1;
+        }
+      } else if (isTablet) {
+        if (prevIndex === 0) {
+          newIndex = items.length - 2;
+        } else {
+          newIndex = prevIndex - 1;
+        }
+      } else if (isMobile) {
+        if (prevIndex === 0) {
+          newIndex = items.length - 1;
+        } else {
+          newIndex = prevIndex - 1;
+        }
+      } else {
+        if (prevIndex === 0) {
+          newIndex = items.length - 4;
+        } else {
+          newIndex = prevIndex - 1;
+        }
+      }
+
+      return newIndex;
+    });
   };
+
+  const handlePaginationSize = () => {
+    let result;
+
+    if (isTablet && isMobile) {
+      result = totalPages;
+    } else if (isTablet) {
+      result = totalPages - 1;
+    } else if (isMobile) {
+      result = totalPages;
+    } else {
+      result = totalPages - 3;
+    }
+    return result;
+  };
+
+  const handlePageSize = () => {
+    let result;
+    if (isTablet && totalPages > 4) {
+      result = `${(totalPages - 2) * (231 + 19)}px`;
+    }
+    if (isMobile && totalPages) {
+      result = `${(totalPages - 1) * (233 + 19)}px`;
+    } else {
+      result = `${(totalPages - 4) * (231 + 19)}px`;
+    }
+    return result;
+  };
+
+  function verificarDispositivo() {
+    let result;
+    if (isTablet && isMobile) {
+      result = `${(totalPages - 1) * (231 + 19)}px`;
+    } else if (isTablet) {
+      result = `${(totalPages - 2) * (231 + 19)}px`;
+    } else if (isMobile) {
+      result = `${(totalPages - 1) * (233 + 19)}px`;
+    } else {
+      result = `${(totalPages - 4) * (231 + 19)}px`;
+    }
+    return result;
+  }
 
   const handleMouseEnterLeft = () => {
     setHoverLeft(true);
@@ -93,23 +170,20 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
 
   return (
     <>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between carouselTitle">
         <h4 className="h4-500 h4-mb">{title}</h4>
         {/* Esta div serve para que caso não haja um titulo, o componente de paginação continue sendo renderizado no canto direito */}
         {!title && <div></div>}
         {pages > 1 && (
           <div className="carousel-pagination-indicator">
-            {Array.from(
-              { length: isDesktop ? totalPages - 3 : totalPages - 1 },
-              (_, index) => (
-                <div
-                  key={index}
-                  className={`carousel-pagination ${
-                    Math.floor(currentIndex) === index ? "active" : ""
-                  }`}
-                />
-              )
-            )}
+            {Array.from({ length: handlePaginationSize() }, (_, index) => (
+              <div
+                key={index}
+                className={`carousel-pagination ${
+                  Math.floor(currentIndex) === index ? "active" : ""
+                }`}
+              />
+            ))}
           </div>
         )}
       </div>
@@ -131,10 +205,7 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
             className="carousel-items-container"
             style={{
               transform: `translateX(-${currentIndex * (231 + 19)}px)`,
-              marginLeft:
-                isDesktop && totalPages > 4
-                  ? `${(totalPages - 4) * (231 + 19)}px`
-                  : `${(totalPages - 2) * (231 + 19)}px`,
+              marginLeft: verificarDispositivo(),
             }}
           >
             <ul className="carouselVisibleItem">

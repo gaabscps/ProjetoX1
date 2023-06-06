@@ -47,6 +47,11 @@ export function LastNewsSection() {
       title: "O jogo Albion agora esta disponível na PLAY X1",
       image: <EmptyBanner />,
     },
+    {
+      date: "03/05/2023",
+      title: "O jogo DiabloIV agora esta disponível na PLAY X1",
+      image: <EmptyBanner />,
+    },
   ];
 
   const lastNews = newsMock.map((item, index) => (

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles/styles.module.scss";
+import { useMediaQuery } from "react-responsive";
 
 interface ButtonProps {
   content: React.ReactNode;
@@ -33,6 +34,15 @@ export const Button: React.FC<ButtonProps> = ({
   const [hover, setHover] = useState(false);
   const [active, setActive] = useState(false);
 
+  const mobile = useMediaQuery({
+    query: "(max-width: 640px)",
+  });
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(mobile);
+  }, [mobile]);
+
   //funções para lidar com estado hover/ativo do efeito do botão com efeito, acompanhando o estado do botão
   const handleMouseEnter = () => {
     setHover(true);
@@ -59,7 +69,7 @@ export const Button: React.FC<ButtonProps> = ({
     };
 
     if (size === "large") {
-      style.padding = "16px 125px";
+      style.padding = isMobile ? "16px" : "16px 125px";
       style.transform = "skew(-33deg)";
     }
 
@@ -112,7 +122,10 @@ export const Button: React.FC<ButtonProps> = ({
             ${hover && styles.buttonContainerEffecthover}
             ${active && styles.buttonContainerEffectActive}
              button${size || ""} ${className || ""}`}
-            style={{ padding: "16px 125px", transform: "skew(-33deg)" }}
+            style={{
+              padding: isMobile ? "16px" : "16px 125px",
+              transform: "skew(-33deg)",
+            }}
           >
             {icon && (
               <div className="buttonIcon" style={{ color: "black" }}>
