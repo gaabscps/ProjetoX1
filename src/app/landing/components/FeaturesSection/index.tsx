@@ -41,7 +41,7 @@ export function FeaturesSection() {
             width="350px"
             height="260px"
             content={
-              <div className="d-flex flex-column align-items-center justify-content-center h-100">
+              <div className="d-flex flex-column align-items-center justify-content-center h-100 featuresContainer">
                 <div>{item.image}</div>
                 <h6 className="h6-400 featuresH6Margin">{item.title}</h6>
                 <span className="text-center color-black-7 text-normal-400 mlr-3 line-height-150">

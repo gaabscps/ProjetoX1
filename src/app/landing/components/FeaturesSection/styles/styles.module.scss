@@ -12,3 +12,19 @@
   align-items: center;
   width: 100%;
 }
+
+@media screen and (max-width: 640px) {
+  .featuresContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    h6 {
+      font-size: 14px;
+    }
+    span {
+      font-size: var(--text-size-small);
+    }
+  }
+}

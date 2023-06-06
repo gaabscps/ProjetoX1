@@ -15,12 +15,6 @@
   min-width: 600px;
 }
 
-// @media screen and (max-width: 600px) {
-//   .carousel-align {
-//     transform: scale(0.5) translate(-280px, -100px);
-//   }
-// }
-
 .carousel-items-container {
   display: flex;
   gap: 19px;
@@ -47,6 +41,7 @@
 .carousel-button {
   cursor: pointer;
   font-size: 24px;
+  width: 45px;
 }
 
 .carousel-pagination-indicator {
@@ -84,4 +79,20 @@
 
 .arrowMargin {
   margin-bottom: 85px;
+}
+
+@media screen and (max-width: 640px) {
+  .carousel-align {
+    min-width: 320px;
+  }
+  .carousel-button {
+    width: 30px;
+  }
+  .carouselTitle {
+    flex-direction: column;
+    margin-bottom: 10px;
+    h4 {
+      text-align: center;
+    }
+  }
 }

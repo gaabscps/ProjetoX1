@@ -16,7 +16,7 @@ export function VideoSection({ setOpenRegister }: VideoSectionProps) {
       </video>
       <div className="centered-content">
         <div className="videoSectionText">
-          <span className="text-normal-500">
+          <span style={{ fontSize: "16px" }} className="text-normal-500">
             Desafie. Aposte. Vença. Mostre ao mundo do que você é capaz.
           </span>
         </div>

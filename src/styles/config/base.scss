@@ -470,6 +470,112 @@ body {
   font-weight: var(--text-weight-bold);
 }
 
+@media screen and (max-width: 640px) {
+  .h1-400 {
+    font-size: var(--text-size-h2);
+    font-weight: var(--text-weight-regular);
+  }
+
+  .h1-500 {
+    font-size: var(--text-size-h2);
+    font-weight: var(--text-weight-medium);
+  }
+
+  .h1-700 {
+    font-size: var(--text-size-h2);
+    font-weight: var(--text-weight-bold);
+  }
+
+  .h2-400 {
+    font-size: var(--text-size-h3);
+    font-weight: var(--text-weight-regular);
+  }
+
+  .h2-500 {
+    font-size: var(--text-size-h3);
+    font-weight: var(--text-weight-medium);
+  }
+
+  .h2-700 {
+    font-size: var(--text-size-h3);
+    font-weight: var(--text-weight-bold);
+  }
+
+  .h3-400 {
+    font-size: var(--text-size-h4);
+    font-weight: var(--text-weight-regular);
+  }
+
+  .h3-500 {
+    font-size: var(--text-size-h4);
+    font-weight: var(--text-weight-medium);
+  }
+
+  .h3-700 {
+    font-size: var(--text-size-h4);
+    font-weight: var(--text-weight-bold);
+  }
+
+  .h4-400 {
+    font-size: var(--text-size-h5);
+    font-weight: var(--text-weight-regular);
+  }
+
+  .h4-500 {
+    font-size: var(--text-size-h5);
+    font-weight: var(--text-weight-medium);
+  }
+
+  .h4-700 {
+    font-size: var(--text-size-h5);
+    font-weight: var(--text-weight-bold);
+  }
+
+  .h5-400 {
+    font-size: var(--text-size-h6);
+    font-weight: var(--text-weight-regular);
+  }
+
+  .h5-500 {
+    font-size: var(--text-size-h6);
+    font-weight: var(--text-weight-medium);
+  }
+
+  .h5-700 {
+    font-size: var(--text-size-h6);
+    font-weight: var(--text-weight-bold);
+  }
+
+  .h6-400 {
+    font-size: var(--text-size-normal);
+    font-weight: var(--text-weight-regular);
+  }
+
+  .h6-500 {
+    font-size: var(--text-size-normal);
+    font-weight: var(--text-weight-medium);
+  }
+
+  .h6-700 {
+    font-size: var(--text-size-normal);
+    font-weight: var(--text-weight-bold);
+  }
+
+  .text-normal-400 {
+    font-size: var(--text-size-small);
+    font-weight: var(--text-weight-regular);
+  }
+
+  .text-normal-500 {
+    font-size: var(--text-size-small);
+    font-weight: var(--text-weight-medium);
+  }
+
+  .text-normal-700 {
+    font-size: var(--text-size-small);
+    font-weight: var(--text-weight-bold);
+  }
+}
 @media screen and (max-width: 1110px) {
   .h4-500 {
     font-size: 22px;
