@@ -65,12 +65,12 @@ export function LastNewsSection() {
   ));
 
   return (
-    <section style={{ marginBottom: "130px", marginTop: "60px" }}>
+    <Body carousel marginBottom="130px" marginTop="60px">
       <Carrossel
         centerButton
         title="Últimas notícias e atualizações"
         items={lastNews}
       />
-    </section>
+    </Body>
   );
 }

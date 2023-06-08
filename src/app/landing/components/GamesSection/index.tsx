@@ -32,8 +32,8 @@ export function GamesSection() {
   ));
 
   return (
-    <section style={{ marginBottom: "130px" }}>
+    <Body carousel marginBottom="130px">
       <Carrossel title="Jogos disponíveis" items={availableGames} />
-    </section>
+    </Body>
   );
 }
