@@ -30,7 +30,7 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
 
       if (isTablet && isMobile) {
         if (prevIndex > items.length - 2) {
-          newIndex = 0;
+          newIndex = items.length - 1;
         } else {
           newIndex = prevIndex + 1;
         }
@@ -64,9 +64,9 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
 
       if (isTablet && isMobile) {
         if (prevIndex === 0) {
-          newIndex = items.length - 1;
+          newIndex = 0;
         } else {
-          newIndex = prevIndex - 1;
+          newIndex = (prevIndex || 0) - 1;
         }
       } else if (isTablet) {
         if (prevIndex === 0) {
@@ -94,7 +94,6 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
 
   const handleTouchStart = (event: React.TouchEvent) => {
     setStartX(event.touches[0].clientX);
-    document.body.style.overflow = "hidden";
   };
 
   const handleTouchMoveCapture = (event: React.TouchEvent) => {
@@ -103,13 +102,13 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
 
     if (diffX > 0) {
       // Swiped right
-      if (diffX > 100) {
+      if (diffX > 80) {
         handlePrev();
         setStartX(currentX); // Reset startX to prevent continuous swiping
       }
     } else if (diffX < 0) {
       // Swiped left
-      if (diffX < -100) {
+      if (diffX < -80) {
         handleNext();
         setStartX(currentX); // Reset startX to prevent continuous swiping
       }

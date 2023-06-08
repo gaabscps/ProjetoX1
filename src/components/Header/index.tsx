@@ -76,7 +76,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
       )}
       <header
         className={`headerModule ${isOpacity ? "header-opacity" : ""} ${
-          !isOpen ? "headerMobileOff" : ""
+          !isDesktop && !isOpen ? "headerMobileOff" : "headerMobileOn"
         }`}
       >
         <nav className={`headerContainer `}>
