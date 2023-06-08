@@ -6,7 +6,6 @@ import { RightArrowHover } from "@/assets/svg/RightArrowHover";
 import { RightArrow } from "@/assets/svg/RightArrow";
 import { useTabletHook } from "@/hooks/useMediaQuery/isTablet";
 import { useMobileHook } from "@/hooks/useMediaQuery/isMobile";
-import { useMediaQuery } from "react-responsive";
 
 interface CarouselProps {
   items: any[];
@@ -19,32 +18,6 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
   const isMobile = useMobileHook();
 
   const [startX, setStartX] = useState(0);
-
-  const handleTouchStart = (event: React.TouchEvent) => {
-    setStartX(event.touches[0].clientX);
-  };
-
-  const handleTouchMoveCapture = (event: React.TouchEvent) => {
-    const currentX = event.touches[0].clientX;
-    const diffX = currentX - startX;
-
-    if (diffX > 0) {
-      // Swiped right
-      // trigger the function once and not multiple times
-      if (diffX > 100) {
-        handlePrev();
-        setStartX(currentX); // Reset startX to prevent continuous swiping
-      }
-    } else if (diffX < 0) {
-      // Swiped left
-      // trigger the function once and not multiple times
-      if (diffX < -100) {
-        handleNext();
-        setStartX(currentX); // Reset startX to prevent continuous swiping
-      }
-    }
-  };
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoverLeft, setHoverLeft] = useState(false);
   const [hoverRight, setHoverRight] = useState(false);
@@ -119,6 +92,34 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
     });
   };
 
+  const handleTouchStart = (event: React.TouchEvent) => {
+    setStartX(event.touches[0].clientX);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleTouchMoveCapture = (event: React.TouchEvent) => {
+    const currentX = event.touches[0].clientX;
+    const diffX = currentX - startX;
+
+    if (diffX > 0) {
+      // Swiped right
+      if (diffX > 100) {
+        handlePrev();
+        setStartX(currentX); // Reset startX to prevent continuous swiping
+      }
+    } else if (diffX < 0) {
+      // Swiped left
+      if (diffX < -100) {
+        handleNext();
+        setStartX(currentX); // Reset startX to prevent continuous swiping
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    document.body.style.overflow = "auto";
+  };
+
   const handlePaginationSize = () => {
     let result;
 
@@ -135,45 +136,6 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
     }
     return result;
   };
-
-  const handlePageSize = () => {
-    let result;
-    if (isTablet && totalPages > 4) {
-      result = `${(totalPages - 2) * (231 + 19)}px`;
-    }
-    if (isMobile && totalPages) {
-      result = `${(totalPages - 1) * (233 + 19)}px`;
-    } else {
-      result = `${(totalPages - 4) * (231 + 19)}px`;
-    }
-    return result;
-  };
-
-  function verificarDispositivo() {
-    let result;
-    if (isTablet && isMobile) {
-      result = calculateMarginLeft();
-    } else if (isTablet) {
-      result = calculateMarginLeft();
-    } else if (isMobile) {
-      result = `${(totalPages - 1) * (233 + 19)}px`;
-    } else {
-      result = `${(totalPages - 4) * (231 + 19)}px`;
-    }
-    return result;
-  }
-
-  function calculateMarginLeft() {
-    if (isWideScreen) {
-      return `${baseMargin}px`;
-    } else {
-      const screenWidth = window.innerWidth;
-      const ratio = (screenWidth - baseWidth) / (baseWidth - 1110);
-      const reducedMargin = baseMargin * ratio;
-
-      return `${reducedMargin}px`;
-    }
-  }
 
   const handleMouseEnterLeft = () => {
     setHoverLeft(true);
@@ -210,18 +172,13 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
   const pages = items.length;
   const totalPages = items.length;
 
-  const baseWidth = 1110;
-  const baseMargin = (totalPages - 4) * (231 + 19);
-
-  const isWideScreen = useMediaQuery({ minWidth: baseWidth });
-
   return (
     <>
       <div className="d-flex justify-content-between carouselTitle">
         <h4 className="h4-500 h4-mb">{title}</h4>
         {/* Esta div serve para que caso não haja um titulo, o componente de paginação continue sendo renderizado no canto direito */}
         {!title && <div></div>}
-        {pages > 1 && (
+        {pages > 1 && !isMobile && (
           <div className="carousel-pagination-indicator">
             {Array.from({ length: handlePaginationSize() }, (_, index) => (
               <div
@@ -235,28 +192,30 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
         )}
       </div>
       <div style={{ width: "100%" }} className="d-flex carousel-align">
-        <button
-          onMouseDown={handleMouseDownLeft}
-          onMouseUp={handleMouseUpLeft}
-          onMouseEnter={handleMouseEnterLeft}
-          onMouseLeave={handleMouseLeaveLeft}
-          className={`carousel-button left
+        {!isMobile && (
+          <button
+            onMouseDown={handleMouseDownLeft}
+            onMouseUp={handleMouseUpLeft}
+            onMouseEnter={handleMouseEnterLeft}
+            onMouseLeave={handleMouseLeaveLeft}
+            className={`carousel-button left
           ${activeLeft && "arrowClick"}
           ${centerButton && "arrowMargin"}`}
-          onClick={handlePrev}
-        >
-          {hoverLeft ? <LeftArrowHover /> : <LeftArrow />}
-        </button>
+            onClick={handlePrev}
+          >
+            {hoverLeft ? <LeftArrowHover /> : <LeftArrow />}
+          </button>
+        )}
         <div
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMoveCapture}
+          onTouchEnd={handleTouchEnd}
           className="carousel-container"
         >
           <div
             className="carousel-items-container"
             style={{
               transform: `translateX(-${currentIndex * (231 + 19)}px)`,
-              // marginLeft: verificarDispositivo(),
             }}
           >
             <ul className="carouselVisibleItem">
@@ -272,18 +231,20 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
             </ul>
           </div>
         </div>
-        <button
-          onMouseDown={handleMouseDownRight}
-          onMouseUp={handleMouseUpRight}
-          onMouseEnter={handleMouseEnterRight}
-          onMouseLeave={handleMouseLeaveRight}
-          className={`carousel-button right
+        {!isMobile && (
+          <button
+            onMouseDown={handleMouseDownRight}
+            onMouseUp={handleMouseUpRight}
+            onMouseEnter={handleMouseEnterRight}
+            onMouseLeave={handleMouseLeaveRight}
+            className={`carousel-button right
            ${activeRight && "arrowClick"}
             ${centerButton && "arrowMargin"}`}
-          onClick={handleNext}
-        >
-          {hoverRight ? <RightArrowHover /> : <RightArrow />}
-        </button>
+            onClick={handleNext}
+          >
+            {hoverRight ? <RightArrowHover /> : <RightArrow />}
+          </button>
+        )}
       </div>
     </>
   );
