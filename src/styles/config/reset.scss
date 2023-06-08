@@ -118,6 +118,7 @@ li,
 a {
   color: #fff;
 }
-body {
-  min-height: 100vh;
+
+input[type="radio"] {
+  all: revert;
 }
