@@ -36,7 +36,7 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
         }
       } else if (isTablet) {
         if (prevIndex > items.length - 4) {
-          newIndex = 0;
+          newIndex = items.length - 3;
         } else {
           newIndex = prevIndex + 1;
         }
@@ -70,7 +70,7 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
         }
       } else if (isTablet) {
         if (prevIndex === 0) {
-          newIndex = items.length - 3;
+          newIndex = 0;
         } else {
           newIndex = prevIndex - 1;
         }
