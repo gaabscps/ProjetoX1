@@ -34,4 +34,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-git_merge_script
+git_merge_script.sh
