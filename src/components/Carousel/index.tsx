@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CarouselItem } from "./components/CarouselItem";
 import { LeftArrow } from "@/assets/svg/LeftArrow";
 import { LeftArrowHover } from "@/assets/svg/LeftArrowHover";
@@ -6,6 +6,7 @@ import { RightArrowHover } from "@/assets/svg/RightArrowHover";
 import { RightArrow } from "@/assets/svg/RightArrow";
 import { useTabletHook } from "@/hooks/useMediaQuery/isTablet";
 import { useMobileHook } from "@/hooks/useMediaQuery/isMobile";
+import { useMediaQuery } from "react-responsive";
 
 interface CarouselProps {
   items: any[];
@@ -16,6 +17,33 @@ interface CarouselProps {
 export function Carrossel({ items, title, centerButton }: CarouselProps) {
   const isTablet = useTabletHook();
   const isMobile = useMobileHook();
+
+  const [startX, setStartX] = useState(0);
+
+  const handleTouchStart = (event: React.TouchEvent) => {
+    setStartX(event.touches[0].clientX);
+  };
+
+  const handleTouchMoveCapture = (event: React.TouchEvent) => {
+    const currentX = event.touches[0].clientX;
+    const diffX = currentX - startX;
+
+    if (diffX > 0) {
+      // Swiped right
+      // trigger the function once and not multiple times
+      if (diffX > 100) {
+        handlePrev();
+        setStartX(currentX); // Reset startX to prevent continuous swiping
+      }
+    } else if (diffX < 0) {
+      // Swiped left
+      // trigger the function once and not multiple times
+      if (diffX < -100) {
+        handleNext();
+        setStartX(currentX); // Reset startX to prevent continuous swiping
+      }
+    }
+  };
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoverLeft, setHoverLeft] = useState(false);
@@ -34,7 +62,7 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
           newIndex = prevIndex + 1;
         }
       } else if (isTablet) {
-        if (prevIndex > items.length - 3) {
+        if (prevIndex > items.length - 4) {
           newIndex = 0;
         } else {
           newIndex = prevIndex + 1;
@@ -69,7 +97,7 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
         }
       } else if (isTablet) {
         if (prevIndex === 0) {
-          newIndex = items.length - 2;
+          newIndex = items.length - 3;
         } else {
           newIndex = prevIndex - 1;
         }
@@ -95,9 +123,11 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
     let result;
 
     if (isTablet && isMobile) {
+      // < 768px
       result = totalPages;
     } else if (isTablet) {
-      result = totalPages - 1;
+      // > 768px > 1110px
+      result = totalPages - 2;
     } else if (isMobile) {
       result = totalPages;
     } else {
@@ -122,15 +152,27 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
   function verificarDispositivo() {
     let result;
     if (isTablet && isMobile) {
-      result = `${(totalPages - 1) * (231 + 19)}px`;
+      result = calculateMarginLeft();
     } else if (isTablet) {
-      result = `${(totalPages - 2) * (231 + 19)}px`;
+      result = calculateMarginLeft();
     } else if (isMobile) {
       result = `${(totalPages - 1) * (233 + 19)}px`;
     } else {
       result = `${(totalPages - 4) * (231 + 19)}px`;
     }
     return result;
+  }
+
+  function calculateMarginLeft() {
+    if (isWideScreen) {
+      return `${baseMargin}px`;
+    } else {
+      const screenWidth = window.innerWidth;
+      const ratio = (screenWidth - baseWidth) / (baseWidth - 1110);
+      const reducedMargin = baseMargin * ratio;
+
+      return `${reducedMargin}px`;
+    }
   }
 
   const handleMouseEnterLeft = () => {
@@ -168,6 +210,11 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
   const pages = items.length;
   const totalPages = items.length;
 
+  const baseWidth = 1110;
+  const baseMargin = (totalPages - 4) * (231 + 19);
+
+  const isWideScreen = useMediaQuery({ minWidth: baseWidth });
+
   return (
     <>
       <div className="d-flex justify-content-between carouselTitle">
@@ -200,12 +247,16 @@ export function Carrossel({ items, title, centerButton }: CarouselProps) {
         >
           {hoverLeft ? <LeftArrowHover /> : <LeftArrow />}
         </button>
-        <div className="carousel-container">
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMoveCapture}
+          className="carousel-container"
+        >
           <div
             className="carousel-items-container"
             style={{
               transform: `translateX(-${currentIndex * (231 + 19)}px)`,
-              marginLeft: verificarDispositivo(),
+              // marginLeft: verificarDispositivo(),
             }}
           >
             <ul className="carouselVisibleItem">

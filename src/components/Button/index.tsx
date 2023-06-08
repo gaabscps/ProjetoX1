@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   const [active, setActive] = useState(false);
 
   const mobile = useMediaQuery({
-    query: "(max-width: 640px)",
+    query: "(max-width: 768px)",
   });
 
   const [isMobile, setIsMobile] = useState(false);
