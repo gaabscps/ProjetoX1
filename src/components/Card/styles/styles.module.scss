@@ -10,10 +10,14 @@
 }
 .card-filled {
   background: var(--card-background-color);
-  border-radius: 10px;
 }
 
 .card-outline {
   border: 1px solid #5f5c6b;
+  border-radius: 5px;
+}
+
+.card-dotted {
+  border: 1.5px dashed #5f5c6b;
   border-radius: 5px;
 }

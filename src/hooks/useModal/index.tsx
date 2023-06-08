@@ -1,3 +1,4 @@
+import ModalAddGameBody from "@/app/dashboard/components/ModalBody/AddGame";
 import { ModalLoginBody } from "@/app/landing/components/ModalBody/Login";
 import { ModalRegisterBody } from "@/app/landing/components/ModalBody/Register";
 import { useState } from "react";
@@ -5,7 +6,7 @@ import { useState } from "react";
 export function useModal() {
   const [openLogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
-  const [openNewBody, setOpenNewBody] = useState(false);
+  const [openAddGame, setOpenAddGame] = useState(false);
 
   const handleRegisterButton = () => {
     setOpenLogin(false);
@@ -24,8 +25,8 @@ export function useModal() {
     if (openRegister) {
       return <ModalRegisterBody handleLoginButton={handleLoginButton} />;
     }
-    if (openNewBody) {
-      return <div> teste</div>;
+    if (openAddGame) {
+      return <ModalAddGameBody />;
     } else {
       return <ModalLoginBody handleRegisterButton={handleRegisterButton} />;
     }
@@ -56,17 +57,17 @@ export function useModal() {
     */
     }
     switch (true) {
-      case !openLogin && !openRegister && !openNewBody:
+      case !openLogin && !openRegister && !openAddGame:
         setOpenLogin(true);
         setOpenRegister(false);
-        setOpenNewBody(false);
+        setOpenAddGame(false);
         break;
       case openLogin:
       case openRegister:
-      case openNewBody:
+      case openAddGame:
+        setOpenAddGame(false);
         setOpenLogin(false);
         setOpenRegister(false);
-        setOpenNewBody(false);
         break;
     }
   }
@@ -75,8 +76,10 @@ export function useModal() {
     //Estados para cada modal body
     openLogin,
     openRegister,
+    openAddGame,
     setOpenLogin,
     setOpenRegister,
+    setOpenAddGame,
 
     //Gerencia o estado do modal e qual body será renderizado
     handleModalBody,

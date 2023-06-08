@@ -8,7 +8,6 @@
 }
 
 .accordion-content {
-  padding: 30px 25px;
   background-color: var(--color-black-1);
   border-radius: 0 0 10px 10px;
   word-break: break-word;
@@ -16,23 +15,16 @@
 
 .open {
   max-height: 500px;
-  transform: translateY(0);
+  transform: translateY(0px);
+  opacity: 1;
   transition: all ease 0.2s;
-  span {
-    transition: opacity 0.1s;
-    opacity: 1;
-  }
 }
 
 .closed {
   max-height: 0 !important;
-  padding: 0 25px;
-  transform: translateY(0px);
-  transition: all 0.2s, opacity 0.1s;
-  span {
-    transition: opacity 0.1s;
-    opacity: 0;
-  }
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.2s;
 }
 
 .accordion-content p {

@@ -31,7 +31,9 @@ export default function LandingPageFaq() {
           style={{ margin: "20px 0" }}
           title={item.accordionTitle}
           content={
-            <span className="color-black-7">{item.accordionContent}</span>
+            <span className="faqContent color-black-7">
+              {item.accordionContent}
+            </span>
           }
         />
       ))}
