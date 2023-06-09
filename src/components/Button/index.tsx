@@ -7,6 +7,7 @@ import { useMediaQuery } from "react-responsive";
 interface ButtonProps {
   content: React.ReactNode;
   onClick?: () => void;
+  disabled?: boolean;
   className?: string;
   icon?: React.ReactNode | string;
   size?: "large";
@@ -29,6 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
   width,
   height,
   margin,
+  disabled,
   onClick,
 }) => {
   const [hover, setHover] = useState(false);
@@ -91,6 +93,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <>
       <button
+        disabled={disabled || false}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onMouseDown={handleMouseDown}
@@ -100,7 +103,7 @@ export const Button: React.FC<ButtonProps> = ({
         className={`buttonContainer text-small-700
         ${hover && styles.buttonContainerHover}
         ${active && styles.buttonContainerActive} button${size || ""} button-${
-          theme || "primary"
+          theme || "theme"
         } ${className || ""}`}
         style={styleValidation()}
       >

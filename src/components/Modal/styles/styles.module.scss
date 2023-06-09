@@ -5,9 +5,8 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  z-index: 102;
   background-color: rgba(70, 68, 72, 0.7);
-  transition: all ease 0.2s;
+  transition: all ease 0.3s;
 }
 
 .modalContainer {
@@ -21,7 +20,7 @@
   max-height: 95%;
   position: fixed;
   top: 50px;
-  transition: all ease 0.2s;
+  transition: opacity ease 0.3s, transform ease 0s;
 }
 
 .modalHeader {
@@ -32,6 +31,7 @@
   padding: 0 30px 0 40px;
   border-radius: 10px 10px 0 0;
   background-color: var(--color-black);
+  transition: opacity ease 0.3s, transform ease 0.3s;
 
   .buttonRoundEffect {
     transition: all 0.2s ease-in-out;

@@ -29,12 +29,12 @@ export function Carrossel({
   const [hoverRight, setHoverRight] = useState(false);
   const [activeLeft, setActiveLeft] = useState(false);
   const [activeRight, setActiveRight] = useState(false);
-
   const [startX, setStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [currentTranslate, setCurrentTranslate] = useState(0);
   const [prevTranslate, setPrevTranslate] = useState(0);
 
+  // Funções para lidar com drag n' drop do carrossel em tempo real
   const handleTouchStarts = (e: React.TouchEvent) => {
     setStartX(e.touches[0].clientX);
     setIsDragging(true);
@@ -62,7 +62,40 @@ export function Carrossel({
     setIsDragging(false);
     setPrevTranslate(currentTranslate);
   };
+  // Fim das funções para lidar com drag n' drop do carrossel em tempo real
 
+  // Funções para lidar com o carrossel de banners
+
+  const handleTouchStartBanner = (event: React.TouchEvent) => {
+    setStartX(event.touches[0].clientX);
+  };
+
+  const handleTouchMoveCaptureBanner = (event: React.TouchEvent) => {
+    const currentX = event.touches[0].clientX;
+    const diffX = currentX - startX;
+
+    if (diffX > 0) {
+      // Swiped right
+      if (diffX > 80) {
+        handlePrev();
+        setStartX(currentX); // Reset startX to prevent continuous swiping
+      }
+    } else if (diffX < 0) {
+      // Swiped left
+      if (diffX < -80) {
+        handleNext();
+        setStartX(currentX); // Reset startX to prevent continuous swiping
+      }
+    }
+  };
+
+  const handleTouchEndBanner = () => {
+    document.body.style.overflow = "auto";
+  };
+
+  // Fim das funções para lidar com o carrossel de banners
+
+  // Funções proximo e anterior do carrossel
   const handleNext = () => {
     setCurrentIndex((prevIndex: number) => {
       let newIndex;
@@ -131,33 +164,7 @@ export function Carrossel({
     });
   };
 
-  const handleTouchStartBanner = (event: React.TouchEvent) => {
-    setStartX(event.touches[0].clientX);
-  };
-
-  const handleTouchMoveCaptureBanner = (event: React.TouchEvent) => {
-    const currentX = event.touches[0].clientX;
-    const diffX = currentX - startX;
-
-    if (diffX > 0) {
-      // Swiped right
-      if (diffX > 80) {
-        // translate to left according to the user swipe
-        handlePrev();
-        setStartX(currentX); // Reset startX to prevent continuous swiping
-      }
-    } else if (diffX < 0) {
-      // Swiped left
-      if (diffX < -80) {
-        handleNext();
-        setStartX(currentX); // Reset startX to prevent continuous swiping
-      }
-    }
-  };
-
-  const handleTouchEndBanner = () => {
-    document.body.style.overflow = "auto";
-  };
+  // Fim das funções proximo e anterior do carrossel
 
   const handlePaginationSize = () => {
     let result;
@@ -215,7 +222,7 @@ export function Carrossel({
     <>
       <div className="d-flex justify-content-between carouselTitle">
         <h4 className="h4-500 h4-mb">{title}</h4>
-        {/* This div ensures that if there is no title, the pagination component continues to be rendered on the right side */}
+        {/* Esta div serve para que caso não haja um titulo, o componente de paginação continue sendo renderizado no canto direito */}
         {!title && <div></div>}
         {pages > 1 && !isMobile && !isTablet && (
           <div className="carousel-pagination-indicator">
@@ -262,7 +269,7 @@ export function Carrossel({
           >
             <ul
               style={{
-                transform: `translateX(${currentTranslate}px)`,
+                transform: `translateX(${1.2 * currentTranslate}px)`,
                 transition: isDragging ? "none" : "transform 0.3s",
               }}
               className="carouselVisibleItem"
