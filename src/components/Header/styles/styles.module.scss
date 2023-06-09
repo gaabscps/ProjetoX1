@@ -6,7 +6,6 @@
   z-index: 100;
   opacity: 80%;
   top: 0;
-  transition: all ease 0.2s;
   transform: translateX(0);
   .headerContainer {
     margin: 0 165px;
@@ -60,6 +59,13 @@
       background-color: var(--color-primary-3);
     }
   }
+  .headerMobileOff {
+    transform: translateX(-100%);
+    transition: all ease 0.2s;
+  }
+  .headerMobileOn {
+    transition: all ease 0.2s;
+  }
   .headerModule {
     width: auto;
     height: 100vh;
@@ -97,7 +103,5 @@
     }
   }
 }
-.headerMobileOff {
-  transform: translateX(-100%);
-  transition: all ease 0.2s;
+@media screen and (max-width: 768px) {
 }
