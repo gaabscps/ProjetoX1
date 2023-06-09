@@ -1,4 +1,4 @@
-export type Rank = {
+export type PlayerRank = {
   value: string;
   label: string;
 };
