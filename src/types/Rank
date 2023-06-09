@@ -1,0 +1,4 @@
+export type Rank = {
+  value: string;
+  label: string;
+};
