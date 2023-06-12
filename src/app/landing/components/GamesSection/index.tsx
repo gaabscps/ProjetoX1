@@ -33,7 +33,7 @@ export function GamesSection() {
 
   return (
     <Body carousel marginBottom="130px">
-      <Carrossel title="Jogos disponíveis" items={availableGames} />
+      <Carrossel isBanner title="Jogos disponíveis" items={availableGames} />
     </Body>
   );
 }

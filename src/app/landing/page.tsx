@@ -21,24 +21,23 @@ export default function Landing({}: PageProps) {
 
   return (
     <>
-      {(modal.openLogin || modal.openRegister) && (
-        <Modal
-          setOpen={modal.handleSetModal}
-          modalBody={modal.handleModalBody()}
-          modalHeader={
-            modal.openRegister ? (
-              <span
-                className="h-100 line-height-150 registerHeaderContent"
-                style={{}}
-              >
-                Crie a sua conta e ganhe R$ 50,00 para começar a desafiar outros
-                jogadores
-              </span>
-            ) : null
-          }
-          modalHeaderBg={modal.openRegister ? "#3E3B3F" : null}
-        />
-      )}
+      <Modal
+        open={modal.openLogin || modal.openRegister}
+        setOpen={modal.handleSetModal}
+        modalBody={modal.handleModalBody()}
+        modalHeader={
+          modal.openRegister ? (
+            <span
+              className="h-100 line-height-150 registerHeaderContent"
+              style={{}}
+            >
+              Crie a sua conta e ganhe R$ 50,00 para começar a desafiar outros
+              jogadores
+            </span>
+          ) : null
+        }
+        modalHeaderBg={modal.openRegister ? "#3E3B3F" : null}
+      />
       <Header
         setOpenRegister={modal.setOpenRegister}
         setOpenLogin={modal.handleSetModal}

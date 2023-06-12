@@ -57,6 +57,7 @@
   width: 100%;
 }
 
+//outline
 .button-outline {
   background: var(---button-backgroundColor-outline);
   border: 1px solid #ffffff;
@@ -65,5 +66,28 @@
   }
   &:active {
     background: var(---button-backgroundColor-outline-active);
+  }
+}
+
+//standard
+.button-primary {
+  transform: skew(0) !important;
+  border-radius: 5px;
+  background: var(--button-backgroundColor-primary);
+  div {
+    transform: skew(0) !important;
+  }
+  &:hover {
+    background: var(--button-backgroundColor-primary-hover);
+  }
+  &:active {
+    background: var(--button-backgroundColor-primary-active);
+  }
+  &:disabled {
+    background: var(--color-black-2);
+    cursor: not-allowed;
+    div {
+      color: var(--color-black-5);
+    }
   }
 }

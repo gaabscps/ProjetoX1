@@ -6,6 +6,7 @@
   width: 90%;
   margin: 0 auto;
   user-select: all;
+  transition: all 0.7s ease;
 }
 
 .carousel-align {
@@ -19,7 +20,7 @@
 .carousel-items-container {
   display: flex;
   gap: 19px;
-  transition: transform 0.3s ease;
+  transition: transform 0.7s ease;
   transform: translateX(0);
   position: relative;
 }
