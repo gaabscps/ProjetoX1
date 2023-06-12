@@ -1,6 +1,12 @@
 import { EmptyBanner } from "@/assets/svg/EmptyBanner";
 import { Body } from "@/components/Body";
 import { Carrossel } from "@/components/Carousel";
+import { Element } from "react-scroll";
+import Image from "next/image";
+import mock1 from "@/assets/svg/mockNews1.svg";
+import mock2 from "@/assets/svg/mockNews2.svg";
+import mock3 from "@/assets/svg/mockNews3.svg";
+import mock4 from "@/assets/svg/mockNews4.svg";
 
 export function LastNewsSection() {
   type News = {
@@ -13,44 +19,65 @@ export function LastNewsSection() {
     {
       date: "03/05/2023",
       title: "O jogo League Of Legends 2 agora esta disponível na PLAY X1",
-      image: <EmptyBanner />,
+      image: <Image src={mock1} alt={""} />,
     },
     {
       date: "03/05/2023",
       title: "O jogo Valorant agora esta disponível na PLAY X1",
-      image: <EmptyBanner />,
+      image: <Image src={mock2} alt={""} />,
     },
     {
       date: "03/05/2023",
       title: "O jogo Overwatch 2 agora esta disponível na PLAY X1",
-      image: <EmptyBanner />,
+      image: <Image src={mock3} alt={""} />,
     },
     {
       date: "03/05/2023",
       title:
         "O jogo Counter Strike : Global Offensive agora esta disponível na PLAY X1",
-      image: <EmptyBanner />,
+      image: <Image src={mock4} alt={""} />,
     },
     {
       date: "03/05/2023",
-      title: "O jogo Path of Exile agora esta disponível na PLAY X1",
-      image: <EmptyBanner />,
-    },
-
-    {
-      date: "03/05/2023",
-      title: "O jogo Albion agora esta disponível na PLAY X1",
-      image: <EmptyBanner />,
+      title: "O jogo League Of Legends 2 agora esta disponível na PLAY X1",
+      image: <Image src={mock1} alt={""} />,
     },
     {
       date: "03/05/2023",
-      title: "O jogo Albion agora esta disponível na PLAY X1",
-      image: <EmptyBanner />,
+      title: "O jogo Valorant agora esta disponível na PLAY X1",
+      image: <Image src={mock2} alt={""} />,
     },
     {
       date: "03/05/2023",
-      title: "O jogo DiabloIV agora esta disponível na PLAY X1",
-      image: <EmptyBanner />,
+      title: "O jogo Overwatch 2 agora esta disponível na PLAY X1",
+      image: <Image src={mock3} alt={""} />,
+    },
+    {
+      date: "03/05/2023",
+      title:
+        "O jogo Counter Strike : Global Offensive agora esta disponível na PLAY X1",
+      image: <Image src={mock4} alt={""} />,
+    },
+    {
+      date: "03/05/2023",
+      title: "O jogo League Of Legends 2 agora esta disponível na PLAY X1",
+      image: <Image src={mock1} alt={""} />,
+    },
+    {
+      date: "03/05/2023",
+      title: "O jogo Valorant agora esta disponível na PLAY X1",
+      image: <Image src={mock2} alt={""} />,
+    },
+    {
+      date: "03/05/2023",
+      title: "O jogo Overwatch 2 agora esta disponível na PLAY X1",
+      image: <Image src={mock3} alt={""} />,
+    },
+    {
+      date: "03/05/2023",
+      title:
+        "O jogo Counter Strike : Global Offensive agora esta disponível na PLAY X1",
+      image: <Image src={mock4} alt={""} />,
     },
   ];
 
@@ -65,12 +92,14 @@ export function LastNewsSection() {
   ));
 
   return (
-    <Body carousel marginBottom="130px" marginTop="60px">
-      <Carrossel
-        centerButton
-        title="Últimas notícias e atualizações"
-        items={lastNews}
-      />
-    </Body>
+    <Element name="news">
+      <Body carousel marginBottom="130px" marginTop="60px">
+        <Carrossel
+          centerButton
+          title="Últimas notícias e atualizações"
+          items={lastNews}
+        />
+      </Body>
+    </Element>
   );
 }

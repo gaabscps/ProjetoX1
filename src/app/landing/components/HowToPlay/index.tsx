@@ -7,6 +7,7 @@ import { Card } from "@/components/Card";
 import jett from "@/assets/svg/card-jett.svg";
 import vayne from "@/assets/svg/card-vayne.svg";
 import cs from "@/assets/svg/card-cs.svg";
+import { Element } from "react-scroll";
 
 export default function HowToPlay() {
   type Content = {
@@ -34,7 +35,7 @@ export default function HowToPlay() {
   ];
 
   return (
-    <>
+    <Element name="howToPlay">
       <Body marginBottom="130px">
         <h4 className="h4-500 h4-mb">É easy demais</h4>
 
@@ -65,6 +66,6 @@ export default function HowToPlay() {
           </>
         ))}
       </Body>
-    </>
+    </Element>
   );
 }

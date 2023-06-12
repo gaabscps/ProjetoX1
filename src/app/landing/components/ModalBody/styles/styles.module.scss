@@ -1,13 +1,19 @@
 .modal-logo {
   margin-bottom: 50px;
   margin-top: 40px;
-  transform: scale(1.5);
+  height: 60px;
 }
 .h5-modal {
   margin-bottom: 30px;
 }
+
+.modal-separator {
+  width: 540px;
+  margin: 40px;
+}
 .modal-socialMedia {
   margin-bottom: 30px;
+  width: 540px;
 }
 
 .forgotPassword {
@@ -47,7 +53,9 @@
 }
 
 @media screen and (max-width: 840px) {
-  .loginRegisterForm {
+  .loginRegisterForm,
+  .modal-socialMedia,
+  .modal-separator {
     width: 90% !important;
   }
 }

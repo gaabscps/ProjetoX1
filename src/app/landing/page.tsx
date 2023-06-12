@@ -56,6 +56,7 @@ export default function Landing({}: PageProps) {
         />
       </Body>
       <HowToPlay />
+
       <LandingPageFaq />
       <Footer />
     </>
