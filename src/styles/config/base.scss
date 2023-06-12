@@ -472,6 +472,15 @@ body {
   font-weight: var(--text-weight-bold);
 }
 
+.simpleStates {
+  &:hover {
+    filter: opacity(0.8);
+  }
+  &:active {
+    filter: opacity(0.6);
+  }
+}
+
 @media screen and (max-width: 768px) {
   .h1-400 {
     font-size: var(--text-size-h2);

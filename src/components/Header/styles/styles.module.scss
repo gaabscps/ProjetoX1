@@ -1,15 +1,13 @@
 .headerModule {
-  background: var(--header-background-color);
+  background: rgb(25, 24, 26, 0.8);
   min-height: 80px;
   position: fixed;
   width: 100%;
   z-index: 100;
-  opacity: 80%;
   top: 0;
   transform: translateX(0);
   .headerContainer {
     margin: 0 165px;
-    background: var(--header-background-color);
     display: flex;
     justify-content: space-between;
     max-width: 1110px;
@@ -44,7 +42,7 @@
   }
 }
 .header-opacity {
-  opacity: 100%;
+  background: rgb(25, 24, 26);
   transition: all ease 0.2s;
 }
 
