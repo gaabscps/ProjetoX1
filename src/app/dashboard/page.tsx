@@ -13,24 +13,23 @@ export default function Dashboard() {
 
   return (
     <>
-      {(modal.openLogin || modal.openRegister || modal.openAddGame) && (
-        <Modal
-          setOpen={modal.handleSetModal}
-          modalBody={modal.handleModalBody()}
-          modalHeader={
-            modal.openRegister ? (
-              <span
-                className="h-100 line-height-150 registerHeaderContent"
-                style={{}}
-              >
-                Crie a sua conta e ganhe R$ 50,00 para começar a desafiar outros
-                jogadores
-              </span>
-            ) : null
-          }
-          modalHeaderBg={modal.openRegister ? "#3E3B3F" : null}
-        />
-      )}
+      <Modal
+        open={modal.openLogin || modal.openRegister || modal.openAddGame}
+        setOpen={modal.handleSetModal}
+        modalBody={modal.handleModalBody()}
+        modalHeader={
+          modal.openRegister ? (
+            <span
+              className="h-100 line-height-150 registerHeaderContent"
+              style={{}}
+            >
+              Crie a sua conta e ganhe R$ 50,00 para começar a desafiar outros
+              jogadores
+            </span>
+          ) : null
+        }
+        modalHeaderBg={modal.openRegister ? "#3E3B3F" : null}
+      />
       <Header
         setOpenRegister={modal.setOpenRegister}
         setOpenLogin={modal.handleSetModal}
@@ -68,7 +67,7 @@ export default function Dashboard() {
               borderRadius="5px"
               theme="dotted"
               content={
-                <div className="d-flex flex-column align-items-center justify-content-center h-100 ptb-1">
+                <div className="d-flex flex-column align-items-center justify-content-center h-100 ptb-1 text-center">
                   Adicionar Jogo
                 </div>
               }

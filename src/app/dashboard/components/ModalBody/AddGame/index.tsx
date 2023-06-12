@@ -4,7 +4,13 @@ import { RadioGroup } from "@/components/RadioGroup";
 import { GamesRank } from "@/types/GamesRank";
 import { useState } from "react";
 
-export default function ModalAddGameBody() {
+interface ModalAddGameBodyProps {
+  setOpenAddGame: (value: boolean) => void;
+}
+
+export default function ModalAddGameBody({
+  setOpenAddGame,
+}: ModalAddGameBodyProps) {
   const [selectedValues, setSelectedValues] = useState<{ [key: string]: any }>(
     {}
   );
@@ -21,101 +27,50 @@ export default function ModalAddGameBody() {
       name: "League of Legends",
       rank: [
         {
-          value: "Iron",
-          label: "Iron",
+          value: "Iniciante",
+          label: "Iniciante",
         },
         {
-          value: "Bronze",
-          label: "Bronze",
+          value: "Intermediário",
+          label: "Intermediário",
         },
         {
-          value: "Silver",
-          label: "Silver",
-        },
-      ],
-    },
-    {
-      name: "Overwatch",
-      rank: [
-        {
-          value: "Iron",
-          label: "Iron",
-        },
-        {
-          value: "Bronze",
-          label: "Bronze",
-        },
-        {
-          value: "Silver",
-          label: "Silver",
+          value: "Expert",
+          label: "Expert",
         },
       ],
     },
     {
-      name: "Fortnite",
+      name: "Valorant",
       rank: [
         {
-          value: "Iron",
-          label: "Iron",
+          value: "Iniciante",
+          label: "Iniciante",
         },
         {
-          value: "Bronze",
-          label: "Bronze",
+          value: "Intermediário",
+          label: "Intermediário",
         },
         {
-          value: "Silver",
-          label: "Silver",
+          value: "Expert",
+          label: "Expert",
         },
       ],
     },
     {
-      name: "Minecraft",
+      name: "CS:GO",
       rank: [
         {
-          value: "Iron",
-          label: "Iron",
+          value: "Iniciante",
+          label: "Iniciante",
         },
         {
-          value: "Bronze",
-          label: "Bronze",
+          value: "Intermediário",
+          label: "Intermediário",
         },
         {
-          value: "Silver",
-          label: "Silver",
-        },
-      ],
-    },
-    {
-      name: "Apex Legends",
-      rank: [
-        {
-          value: "Iron",
-          label: "Iron",
-        },
-        {
-          value: "Bronze",
-          label: "Bronze",
-        },
-        {
-          value: "Silver",
-          label: "Silver",
-        },
-      ],
-    },
-    {
-      name: "Call of Duty: Warzone",
-      rank: [
-        {
-          value: "Iron",
-          label: "Iron",
-        },
-        {
-          value: "Bronze",
-          label: "Bronze",
-        },
-        {
-          value: "Silver",
-          label: "Silver",
+          value: "Expert",
+          label: "Expert",
         },
       ],
     },
@@ -155,13 +110,18 @@ export default function ModalAddGameBody() {
             ))}
           </div>
         </div>
-        <div>
+        <div className="mb-2">
           <p className="text-center color-black-6 line-height-150">
             Ao adicionar um jogo, você concorda com os nossos
           </p>
           <p className="text-center line-height-150 mb-1">Termos e Condições</p>
           <Button
-            onClick={() => console.log(selectedValues)}
+            disabled={Object.keys(selectedValues).length === 0}
+            theme="primary"
+            onClick={() => {
+              console.log(selectedValues);
+              setOpenAddGame(false);
+            }}
             width="100%"
             size="large"
             content="Adicionar"

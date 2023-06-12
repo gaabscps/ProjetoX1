@@ -7,9 +7,10 @@ import useScrollLock from "@/hooks/useScrollLock";
 interface ModalProps {
   modalHeader?: ReactElement | null;
   modalHeaderBg?: string | null;
-  modalBody: ReactElement;
+  modalBody: ReactElement | null;
   modalFooter?: ReactElement;
   setOpen: (open: boolean) => void;
+  open?: boolean;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -18,8 +19,9 @@ export const Modal: React.FC<ModalProps> = ({
   modalBody,
   modalFooter,
   setOpen,
+  open,
 }) => {
-  useScrollLock(true);
+  useScrollLock(!!open);
 
   {
     /* 
@@ -42,8 +44,21 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <div className="modalModule">
-        <div className="modalContainer">
+      <div
+        style={{
+          opacity: open ? 1 : 0,
+          zIndex: open ? 102 : -1,
+        }}
+        className="modalModule"
+      >
+        <div
+          style={{
+            transform: open ? "scale(1)" : "scale(0)",
+            opacity: open ? 1 : 0,
+            zIndex: open ? 102 : -1,
+          }}
+          className="modalContainer"
+        >
           <ModalHeader
             modalHeaderBg={modalHeaderBg}
             content={modalHeader}

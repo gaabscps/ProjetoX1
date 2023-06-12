@@ -1,5 +1,6 @@
-import { Rank } from "./Rank";
+import { PlayerRank } from "./PlayerRank";
+
 export type GamesRank = {
   name: string;
-  rank: Rank;
+  rank: PlayerRank[];
 };
