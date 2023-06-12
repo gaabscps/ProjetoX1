@@ -269,7 +269,10 @@ export function Carrossel({
           >
             <ul
               style={{
-                transform: `translateX(${1.2 * currentTranslate}px)`,
+                transform:
+                  isMobile || isTablet
+                    ? `translateX(${1.2 * currentTranslate + 20}px)`
+                    : `translateX(${currentTranslate}px)`,
                 transition: isDragging ? "none" : "transform 0.3s",
               }}
               className="carouselVisibleItem"

@@ -1,7 +1,8 @@
 import { Facebook } from "@/assets/svg/Facebook";
 import { Instagram } from "@/assets/svg/Instagram";
 import { Youtube } from "@/assets/svg/Youtube";
-import { EmptyImageFooter } from "@/assets/svg/emptyImageFooter";
+import Image from "next/image";
+import logo from "@/assets/svg/X1_logo_horizontal_branco 3.svg";
 
 export function Footer() {
   return (
@@ -20,7 +21,7 @@ export function Footer() {
             </button>
           </div>
           <div className="footer-image-margin">
-            <EmptyImageFooter />
+            <Image src={logo} alt="" />
           </div>
           <div className="footer-institutional">
             <p style={{ marginBottom: "9px" }} className="text-small-400">

@@ -2,6 +2,7 @@ body {
   min-width: 1110px;
   background: var(--background-color);
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 @media screen and (max-width: 1110px) {
