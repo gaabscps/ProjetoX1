@@ -84,6 +84,10 @@
 }
 
 @media screen and (max-width: 1110px) {
+  .carouselTitle {
+    margin-bottom: 10px;
+    margin-left: 20px;
+  }
   .carousel-container {
     width: 100%;
   }
@@ -100,10 +104,7 @@
 }
 @media screen and (max-width: 768px) {
   .carouselTitle {
-    flex-direction: column;
     margin-bottom: 10px;
-    h4 {
-      text-align: center;
-    }
+    margin-left: 20px;
   }
 }

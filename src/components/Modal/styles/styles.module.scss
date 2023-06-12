@@ -42,12 +42,15 @@
     transition: all ease 0.2s;
     &:hover {
       transition: all 0.2s ease-in-out;
-      background-color: #ffffff1a;
+      background: rgba(128, 124, 131, 0.15);
       padding: 10px;
       display: flex;
       align-items: center;
       border-radius: 20px;
       transition: all ease 0.2s;
+      &:active {
+        background: rgba(128, 124, 131, 0.3);
+      }
     }
   }
   .modalHeader--content {

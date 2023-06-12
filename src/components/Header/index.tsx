@@ -2,6 +2,9 @@ import { EmptyImage } from "@/assets/svg/EmptyImage";
 import { Button } from "../Button";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { Link, Element, scroller } from "react-scroll";
+import Image from "next/image";
+import logo from "@/assets/svg/X1_logo_vertical_branco 1.svg";
 
 interface HeaderProps {
   setOpenLogin: (open: boolean) => void;
@@ -37,27 +40,27 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
   const headerList = [
     {
       name: "Início",
-      link: "/",
+      link: "home",
     },
     {
       name: "Últimas notícias e atualizações",
-      link: "/",
+      link: "news",
     },
     {
       name: "Jogos disponíveis",
-      link: "/",
+      link: "games",
     },
     {
       name: "Funcionalidades",
-      link: "/",
+      link: "features",
     },
     {
       name: "Como jogar",
-      link: "/",
+      link: "howToPlay",
     },
     {
       name: "FAQ",
-      link: "/",
+      link: "faq",
     },
   ];
 
@@ -82,11 +85,18 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
         <nav className={`headerContainer `}>
           <ul className="headerItemsContainer">
             <li className="headerLogo">
-              <EmptyImage />
+              <Image src={logo} alt="Logo" />
             </li>
             {headerList.map((item, key) => (
               <li className="action-icon text-small-400 headerItem" key={key}>
-                <p>{item.name}</p>
+                <Link
+                  to={item.link}
+                  smooth={true}
+                  duration={500}
+                  offset={-100} // Ajuste opcional de compensação para o cabeçalho
+                >
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>

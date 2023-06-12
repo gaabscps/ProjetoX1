@@ -15,6 +15,12 @@
 .card-outline {
   border: 1px solid #5f5c6b;
   border-radius: 5px;
+  &:hover {
+    background: rgba(128, 124, 131, 0.15);
+  }
+  &:active {
+    background: rgba(128, 124, 131, 0.3);
+  }
 }
 
 .card-dotted {
