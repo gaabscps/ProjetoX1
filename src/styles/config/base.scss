@@ -1,7 +1,7 @@
 body {
   min-width: 1110px;
   background: var(--background-color);
-  min-height: 100vh;
+  // min-height: 100vh;
   scroll-behavior: smooth;
 }
 
@@ -9,6 +9,10 @@ body {
   body {
     min-width: 320px;
   }
+}
+
+.header-margin {
+  margin-top: 80px;
 }
 
 //Flexbox
@@ -469,6 +473,21 @@ body {
 
 .text-small-700 {
   font-size: var(--text-size-small);
+  font-weight: var(--text-weight-bold);
+}
+
+.text-extra-small-400 {
+  font-size: var(--text-size-extra-small);
+  font-weight: var(--text-weight-regular);
+}
+
+.text-extra-small-500 {
+  font-size: var(--text-size-extra-small);
+  font-weight: var(--text-weight-medium);
+}
+
+.text-extra-small-700 {
+  font-size: var(--text-size-extra-small);
   font-weight: var(--text-weight-bold);
 }
 

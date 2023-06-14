@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import Input from "@/components/Input";
 import { Modal } from "@/components/Modal";
 import { useModal } from "@/hooks/useModal";
+import Link from "next/link";
 
 export default function Dashboard() {
   const modal = useModal();
@@ -165,25 +166,41 @@ export default function Dashboard() {
               borderRadius="5px"
               width="255px"
               height="100px"
-              content={<div></div>}
+              content={
+                <Link href={"/challenge"}>
+                  <div className="action-icon h-100">Desafiar</div>
+                </Link>
+              }
             />
             <Card
               borderRadius="5px"
               width="255px"
               height="100px"
-              content={<div></div>}
+              content={
+                <Link href={"/challenges"}>
+                  <div className="action-icon h-100">Desafios recebidos</div>
+                </Link>
+              }
             />
             <Card
               borderRadius="5px"
               width="255px"
               height="100px"
-              content={<div></div>}
+              content={
+                <Link href={"/challenges-sent"}>
+                  <div className="action-icon h-100">Desafios enviados</div>
+                </Link>
+              }
             />
             <Card
               borderRadius="5px"
               width="255px"
               height="100px"
-              content={<div></div>}
+              content={
+                <Link href={"/active-games"}>
+                  <div className="action-icon h-100">Jogos ativos</div>
+                </Link>
+              }
             />
           </div>
         </Body>

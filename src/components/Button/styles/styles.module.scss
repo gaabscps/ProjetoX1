@@ -46,9 +46,13 @@
 .buttonContent {
   color: #fff;
   transform: skew(20deg);
-  &.-large {
+  &.large {
     font-size: 16px;
     transform: skew(33deg);
+  }
+  &.small {
+    font-size: var(--text-size-extra-small);
+    transform: skew(20deg);
   }
 }
 
