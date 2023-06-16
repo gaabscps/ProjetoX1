@@ -3,7 +3,7 @@
 }
 
 .input {
-  padding: 20px;
+  padding: 14px;
   background-color: var(--color-black-2);
   border-radius: 5px;
   position: relative;
@@ -13,6 +13,11 @@
 
   &:active {
     background: var(--color-black-4);
+  }
+  &::placeholder {
+    color: var(--color-black-6);
+    font-size: var(--text-size-small);
+    line-height: 15px;
   }
 }
 

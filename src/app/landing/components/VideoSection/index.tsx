@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button";
 import Image from "next/image";
 import { Element } from "react-scroll";
-import logo from "@/assets/svg/X1_logo_horizontal_branco 3.svg";
+import logo from "@/assets/svg/X1_logo_horizontal_branco 3.png";
 
 interface VideoSectionProps {
   setOpenRegister: (open: boolean) => void;

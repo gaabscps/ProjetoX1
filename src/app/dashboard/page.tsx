@@ -1,5 +1,4 @@
 "use client";
-import { EmptyImage } from "@/assets/svg/EmptyImage";
 import EmptyUserDashboard from "@/assets/svg/EmptyUserDashboard";
 import { Body } from "@/components/Body";
 import { Card } from "@/components/Card";
@@ -8,6 +7,10 @@ import Input from "@/components/Input";
 import { Modal } from "@/components/Modal";
 import { useModal } from "@/hooks/useModal";
 import Link from "next/link";
+import Image from "next/image";
+import myGames from "@/assets/svg/myGames.svg";
+import valorant from "@/assets/svg/mockGame3.svg";
+import buttonImage from "@/assets/svg/buttonImage.png";
 
 export default function Dashboard() {
   const modal = useModal();
@@ -40,28 +43,37 @@ export default function Dashboard() {
           <div className="d-flex align-items-center mb-3">
             <EmptyUserDashboard />
             <div className="ml-1 w-100">
-              <p style={{ marginBottom: "25px" }}>
+              <p style={{ marginBottom: "26px" }}>
                 Alex da Silva Almeida Junior
               </p>
               <div className="d-flex w-100 justify-content-between">
-                <span>10 seguidores</span>
-                <span>15 seguindo</span>
-                <span>10x que desafiou</span>
-                <span>5x que foi desafiado</span>
-                <span>{`//`}</span>
-                <span>5 jogos realizados</span>
-                <span>2 vitórias</span>
-                <span>3 derrotas</span>
+                <span className="color-black-7">10 seguidores</span>
+                <span className="color-black-7">15 seguindo</span>
+                <span className="color-black-7">10x que desafiou</span>
+                <span className="color-black-7">5x que foi desafiado</span>
+                <span className="color-black-7">{`//`}</span>
+                <span className="color-black-7">5 jogos realizados</span>
+                <span className="color-black-7">2 vitórias</span>
+                <span className="color-black-7">3 derrotas</span>
               </div>
             </div>
           </div>
         </Body>
         <Body marginBottom="60px">
-          <div className="mb-1">
-            <span>Meus jogos</span>
+          <div className="d-flex align-items-center home-title">
+            <Image
+              style={{ marginRight: "10px" }}
+              src={myGames}
+              alt="my games icon"
+            />
+            <p>Meus jogos</p>
           </div>
+          <p className="color-black-7 my-games-subtitle">
+            Adicione os jogos que você joga e o seu rank em cada um
+          </p>
           <div className="d-flex flex-gap-2">
             <Card
+              color="#464448"
               onClick={() => modal.setOpenAddGame(true)}
               width="160px"
               height="170px"
@@ -74,76 +86,26 @@ export default function Dashboard() {
               }
             />
             <Card
+              color="#3E3B3F"
               width="160px"
               height="170px"
               borderRadius="5px"
               theme="outline"
               content={
-                <div className="d-flex flex-column align-items-center justify-content-between h-100 ptb-1">
-                  <EmptyImage />
+                <div className="my-games-card-container">
+                  <Image
+                    src={valorant}
+                    alt="valorant logo"
+                    className="my-games-image"
+                  />
                   <div className="d-flex flex-column align-items-center">
                     <span style={{ marginBottom: "5px" }}>Rank</span>
                     <span>Profissional</span>
                   </div>
-                </div>
-              }
-            />
-            <Card
-              width="160px"
-              height="170px"
-              borderRadius="5px"
-              theme="outline"
-              content={
-                <div className="d-flex flex-column align-items-center justify-content-between h-100 ptb-1">
-                  <EmptyImage />
-                  <div className="d-flex flex-column align-items-center">
-                    <span style={{ marginBottom: "5px" }}>Rank</span>
-                    <span>Profissional</span>
-                  </div>
-                </div>
-              }
-            />
-            <Card
-              width="160px"
-              height="170px"
-              borderRadius="5px"
-              theme="outline"
-              content={
-                <div className="d-flex flex-column align-items-center justify-content-between h-100 ptb-1">
-                  <EmptyImage />
-                  <div className="d-flex flex-column align-items-center">
-                    <span style={{ marginBottom: "5px" }}>Rank</span>
-                    <span>Profissional</span>
-                  </div>
-                </div>
-              }
-            />
-            <Card
-              width="160px"
-              height="170px"
-              borderRadius="5px"
-              theme="outline"
-              content={
-                <div className="d-flex flex-column align-items-center justify-content-between h-100 ptb-1">
-                  <EmptyImage />
-                  <div className="d-flex flex-column align-items-center">
-                    <span style={{ marginBottom: "5px" }}>Rank</span>
-                    <span>Profissional</span>
-                  </div>
-                </div>
-              }
-            />
-            <Card
-              width="160px"
-              height="170px"
-              borderRadius="5px"
-              theme="outline"
-              content={
-                <div className="d-flex flex-column align-items-center justify-content-between h-100 ptb-1">
-                  <EmptyImage />
-                  <div className="d-flex flex-column align-items-center">
-                    <span style={{ marginBottom: "5px" }}>Rank</span>
-                    <span>Profissional</span>
+                  <div className="d-flex justify-content-between w-100">
+                    <p className="text-small-400">JR: 10</p>
+                    <p className="text-small-400">V: 1</p>
+                    <p className="text-small-400">D: 0</p>
                   </div>
                 </div>
               }
@@ -151,16 +113,40 @@ export default function Dashboard() {
           </div>
         </Body>
         <Body marginBottom="60px">
-          <hr className="hr-line" />
+          <hr style={{ background: "#3E3B3F" }} className="hr-line" />
         </Body>
-        <Body marginBottom="40px">
-          <Input placeholder="Procure um jogador para desafiar"></Input>
+        <Body marginBottom="30px">
+          <div className="w-100 d-flex justify-content-between align-items-center home-title">
+            <div className="d-flex align-items-center">
+              <Image
+                style={{ marginRight: "10px" }}
+                src={myGames}
+                alt="my games icon"
+              />
+              <p>Arena</p>
+            </div>
+            <p className="text-small-400">Ver todos os jogos realizados</p>
+          </div>
+          <p className="color-black-7 my-games-subtitle">
+            Gerencie os seus desafios, procure por oponentes ou inicie um jogo
+            rápido
+          </p>
+        </Body>
+        <Body className="d-flex flex-gap-1" marginBottom="40px">
+          <div style={{ width: "85%" }}>
+            <Input placeholder="Procure um jogador para desafiar" />
+          </div>
+          <div style={{ position: "relative" }}>
+            <Card
+              background={buttonImage.src}
+              width="153px"
+              height="44px"
+              content={<> </>}
+            />
+            <p className="fast-game text-small-700">Jogo rápido</p>
+          </div>
         </Body>
         <Body marginBottom="60px">
-          <div className="w-100 d-flex justify-content-between">
-            <p className="mb-1">Arena</p>
-            <p>Ver todos os jogos realizados</p>
-          </div>
           <div className="d-flex flex-gap-2">
             <Card
               borderRadius="5px"

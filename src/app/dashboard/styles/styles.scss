@@ -1,1 +1,31 @@
 @import "../components/ModalBody/styles/styles.module.scss";
+
+.home-title {
+  margin-bottom: 10px;
+}
+.my-games-subtitle {
+  margin-bottom: 30px;
+}
+
+.my-games-image {
+  display: flex;
+  justify-content: center;
+  object-fit: fill;
+  width: 100%;
+  height: 50px;
+}
+
+.fast-game {
+  position: absolute;
+  right: 20%;
+  top: 25%;
+}
+
+.my-games-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15px 25px 15px 25px;
+}
