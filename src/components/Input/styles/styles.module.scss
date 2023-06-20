@@ -3,7 +3,7 @@
 }
 
 .input {
-  padding: 14px;
+  padding: 20px;
   background-color: var(--color-black-2);
   border-radius: 5px;
   position: relative;
@@ -16,9 +16,12 @@
   }
   &::placeholder {
     color: var(--color-black-6);
-    font-size: var(--text-size-small);
     line-height: 15px;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .toggle-password-btn {

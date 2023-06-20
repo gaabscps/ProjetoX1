@@ -8,4 +8,9 @@
 @import "../../components/Footer/styles/styles.module.scss";
 @import "../../components/Body/styles/styles.module.scss";
 @import "../../components/RadioGroup/styles/styles.module.scss";
+@import "../../components/Select/styles/styles.module.scss";
 @import "../../components/Tag/styles/styles.module.scss";
+
+.input-1 {
+  background-color: var(--color-black-1);
+}
