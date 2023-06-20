@@ -1,16 +1,39 @@
 import EmptyUserDashboard from "@/assets/svg/EmptyUserDashboard";
 import { Body } from "@/components/Body";
 import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, Chart } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Chart,
+  ChartDataset,
+} from "chart.js";
 import { useState } from "react";
 import Image from "next/image";
 import gabs from "@/assets/svg/gabs.jpg";
 import brazil from "@/assets/svg/brazil.svg";
 
+interface CustomChartDataset extends ChartDataset<"pie", number[]> {
+  cutout?: number | string;
+}
+
 export default function UserSection() {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   const [onHover, setOnHover] = useState(false);
+
+  const dataSet: CustomChartDataset = {
+    //Exp ativo, exp inativo, tamanho tag
+    data: [80, 10, 10],
+    backgroundColor: ["#963BFF", "transparent", "transparent"],
+    hoverBackgroundColor: ["#963BFF", "transparent", "transparent"],
+    borderWidth: 0,
+    rotation: 199,
+    cutout: "96%",
+    borderJoinStyle: "round",
+    borderRadius: 10,
+  };
 
   return (
     <Body>
@@ -33,25 +56,7 @@ export default function UserSection() {
               options={{
                 events: [],
               }}
-              data={{
-                datasets: [
-                  {
-                    //Exp ativo, exp inativo, tamanho tag
-                    data: [80, 10, 10],
-                    backgroundColor: ["#963BFF", "transparent", "transparent"],
-                    hoverBackgroundColor: [
-                      "#963BFF",
-                      "transparent",
-                      "transparent",
-                    ],
-                    borderWidth: 0,
-                    rotation: 199,
-                    cutout: "96%",
-                    borderJoinStyle: "round",
-                    borderRadius: 10,
-                  },
-                ],
-              }}
+              data={{ datasets: [dataSet] }}
             />
           </div>
 
