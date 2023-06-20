@@ -1,6 +1,7 @@
 import { Card } from "@/components/Card";
 import { Body } from "@/components/Body";
 import valorant from "@/assets/svg/mockGame3.svg";
+import dot from "@/assets/svg/verticalDot.svg";
 import myGames from "@/assets/svg/myGames.svg";
 import Image from "next/image";
 
@@ -60,9 +61,14 @@ export default function MyGamesSection({ modal }: MyGamesSectionProps) {
                 <p className="text-small-400">V: 1</p>
                 <p className="text-small-400">D: 0</p>
               </div>
+              <Image
+                className="action-icon"
+                style={{ position: "absolute", right: "10px" }}
+                src={dot}
+                alt="valorant logo"
+              />
             </div>
           }
-          onClick={() => undefined}
         />
       </div>
     </Body>

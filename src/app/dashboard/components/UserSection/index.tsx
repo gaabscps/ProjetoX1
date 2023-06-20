@@ -5,6 +5,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, Chart } from "chart.js";
 import { useState } from "react";
 import Image from "next/image";
 import gabs from "@/assets/svg/gabs.jpg";
+import brazil from "@/assets/svg/brazil.svg";
 
 export default function UserSection() {
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -29,14 +30,25 @@ export default function UserSection() {
             }}
           >
             <Pie
+              options={{
+                events: [],
+              }}
               data={{
                 datasets: [
                   {
                     //Exp ativo, exp inativo, tamanho tag
                     data: [80, 10, 10],
-                    backgroundColor: ["#963BFF", "#464448", "transparent"],
+                    backgroundColor: ["#963BFF", "transparent", "transparent"],
+                    hoverBackgroundColor: [
+                      "#963BFF",
+                      "transparent",
+                      "transparent",
+                    ],
                     borderWidth: 0,
                     rotation: 199,
+                    cutout: "96%",
+                    borderJoinStyle: "round",
+                    borderRadius: 10,
                   },
                 ],
               }}
@@ -53,12 +65,23 @@ export default function UserSection() {
             <p>7.000/10.000 </p>
           </div>
 
-          <div className="profilePicture" style={{ position: "relative" }}>
+          <div
+            className="profilePicture"
+            style={{
+              position: "relative",
+              boxShadow: "0 0 0 3px #464448",
+              zIndex: "-1",
+            }}
+          >
             <Image className="profilePicture" src={gabs} alt="profile" />
           </div>
         </div>
         <div className="ml-1 w-100">
-          <p style={{ marginBottom: "26px" }}>Alex da Silva Almeida Junior</p>
+          <p style={{ marginBottom: "10px" }}>Alex da Silva Almeida Junior</p>
+          <div className="nationalityTag">
+            <Image src={brazil} alt="brazil" />
+            <p className="text-extra-small-400">Brasil</p>
+          </div>
           <div className="d-flex w-100 justify-content-between">
             <span className="color-black-7">10 seguidores</span>
             <span className="color-black-7">15 seguindo</span>
