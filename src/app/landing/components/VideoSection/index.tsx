@@ -32,7 +32,9 @@ export function VideoSection({ setOpenRegister }: VideoSectionProps) {
               Desafie. Aposte. Vença. Mostre ao mundo do que você é capaz.
             </span>
           </div>
-          <Image className="videoTitle" src={logo} alt="Logo Play X1" />
+          <div className="videoTitle">
+            <Image color="videoLogo" src={logo} alt="Logo Play X1" />
+          </div>
           <Button
             onClick={() => setOpenRegister(true)}
             effect

@@ -47,7 +47,7 @@ export function Carrossel({
 
     const carouselWidth = carouselRef.current?.offsetWidth || 0;
     const innerWidth = carouselRef.current?.scrollWidth || 0;
-    const maxTranslate = carouselWidth - innerWidth;
+    const maxTranslate = carouselWidth - innerWidth + 320;
 
     if (translate > 0) {
       setCurrentTranslate(0);
@@ -76,13 +76,13 @@ export function Carrossel({
 
     if (diffX > 0) {
       // Swiped right
-      if (diffX > 80) {
+      if (diffX > 120) {
         handlePrev();
         setStartX(currentX); // Reset startX to prevent continuous swiping
       }
     } else if (diffX < 0) {
       // Swiped left
-      if (diffX < -80) {
+      if (diffX < -120) {
         handleNext();
         setStartX(currentX); // Reset startX to prevent continuous swiping
       }
