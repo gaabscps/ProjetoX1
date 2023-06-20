@@ -1,61 +1,95 @@
-import { EmptyUser } from "@/assets/svg/EmptyUser";
-import { Game } from "@/assets/svg/Game";
-import { Trending } from "@/assets/svg/Trending";
-import { Body } from "@/components/Body";
+/* eslint-disable react/jsx-key */
+import { useEffect, useRef, useState } from "react";
 
 export function StatsSection() {
-  type Content = {
-    title: string;
-    icon?: JSX.Element;
-    description?: string;
-  };
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const textRef2 = useRef<HTMLParagraphElement>(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const content: Content[] = [
-    {
-      title: "Confira os resultados da PLAY X1 e faça parte você também",
-    },
-    {
-      title: "+2 mil",
-      icon: <EmptyUser />,
-      description: "Usuários ativos",
-    },
-    {
-      title: "+10",
-      icon: <Game />,
-      description: "Jogos na plataforma",
-    },
-    {
-      title: "+R$ 2 milhões",
-      icon: <Trending />,
-      description: "Movimentados na plataforma",
-    },
-  ];
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const duration = Math.max(2000 * (windowWidth / 1920), 2000); // Adjust the divisor (1920) as needed
+
+    const animation = textRef?.current?.animate(
+      [{ transform: "translateX(0%)" }, { transform: `translateX(-230px)` }],
+      {
+        duration,
+        iterations: Infinity,
+        easing: "linear",
+      }
+    );
+
+    return () => animation?.cancel();
+  }, [windowWidth]);
+
+  useEffect(() => {
+    const duration = Math.max(2000 * (windowWidth / 1920), 2000); // Adjust the divisor (1920) as needed
+
+    const animation = textRef2?.current?.animate(
+      [{ transform: `translateX(-230px)` }, { transform: "translateX(0%)" }],
+      {
+        duration,
+        iterations: Infinity,
+        easing: "linear",
+      }
+    );
+
+    return () => animation?.cancel();
+  }, [windowWidth]);
 
   return (
-    <>
-      <Body className="statsSectionModule ">
-        <div className="d-flex align-items-center stats-flex statsSectionContainer justify-content-between">
-          {content.map((item, index) =>
-            !item.icon ? (
-              <p key={index} className="text-normal-400 line-height-150">
-                {item.title}
-              </p>
-            ) : (
-              <div key={index} className="d-flex statsItem">
-                <div className="d-flex align-items-center statsIcon">
-                  {item.icon}
-                </div>
-                <div className="d-flex flex-column statsItem">
-                  <h6 className="statsTitle h6-400">{item.title}</h6>
-                  <p className="statsDescription text-normal-400">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            )
-          )}
-        </div>
-      </Body>
-    </>
+    <div style={{ overflow: "hidden", margin: "60px 0" }}>
+      {/* first line */}
+      <div
+        style={{
+          display: "flex",
+          gap: "30px",
+          whiteSpace: "nowrap",
+        }}
+        ref={textRef}
+      >
+        {Array.from({ length: 20 }, () => (
+          <h3 style={{ width: "fit-content" }} className="h3-text-animation">
+            PLAY X1
+          </h3>
+        ))}
+      </div>
+
+      {/* second line */}
+      <div
+        style={{
+          display: "flex",
+          gap: "30px",
+          whiteSpace: "nowrap",
+        }}
+        ref={textRef2}
+      >
+        {Array.from({ length: 20 }, () => (
+          <h3
+            style={{
+              width: "fit-content",
+              color: "#29272a",
+              // WebkitTextStroke: "1px #3E3B3F",
+              textShadow:
+                "-0.7px -0.7px 0 #3E3B3F, 0.7px -0.7px 0 #3E3B3F, -0.7px 0.7px 0 #3E3B3F, 0.7px 0.7px 0 #3E3B3F" /* Contorno */,
+            }}
+            className="h3-text-animation-outline"
+          >
+            PLAY X1
+          </h3>
+        ))}
+      </div>
+    </div>
   );
 }
