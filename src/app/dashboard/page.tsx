@@ -14,7 +14,9 @@ export default function Dashboard() {
   return (
     <>
       <Modal
-        open={modal.openAddGame || modal.openFastGame}
+        open={
+          modal.openAddGame || modal.openFastGame || modal.openSearchingFastGame
+        }
         setOpen={modal.handleSetModal}
         modalBody={modal.handleModalBody()}
         modalHeader={

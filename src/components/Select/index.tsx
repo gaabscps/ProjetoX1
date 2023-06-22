@@ -4,6 +4,7 @@ import Arrow from "../../assets/svg/arrowCard.svg";
 
 interface SelectProps {
   value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   option?: string[];
   label?: string;
   placeholder?: string;
@@ -18,6 +19,7 @@ interface SelectProps {
 
 export default function Select({
   value,
+  onChange,
   option,
   label,
   placeholder,
@@ -42,7 +44,7 @@ export default function Select({
     >
       {label && <label htmlFor={name}>{label}</label>}
       <select
-        value={selectedValue}
+        onChange={onChange}
         placeholder={placeholder}
         className={`${className} input-${type} ${disabled ? "disabled" : ""} ${
           !value && selectedValue === "" ? "SelectPlaceholder" : ""
@@ -52,7 +54,6 @@ export default function Select({
         style={style}
         disabled={disabled}
         required={required}
-        onChange={handleSelectChange}
       >
         <option value="" className="SelectPlaceholder">
           {placeholder}

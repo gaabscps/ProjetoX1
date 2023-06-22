@@ -1,3 +1,4 @@
+import ModalSearchingFastGameBody from "@/app/Dashboard/components/ModalBody/SearchingFastGame";
 import ModalAddGameBody from "@/app/dashboard/components/ModalBody/AddGame";
 import ModalFastGameBody from "@/app/dashboard/components/ModalBody/FastGame";
 import { ModalLoginBody } from "@/app/landing/components/ModalBody/Login";
@@ -10,6 +11,7 @@ export function useModal() {
   const [openRegister, setOpenRegister] = useState(false);
   const [openAddGame, setOpenAddGame] = useState(false);
   const [openFastGame, setOpenFastGame] = useState(false);
+  const [openSearchingFastGame, setOpenSearchingFastGame] = useState(false);
 
   //Botões que abrem modal dentro de modal
   const handleRegisterButton = () => {
@@ -21,6 +23,11 @@ export function useModal() {
   const handleLoginButton = () => {
     setOpenRegister(false);
     setOpenLogin(true);
+  };
+
+  const handleSearchingFastGame = () => {
+    setOpenFastGame(false);
+    setOpenSearchingFastGame(true);
   };
 
   //adicione aqui o body do modal que você quer renderizar
@@ -35,7 +42,16 @@ export function useModal() {
       return <ModalAddGameBody setOpenAddGame={setOpenAddGame} />;
     }
     if (openFastGame) {
-      return <ModalFastGameBody setOpenFastGame={setOpenFastGame} />;
+      return (
+        <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
+      );
+    }
+    if (openSearchingFastGame) {
+      return (
+        <ModalSearchingFastGameBody
+          setOpenSearchingFastGame={setOpenSearchingFastGame}
+        />
+      );
     }
     return null;
   }
@@ -46,8 +62,15 @@ export function useModal() {
     setOpenRegister(false);
     setOpenAddGame(false);
     setOpenFastGame(false);
+    setOpenSearchingFastGame(false);
     // Se nenhum modal estiver aberto, abre o modal de login
-    if (!openLogin && !openRegister && !openAddGame && !openFastGame) {
+    if (
+      !openLogin &&
+      !openRegister &&
+      !openAddGame &&
+      !openFastGame &&
+      !openSearchingFastGame
+    ) {
       setOpenLogin(true);
     }
   }
@@ -59,6 +82,7 @@ export function useModal() {
     openRegister,
     openAddGame,
     openFastGame,
+    openSearchingFastGame,
 
     // Funções para abrir cada modal body
     // Ex: No botão para abrir a modal: onClick={() => modal.setOpenAddGame(true)}
@@ -66,6 +90,7 @@ export function useModal() {
     setOpenRegister,
     setOpenAddGame,
     setOpenFastGame,
+    setOpenSearchingFastGame,
 
     // Adicionar aqui o body do modal que você quer renderizar
     // modalBody={modal.handleModalBody()}
