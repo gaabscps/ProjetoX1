@@ -1,9 +1,13 @@
 import { Card } from "@/components/Card";
 import { Body } from "@/components/Body";
-import valorant from "@/assets/svg/mockGame3.svg";
-import dot from "@/assets/svg/verticalDot.svg";
+import games3 from "@/assets/svg/mockGame3.svg";
+import games1 from "@/assets/svg/mockGame1.svg";
+import games2 from "@/assets/svg/mockGame2.svg";
+import games4 from "@/assets/svg/mockGame4.svg";
 import myGames from "@/assets/svg/myGames.svg";
 import Image from "next/image";
+import { useState } from "react";
+import GameCard from "./GameCard";
 
 interface MyGamesSectionProps {
   modal: {
@@ -12,6 +16,39 @@ interface MyGamesSectionProps {
 }
 
 export default function MyGamesSection({ modal }: MyGamesSectionProps) {
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+
+  const data = [
+    {
+      logo: games1,
+      rank: "Profissional",
+      jr: 10,
+      v: 1,
+      d: 0,
+    },
+    {
+      logo: games2,
+      rank: "Intermediário",
+      jr: 10,
+      v: 1,
+      d: 0,
+    },
+    {
+      logo: games3,
+      rank: "Iniciante",
+      jr: 10,
+      v: 1,
+      d: 0,
+    },
+    {
+      logo: games4,
+      rank: "Iniciante",
+      jr: 10,
+      v: 1,
+      d: 0,
+    },
+  ];
+
   return (
     <Body marginBottom="60px">
       <div className="d-flex align-items-center home-title">
@@ -39,37 +76,15 @@ export default function MyGamesSection({ modal }: MyGamesSectionProps) {
             </div>
           }
         />
-        <Card
-          borderRadius="5px"
-          color="#3E3B3F"
-          width="160px"
-          height="170px"
-          theme="outline"
-          content={
-            <div className="my-games-card-container">
-              <Image
-                src={valorant}
-                alt="valorant logo"
-                className="my-games-image"
-              />
-              <div className="d-flex flex-column align-items-center">
-                <span style={{ marginBottom: "5px" }}>Rank</span>
-                <span>Profissional</span>
-              </div>
-              <div className="d-flex justify-content-between w-100">
-                <p className="text-small-400">JR: 10</p>
-                <p className="text-small-400">V: 1</p>
-                <p className="text-small-400">D: 0</p>
-              </div>
-              <Image
-                className="action-icon"
-                style={{ position: "absolute", right: "10px" }}
-                src={dot}
-                alt="valorant logo"
-              />
-            </div>
-          }
-        />
+        {data.map((item, index) => (
+          <GameCard
+            modal={modal}
+            key={index}
+            data={item}
+            openDropdown={openDropdown === index}
+            setOpenDropdown={(value) => setOpenDropdown(value ? index : null)}
+          />
+        ))}
       </div>
     </Body>
   );
