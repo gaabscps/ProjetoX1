@@ -88,16 +88,17 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
               <Image src={logo} alt="Logo" />
             </li>
             {headerList.map((item, key) => (
-              <li className="action-icon text-small-400 headerItem" key={key}>
-                <Link
-                  to={item.link}
-                  smooth={true}
-                  duration={500}
-                  offset={-100} // Ajuste opcional de compensação para o cabeçalho
-                >
+              <Link
+                key={key}
+                to={item.link}
+                smooth={true}
+                duration={500}
+                offset={-100} // Ajuste opcional de compensação para o cabeçalho
+              >
+                <li className="action-icon text-small-400 headerItem">
                   {item.name}
-                </Link>
-              </li>
+                </li>
+              </Link>
             ))}
           </ul>
           <div className="headerButtonGroup d-flex">

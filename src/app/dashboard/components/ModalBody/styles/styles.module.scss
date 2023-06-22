@@ -1,3 +1,11 @@
+.fastGameModalBody {
+  padding: 0 63px;
+  margin-bottom: 30px;
+  .fastGameModalTitle {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+}
 .addGameModalBody {
   padding: 0 63px;
   min-height: 600px;
@@ -8,4 +16,17 @@
 
 .rankTitle {
   margin-bottom: 12px;
+}
+
+.searchingFastGameModalBody {
+  padding: 0 63px;
+  margin-bottom: 30px;
+  .searchingFastGameModalTitle {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+}
+
+.searchingFastGameDetails {
+  margin-bottom: 15px;
 }

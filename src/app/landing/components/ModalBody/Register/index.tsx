@@ -3,7 +3,7 @@ import Input from "@/components/Input";
 import { useModal } from "@/hooks/useModal";
 import { useEffect } from "react";
 import Image from "next/image";
-import logo from "@/assets/svg/X1_logo_horizontal_branco 3.svg";
+import logo from "@/assets/svg/X1_logo_horizontal_branco 3.png";
 import google from "@/assets/svg/googleModal.svg";
 import facebook from "@/assets/svg/facebookModal.svg";
 import apple from "@/assets/svg/appleModal.svg";

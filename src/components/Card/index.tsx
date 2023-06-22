@@ -1,7 +1,9 @@
 interface CardProps {
+  className?: string;
   content: React.ReactNode;
   width?: string;
   height?: string;
+  color?: string;
   borderRadius?: string;
   background?: any;
   theme?: "outline" | "filled" | "dotted";
@@ -9,10 +11,12 @@ interface CardProps {
 }
 
 export function Card({
+  className,
   content,
   width,
   height,
-  borderRadius = "10px",
+  color,
+  borderRadius,
   background,
   theme = "filled",
   onClick,
@@ -21,12 +25,17 @@ export function Card({
     <div
       onClick={onClick}
       style={{
-        width: width || 0,
+        width: width,
         height: height || 0,
-        backgroundImage: `url(${background})`,
-        borderRadius: borderRadius,
+        backgroundImage: background ? `url(${background})` : "none",
+        borderRadius: borderRadius || "10px",
+        borderColor: color,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
-      className={`cardContainer card-${theme} ${onClick ? "action-icon" : ""}`}
+      className={`cardContainer card-${theme || ""} ${
+        onClick ? "action-icon" : ""
+      } ${className || ""}`}
     >
       <div className="w-100 h-100">{content}</div>
     </div>

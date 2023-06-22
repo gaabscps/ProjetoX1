@@ -4,8 +4,7 @@
   // justify-content: center;
   overflow: hidden;
   width: 90%;
-  margin: 0 auto;
-  user-select: all;
+  margin-left: 19px;
   transition: all 0.7s ease;
 }
 
@@ -90,6 +89,7 @@
   }
   .carousel-container {
     width: 100%;
+    margin-left: auto;
   }
   .carousel-button {
     position: absolute;

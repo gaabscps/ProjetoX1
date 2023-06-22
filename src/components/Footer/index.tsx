@@ -2,7 +2,7 @@ import { Facebook } from "@/assets/svg/Facebook";
 import { Instagram } from "@/assets/svg/Instagram";
 import { Youtube } from "@/assets/svg/Youtube";
 import Image from "next/image";
-import logo from "@/assets/svg/X1_logo_horizontal_branco 3.svg";
+import logo from "@/assets/svg/X1_logo_horizontal_branco 3.png";
 
 export function Footer() {
   return (

@@ -1,0 +1,29 @@
+.dorpdown-menu-container {
+  position: absolute;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(25px);
+}
+
+.dropdown-menu-content {
+  width: 100%;
+  padding: 10px;
+  z-index: 1;
+  width: 138px;
+  height: 41px;
+  border-radius: 5px;
+  &:hover {
+    background: var(--color-black-2);
+  }
+}
+
+.dropdown-open {
+  opacity: 1;
+  transition: all ease 0.3s;
+}
+
+.dropdown-closed {
+  opacity: 0;
+  transition: all ease 0.3s;
+  display: none;
+}

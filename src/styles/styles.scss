@@ -6,11 +6,31 @@
 }
 
 .pageBody {
-  padding-top: 150px;
+  padding-top: 140px;
 }
 
 .hr-line {
   border: 0;
   height: 1px;
   background: #5f5c6b;
+}
+
+.roundStatus {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.profilePicture {
+  max-width: 160px;
+  min-width: 160px;
+  max-height: 160px;
+  min-height: 160px;
+  border-radius: 500px;
+}
+
+@media screen and (max-width: 1110px) {
+  .pageBody {
+    padding-top: 60px;
+  }
 }

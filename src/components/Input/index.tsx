@@ -13,10 +13,12 @@ interface InputProps {
   required?: boolean;
   marginBottom?: string;
   maxLength?: number;
+  maxHeight?: string;
 }
 
 export default function Input({
   onChange,
+  maxHeight,
   value,
   label,
   placeholder,
@@ -51,7 +53,7 @@ export default function Input({
         } input`}
         id={name}
         name={name}
-        style={style}
+        style={{ ...style, maxHeight: maxHeight }}
         disabled={disabled}
         required={required}
         maxLength={maxLength}

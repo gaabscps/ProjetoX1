@@ -14,6 +14,14 @@
   &:active {
     background: var(--color-black-4);
   }
+  &::placeholder {
+    color: var(--color-black-6);
+    line-height: 15px;
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .toggle-password-btn {
