@@ -1,4 +1,4 @@
-import ModalSearchingFastGameBody from "@/app/Dashboard/components/ModalBody/SearchingFastGame";
+import ModalSearchingFastGameBody from "@/app/dashboard/components/ModalBody/SearchingFastGame";
 import ModalAddGameBody from "@/app/dashboard/components/ModalBody/AddGame";
 import ModalFastGameBody from "@/app/dashboard/components/ModalBody/FastGame";
 import { ModalLoginBody } from "@/app/landing/components/ModalBody/Login";
