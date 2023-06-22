@@ -61,7 +61,7 @@ export default function GameCard({
               right: "5px",
               width: "15px",
               transform: openDropdown ? "rotate(90deg)" : "rotate(0deg)",
-              transition: "all 0.3s ease",
+              transition: "all 0.2s ease",
             }}
             src={dot}
             alt="valorant logo"

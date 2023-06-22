@@ -1,5 +1,10 @@
 @import "../components/ModalBody/styles/styles.module.scss";
 
+.user-section-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 45px;
+}
 .home-title {
   margin-bottom: 10px;
 }
@@ -34,6 +39,12 @@
   height: 100%;
   padding: 15px 25px 15px 25px;
   user-select: none;
+}
+
+.my-games-cards {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 .arrowCard {
@@ -112,4 +123,76 @@
   background: #3e3b3f;
   border-radius: 100px;
   margin-bottom: 30px;
+}
+
+.home-user-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.arena-action-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.home-action-card-content {
+  width: 255px;
+  height: 100px;
+}
+
+@media screen and (max-width: 1110px) {
+  .home-user-stats {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .arena-action-card-content {
+    flex-direction: column;
+    p {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .user-section-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-stats-container {
+    p {
+      text-align: center;
+    }
+  }
+  .nationalityTag-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .nationalityTag {
+    justify-content: center;
+  }
+  .user-profile-picture {
+    margin-bottom: 30px;
+  }
+  .my-games-cards {
+    justify-content: center;
+  }
+  .home-action-card-container {
+    flex-direction: column;
+  }
+  .home-action-card-content {
+    width: 100%;
+  }
+  .fast-game-container {
+    flex-direction: column;
+  }
+  .fast-game {
+    top: 40%;
+    right: 37%;
+    font-size: 16px;
+  }
 }

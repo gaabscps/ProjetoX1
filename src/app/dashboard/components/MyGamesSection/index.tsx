@@ -62,7 +62,7 @@ export default function MyGamesSection({ modal }: MyGamesSectionProps) {
       <p className="color-black-7 my-games-subtitle">
         Adicione os jogos que você joga e o seu rank em cada um
       </p>
-      <div className="d-flex flex-gap-2">
+      <div className="d-flex flex-gap-2 my-games-cards">
         <Card
           color="#464448"
           onClick={() => modal.setOpenAddGame(true)}

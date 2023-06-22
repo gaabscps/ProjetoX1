@@ -1,4 +1,3 @@
-import EmptyUserDashboard from "@/assets/svg/EmptyUserDashboard";
 import { Body } from "@/components/Body";
 import { Pie } from "react-chartjs-2";
 import {
@@ -13,6 +12,8 @@ import { useState } from "react";
 import Image from "next/image";
 import gabs from "@/assets/svg/gabs.jpg";
 import brazil from "@/assets/svg/brazil.svg";
+import { useTabletHook } from "@/hooks/useMediaQuery/isTablet";
+import { useMobileHook } from "@/hooks/useMediaQuery/isMobile";
 
 interface CustomChartDataset extends ChartDataset<"pie", number[]> {
   cutout?: number | string;
@@ -20,6 +21,8 @@ interface CustomChartDataset extends ChartDataset<"pie", number[]> {
 
 export default function UserSection() {
   ChartJS.register(ArcElement, Tooltip, Legend);
+  const isTablet = useTabletHook();
+  const isMobile = useMobileHook();
 
   const [onHover, setOnHover] = useState(false);
 
@@ -37,8 +40,9 @@ export default function UserSection() {
 
   return (
     <Body>
-      <div className="d-flex align-items-center mb-3">
+      <div className="user-section-container">
         <div
+          className="user-profile-picture"
           onMouseEnter={() => setOnHover(true)}
           onMouseLeave={() => setOnHover(false)}
           style={{ position: "relative" }}
@@ -81,18 +85,22 @@ export default function UserSection() {
             <Image className="profilePicture" src={gabs} alt="profile" />
           </div>
         </div>
-        <div className="ml-1 w-100">
-          <p style={{ marginBottom: "10px" }}>Alex da Silva Almeida Junior</p>
-          <div className="nationalityTag">
-            <Image src={brazil} alt="brazil" />
-            <p className="text-extra-small-400">Brasil</p>
+        <div className="ml-1 w-100 user-stats-container">
+          <div className="nationalityTag-container">
+            <p style={{ marginBottom: "10px" }}>Alex da Silva Almeida Junior</p>
+            <div className="nationalityTag">
+              <Image src={brazil} alt="brazil" />
+              <p className="text-extra-small-400">Brasil</p>
+            </div>
           </div>
-          <div className="d-flex w-100 justify-content-between">
+          <div className="home-user-stats">
             <span className="color-black-7">10 seguidores</span>
             <span className="color-black-7">15 seguindo</span>
             <span className="color-black-7">10x que desafiou</span>
             <span className="color-black-7">5x que foi desafiado</span>
-            <span className="color-black-7">{`//`}</span>
+            {(!isTablet || !isMobile) && (
+              <span className="color-black-7">{`//`}</span>
+            )}
             <span className="color-black-7">5 jogos realizados</span>
             <span className="color-black-7">2 vitórias</span>
             <span className="color-black-7">3 derrotas</span>

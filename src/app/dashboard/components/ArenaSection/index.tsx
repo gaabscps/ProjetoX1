@@ -7,6 +7,8 @@ import Image from "next/image";
 import buttonImage from "@/assets/svg/buttonImage.png";
 import Link from "next/link";
 import arrowCard from "@/assets/svg/arrowCard.svg";
+import { useTabletHook } from "@/hooks/useMediaQuery/isTablet";
+import { useMobileHook } from "@/hooks/useMediaQuery/isMobile";
 
 interface ArenaSectionProps {
   modal: {
@@ -17,6 +19,9 @@ interface ArenaSectionProps {
 export default function ArenaSection({ modal }: ArenaSectionProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
+
+  const isTablet = useTabletHook();
+  const isMobile = useMobileHook();
 
   return (
     <>
@@ -43,55 +48,57 @@ export default function ArenaSection({ modal }: ArenaSectionProps) {
 
       {/* Procure jogador ou jogo rapido */}
       <Body className="d-flex flex-gap-1" marginBottom="40px">
-        <div style={{ width: "85%" }}>
-          <Input
-            className="input-1"
-            maxHeight={"50px"}
-            placeholder="Procure um jogador para desafiar"
-          />
-        </div>
-        <div style={{ position: "relative" }}>
-          <Card
-            onClick={() => modal.setOpenFastGame(true)}
-            borderRadius="5px"
-            background={buttonImage.src}
-            width="153px"
-            height="44px"
-            content={<> </>}
-            className={`fast-game-card ${
-              isHovered ? "fast-game-card-hover" : ""
-            } ${isActive ? "fast-game-card-active" : ""}`}
-          />
-          <p
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={() => {
-              setIsActive(true);
-              setTimeout(() => {
-                setIsActive(false);
-              }, 100);
-              modal.setOpenFastGame(true);
-            }}
-            className="fast-game text-small-700"
-          >
-            Jogo rápido
-          </p>
+        <div className="d-flex w-100 flex-gap-1 fast-game-container">
+          <div style={{ width: isMobile ? "100%" : "85%" }}>
+            <Input
+              className="input-1"
+              maxHeight={"50px"}
+              placeholder="Procure um jogador para desafiar"
+            />
+          </div>
+          <div style={{ position: "relative" }}>
+            <Card
+              onClick={() => modal.setOpenFastGame(true)}
+              borderRadius="5px"
+              background={buttonImage.src}
+              width={isMobile ? "100%" : "153px"}
+              height={isMobile ? "100px" : "44px"}
+              content={<> </>}
+              className={`fast-game-card ${
+                isHovered ? "fast-game-card-hover" : ""
+              } ${isActive ? "fast-game-card-active" : ""}`}
+            />
+            <p
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onClick={() => {
+                setIsActive(true);
+                setTimeout(() => {
+                  setIsActive(false);
+                }, 100);
+                modal.setOpenFastGame(true);
+              }}
+              className="fast-game text-small-700"
+            >
+              Jogo rápido
+            </p>
+          </div>
         </div>
       </Body>
 
       {/* Ações */}
       <Body marginBottom="60px">
-        <div className="d-flex flex-gap-2">
+        <div className="d-flex flex-gap-2 home-action-card-container">
           {/* Desafiar */}
           <Card
+            className="home-action-card-content"
             borderRadius="5px"
-            width="255px"
             height="100px"
             content={
               <Link href={"/challenge"}>
                 <div className="home-action-card">
                   <p style={{ marginBottom: "10px" }}>Desafiar</p>
-                  <div className="d-flex align-items-center justify-content-center w-100">
+                  <div className="arena-action-card-content">
                     <div
                       style={{ backgroundColor: "var(--color-success)" }}
                       className="roundStatus"
@@ -103,15 +110,17 @@ export default function ArenaSection({ modal }: ArenaSectionProps) {
                       10 jogadores online
                     </p>
                   </div>
-                  <Image className="arrowCard" src={arrowCard} alt="" />
+                  {!isTablet && (
+                    <Image className="arrowCard" src={arrowCard} alt="" />
+                  )}
                 </div>
               </Link>
             }
           />
           {/* Desafios Recebidos */}
           <Card
+            className="home-action-card-content"
             borderRadius="5px"
-            width="255px"
             height="100px"
             content={
               <Link href={"/challenges"}>
@@ -120,15 +129,17 @@ export default function ArenaSection({ modal }: ArenaSectionProps) {
                   <p className="text-small-400 color-black-6">
                     0 desafios recebidos
                   </p>
-                  <Image className="arrowCard" src={arrowCard} alt="" />
+                  {!isTablet && (
+                    <Image className="arrowCard" src={arrowCard} alt="" />
+                  )}
                 </div>
               </Link>
             }
           />
           {/* Desafios Enviados */}
           <Card
+            className="home-action-card-content"
             borderRadius="5px"
-            width="255px"
             height="100px"
             content={
               <Link href={"/challenges-sent"}>
@@ -137,21 +148,23 @@ export default function ArenaSection({ modal }: ArenaSectionProps) {
                   <p className="text-small-400 color-black-6">
                     10 desafios enviados
                   </p>
-                  <Image className="arrowCard" src={arrowCard} alt="" />
+                  {!isTablet && (
+                    <Image className="arrowCard" src={arrowCard} alt="" />
+                  )}
                 </div>
               </Link>
             }
           />
           {/* Jogos Ativos */}
           <Card
+            className="home-action-card-content"
             borderRadius="5px"
-            width="255px"
             height="100px"
             content={
               <Link href={"/active-games"}>
                 <div className="home-action-card">
                   <p style={{ marginBottom: "10px" }}>Jogos ativos</p>
-                  <div className="d-flex align-items-center justify-content-center w-100">
+                  <div className="arena-action-card-content">
                     <div
                       style={{ backgroundColor: "var(--color-success)" }}
                       className="roundStatus"
@@ -163,7 +176,9 @@ export default function ArenaSection({ modal }: ArenaSectionProps) {
                       Pronto para ser desafiado
                     </p>
                   </div>
-                  <Image className="arrowCard" src={arrowCard} alt="" />
+                  {!isTablet && (
+                    <Image className="arrowCard" src={arrowCard} alt="" />
+                  )}
                 </div>
               </Link>
             }

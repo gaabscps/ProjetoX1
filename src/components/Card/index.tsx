@@ -25,7 +25,7 @@ export function Card({
     <div
       onClick={onClick}
       style={{
-        width: width || 0,
+        width: width,
         height: height || 0,
         backgroundImage: background ? `url(${background})` : "none",
         borderRadius: borderRadius || "10px",

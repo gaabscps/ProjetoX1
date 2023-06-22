@@ -28,3 +28,9 @@
   min-height: 160px;
   border-radius: 500px;
 }
+
+@media screen and (max-width: 1110px) {
+  .pageBody {
+    padding-top: 60px;
+  }
+}
