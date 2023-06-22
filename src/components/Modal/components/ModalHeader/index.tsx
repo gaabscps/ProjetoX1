@@ -10,7 +10,7 @@ interface ModalHeaderProps {
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
-  modalHeaderBg = "#000",
+  modalHeaderBg = "",
   content,
   setOpen,
 }) => {

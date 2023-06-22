@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button";
 import Image from "next/image";
 import { Element } from "react-scroll";
-import logo from "@/assets/svg/X1_logo_horizontal_branco 3.svg";
+import logo from "@/assets/svg/X1_logo_horizontal_branco 3.png";
 
 interface VideoSectionProps {
   setOpenRegister: (open: boolean) => void;
@@ -32,7 +32,9 @@ export function VideoSection({ setOpenRegister }: VideoSectionProps) {
               Desafie. Aposte. Vença. Mostre ao mundo do que você é capaz.
             </span>
           </div>
-          <Image className="videoTitle" src={logo} alt="Logo Play X1" />
+          <div className="videoTitle">
+            <Image color="videoLogo" src={logo} alt="Logo Play X1" />
+          </div>
           <Button
             onClick={() => setOpenRegister(true)}
             effect

@@ -1,1 +1,198 @@
 @import "../components/ModalBody/styles/styles.module.scss";
+
+.user-section-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 45px;
+}
+.home-title {
+  margin-bottom: 10px;
+}
+.my-games-subtitle {
+  margin-bottom: 30px;
+}
+
+.home-action-card {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.my-games-image {
+  display: flex;
+  justify-content: center;
+  object-fit: fill;
+  width: 100%;
+  height: 50px;
+}
+
+.my-games-card-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15px 25px 15px 25px;
+  user-select: none;
+}
+
+.my-games-cards {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.arrowCard {
+  position: absolute;
+  right: 20px;
+}
+
+.fast-game {
+  position: absolute;
+  right: 20%;
+  top: 25%;
+  cursor: pointer;
+  z-index: 0;
+  user-select: none;
+}
+
+.fast-game-card {
+  filter: brightness(0.6);
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.8);
+  }
+  &:active {
+    filter: brightness(1);
+  }
+}
+.fast-game-card-hover {
+  filter: brightness(0.8);
+}
+.fast-game-card-active {
+  filter: brightness(1);
+}
+
+.levelTag {
+  text-align: center;
+  width: 60px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 0.2px solid #99959b;
+  backdrop-filter: blur(3px);
+  border-radius: 10px;
+  position: absolute;
+  bottom: -5px;
+  left: 33%;
+  z-index: 2;
+}
+.levelStats {
+  position: absolute;
+  bottom: 25px;
+  left: 28%;
+  z-index: 2;
+  position: absolute;
+  width: 75px;
+  height: 33px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  text-align: center;
+  font-size: var(--text-size-extra-small);
+}
+.levelStatsOff {
+  opacity: 0;
+  transition: all ease 0.2s;
+}
+.levelStatsHover {
+  opacity: 1;
+  transition: all ease 0.2s;
+}
+
+.nationalityTag {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60px;
+  height: 21px;
+  background: #3e3b3f;
+  border-radius: 100px;
+  margin-bottom: 30px;
+}
+
+.home-user-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.arena-action-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.home-action-card-content {
+  width: 255px;
+  height: 100px;
+}
+
+@media screen and (max-width: 1110px) {
+  .home-user-stats {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .arena-action-card-content {
+    flex-direction: column;
+    p {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .user-section-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-stats-container {
+    p {
+      text-align: center;
+    }
+  }
+  .nationalityTag-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .nationalityTag {
+    justify-content: center;
+  }
+  .user-profile-picture {
+    margin-bottom: 30px;
+  }
+  .my-games-cards {
+    justify-content: center;
+  }
+  .home-action-card-container {
+    flex-direction: column;
+  }
+  .home-action-card-content {
+    width: 100%;
+  }
+  .fast-game-container {
+    flex-direction: column;
+  }
+  .fast-game {
+    top: 40%;
+    right: 37%;
+    font-size: 16px;
+  }
+}

@@ -10,7 +10,7 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   icon?: React.ReactNode | string;
-  size?: "large";
+  size?: "large" | "small";
   theme?: "primary" | "outline";
   type?: "button" | "submit" | "reset";
   width?: string;
@@ -74,7 +74,6 @@ export const Button: React.FC<ButtonProps> = ({
       style.padding = isMobile ? "16px" : "16px 125px";
       style.transform = "skew(-33deg)";
     }
-
     if (width) {
       style.width = width;
     }
@@ -100,17 +99,15 @@ export const Button: React.FC<ButtonProps> = ({
         onMouseUp={handleMouseUp}
         type={type}
         onClick={() => (onClick && onClick()) || undefined}
-        className={`buttonContainer text-small-700
-        ${hover && styles.buttonContainerHover}
-        ${active && styles.buttonContainerActive} button${size || ""} button-${
-          theme || "theme"
-        } ${className || ""}`}
+        className={`buttonContainer text-small-700 ${
+          hover ? styles.buttonContainerHover : ""
+        } ${active ? styles.buttonContainerActive : ""} button${
+          size || ""
+        } button-${theme || "theme"} ${className || ""}`}
         style={styleValidation()}
       >
         {icon && <div className="buttonIcon">{icon}</div>}
-        <div className={`buttonContent ${size === "large" && "-large"}`}>
-          {content}
-        </div>
+        <div className={`buttonContent ${size}`}>{content}</div>
       </button>
       {effect && (
         <div className="buttonContainerEffectWrapper">

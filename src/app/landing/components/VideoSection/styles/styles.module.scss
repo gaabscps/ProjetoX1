@@ -43,3 +43,12 @@
   color: #000000;
   cursor: pointer;
 }
+
+@media screen and (max-width: "768px") {
+  .videoTitle {
+    margin-bottom: 4.75rem;
+    margin-top: 15px;
+    width: 200px;
+    height: 80px;
+  }
+}

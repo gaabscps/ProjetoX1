@@ -1,7 +1,7 @@
 "use client";
 
 import { VideoSection } from "./components/VideoSection";
-import { Header } from "@/components/Header";
+import { Header } from "./components/Header";
 import { StatsSection } from "./components/StatsSection";
 import { Button } from "@/components/Button";
 import { Modal } from "@/components/Modal";
