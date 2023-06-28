@@ -77,13 +77,24 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
         </div>
       )}
       <header
-        className={`headerModule ${isOpacity ? "header-opacity" : ""} ${
-          !isDesktop && !isOpen ? "headerMobileOff" : "headerMobileOn"
-        }`}
+        onClick={() => isOpen && setIsOpen(false)}
+        className={`landing-headerModule ${
+          isOpacity && isDesktop ? "landing-header-opacity" : ""
+        } ${
+          !isDesktop && !isOpen
+            ? "landing-headerOpacityOff"
+            : "landing-headerOpacityOn"
+        } `}
       >
-        <nav className={`headerContainer `}>
-          <ul className="headerItemsContainer">
-            <li className="headerLogo">
+        <nav
+          className={`landing-headerContainer ${
+            !isDesktop && !isOpen
+              ? "landing-headerMobileOff"
+              : "landing-headerMobileOn"
+          } `}
+        >
+          <ul className="landing-headerItemsContainer">
+            <li className="landing-headerLogo">
               <Image src={logo} alt="Logo" />
             </li>
             {headerList.map((item, key) => (
@@ -94,13 +105,13 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                 duration={500}
                 offset={-100} // Ajuste opcional de compensação para o cabeçalho
               >
-                <li className="action-icon text-small-400 headerItem">
+                <li className="action-icon text-small-400 landing-headerItem">
                   {item.name}
                 </li>
               </Link>
             ))}
           </ul>
-          <div className="headerButtonGroup d-flex">
+          <div className="landing-headerButtonGroup d-flex">
             <Button
               onClick={() => setOpenLogin(true)}
               content="Entrar"

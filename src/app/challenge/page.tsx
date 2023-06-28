@@ -1,12 +1,15 @@
 "use client";
 
-import { Body } from "@/components/Body";
-import { Header } from "../landing/components/Header";
-import Input from "@/components/Input";
 import { useState } from "react";
+import { Body } from "@/components/Body";
+import Input from "@/components/Input";
+import Image from "next/image";
+import ArrowBack from "@/assets/svg/arrowBack.svg";
 import { Modal } from "@/components/Modal";
 import ModalBodyChallenge from "./components/ModalBodyChallenge";
 import FollowingCard from "./components/FollowingCard";
+import { Header } from "@/components/Header";
+import Link from "next/link";
 
 interface User {
   userImage: string;
@@ -93,7 +96,12 @@ export default function Challenge() {
       />
       <Body>
         <div className="pageBody">
-          <h5 className="h5-500">Desafiar</h5>
+          <div className="d-flex align-items-center flex-gap-1">
+            <Link href="/dashboard">
+              <Image src={ArrowBack} width={16} height={16} alt="" />
+            </Link>
+            <h5 className="h5-500">Desafiar</h5>
+          </div>
           <p>Desafie os jogadores que você segue</p>
         </div>
 
