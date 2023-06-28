@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Body } from "@/components/Body";
 import Input from "@/components/Input";
 import Image from "next/image";
-import arrowBack from "@/assets/svg/arrowBack.svg";
+import back from "@/assets/svg/back.svg";
 import { Modal } from "@/components/Modal";
 import ModalBodyChallenge from "./components/ModalBodyChallenge";
 import FollowingCard from "./components/FollowingCard";
@@ -98,7 +98,7 @@ export default function Challenge() {
         <div className="pageBody">
           <div className="d-flex align-items-center flex-gap-1">
             <Link href="/dashboard">
-              <Image src={arrowBack} width={16} height={16} alt="" />
+              <Image src={back} width={16} height={16} alt="" />
             </Link>
             <h5 className="h5-500">Desafiar</h5>
           </div>
