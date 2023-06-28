@@ -107,7 +107,7 @@ export const Button: React.FC<ButtonProps> = ({
         style={styleValidation()}
       >
         {icon && <div className="buttonIcon">{icon}</div>}
-        <div className={`buttonContent ${size}`}>{content}</div>
+        <div className={`buttonContent ${size ? size : ""}`}>{content}</div>
       </button>
       {effect && (
         <div className="buttonContainerEffectWrapper">
