@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import React, { ReactElement, useState } from 'react';
-import { ModalHeader } from './components/ModalHeader';
-import useScrollLock from '@/hooks/useScrollLock';
+import React, { ReactElement } from 'react'
+import { ModalHeader } from './components/ModalHeader'
+import useScrollLock from '@/hooks/useScrollLock'
 
 interface ModalProps {
-  modalHeader?: ReactElement | null;
-  modalHeaderBg?: string | null;
-  modalBody: ReactElement | null;
-  modalFooter?: ReactElement;
-  setOpen: (open: boolean) => void;
-  open?: boolean;
+  modalHeader?: ReactElement | null
+  modalHeaderBg?: string | null
+  modalBody: ReactElement | null
+  modalFooter?: ReactElement
+  setOpen: (open: boolean) => void
+  open?: boolean
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -21,7 +21,7 @@ export const Modal: React.FC<ModalProps> = ({
   setOpen,
   open,
 }) => {
-  useScrollLock(!!open);
+  useScrollLock(!!open)
 
   {
     /* 
@@ -49,7 +49,7 @@ export const Modal: React.FC<ModalProps> = ({
           opacity: open ? 1 : 0,
           zIndex: open ? 102 : -1,
         }}
-        className="modalModule"
+        className='modalModule'
       >
         <div
           style={{
@@ -57,21 +57,15 @@ export const Modal: React.FC<ModalProps> = ({
             opacity: open ? 1 : 0,
             zIndex: open ? 102 : -1,
           }}
-          className="modalContainer"
+          className='modalContainer'
         >
-          <ModalHeader
-            modalHeaderBg={modalHeaderBg}
-            content={modalHeader}
-            setOpen={setOpen}
-          />
-          <div className="modalBodyFooterContainer">
-            <div className="modalBody">{modalBody}</div>
-            {modalFooter && (
-              <div className="modalBodyFooterContent">{modalFooter}</div>
-            )}
+          <ModalHeader modalHeaderBg={modalHeaderBg} content={modalHeader} setOpen={setOpen} />
+          <div className='modalBodyFooterContainer'>
+            <div className='modalBody'>{modalBody}</div>
+            {modalFooter && <div className='modalBodyFooterContent'>{modalFooter}</div>}
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}

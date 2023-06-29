@@ -1,4 +1,3 @@
-import { EmptyBanner } from '@/assets/svg/EmptyBanner';
 import { Body } from '@/components/Body';
 import { Carrossel } from '@/components/Carousel';
 import { Element } from 'react-scroll';

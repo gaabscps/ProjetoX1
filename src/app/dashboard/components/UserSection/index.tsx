@@ -5,7 +5,6 @@ import {
   ArcElement,
   Tooltip,
   Legend,
-  Chart,
   ChartDataset,
 } from 'chart.js';
 import { useState } from 'react';

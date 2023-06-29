@@ -1,132 +1,124 @@
-'use client';
+'use client'
 
-import { Card } from '@/components/Card';
-import Input from '@/components/Input';
-import { useModal } from '@/hooks/useModal';
-import { FormEvent, useEffect, useState } from 'react';
-import Image from 'next/image';
-import logo from '@/assets/svg/X1_logo_horizontal_branco 3.png';
-import google from '@/assets/svg/googleModal.svg';
-import facebook from '@/assets/svg/facebookModal.svg';
-import apple from '@/assets/svg/appleModal.svg';
-import twitch from '@/assets/svg/twitchModal.svg';
-import steam from '@/assets/svg/steamModal.svg';
-import { NextRouter, useRouter, withRouter } from 'next/router';
-import Link from 'next/link';
+import { Card } from '@/components/Card'
+import Input from '@/components/Input'
+import { useModal } from '@/hooks/useModal'
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import logo from '@/assets/svg/X1_logo_horizontal_branco 3.png'
+import google from '@/assets/svg/googleModal.svg'
+import facebook from '@/assets/svg/facebookModal.svg'
+import apple from '@/assets/svg/appleModal.svg'
+import twitch from '@/assets/svg/twitchModal.svg'
+import steam from '@/assets/svg/steamModal.svg'
+import Link from 'next/link'
 
 interface ModalLoginBodyProps {
-  handleRegisterButton: (open: boolean) => void;
+  handleRegisterButton: (open: boolean) => void
 }
 
 export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
-  const modal = useModal();
+  const modal = useModal()
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   useEffect(() => {
     if (modal.openLogin) {
-      modal.setOpenLogin(true);
+      modal.setOpenLogin(true)
     }
-  }, [modal]);
+  }, [modal])
 
   return (
-    <div className="d-flex flex-column align-items-center w-100 h-100">
-      <Image src={logo} className="modal-logo" alt="" />
-      <h5 className="h5-500 h5-modal-margin h5-modal">Entre com a sua conta</h5>
-      <form className="loginRegisterForm" action="">
+    <div className='d-flex flex-column align-items-center w-100 h-100'>
+      <Image src={logo} className='modal-logo' alt='' />
+      <h5 className='h5-500 h5-modal-margin h5-modal'>Entre com a sua conta</h5>
+      <form className='loginRegisterForm' action=''>
         <Input
-          placeholder="Seu e-mail"
-          type="email"
-          name="email"
+          placeholder='Seu e-mail'
+          type='email'
+          name='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
-          placeholder="Sua senha"
-          type="password"
-          name="password"
+          placeholder='Sua senha'
+          type='password'
+          name='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="action-icon forgotPassword">Esqueceu a sua senha?</div>
+        <div className='action-icon forgotPassword'>Esqueceu a sua senha?</div>
         <Link
           onClick={() => {
             email === 'admin@email.com' && password === '123'
               ? alert('Entrou')
-              : alert('Não entrou');
+              : alert('Não entrou')
           }}
-          href={
-            email === 'admin@email.com' && password === '123'
-              ? '/dashboard'
-              : ''
-          }
+          href={email === 'admin@email.com' && password === '123' ? '/dashboard' : ''}
         >
-          <div className="d-flex align-items-center justify-content-center">
-            <button
-              disabled={!email || !password}
-              className="loginRegisterButton"
-            >
+          <div className='d-flex align-items-center justify-content-center'>
+            <button disabled={!email || !password} className='loginRegisterButton'>
               Entrar
             </button>
           </div>
         </Link>
       </form>
-      <div className="d-flex justify-content-center w-100 align-items-center modal-separator">
+      <div className='d-flex justify-content-center w-100 align-items-center modal-separator'>
         <div style={{ width: '40%', borderBottom: '1.5px solid #5F5C6B' }} />
-        <div className="d-flex justify-content-center" style={{ width: '20%' }}>
+        <div className='d-flex justify-content-center' style={{ width: '20%' }}>
           ou
         </div>
         <div style={{ width: '40%', borderBottom: '1.5px solid #5F5C6B' }} />
       </div>
-      <div className="d-flex w-100 justify-content-between modal-socialMedia">
+      <div className='d-flex w-100 justify-content-between modal-socialMedia'>
         <Card
-          theme="outline"
-          width="80px"
-          height="60px"
+          theme='outline'
+          width='80px'
+          height='60px'
           content={
-            <div className="d-flex justify-content-center align-items-center w-100 h-100">
-              <Image src={google} alt="" />
+            <div className='d-flex justify-content-center align-items-center w-100 h-100'>
+              <Image src={google} alt='' />
             </div>
           }
         />
         <Card
-          theme="outline"
-          width="80px"
-          height="60px"
+          theme='outline'
+          width='80px'
+          height='60px'
           content={
-            <div className="d-flex justify-content-center align-items-center w-100 h-100">
-              <Image src={facebook} alt="" />
+            <div className='d-flex justify-content-center align-items-center w-100 h-100'>
+              <Image src={facebook} alt='' />
             </div>
           }
         />
         <Card
-          theme="outline"
-          width="80px"
-          height="60px"
+          theme='outline'
+          width='80px'
+          height='60px'
           content={
-            <div className="d-flex justify-content-center align-items-center w-100 h-100">
-              <Image src={apple} alt="" />
+            <div className='d-flex justify-content-center align-items-center w-100 h-100'>
+              <Image src={apple} alt='' />
             </div>
           }
         />
         <Card
-          theme="outline"
-          width="80px"
-          height="60px"
+          theme='outline'
+          width='80px'
+          height='60px'
           content={
-            <div className="d-flex justify-content-center align-items-center w-100 h-100">
-              <Image src={twitch} alt="" />
+            <div className='d-flex justify-content-center align-items-center w-100 h-100'>
+              <Image src={twitch} alt='' />
             </div>
           }
         />
         <Card
-          theme="outline"
-          width="80px"
-          height="60px"
+          theme='outline'
+          width='80px'
+          height='60px'
           content={
-            <div className="d-flex justify-content-center align-items-center w-100 h-100">
-              <Image src={steam} alt="" />
+            <div className='d-flex justify-content-center align-items-center w-100 h-100'>
+              <Image src={steam} alt='' />
             </div>
           }
         />
@@ -136,13 +128,13 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
 
         <span
           onClick={() => {
-            handleRegisterButton(false);
+            handleRegisterButton(false)
           }}
-          className="action-icon color-primary-3 text-normal-500"
+          className='action-icon color-primary-3 text-normal-500'
         >
           Criar conta
         </span>
       </div>
     </div>
-  );
+  )
 }

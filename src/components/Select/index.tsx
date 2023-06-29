@@ -1,20 +1,20 @@
-import Image from 'next/image';
-import React, { useState } from 'react';
-import Arrow from '../../assets/svg/arrowCard.svg';
+import Image from 'next/image'
+import React from 'react'
+import Arrow from '../../assets/svg/arrowCard.svg'
 
 interface SelectProps {
-  value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  option?: string[];
-  label?: string;
-  placeholder?: string;
-  type?: string;
-  className?: string;
-  name?: string;
-  style?: React.CSSProperties;
-  disabled?: boolean;
-  required?: boolean;
-  marginBottom?: string;
+  value?: string
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  option?: string[]
+  label?: string
+  placeholder?: string
+  type?: string
+  className?: string
+  name?: string
+  style?: React.CSSProperties
+  disabled?: boolean
+  required?: boolean
+  marginBottom?: string
 }
 
 export default function Select({
@@ -31,23 +31,14 @@ export default function Select({
   required,
   marginBottom = '20px',
 }: SelectProps) {
-  const [selectedValue, setSelectedValue] = useState(value || '');
-
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedValue(event.target.value);
-  };
-
   return (
-    <div
-      style={{ marginBottom: marginBottom }}
-      className="d-flex flex-column input-container"
-    >
+    <div style={{ marginBottom: marginBottom }} className='d-flex flex-column input-container'>
       {label && <label htmlFor={name}>{label}</label>}
       <select
         onChange={onChange}
         placeholder={placeholder}
         className={`${className} input-${type} ${disabled ? 'disabled' : ''} ${
-          !value && selectedValue === '' ? 'SelectPlaceholder' : ''
+          !value ? 'SelectPlaceholder' : ''
         } input`}
         id={name}
         name={name}
@@ -55,7 +46,7 @@ export default function Select({
         disabled={disabled}
         required={required}
       >
-        <option value="" className="SelectPlaceholder">
+        <option value='' className='SelectPlaceholder'>
           {placeholder}
         </option>
         {option?.map((option, index) => (
@@ -73,8 +64,8 @@ export default function Select({
           zIndex: 0,
         }}
       >
-        <Image src={Arrow} alt="" />
+        <Image src={Arrow} alt='' />
       </div>
     </div>
-  );
+  )
 }
