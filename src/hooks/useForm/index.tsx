@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 interface useFormProps {
   initialValues: any;
@@ -15,12 +15,12 @@ const useForm = ({ initialValues, onSubmit }: useFormProps) => {
   ) => {
     const { name, value, type, checked, files }: any = event.target;
 
-    if (type === "checkbox") {
+    if (type === 'checkbox') {
       setValues((prevValues: any) => ({
         ...prevValues,
         [name]: checked,
       }));
-    } else if (type === "file") {
+    } else if (type === 'file') {
       setValues((prevValues: any) => ({
         ...prevValues,
         [name]: files && files[0],

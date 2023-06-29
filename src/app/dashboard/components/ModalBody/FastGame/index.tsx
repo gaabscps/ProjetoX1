@@ -1,8 +1,8 @@
-import { Button } from "@/components/Button";
-import Input from "@/components/Input";
-import Select from "@/components/Select";
-import useForm from "@/hooks/useForm";
-import { use, useEffect } from "react";
+import { Button } from '@/components/Button';
+import Input from '@/components/Input';
+import Select from '@/components/Select';
+import useForm from '@/hooks/useForm';
+import { use, useEffect } from 'react';
 
 interface ModalFastGameBodyProps {
   handleSearchingFastGame: () => void;
@@ -15,9 +15,9 @@ export default function ModalFastGameBody({
 }: ModalFastGameBodyProps) {
   // const { form, setForm, handleInputChange } = useFormFastGameBody();
   const initialValues = {
-    game: "",
-    level: "",
-    bet: "",
+    game: '',
+    level: '',
+    bet: '',
   };
 
   const { values, handleChange } = useForm({
@@ -35,7 +35,7 @@ export default function ModalFastGameBody({
     <>
       <div className="fastGameModalBody d-flex flex-column">
         <div className="fastGameModalTitle">
-          <h6 style={{ marginBottom: "10px" }} className="h6-500">
+          <h6 style={{ marginBottom: '10px' }} className="h6-500">
             Jogo rápido
           </h6>
         </div>
@@ -44,12 +44,12 @@ export default function ModalFastGameBody({
           onChange={handleChange}
           value={values.game}
           placeholder="Jogo a ser jogado"
-          option={["Jogo 1", "Jogo 2"]}
+          option={['Jogo 1', 'Jogo 2']}
         />
         <Select
           name="level"
           placeholder="Nível do oponente"
-          option={["Facil", "Intermediario"]}
+          option={['Facil', 'Intermediario']}
           value={values.level}
           onChange={handleChange}
         />

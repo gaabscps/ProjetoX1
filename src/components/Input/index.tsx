@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -28,7 +28,7 @@ export default function Input({
   style,
   disabled,
   required,
-  marginBottom = "20px",
+  marginBottom = '20px',
   maxLength,
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,9 +47,9 @@ export default function Input({
         onChange={onChange}
         value={value}
         placeholder={placeholder}
-        type={showPassword ? "text" : type}
+        type={showPassword ? 'text' : type}
         className={`${className} input-${type} ${
-          disabled ? "disabled" : ""
+          disabled ? 'disabled' : ''
         } input`}
         id={name}
         name={name}
@@ -58,14 +58,14 @@ export default function Input({
         required={required}
         maxLength={maxLength}
       />
-      {type === "password" && (
+      {type === 'password' && (
         <>
           <button
             type="button"
-            className={`toggle-password-btn ${showPassword ? "show" : ""}`}
+            className={`toggle-password-btn ${showPassword ? 'show' : ''}`}
             onClick={toggleShowPassword}
           >
-            {showPassword ? "Hide" : "Show"}
+            {showPassword ? 'Hide' : 'Show'}
           </button>
         </>
       )}

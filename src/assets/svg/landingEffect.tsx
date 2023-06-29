@@ -1,4 +1,4 @@
-import { Body } from "@/components/Body";
+import { Body } from '@/components/Body';
 
 export function LandingEffect() {
   return (
@@ -15,24 +15,24 @@ export function LandingEffect() {
           cy="252.75"
           r="150"
           stroke="#963BFF"
-          stroke-opacity="0.5"
-          stroke-width="1.5"
+          strokeOpacity="0.5"
+          strokeWidth="1.5"
         />
         <circle
           cx="252"
           cy="252"
           r="207.75"
           stroke="#963BFF"
-          stroke-opacity="0.2"
-          stroke-width="1.5"
+          strokeOpacity="0.2"
+          strokeWidth="1.5"
         />
         <circle
           cx="252"
           cy="252"
           r="251.25"
           stroke="#963BFF"
-          stroke-opacity="0.1"
-          stroke-width="1.5"
+          strokeOpacity="0.1"
+          strokeWidth="1.5"
         />
       </svg>
     </div>

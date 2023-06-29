@@ -1,14 +1,18 @@
-import { Card } from "@/components/Card";
-import Input from "@/components/Input";
-import { useModal } from "@/hooks/useModal";
-import { useEffect } from "react";
-import Image from "next/image";
-import logo from "@/assets/svg/X1_logo_horizontal_branco 3.png";
-import google from "@/assets/svg/googleModal.svg";
-import facebook from "@/assets/svg/facebookModal.svg";
-import apple from "@/assets/svg/appleModal.svg";
-import twitch from "@/assets/svg/twitchModal.svg";
-import steam from "@/assets/svg/steamModal.svg";
+'use client';
+
+import { Card } from '@/components/Card';
+import Input from '@/components/Input';
+import { useModal } from '@/hooks/useModal';
+import { FormEvent, useEffect, useState } from 'react';
+import Image from 'next/image';
+import logo from '@/assets/svg/X1_logo_horizontal_branco 3.png';
+import google from '@/assets/svg/googleModal.svg';
+import facebook from '@/assets/svg/facebookModal.svg';
+import apple from '@/assets/svg/appleModal.svg';
+import twitch from '@/assets/svg/twitchModal.svg';
+import steam from '@/assets/svg/steamModal.svg';
+import { NextRouter, useRouter, withRouter } from 'next/router';
+import Link from 'next/link';
 
 interface ModalLoginBodyProps {
   handleRegisterButton: (open: boolean) => void;
@@ -16,6 +20,9 @@ interface ModalLoginBodyProps {
 
 export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
   const modal = useModal();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     if (modal.openLogin) {
@@ -28,19 +35,49 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
       <Image src={logo} className="modal-logo" alt="" />
       <h5 className="h5-500 h5-modal-margin h5-modal">Entre com a sua conta</h5>
       <form className="loginRegisterForm" action="">
-        <Input placeholder="Seu e-mail" type="email" name="email" />
-        <Input placeholder="Sua senha" type="password" name="password" />
+        <Input
+          placeholder="Seu e-mail"
+          type="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          placeholder="Sua senha"
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <div className="action-icon forgotPassword">Esqueceu a sua senha?</div>
-        <div className="d-flex align-items-center justify-content-center">
-          <button className="loginRegisterButton"> Entrar </button>
-        </div>
+        <Link
+          onClick={() => {
+            email === 'admin@email.com' && password === '123'
+              ? alert('Entrou')
+              : alert('Não entrou');
+          }}
+          href={
+            email === 'admin@email.com' && password === '123'
+              ? '/dashboard'
+              : ''
+          }
+        >
+          <div className="d-flex align-items-center justify-content-center">
+            <button
+              disabled={!email || !password}
+              className="loginRegisterButton"
+            >
+              Entrar
+            </button>
+          </div>
+        </Link>
       </form>
       <div className="d-flex justify-content-center w-100 align-items-center modal-separator">
-        <div style={{ width: "40%", borderBottom: "1.5px solid #5F5C6B" }} />
-        <div className="d-flex justify-content-center" style={{ width: "20%" }}>
+        <div style={{ width: '40%', borderBottom: '1.5px solid #5F5C6B' }} />
+        <div className="d-flex justify-content-center" style={{ width: '20%' }}>
           ou
         </div>
-        <div style={{ width: "40%", borderBottom: "1.5px solid #5F5C6B" }} />
+        <div style={{ width: '40%', borderBottom: '1.5px solid #5F5C6B' }} />
       </div>
       <div className="d-flex w-100 justify-content-between modal-socialMedia">
         <Card
@@ -96,6 +133,7 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
       </div>
       <div>
         <span>Ainda não tem uma conta? </span>
+
         <span
           onClick={() => {
             handleRegisterButton(false);

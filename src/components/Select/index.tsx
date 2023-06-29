@@ -1,6 +1,6 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import Arrow from "../../assets/svg/arrowCard.svg";
+import Image from 'next/image';
+import React, { useState } from 'react';
+import Arrow from '../../assets/svg/arrowCard.svg';
 
 interface SelectProps {
   value?: string;
@@ -29,9 +29,9 @@ export default function Select({
   style,
   disabled,
   required,
-  marginBottom = "20px",
+  marginBottom = '20px',
 }: SelectProps) {
-  const [selectedValue, setSelectedValue] = useState(value || "");
+  const [selectedValue, setSelectedValue] = useState(value || '');
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
@@ -46,8 +46,8 @@ export default function Select({
       <select
         onChange={onChange}
         placeholder={placeholder}
-        className={`${className} input-${type} ${disabled ? "disabled" : ""} ${
-          !value && selectedValue === "" ? "SelectPlaceholder" : ""
+        className={`${className} input-${type} ${disabled ? 'disabled' : ''} ${
+          !value && selectedValue === '' ? 'SelectPlaceholder' : ''
         } input`}
         id={name}
         name={name}
@@ -59,17 +59,17 @@ export default function Select({
           {placeholder}
         </option>
         {option?.map((option, index) => (
-          <option style={{ color: "white" }} key={index} value={option}>
+          <option style={{ color: 'white' }} key={index} value={option}>
             {option}
           </option>
         ))}
       </select>
       <div
         style={{
-          position: "absolute",
-          right: "20px",
-          top: "33%",
-          transform: "rotate(90deg)",
+          position: 'absolute',
+          right: '20px',
+          top: '33%',
+          transform: 'rotate(90deg)',
           zIndex: 0,
         }}
       >

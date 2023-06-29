@@ -1,6 +1,6 @@
-import { Button } from "@/components/Button";
-import { Card } from "@/components/Card";
-import TagGroup from "../TagGroup";
+import { Button } from '@/components/Button';
+import { Card } from '@/components/Card';
+import TagGroup from '../TagGroup';
 
 interface FollowingCardProps {
   openTag: boolean;
@@ -31,12 +31,12 @@ export default function FollowingCard({
         <div className="h-100">
           <div className="d-flex align-items-center justify-content-between mr-1 ml-1">
             <div
-              style={{ height: "74px" }}
+              style={{ height: '74px' }}
               className="d-flex align-items-center flex-gap-1"
             >
               <p>{userImage}</p>
               <div>
-                <p style={{ marginBottom: "9px" }} className="text-small-400">
+                <p style={{ marginBottom: '9px' }} className="text-small-400">
                   {userName}
                 </p>
                 <div className="d-flex text-small-400">
@@ -51,12 +51,12 @@ export default function FollowingCard({
                 onClick={() => setOpenModal(true)}
                 height="22px"
                 width="72px"
-                content={"Desafiar"}
+                content={'Desafiar'}
                 size="small"
               />
             </div>
           </div>
-          <hr style={{ borderBottom: "1.5px solid #464448" }} />
+          <hr style={{ borderBottom: '1.5px solid #464448' }} />
           <TagGroup open={openTag} setOpen={setOpenTag} />
         </div>
       }

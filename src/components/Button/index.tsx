@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import styles from "./styles/styles.module.scss";
-import { useMediaQuery } from "react-responsive";
+import React, { useEffect, useState } from 'react';
+import styles from './styles/styles.module.scss';
+import { useMediaQuery } from 'react-responsive';
 
 interface ButtonProps {
   content: React.ReactNode;
@@ -10,9 +10,9 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   icon?: React.ReactNode | string;
-  size?: "large" | "small";
-  theme?: "primary" | "outline";
-  type?: "button" | "submit" | "reset";
+  size?: 'large' | 'small';
+  theme?: 'primary' | 'outline';
+  type?: 'button' | 'submit' | 'reset';
   width?: string;
   height?: string;
   margin?: string;
@@ -37,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
   const [active, setActive] = useState(false);
 
   const mobile = useMediaQuery({
-    query: "(max-width: 768px)",
+    query: '(max-width: 768px)',
   });
 
   const [isMobile, setIsMobile] = useState(false);
@@ -45,7 +45,7 @@ export const Button: React.FC<ButtonProps> = ({
     setIsMobile(mobile);
   }, [mobile]);
 
-  //funções para lidar com estado hover/ativo do efeito do botão com efeito, acompanhando o estado do botão
+  // funções para lidar com estado hover/ativo do efeito do botão com efeito, acompanhando o estado do botão
   const handleMouseEnter = () => {
     setHover(true);
   };
@@ -63,16 +63,16 @@ export const Button: React.FC<ButtonProps> = ({
 
   const styleValidation = () => {
     const style = {
-      padding: "",
-      transform: "",
-      width: "",
-      height: "",
-      margin: "",
+      padding: '',
+      transform: '',
+      width: '',
+      height: '',
+      margin: '',
     };
 
-    if (size === "large") {
-      style.padding = isMobile ? "16px" : "16px 125px";
-      style.transform = "skew(-33deg)";
+    if (size === 'large') {
+      style.padding = isMobile ? '16px' : '16px 125px';
+      style.transform = 'skew(-33deg)';
     }
     if (width) {
       style.width = width;
@@ -100,14 +100,14 @@ export const Button: React.FC<ButtonProps> = ({
         type={type}
         onClick={() => (onClick && onClick()) || undefined}
         className={`buttonContainer text-small-700 ${
-          hover ? styles.buttonContainerHover : ""
-        } ${active ? styles.buttonContainerActive : ""} button${
-          size || ""
-        } button-${theme || "theme"} ${className || ""}`}
+          hover ? styles.buttonContainerHover : ''
+        } ${active ? styles.buttonContainerActive : ''} button${
+          size || ''
+        } button-${theme || 'theme'} ${className || ''}`}
         style={styleValidation()}
       >
         {icon && <div className="buttonIcon">{icon}</div>}
-        <div className={`buttonContent ${size ? size : ""}`}>{content}</div>
+        <div className={`buttonContent ${size ? size : ''}`}>{content}</div>
       </button>
       {effect && (
         <div className="buttonContainerEffectWrapper">
@@ -121,14 +121,14 @@ export const Button: React.FC<ButtonProps> = ({
             className={`buttonContainerEffect action-icon text-small-700
             ${hover && styles.buttonContainerEffecthover}
             ${active && styles.buttonContainerEffectActive}
-             button${size || ""} ${className || ""}`}
+             button${size || ''} ${className || ''}`}
             style={{
-              padding: isMobile ? "16px" : "16px 125px",
-              transform: "skew(-33deg)",
+              padding: isMobile ? '16px' : '16px 125px',
+              transform: 'skew(-33deg)',
             }}
           >
             {icon && (
-              <div className="buttonIcon" style={{ color: "black" }}>
+              <div className="buttonIcon" style={{ color: 'black' }}>
                 {icon}
               </div>
             )}

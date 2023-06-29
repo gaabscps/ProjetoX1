@@ -1,6 +1,6 @@
-import Accordion from "@/components/Accordion";
-import { Body } from "@/components/Body";
-import { Element } from "react-scroll";
+import Accordion from '@/components/Accordion';
+import { Body } from '@/components/Body';
+import { Element } from 'react-scroll';
 
 interface LandingPageFaqProps {}
 
@@ -11,17 +11,17 @@ export default function LandingPageFaq({}: LandingPageFaqProps) {
   };
   const content: Content[] = [
     {
-      accordionTitle: "Pergunta frequente 1",
+      accordionTitle: 'Pergunta frequente 1',
       accordionContent:
-        " RespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaResposta ",
+        ' RespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaRespostaResposta ',
     },
     {
-      accordionTitle: "Pergunta frequente 2",
-      accordionContent: "Resposta",
+      accordionTitle: 'Pergunta frequente 2',
+      accordionContent: 'Resposta',
     },
     {
-      accordionTitle: "Pergunta frequente 3",
-      accordionContent: "Resposta da Pergunta frequente 3",
+      accordionTitle: 'Pergunta frequente 3',
+      accordionContent: 'Resposta da Pergunta frequente 3',
     },
   ];
 
@@ -32,7 +32,7 @@ export default function LandingPageFaq({}: LandingPageFaqProps) {
         {content.map((item, index) => (
           <Accordion
             key={index}
-            style={{ margin: "20px 0" }}
+            style={{ margin: '20px 0' }}
             title={item.accordionTitle}
             content={
               <span className="faqContent color-black-7">

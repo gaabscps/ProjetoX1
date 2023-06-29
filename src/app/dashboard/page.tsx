@@ -1,12 +1,12 @@
-"use client";
-import { Body } from "@/components/Body";
-import { Header } from "@/components/Header";
-import { Modal } from "@/components/Modal";
-import { useModal } from "@/hooks/useModal";
+'use client';
+import { Body } from '@/components/Body';
+import { Header } from '@/components/Header';
+import { Modal } from '@/components/Modal';
+import { useModal } from '@/hooks/useModal';
 
-import UserSection from "./components/UserSection";
-import MyGamesSection from "./components/MyGamesSection";
-import ArenaSection from "./components/ArenaSection";
+import UserSection from './components/UserSection';
+import MyGamesSection from './components/MyGamesSection';
+import ArenaSection from './components/ArenaSection';
 
 export default function Dashboard() {
   const modal = useModal();
@@ -30,7 +30,7 @@ export default function Dashboard() {
             </span>
           ) : null
         }
-        modalHeaderBg={modal.openRegister ? "#3E3B3F" : null}
+        modalHeaderBg={modal.openRegister ? '#3E3B3F' : null}
       />
 
       <Header
@@ -41,7 +41,7 @@ export default function Dashboard() {
         <UserSection />
         <MyGamesSection modal={modal} />
         <Body marginBottom="60px">
-          <hr style={{ background: "#3E3B3F" }} className="hr-line" />
+          <hr style={{ background: '#3E3B3F' }} className="hr-line" />
         </Body>
         <ArenaSection modal={modal} />
       </div>

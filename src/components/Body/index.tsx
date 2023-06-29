@@ -15,12 +15,12 @@ export function Body({
 }: BodyProps) {
   return (
     <section
-      className={`${className || ""} ${
-        carousel ? "carouselSectionBody" : "sectionBody"
+      className={`${className || ''} ${
+        carousel ? 'carouselSectionBody' : 'sectionBody'
       }`}
       style={{
-        marginBottom: marginBottom || "0px",
-        marginTop: marginTop || "0px",
+        marginBottom: marginBottom || '0px',
+        marginTop: marginTop || '0px',
       }}
     >
       {children}

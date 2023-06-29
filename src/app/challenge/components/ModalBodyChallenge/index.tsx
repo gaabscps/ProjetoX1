@@ -1,5 +1,5 @@
-import { Button } from "@/components/Button";
-import Input from "@/components/Input";
+import { Button } from '@/components/Button';
+import Input from '@/components/Input';
 
 interface ModalBodyChallengeProps {
   setOpenModal: (open: boolean) => void;
@@ -14,7 +14,7 @@ export default function ModalBodyChallenge({
     <div className="mlr-4">
       <div className="d-flex flex-column justify-content-between">
         <div className="w-100 mb-2">
-          <h6 style={{ marginBottom: "10px" }} className="h6-500">
+          <h6 style={{ marginBottom: '10px' }} className="h6-500">
             Confirme o seu desafio
           </h6>
           <div className="d-flex justify-content-between align-items-center">

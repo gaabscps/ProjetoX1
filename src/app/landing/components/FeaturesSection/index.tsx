@@ -1,11 +1,11 @@
-import { Dollar } from "@/assets/svg/Dollar";
-import { Medal } from "@/assets/svg/Medal";
-import { Shield } from "@/assets/svg/Shield";
-import { LandingEffect } from "@/assets/svg/landingEffect";
-import { Body } from "@/components/Body";
-import { Card } from "@/components/Card";
-import { useMobileHook } from "@/hooks/useMediaQuery/isMobile";
-import { Element } from "react-scroll";
+import { Dollar } from '@/assets/svg/Dollar';
+import { Medal } from '@/assets/svg/Medal';
+import { Shield } from '@/assets/svg/Shield';
+import { LandingEffect } from '@/assets/svg/landingEffect';
+import { Body } from '@/components/Body';
+import { Card } from '@/components/Card';
+import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
+import { Element } from 'react-scroll';
 
 export function FeaturesSection() {
   type features = {
@@ -18,18 +18,18 @@ export function FeaturesSection() {
 
   const featuresMock: features[] = [
     {
-      title: "Pagamento instantâneo",
-      description: "Desafie, vença e receba seu pagamento na hora",
+      title: 'Pagamento instantâneo',
+      description: 'Desafie, vença e receba seu pagamento na hora',
       image: <Dollar />,
     },
     {
-      title: "Aposta segura",
-      description: "Aposte com confiança total. Segurança garantida",
+      title: 'Aposta segura',
+      description: 'Aposte com confiança total. Segurança garantida',
       image: <Shield />,
     },
     {
-      title: "Placar de liderança",
-      description: "Seja o melhor! Acompanhe o placar de líderes",
+      title: 'Placar de liderança',
+      description: 'Seja o melhor! Acompanhe o placar de líderes',
       image: <Medal />,
     },
   ];
@@ -42,8 +42,8 @@ export function FeaturesSection() {
           {featuresMock.map((item, index) => (
             <Card
               key={index}
-              width={isMobile ? "auto" : "350px"}
-              height={isMobile ? "200px" : "260px"}
+              width={isMobile ? 'auto' : '350px'}
+              height={isMobile ? '200px' : '260px'}
               content={
                 <div className="d-flex flex-column align-items-center justify-content-center h-100 featuresContainer">
                   <div>{item.image}</div>

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { ReactElement, useState } from "react";
-import { ModalHeader } from "./components/ModalHeader";
-import useScrollLock from "@/hooks/useScrollLock";
+import React, { ReactElement, useState } from 'react';
+import { ModalHeader } from './components/ModalHeader';
+import useScrollLock from '@/hooks/useScrollLock';
 
 interface ModalProps {
   modalHeader?: ReactElement | null;
@@ -15,7 +15,7 @@ interface ModalProps {
 
 export const Modal: React.FC<ModalProps> = ({
   modalHeader = null,
-  modalHeaderBg = "#000",
+  modalHeaderBg = '#000',
   modalBody,
   modalFooter,
   setOpen,
@@ -53,7 +53,7 @@ export const Modal: React.FC<ModalProps> = ({
       >
         <div
           style={{
-            transform: open ? "scale(1)" : "scale(0)",
+            transform: open ? 'scale(1)' : 'scale(0)',
             opacity: open ? 1 : 0,
             zIndex: open ? 102 : -1,
           }}

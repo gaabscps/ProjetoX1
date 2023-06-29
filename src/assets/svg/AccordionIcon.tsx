@@ -3,7 +3,7 @@ interface AccordionIconProps {
 }
 
 export default function AccordionIcon({
-  fill = "#BDBBBE",
+  fill = '#BDBBBE',
 }: AccordionIconProps) {
   return (
     <svg

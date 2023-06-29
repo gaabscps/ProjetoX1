@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
-import { CarouselItem } from "./components/CarouselItem";
-import { LeftArrow } from "@/assets/svg/LeftArrow";
-import { LeftArrowHover } from "@/assets/svg/LeftArrowHover";
-import { RightArrowHover } from "@/assets/svg/RightArrowHover";
-import { RightArrow } from "@/assets/svg/RightArrow";
-import { useTabletHook } from "@/hooks/useMediaQuery/isTablet";
-import { useMobileHook } from "@/hooks/useMediaQuery/isMobile";
+import React, { useRef, useState } from 'react';
+import { CarouselItem } from './components/CarouselItem';
+import { LeftArrow } from '@/assets/svg/LeftArrow';
+import { LeftArrowHover } from '@/assets/svg/LeftArrowHover';
+import { RightArrowHover } from '@/assets/svg/RightArrowHover';
+import { RightArrow } from '@/assets/svg/RightArrow';
+import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
+import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
 
 interface CarouselProps {
   items: any[];
@@ -90,7 +90,7 @@ export function Carrossel({
   };
 
   const handleTouchEndBanner = () => {
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = 'auto';
   };
 
   // Fim das funções para lidar com o carrossel de banners
@@ -230,14 +230,14 @@ export function Carrossel({
               <div
                 key={index}
                 className={`carousel-pagination ${
-                  Math.floor(currentIndex) === index ? "active" : ""
+                  Math.floor(currentIndex) === index ? 'active' : ''
                 }`}
               />
             ))}
           </div>
         )}
       </div>
-      <div style={{ width: "100%" }} className="d-flex carousel-align">
+      <div style={{ width: '100%' }} className="d-flex carousel-align">
         {!isMobile && (
           <button
             onMouseDown={handleMouseDownLeft}
@@ -245,8 +245,8 @@ export function Carrossel({
             onMouseEnter={handleMouseEnterLeft}
             onMouseLeave={handleMouseLeaveLeft}
             className={`carousel-button left
-          ${activeLeft && "arrowClick"}
-          ${centerButton && "arrowMargin"}`}
+          ${activeLeft && 'arrowClick'}
+          ${centerButton && 'arrowMargin'}`}
             onClick={handlePrev}
           >
             {hoverLeft ? <LeftArrowHover /> : <LeftArrow />}
@@ -273,7 +273,7 @@ export function Carrossel({
                   isMobile || isTablet
                     ? `translateX(${1.2 * currentTranslate + 20}px)`
                     : `translateX(${currentTranslate}px)`,
-                transition: isDragging ? "none" : "transform 0.3s",
+                transition: isDragging ? 'none' : 'transform 0.3s',
               }}
               className="carouselVisibleItem"
             >
@@ -296,8 +296,8 @@ export function Carrossel({
             onMouseEnter={handleMouseEnterRight}
             onMouseLeave={handleMouseLeaveRight}
             className={`carousel-button right
-           ${activeRight && "arrowClick"}
-            ${centerButton && "arrowMargin"}`}
+           ${activeRight && 'arrowClick'}
+            ${centerButton && 'arrowMargin'}`}
             onClick={handleNext}
           >
             {hoverRight ? <RightArrowHover /> : <RightArrow />}

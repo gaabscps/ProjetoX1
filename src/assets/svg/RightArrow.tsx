@@ -13,14 +13,14 @@ export function RightArrow() {
         r="22"
         transform="matrix(-1 0 0 1 45 0)"
         fill="#525054"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
         stroke="#666168"
       />
       <path
         d="M19.521 30.9747L28.0201 22.5L19.521 14.0253L18.0254 15.5166L25.0162 22.4873L25.0289 22.5L25.0162 22.5127L18.0254 29.4834L19.521 30.9747Z"
         fill="#807C83"
         stroke="#666168"
-        stroke-width="0.0358355"
+        strokeWidth="0.0358355"
       />
     </svg>
   );

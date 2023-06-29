@@ -1,5 +1,5 @@
-import { Button } from "@/components/Button";
-import Timer from "@/components/Timer";
+import { Button } from '@/components/Button';
+import Timer from '@/components/Timer';
 
 interface ModalSearchingFastGameBodyProps {
   setOpenSearchingFastGame: (value: boolean) => void;
@@ -33,13 +33,13 @@ export default function ModalSearchingFastGameBody({
         </div>
 
         <div
-          style={{ marginBottom: "10px" }}
+          style={{ marginBottom: '10px' }}
           className="d-flex justify-content-center"
         >
           <Timer seconds={0} />
         </div>
         <div
-          style={{ marginBottom: "40px" }}
+          style={{ marginBottom: '40px' }}
           className="d-flex justify-content-center"
         >
           <p className="color-black-7">Tempo estimado:&nbsp;</p>

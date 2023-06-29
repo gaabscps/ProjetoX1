@@ -1,8 +1,8 @@
-import Accordion from "@/components/Accordion";
-import { Button } from "@/components/Button";
-import { RadioGroup } from "@/components/RadioGroup";
-import { GamesRank } from "@/types/GamesRank";
-import { useState } from "react";
+import Accordion from '@/components/Accordion';
+import { Button } from '@/components/Button';
+import { RadioGroup } from '@/components/RadioGroup';
+import { GamesRank } from '@/types/GamesRank';
+import { useState } from 'react';
 
 interface ModalAddGameBodyProps {
   setOpenAddGame: (value: boolean) => void;
@@ -24,53 +24,53 @@ export default function ModalAddGameBody({
 
   const games: GamesRank[] = [
     {
-      name: "League of Legends",
+      name: 'League of Legends',
       rank: [
         {
-          value: "Iniciante",
-          label: "Iniciante",
+          value: 'Iniciante',
+          label: 'Iniciante',
         },
         {
-          value: "Intermediário",
-          label: "Intermediário",
+          value: 'Intermediário',
+          label: 'Intermediário',
         },
         {
-          value: "Expert",
-          label: "Expert",
+          value: 'Expert',
+          label: 'Expert',
         },
       ],
     },
     {
-      name: "Valorant",
+      name: 'Valorant',
       rank: [
         {
-          value: "Iniciante",
-          label: "Iniciante",
+          value: 'Iniciante',
+          label: 'Iniciante',
         },
         {
-          value: "Intermediário",
-          label: "Intermediário",
+          value: 'Intermediário',
+          label: 'Intermediário',
         },
         {
-          value: "Expert",
-          label: "Expert",
+          value: 'Expert',
+          label: 'Expert',
         },
       ],
     },
     {
-      name: "CS:GO",
+      name: 'CS:GO',
       rank: [
         {
-          value: "Iniciante",
-          label: "Iniciante",
+          value: 'Iniciante',
+          label: 'Iniciante',
         },
         {
-          value: "Intermediário",
-          label: "Intermediário",
+          value: 'Intermediário',
+          label: 'Intermediário',
         },
         {
-          value: "Expert",
-          label: "Expert",
+          value: 'Expert',
+          label: 'Expert',
         },
       ],
     },
@@ -81,7 +81,7 @@ export default function ModalAddGameBody({
       <div className="addGameModalBody d-flex flex-column justify-content-between">
         <div>
           <div className="w-100 mb-2">
-            <h6 style={{ marginBottom: "10px" }} className="h6-500">
+            <h6 style={{ marginBottom: '10px' }} className="h6-500">
               Adicionar jogo
             </h6>
             <span className="color-black-6">
@@ -92,14 +92,14 @@ export default function ModalAddGameBody({
             {games.map((game) => (
               <Accordion
                 key={game.name}
-                style={{ marginBottom: "20px" }}
+                style={{ marginBottom: '20px' }}
                 title={game.name}
                 content={
                   <div className="addGameContent">
                     <p className="rankTitle">Rank</p>
                     <RadioGroup
                       options={game.rank}
-                      selectedValue={selectedValues[game.name] || ""}
+                      selectedValue={selectedValues[game.name] || ''}
                       setSelectedValue={(value) =>
                         handleOptionChange(game.name, value)
                       }
