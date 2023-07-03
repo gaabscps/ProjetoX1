@@ -43,7 +43,7 @@ export default function Dashboard() {
         <Body marginBottom="60px">
           <hr style={{ background: '#3E3B3F' }} className="hr-line" />
         </Body>
-        <ArenaSection modal={modal} />
+        <ArenaSection setOpenFastGame={modal.setOpenFastGame} />
       </div>
     </>
   );

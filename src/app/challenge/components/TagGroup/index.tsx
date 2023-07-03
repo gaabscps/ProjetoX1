@@ -11,7 +11,7 @@ export default function TagGroup({ open, setOpen }: TagGroupProps) {
       style={{ height: '46px', position: 'relative' }}
       className="d-flex align-items-center justify-content-between mr-1"
     >
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center ml-1">
         <Tag>
           <p className="text-extra-small-400">
             League of Legends: Profissional

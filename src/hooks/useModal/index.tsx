@@ -1,9 +1,9 @@
 import ModalSearchingFastGameBody from '@/app/dashboard/components/ModalBody/SearchingFastGame'
 import ModalAddGameBody from '@/app/dashboard/components/ModalBody/AddGame'
-import ModalFastGameBody from '@/app/dashboard/components/ModalBody/FastGame'
 import { ModalLoginBody } from '@/app/landing/components/ModalBody/Login'
 import { ModalRegisterBody } from '@/app/landing/components/ModalBody/Register'
 import { useState } from 'react'
+import ModalFastGameBody from '@/components/ModalBody/FastGame'
 
 export function useModal() {
   // Hook para lidar com casos onde há mais de um body de modal no mesmo componente (ex: landing page)
@@ -79,6 +79,9 @@ export function useModal() {
     setOpenAddGame,
     setOpenFastGame,
     setOpenSearchingFastGame,
+
+
+    handleSearchingFastGame,
 
     // Adicionar aqui o body do modal que você quer renderizar
     // modalBody={modal.handleModalBody()}

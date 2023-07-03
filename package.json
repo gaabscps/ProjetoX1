@@ -24,6 +24,7 @@
     "react-dom": "18.2.0",
     "react-responsive": "^9.0.2",
     "react-scroll": "^1.8.9",
+    "react-toastify": "^9.1.3",
     "sass": "^1.62.1",
     "typescript": "5.0.4"
   },

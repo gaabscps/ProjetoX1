@@ -51,7 +51,6 @@ export default function Tests() {
       <div
         onClick={() => {
           setisModalOpen(true);
-          console.log(isModalOpen);
         }}
         style={{ cursor: 'pointer', color: 'black' }}
       >

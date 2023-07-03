@@ -1,7 +1,10 @@
 .tagContainer {
   margin: 0 4px;
   padding: 2px 5px;
-  background-color: var(--color-black-3);
+  background-color: var(--color-black-2);
   width: fit-content;
   border-radius: 50px;
+  &:hover {
+    background-color: var(--color-black-3);
+  }
 }

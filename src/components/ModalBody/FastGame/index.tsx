@@ -23,9 +23,6 @@ export default function ModalFastGameBody({ handleSearchingFastGame }: ModalFast
     },
   })
 
-  useEffect(() => {
-    console.log(values)
-  }, [values])
 
   return (
     <>
@@ -60,7 +57,6 @@ export default function ModalFastGameBody({ handleSearchingFastGame }: ModalFast
         <Button
           theme='primary'
           onClick={() => {
-            console.log(values)
             handleSearchingFastGame()
           }}
           width='100%'

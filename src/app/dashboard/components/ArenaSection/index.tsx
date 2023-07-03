@@ -1,27 +1,20 @@
-import { useState } from 'react';
 import { Body } from '@/components/Body';
 import { Card } from '@/components/Card';
-import Input from '@/components/Input';
 import myGames from '@/assets/svg/myGames.svg';
 import Image from 'next/image';
-import buttonImage from '@/assets/svg/buttonImage.png';
 import Link from 'next/link';
 import arrowCard from '@/assets/svg/arrowCard.svg';
 import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
-import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
+import FastGameInput from '@/components/FastGameInput';
 
 interface ArenaSectionProps {
-  modal: {
     setOpenFastGame: (value: boolean) => void;
-  };
 }
 
-export default function ArenaSection({ modal }: ArenaSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isActive, setIsActive] = useState(false);
+export default function ArenaSection({ setOpenFastGame }: ArenaSectionProps) {
+
 
   const isTablet = useTabletHook();
-  const isMobile = useMobileHook();
 
   return (
     <>
@@ -48,42 +41,7 @@ export default function ArenaSection({ modal }: ArenaSectionProps) {
 
       {/* Procure jogador ou jogo rapido */}
       <Body className="d-flex flex-gap-1" marginBottom="40px">
-        <div className="d-flex w-100 flex-gap-1 fast-game-container">
-          <div style={{ width: isMobile ? '100%' : '85%' }}>
-            <Input
-              className="input-1"
-              maxHeight={'50px'}
-              placeholder="Procure um jogador para desafiar"
-            />
-          </div>
-          <div style={{ position: 'relative' }}>
-            <Card
-              onClick={() => modal.setOpenFastGame(true)}
-              borderRadius="5px"
-              background={buttonImage.src}
-              width={isMobile ? '100%' : '153px'}
-              height={isMobile ? '100px' : '44px'}
-              content={<> </>}
-              className={`fast-game-card ${
-                isHovered ? 'fast-game-card-hover' : ''
-              } ${isActive ? 'fast-game-card-active' : ''}`}
-            />
-            <p
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onClick={() => {
-                setIsActive(true);
-                setTimeout(() => {
-                  setIsActive(false);
-                }, 100);
-                modal.setOpenFastGame(true);
-              }}
-              className="fast-game text-small-700"
-            >
-              Jogo rápido
-            </p>
-          </div>
-        </div>
+       <FastGameInput setOpenFastGame={setOpenFastGame} />
       </Body>
 
       {/* Ações */}
