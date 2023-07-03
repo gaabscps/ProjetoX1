@@ -12,7 +12,6 @@ import gabs from '@/assets/svg/gabs.jpg';
 import Link from 'next/link';
 import FastGameInput from '@/components/FastGameInput';
 import { useModal } from '@/hooks/useModal';
-import ModalFastGameBody from '@/components/ModalBody/FastGame';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -114,24 +113,24 @@ export default function Challenge() {
         setOpenRegister={() => undefined}
       />
       <Body>
-        <div className="pageBody">
-          <div className="d-flex align-items-center flex-gap-1">
-            <Link href="/dashboard">
-              <Image src={back} width={16} height={16} alt="" />
+        <div className='pageBody'>
+          <div className='d-flex align-items-center flex-gap-1'>
+            <Link href='/dashboard'>
+              <Image src={back} width={16} height={16} alt='' />
             </Link>
-            <h5 style={{ marginBottom: "10px" }} className="h5-500">Desafiar</h5>
+            <h5 style={{ marginBottom: '10px' }} className='h5-500'>Desafiar</h5>
           </div>
-          <p className='color-black-7' style={{ marginBottom: "30px" }}>Desafie os jogadores que você segue</p>
+          <p className='color-black-7' style={{ marginBottom: '30px' }}>Desafie os jogadores que você segue</p>
         </div>
         <FastGameInput setOpenFastGame={modal.setOpenFastGame} />
 
-        <h6 style={{ marginBottom: "10px" }} className="h6-400 line-height-150">Seguindo ({users.length})</h6>
+        <h6 style={{ marginBottom: '10px' }} className='h6-400 line-height-150'>Seguindo ({users.length})</h6>
 
-        <div style={{ flexWrap: 'wrap' }} className="user-card-challenge-container">
+        <div style={{ flexWrap: 'wrap' }} className='user-card-challenge-container'>
           {
             users && users.length > 0 ?
               users.map((user, index) => (
-                <div key={index} className="user-card-challenge">
+                <div key={index} className='user-card-challenge'>
                   <FollowingCard
                     openTag={openTag[index]}
                     setOpenTag={() => handleOpenTag(index)}
@@ -146,7 +145,7 @@ export default function Challenge() {
               ))
               :
               <div>
-                <p style={{ marginBottom: "10px" }} className='line-height-150 color-black-7'>Você ainda não está seguindo nenhum jogador.</p>
+                <p style={{ marginBottom: '10px' }} className='line-height-150 color-black-7'>Você ainda não está seguindo nenhum jogador.</p>
                 <p className='line-height-150 color-black-7' >Procure por um jogador para seguir e desafiar ou inicie um jogo rápido.</p>
               </div>
           }

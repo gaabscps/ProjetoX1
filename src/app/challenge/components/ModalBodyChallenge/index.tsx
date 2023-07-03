@@ -54,7 +54,7 @@ export default function ModalBodyChallenge({
         </div>
         <div className="mb-2">
           <Select name='game' value={game} placeholder='Jogo para o desafio' option={[
-            "League of Legends", "Valorant", "CS:GO", "Fortnite", "Free Fire", "PUBG", "Clash Royale", "Clash of Clans", "Brawl Stars", "FIFA", "PES", "Rocket League", "Overwatch", "Call of Duty", "Rainbow Six", "Minecraft", "Outro"
+            'League of Legends', 'Valorant', 'CS:GO', 'Fortnite', 'Free Fire', 'PUBG', 'Clash Royale', 'Clash of Clans', 'Brawl Stars', 'FIFA', 'PES', 'Rocket League', 'Overwatch', 'Call of Duty', 'Rainbow Six', 'Minecraft', 'Outro'
           ]} onChange={handleChange} />
           <Input name='bet' value={bet} onChange={handleChange} type='number' placeholder="Valor da aposta (BRL)" />
           <Input name='duration' value={duration} onChange={handleChange} type='number' placeholder='Duração do convite. Ex: 10' />
