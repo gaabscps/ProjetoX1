@@ -2,7 +2,6 @@ import { Button } from '@/components/Button'
 import Input from '@/components/Input'
 import Select from '@/components/Select'
 import useForm from '@/hooks/useForm'
-import { useEffect } from 'react'
 
 interface ModalFastGameBodyProps {
   handleSearchingFastGame: () => void
