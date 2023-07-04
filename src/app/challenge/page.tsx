@@ -12,18 +12,11 @@ import gabs from '@/assets/svg/gabs.jpg';
 import Link from 'next/link';
 import FastGameInput from '@/components/FastGameInput';
 import { useModal } from '@/hooks/useModal';
-import ModalFastGameBody from '@/components/ModalBody/FastGame';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { User } from '@/types/Users';
 
 
-interface User {
-  userImage: StaticImageData;
-  userName: string;
-  gamesPlayed: string;
-  gamesVictory: string;
-  gamesDefeat: string;
-}
 
 export default function Challenge() {
   const [openTag, setOpenTag] = useState<boolean[]>([]);
@@ -110,8 +103,6 @@ export default function Challenge() {
         setOpen={handleCloseModal}
       />
       <Header
-        setOpenLogin={() => undefined}
-        setOpenRegister={() => undefined}
       />
       <Body>
         <div className="pageBody">

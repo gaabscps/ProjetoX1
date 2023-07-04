@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
+import lupa from '@/assets/svg/lupa.svg';
 
 interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,6 +16,9 @@ interface InputProps {
   marginBottom?: string;
   maxLength?: number;
   maxHeight?: string;
+  searchIcon?: {
+    bottom: string;
+  };
 }
 
 export default function Input({
@@ -30,6 +35,7 @@ export default function Input({
   required,
   marginBottom = '20px',
   maxLength,
+  searchIcon
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -48,9 +54,8 @@ export default function Input({
         value={value}
         placeholder={placeholder}
         type={showPassword ? 'text' : type}
-        className={`${className} input-${type} ${
-          disabled ? 'disabled' : ''
-        } input`}
+        className={`${className} input-${type} ${disabled ? 'disabled' : ''
+          } input`}
         id={name}
         name={name}
         style={{ ...style, maxHeight: maxHeight }}
@@ -68,6 +73,11 @@ export default function Input({
             {showPassword ? 'Hide' : 'Show'}
           </button>
         </>
+      )}
+      {type === 'search' && (
+        <div className='ml-1' style={{ position: 'absolute', bottom: searchIcon?.bottom }}>
+          <Image src={lupa} alt='lupa' />
+        </div>
       )}
     </div>
   );

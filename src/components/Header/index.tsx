@@ -12,12 +12,8 @@ import { useState } from 'react';
 import DropdownMenu from '../DropdownMenu';
 import { useMediaQuery } from 'react-responsive';
 
-interface HeaderProps {
-  setOpenLogin: (open: boolean) => void;
-  setOpenRegister: (open: boolean) => void;
-}
 
-export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
+export function Header() {
   const mobile = useMobileHook();
   const is565 = useMediaQuery({ maxWidth: 565 });
 
@@ -37,14 +33,12 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
           <div className="d-flex align-items-center header-items-container">
             <div className="headerButtonGroup d-flex">
               <Button
-                onClick={() => setOpenLogin(true)}
                 content="Sacar"
                 theme="outline"
                 width={mobile ? '70px' : '94px'}
                 height="35px"
               />
               <Button
-                onClick={() => setOpenRegister(true)}
                 content="Depositar"
                 width={mobile ? '70px' : '94px'}
                 height="35px"
