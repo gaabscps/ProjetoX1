@@ -12,7 +12,7 @@ import { Body } from '@/components/Body'
 import HowToPlay from './components/HowToPlay'
 import LandingPageFaq from './components/FAQ'
 import { Footer } from '@/components/Footer'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ModalLoginBody } from './components/ModalBody/Login'
 import { ModalRegisterBody } from './components/ModalBody/Register'
@@ -20,34 +20,33 @@ import useLanding from './useLanding'
 
 export default function Landing() {
   const landing = useLanding();
-
-  const modal = landing.modal;
+  const { openLogin, openRegister, setOpenLogin, setOpenRegister } = landing.modal;
 
   return (
     <>
       <Modal
-        open={modal.openLogin || modal.openRegister}
+        open={openLogin || openRegister}
         setOpen={
-          modal.openLogin ? modal.setOpenLogin :
-            modal.openRegister ? modal.setOpenRegister : null
+          openLogin ? setOpenLogin :
+            openRegister ? setOpenRegister : null
 
         }
-        modalBody={modal.openLogin ? (
+        modalBody={openLogin ? (
           <ModalLoginBody handleRegisterButton={landing.handleRegisterButton} />) : (
           <ModalRegisterBody handleLoginButton={landing.handleLoginButton} />
         )
         }
         modalHeader={
-          modal.openRegister ? (
+          openRegister ? (
             <span className='h-100 line-height-150 registerHeaderContent' style={{}}>
               Crie a sua conta e ganhe R$ 50,00 para começar a desafiar outros jogadores
             </span>
           ) : null
         }
-        modalHeaderBg={modal.openRegister ? '#3E3B3F' : null}
+        modalHeaderBg={openRegister ? '#3E3B3F' : null}
       />
-      <Header setOpenRegister={modal.setOpenRegister} setOpenLogin={modal.setOpenLogin} />
-      <VideoSection setOpenRegister={modal.setOpenRegister} />
+      <Header setOpenRegister={setOpenRegister} setOpenLogin={setOpenLogin} />
+      <VideoSection setOpenRegister={setOpenRegister} />
       <StatsSection />
       <hr className='statsLine' />
       <LastNewsSection />
@@ -55,7 +54,7 @@ export default function Landing() {
       <FeaturesSection />
       <Body marginBottom='130px' className='d-flex justify-content-center'>
         <Button
-          onClick={() => modal.setOpenRegister(true)}
+          onClick={() => setOpenRegister(true)}
           size='large'
           content='Criar a minha conta'
         />

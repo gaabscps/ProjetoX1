@@ -6,36 +6,15 @@ import UserSection from './components/UserSection';
 import MyGamesSection from './components/MyGamesSection';
 import ArenaSection from './components/ArenaSection';
 import { Header } from '@/components/Header';
-import { useState } from 'react';
-import ModalAddGameBody from './components/ModalBody/AddGame';
-import ModalFastGameBody from '@/components/ModalBody/FastGame';
-import ModalSearchingFastGameBody from './components/ModalBody/SearchingFastGame';
+import useDashboard from './useDashboard';
+
 
 export default function Dashboard() {
 
-  const [openAddGame, setOpenAddGame] = useState(false)
-  const [openFastGame, setOpenFastGame] = useState(false)
-  const [openSearchingFastGame, setOpenSearchingFastGame] = useState(false)
+  const dashboard = useDashboard();
+  const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = dashboard.modal;
 
 
-  const handleSearchingFastGame = () => {
-    setOpenFastGame(false)
-    setOpenSearchingFastGame(true)
-  }
-
-  function handleModalBody() {
-
-    if (openAddGame) {
-      return <ModalAddGameBody setOpenAddGame={setOpenAddGame} />
-    }
-    if (openFastGame) {
-      return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
-    }
-    if (openSearchingFastGame) {
-      return <ModalSearchingFastGameBody setOpenSearchingFastGame={setOpenSearchingFastGame} />
-    }
-    return null
-  }
 
   return (
     <>
