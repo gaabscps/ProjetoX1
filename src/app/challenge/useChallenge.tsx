@@ -13,7 +13,7 @@ const useChallenge = () => {
     const [openTag, setOpenTag] = useState<boolean[]>([]);
     const [openModal, setOpenModal] = useState<boolean[]>([]);
 
-    //MOCK
+    // MOCK
     const users: User[] = [
         {
             userImage: gabs,
@@ -53,7 +53,7 @@ const useChallenge = () => {
     ];
 
 
-    //MODAL
+    // MODAL
     function handleModalBody() {
         if (openFastGame) {
             return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
@@ -87,7 +87,7 @@ const useChallenge = () => {
     };
 
 
-    //TAG
+    // TAG
     const handleOpenTag = (index: number) => {
         const newOpenTag = [...openTag];
         newOpenTag[index] = !newOpenTag[index];

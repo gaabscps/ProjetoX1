@@ -1,14 +1,14 @@
-import { useState } from "react";
-import ModalAddGameBody from "./components/ModalBody/AddGame";
-import ModalFastGameBody from "@/components/ModalBody/FastGame";
-import ModalSearchingFastGameBody from "./components/ModalBody/SearchingFastGame";
+import { useState } from 'react';
+import ModalAddGameBody from './components/ModalBody/AddGame';
+import ModalFastGameBody from '@/components/ModalBody/FastGame';
+import ModalSearchingFastGameBody from './components/ModalBody/SearchingFastGame';
 
 const useDashboard = () => {
     const [openAddGame, setOpenAddGame] = useState(false)
     const [openFastGame, setOpenFastGame] = useState(false)
     const [openSearchingFastGame, setOpenSearchingFastGame] = useState(false)
 
-    //MODAL
+    // MODAL
     const handleSearchingFastGame = () => {
         setOpenFastGame(false)
         setOpenSearchingFastGame(true)
