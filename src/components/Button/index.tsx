@@ -11,7 +11,7 @@ interface ButtonProps {
   className?: string;
   icon?: React.ReactNode | string;
   size?: 'large' | 'small';
-  theme?: 'primary' | 'outline';
+  theme?: 'standard' | 'primary' | 'outline' | 'secondary';
   type?: 'button' | 'submit' | 'reset';
   width?: string;
   height?: string;
@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   effect,
   content,
   icon,
-  theme,
+  theme = 'standard',
   size,
   type,
   className,
@@ -99,11 +99,9 @@ export const Button: React.FC<ButtonProps> = ({
         onMouseUp={handleMouseUp}
         type={type}
         onClick={() => (onClick && onClick()) || undefined}
-        className={`buttonContainer text-small-700 ${
-          hover ? styles.buttonContainerHover : ''
-        } ${active ? styles.buttonContainerActive : ''} button${
-          size || ''
-        } button-${theme || 'theme'} ${className || ''}`}
+        className={`buttonContainer text-small-700 ${theme === 'standard' && hover ? styles.buttonContainerHover : ''
+          } ${theme === 'standard' && active ? styles.buttonContainerActive : ''} button${size || ''
+          } button-${theme || 'theme'} ${className || ''}`}
         style={styleValidation()}
       >
         {icon && <div className="buttonIcon">{icon}</div>}

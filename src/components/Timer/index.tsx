@@ -7,6 +7,8 @@ interface TimerProps {
 const Timer: React.FC<TimerProps> = ({ seconds }) => {
   const [countdown, setCountdown] = useState(seconds);
 
+
+
   useEffect(() => {
     const timerId = setInterval(() => {
       setCountdown((prevCountdown) => prevCountdown + 1);

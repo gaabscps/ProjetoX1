@@ -6,6 +6,8 @@ interface TagGroupProps {
 }
 
 export default function TagGroup({ open, setOpen }: TagGroupProps) {
+
+  
   return (
     <div
       style={{ height: '46px', position: 'relative' }}

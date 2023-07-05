@@ -4,16 +4,76 @@ import { Body } from '@/components/Body';
 import { Header } from '@/components/Header';
 import Link from 'next/link';
 import gabs from '@/assets/svg/gabs.jpg';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import back from '@/assets/svg/back.svg';
 import Input from '@/components/Input';
 import { useState } from 'react';
 import { User } from '@/types/Users';
-import { Card } from '@/components/Card';
+import { Modal } from '@/components/Modal';
+import ReceivedChallenges from './components/FollowingCard';
+import ModalSearchingFastGameBody from '../dashboard/components/ModalBody/SearchingFastGame';
+import CounterProposal from './components/CounterProposalModalBody';
+import RefuseModalBody from './components/RefuseModalBody';
 
 export default function Challenges() {
-
+    const [openAccept, setOpenAccept] = useState<boolean[]>([]);
+    const [openCounterProposal, setOpenCounterProposal] = useState<boolean[]>([]);
+    const [openRefuse, setOpenRefuse] = useState<boolean[]>([]);
+    const [openTag, setOpenTag] = useState<boolean[]>([]);
     const [search, setSearch] = useState('')
+
+    const handleModalBody = () => {
+        if (openAccept.some(Boolean)) {
+            return <ModalSearchingFastGameBody setOpenSearchingFastGame={() => {
+                setOpenAccept([]);
+            }} />
+        }
+        if (openCounterProposal.some(Boolean)) {
+            return <CounterProposal />
+        }
+        if (openRefuse.some(Boolean)) {
+            return <RefuseModalBody />
+        }
+        else {
+            return <></>
+        }
+    }
+
+
+    const handleOpenTag = (index: number) => {
+        const newOpenTag = [...openTag];
+        newOpenTag[index] = !newOpenTag[index];
+        setOpenTag(newOpenTag);
+    };
+
+    const handleOpenModal = (index: number) => {
+        const newOpenAccept = [...openAccept];
+        newOpenAccept[index] = !newOpenAccept[index];
+        setOpenAccept(newOpenAccept);
+    };
+
+    const handleOpenCounterProposal = (index: number) => {
+        const newOpenCounterProposal = [...openCounterProposal];
+        newOpenCounterProposal[index] = !newOpenCounterProposal[index];
+        setOpenCounterProposal(newOpenCounterProposal);
+    };
+
+    const handleOpenRefuse = (index: number) => {
+        const newOpenRefuse = [...openRefuse];
+        newOpenRefuse[index] = !newOpenRefuse[index];
+        setOpenRefuse(newOpenRefuse);
+    };
+
+
+
+
+    const handleCloseModal = () => {
+        setOpenAccept([]);
+        setOpenCounterProposal([]);
+        setOpenRefuse([]);
+    };
+
+
 
     const users: User[] = [
         {
@@ -22,6 +82,7 @@ export default function Challenges() {
             gamesPlayed: '10',
             gamesVictory: '7',
             gamesDefeat: '3',
+            status: 0,
         },
         {
             userImage: gabs,
@@ -29,6 +90,7 @@ export default function Challenges() {
             gamesPlayed: '15',
             gamesVictory: '9',
             gamesDefeat: '6',
+            status: 0,
         },
         {
             userImage: gabs,
@@ -36,6 +98,7 @@ export default function Challenges() {
             gamesPlayed: '8',
             gamesVictory: '4',
             gamesDefeat: '4',
+            status: 1,
         },
         {
             userImage: gabs,
@@ -43,6 +106,7 @@ export default function Challenges() {
             gamesPlayed: '12',
             gamesVictory: '10',
             gamesDefeat: '2',
+            status: 1,
         },
         {
             userImage: gabs,
@@ -50,11 +114,18 @@ export default function Challenges() {
             gamesPlayed: '20',
             gamesVictory: '15',
             gamesDefeat: '5',
+            status: 2,
         },
     ];
 
     return (
         <>
+            <Modal
+                modalHeaderBg={'#29272a'}
+                open={openAccept.some(Boolean) || openCounterProposal.some(Boolean) || openRefuse.some(Boolean)}
+                modalBody={handleModalBody()}
+                setOpen={handleCloseModal}
+            />
             <Header />
             <Body>
                 <div className="pageBody">
@@ -88,14 +159,19 @@ export default function Challenges() {
                     {
                         users && users.length > 0 ?
                             users.map((user, index) => (
-                                <div key={index} className="user-card-challenge">
-                                    <Card
-                                        background="#F5F5F5"
-                                        width="100%"
-                                        height="191px"
-                                        content={
-                                            <></>
-                                        }
+                                <div key={index} className='user-card-challenge'>
+                                    <ReceivedChallenges
+                                        openTag={openTag[index]}
+                                        setOpenTag={() => handleOpenTag(index)}
+                                        setOpenModal={() => handleOpenModal(index)}
+                                        handleOpenCounterProposal={() => handleOpenCounterProposal(index)}
+                                        handleOpenRefuse={() => handleOpenRefuse(index)}
+                                        userImage={user.userImage}
+                                        userName={user.userName}
+                                        gamesPlayed={user.gamesPlayed}
+                                        gamesVictory={user.gamesVictory}
+                                        gamesDefeat={user.gamesDefeat}
+                                        status={user.status}
                                     />
                                 </div>
                             ))

@@ -73,7 +73,7 @@
   }
 }
 
-//standard
+//primary
 .button-primary {
   transform: skew(0) !important;
   border-radius: 5px;
@@ -93,5 +93,20 @@
     div {
       color: var(--color-black-5);
     }
+  }
+}
+
+//secondary
+.button-secondary {
+  background: transparent;
+  font-weight: 400;
+  &:hover {
+    background: transparent;
+    font-weight: 500;
+  }
+  &:active {
+    background: transparent;
+    font-weight: 400;
+    color: var(--color-black-5);
   }
 }

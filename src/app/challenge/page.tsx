@@ -20,6 +20,8 @@ export default function Challenge() {
   const { users, openTag, handleOpenTag, modal } = useChallenge();
   const { openFastGame, openSearchingFastGame, setOpenFastGame, handleCloseModal, handleModalBody, handleOpenModal, openModal } = modal;
 
+
+  
   return (
     <>
       <Modal

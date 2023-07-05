@@ -1,8 +1,7 @@
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import TagGroup from '../TagGroup';
-import { ReactNode } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import { StaticImageData } from 'next/image';
 import UserImage from '@/components/UserImage';
 
 interface FollowingCardProps {

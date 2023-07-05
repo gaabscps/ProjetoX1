@@ -8,6 +8,7 @@ interface ModalSearchingFastGameBodyProps {
 export default function ModalSearchingFastGameBody({
   setOpenSearchingFastGame,
 }: ModalSearchingFastGameBodyProps) {
+
   return (
     <>
       <div className="searchingFastGameModalBody d-flex flex-column">

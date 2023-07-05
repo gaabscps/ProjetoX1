@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image'
+import { Status } from './Status'
 
 export type User = {
   userImage: StaticImageData
@@ -6,4 +7,5 @@ export type User = {
   gamesPlayed: string
   gamesVictory: string
   gamesDefeat: string
+  status?: Status
 }
