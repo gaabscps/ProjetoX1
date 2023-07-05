@@ -4,7 +4,7 @@ import lupa from '@/assets/svg/lupa.svg';
 
 interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value?: string;
+  value?: string | number | null;
   label?: string;
   placeholder?: string;
   type?: string;
@@ -51,7 +51,7 @@ export default function Input({
       {label && <label htmlFor={name}>{label}</label>}
       <input
         onChange={onChange}
-        value={value}
+        value={value || ''}
         placeholder={placeholder}
         type={showPassword ? 'text' : type}
         className={`${className} input-${type} ${disabled ? 'disabled' : ''

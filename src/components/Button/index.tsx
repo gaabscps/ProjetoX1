@@ -10,8 +10,8 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   icon?: React.ReactNode | string;
-  size?: 'large' | 'small';
-  theme?: 'standard' | 'primary' | 'outline' | 'secondary';
+  size?: 'large' | 'standard' | 'small';
+  theme?: 'standard' | 'primary' | 'primaryOutline' | 'outline' | 'secondary';
   type?: 'button' | 'submit' | 'reset';
   width?: string;
   height?: string;
@@ -100,7 +100,7 @@ export const Button: React.FC<ButtonProps> = ({
         type={type}
         onClick={() => (onClick && onClick()) || undefined}
         className={`buttonContainer text-small-700 ${theme === 'standard' && hover ? styles.buttonContainerHover : ''
-          } ${theme === 'standard' && active ? styles.buttonContainerActive : ''} button${size || ''
+          } ${theme === 'standard' && active ? styles.buttonContainerActive : ''} button-size-${size || ''
           } button-${theme || 'theme'} ${className || ''}`}
         style={styleValidation()}
       >

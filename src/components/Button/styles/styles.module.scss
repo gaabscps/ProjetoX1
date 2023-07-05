@@ -96,6 +96,30 @@
   }
 }
 
+.button-primaryOutline {
+  transform: skew(0) !important;
+  border-radius: 5px;
+  background: var(---button-backgroundColor-outline);
+  border: 1px solid #ffffff;
+  font-weight: 400;
+  &:hover {
+    background: var(---button-backgroundColor-outline-hover);
+  }
+  &:active {
+    background: var(---button-backgroundColor-outline-active);
+  }
+  div {
+    transform: skew(0) !important;
+  }
+  &:disabled {
+    background: var(--color-black-2);
+    cursor: not-allowed;
+    div {
+      color: var(--color-black-5);
+    }
+  }
+}
+
 //secondary
 .button-secondary {
   background: transparent;
@@ -109,4 +133,9 @@
     font-weight: 400;
     color: var(--color-black-5);
   }
+}
+
+.button-size-standard {
+  height: 60px;
+  font-size: 16px;
 }

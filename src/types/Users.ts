@@ -8,4 +8,8 @@ export type User = {
   gamesVictory: string
   gamesDefeat: string
   status?: Status
+  games?: {
+    game: string
+    gameRank: string
+  }[]
 }

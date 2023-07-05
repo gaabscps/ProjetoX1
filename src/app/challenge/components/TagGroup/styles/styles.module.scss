@@ -7,6 +7,7 @@
   border-radius: 5px;
   z-index: 999;
   transition: all 0.2s ease-in-out;
+  min-width: 150px;
 }
 
 .tag {
@@ -19,4 +20,5 @@
   z-index: 999;
   transition: all 0.2s ease-in-out;
   opacity: 0;
+  min-width: 150px;
 }

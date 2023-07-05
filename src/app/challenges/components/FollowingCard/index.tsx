@@ -4,15 +4,11 @@ import { StaticImageData } from 'next/image';
 import UserImage from '@/components/UserImage';
 import TagGroup from '@/app/challenge/components/TagGroup';
 import { Status } from '@/types/Status';
+import { Challenges } from '@/types/Challenges';
 
 interface FollowingCardProps {
+  challenge: Challenges;
   openTag: boolean;
-  userImage: StaticImageData;
-  userName: string;
-  gamesPlayed: string;
-  gamesVictory: string;
-  gamesDefeat: string;
-  status: Status | undefined;
   handleOpenCounterProposal: (open: boolean) => void;
   handleOpenRefuse: (open: boolean) => void;
   setOpenTag: (open: boolean) => void;
@@ -20,18 +16,16 @@ interface FollowingCardProps {
 }
 
 export default function ReceivedChallenges({
+  challenge,
   openTag,
-  userImage,
-  userName,
-  gamesPlayed,
-  gamesVictory,
-  gamesDefeat,
-  status,
   handleOpenCounterProposal,
   handleOpenRefuse,
   setOpenTag,
   setOpenModal,
 }: FollowingCardProps) {
+
+  const { game, user, value } = challenge;
+  const { userImage, userName, gamesPlayed, gamesVictory, gamesDefeat, status } = user;
   return (
     <Card
       width="100%"
@@ -83,16 +77,16 @@ export default function ReceivedChallenges({
           </div>
           <div>
             <hr style={{ borderBottom: '1.5px solid #464448' }} />
-            <TagGroup open={openTag} setOpen={setOpenTag} />
+            <TagGroup games={challenge.user.games} open={openTag} setOpen={setOpenTag} />
             <hr style={{ borderBottom: '1.5px solid #464448' }} />
             <div style={{ padding: '15px 10px', height: '41px' }} className='d-flex align-items-center justify-content-between'>
               <div style={{ gap: '2px' }} className='text-extra-small-400 d-flex align-items-center justify-content-between'>
                 <p className='color-black-7'>Jogo escolhido:</p>
-                <p>League of Legends</p>
+                <p>{game}</p>
               </div>
               <div style={{ gap: '2px' }} className='text-extra-small-400 d-flex align-items-center justify-content-between'>
                 <p className='color-black-7'>Aposta: </p>
-                <p>R$ 100.000,00</p>
+                <p>R$ {value}</p>
               </div>
             </div>
           </div>

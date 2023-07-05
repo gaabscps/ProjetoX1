@@ -1,5 +1,4 @@
 .fastGameModalBody {
-  padding: 0 63px;
   margin-bottom: 30px;
   .fastGameModalTitle {
     margin-bottom: 30px;
@@ -7,7 +6,6 @@
   }
 }
 .addGameModalBody {
-  padding: 0 63px;
   min-height: 600px;
 }
 .addGameContent {
@@ -19,7 +17,6 @@
 }
 
 .searchingFastGameModalBody {
-  padding: 0 63px;
   margin-bottom: 30px;
   .searchingFastGameModalTitle {
     margin-bottom: 20px;
@@ -29,13 +26,4 @@
 
 .searchingFastGameDetails {
   margin-bottom: 15px;
-}
-
-@media screen and (max-width: "840px") {
-  .fastGameModalBody {
-    padding: 0;
-  }
-  .addGameModalBody {
-    padding: 0;
-  }
 }
