@@ -2,8 +2,6 @@
 
 import { Card } from '@/components/Card'
 import Input from '@/components/Input'
-import { useModal } from '@/hooks/useModal'
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import logo from '@/assets/svg/X1_logo_horizontal_branco 3.png'
 import google from '@/assets/svg/googleModal.svg'
@@ -12,22 +10,15 @@ import apple from '@/assets/svg/appleModal.svg'
 import twitch from '@/assets/svg/twitchModal.svg'
 import steam from '@/assets/svg/steamModal.svg'
 import Link from 'next/link'
-
+import useLanding from '@/app/landing/useLanding'
 interface ModalLoginBodyProps {
-  handleRegisterButton: (open: boolean) => void
+  handleRegisterButton: () => void
 }
 
 export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
-  const modal = useModal()
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const landing = useLanding()
 
-  useEffect(() => {
-    if (modal.openLogin) {
-      modal.setOpenLogin(true)
-    }
-  }, [modal])
 
   return (
     <div className='d-flex flex-column align-items-center w-100 h-100'>
@@ -38,27 +29,23 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
           placeholder='Seu e-mail'
           type='email'
           name='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={landing.values.email}
+          onChange={(e) => landing.handleChange(e)}
         />
         <Input
           placeholder='Sua senha'
           type='password'
           name='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={landing.values.password}
+          onChange={(e) => landing.handleChange(e)}
         />
         <div className='action-icon forgotPassword'>Esqueceu a sua senha?</div>
         <Link
-          onClick={() => {
-            email === 'admin@email.com' && password === '123'
-              ? alert('Entrou')
-              : alert('Não entrou')
-          }}
-          href={email === 'admin@email.com' && password === '123' ? '/dashboard' : ''}
+          onClick={() => landing.handleLogin()}
+          href={landing.values.email === 'admin@email.com' && landing.values.password === '123' ? '/dashboard' : ''}
         >
           <div className='d-flex align-items-center justify-content-center'>
-            <button disabled={!email || !password} className='loginRegisterButton'>
+            <button disabled={!landing.values.email || !landing.values.password} className='loginRegisterButton'>
               Entrar
             </button>
           </div>
@@ -128,7 +115,7 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
 
         <span
           onClick={() => {
-            handleRegisterButton(false)
+            handleRegisterButton()
           }}
           className='action-icon color-primary-3 text-normal-500'
         >

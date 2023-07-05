@@ -1,6 +1,5 @@
 import { Card } from '@/components/Card';
 import Input from '@/components/Input';
-import { useModal } from '@/hooks/useModal';
 import { useEffect } from 'react';
 import Image from 'next/image';
 import logo from '@/assets/svg/X1_logo_horizontal_branco 3.png';
@@ -9,25 +8,19 @@ import facebook from '@/assets/svg/facebookModal.svg';
 import apple from '@/assets/svg/appleModal.svg';
 import twitch from '@/assets/svg/twitchModal.svg';
 import steam from '@/assets/svg/steamModal.svg';
+import useLanding from '@/app/landing/useLanding';
 
 interface ModalRegisterBodyProps {
   handleLoginButton: () => void;
 }
 
-export function ModalRegisterBody({
-  handleLoginButton,
-}: ModalRegisterBodyProps) {
-  const modal = useModal();
+export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps) {
 
-  useEffect(() => {
-    if (modal.openLogin) {
-      modal.setOpenLogin(true);
-    }
-  }, [modal]);
+
 
   return (
     <div className="d-flex flex-column align-items-center w-100 h-100">
-      <Image   src={logo} className="modal-logo" alt="" />
+      <Image src={logo} className="modal-logo" alt="" />
       <h5 className="h5-500 h5-modal-margin h5-modal">Crie a sua conta</h5>
       <form className="loginRegisterForm" action="">
         <Input placeholder="Seu e-mail" type="email" name="email" />
@@ -122,14 +115,14 @@ export function ModalRegisterBody({
       <div>
         <span>Já tem uma conta? </span>
         <span
-          onClick={() => {
-            handleLoginButton();
-          }}
+          onClick={() =>
+            handleLoginButton()
+          }
           className="action-icon color-primary-3 text-normal-500"
         >
           Entrar
         </span>
       </div>
-    </div>
+    </div >
   );
 }

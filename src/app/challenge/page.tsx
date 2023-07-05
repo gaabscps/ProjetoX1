@@ -11,17 +11,19 @@ import { Header } from '@/components/Header';
 import gabs from '@/assets/svg/gabs.jpg';
 import Link from 'next/link';
 import FastGameInput from '@/components/FastGameInput';
-import { useModal } from '@/hooks/useModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { User } from '@/types/Users';
+import ModalFastGameBody from '@/components/ModalBody/FastGame';
+import ModalSearchingFastGameBody from '../dashboard/components/ModalBody/SearchingFastGame';
 
 
 
 export default function Challenge() {
+  const [openFastGame, setOpenFastGame] = useState(false)
+  const [openSearchingFastGame, setOpenSearchingFastGame] = useState(false)
   const [openTag, setOpenTag] = useState<boolean[]>([]);
   const [openModal, setOpenModal] = useState<boolean[]>([]);
-  const modal = useModal();
 
   const users: User[] = [
     {
@@ -61,6 +63,28 @@ export default function Challenge() {
     },
   ];
 
+  function handleModalBody() {
+    if (openFastGame) {
+      return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
+    }
+    if (openSearchingFastGame) {
+      return <ModalSearchingFastGameBody setOpenSearchingFastGame={setOpenSearchingFastGame} />
+    }
+    if (openModal.some(Boolean)) {
+      return <ModalBodyChallenge
+        userName={users[openModal.findIndex(Boolean)]?.userName}
+        handleConfirmChallenge={handleConfirmChallenge}
+      />
+    }
+    return null
+  }
+
+  const handleSearchingFastGame = () => {
+    setOpenFastGame(false)
+    setOpenSearchingFastGame(true)
+  }
+
+
   const handleOpenTag = (index: number) => {
     const newOpenTag = [...openTag];
     newOpenTag[index] = !newOpenTag[index];
@@ -75,7 +99,7 @@ export default function Challenge() {
 
   const handleCloseModal = () => {
     setOpenModal([]);
-    modal.setOpenFastGame(false);
+    setOpenFastGame(false);
   };
 
   const handleConfirmChallenge = () => {
@@ -88,18 +112,8 @@ export default function Challenge() {
     <>
       <Modal
         modalHeaderBg={'#29272a'}
-        open={modal.openFastGame || openModal.some(Boolean) || modal.openSearchingFastGame}
-        modalBody={
-          modal.openFastGame || modal.openSearchingFastGame ?
-            modal.handleModalBody() : (
-              <ModalBodyChallenge
-                userName={users[openModal.findIndex(Boolean)]?.userName}
-                handleConfirmChallenge={handleConfirmChallenge}
-              />
-
-
-            )
-        }
+        open={openFastGame || openSearchingFastGame || openModal.some(Boolean)}
+        modalBody={handleModalBody()}
         setOpen={handleCloseModal}
       />
       <Header
@@ -114,7 +128,7 @@ export default function Challenge() {
           </div>
           <p className='color-black-7' style={{ marginBottom: '30px' }}>Desafie os jogadores que você segue</p>
         </div>
-        <FastGameInput setOpenFastGame={modal.setOpenFastGame} />
+        <FastGameInput setOpenFastGame={setOpenFastGame} />
 
         <h6 style={{ marginBottom: '10px' }} className='h6-400 line-height-150'>Seguindo ({users.length})</h6>
 

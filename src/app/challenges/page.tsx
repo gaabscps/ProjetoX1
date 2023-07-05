@@ -1,15 +1,15 @@
-"use client"
+'use client'
 
-import { Body } from "@/components/Body";
-import { Header } from "@/components/Header";
-import Link from "next/link";
+import { Body } from '@/components/Body';
+import { Header } from '@/components/Header';
+import Link from 'next/link';
 import gabs from '@/assets/svg/gabs.jpg';
 import Image, { StaticImageData } from 'next/image';
 import back from '@/assets/svg/back.svg';
-import Input from "@/components/Input";
-import { useState } from "react";
-import { User } from "@/types/Users";
-import { Card } from "@/components/Card";
+import Input from '@/components/Input';
+import { useState } from 'react';
+import { User } from '@/types/Users';
+import { Card } from '@/components/Card';
 
 export default function Challenges() {
 
@@ -62,9 +62,9 @@ export default function Challenges() {
                         <Link href="/dashboard">
                             <Image src={back} width={16} height={16} alt="" />
                         </Link>
-                        <h5 style={{ marginBottom: "10px" }} className="h5-500">Desafios recebidos</h5>
+                        <h5 style={{ marginBottom: '10px' }} className="h5-500">Desafios recebidos</h5>
                     </div>
-                    <p className='color-black-7' style={{ marginBottom: "30px" }}>Consulte os desafios que outros jogadores te enviaram</p>
+                    <p className='color-black-7' style={{ marginBottom: '30px' }}>Consulte os desafios que outros jogadores te enviaram</p>
                 </div>
                 <Input
                     searchIcon={{ bottom: '12px' }}
@@ -76,10 +76,10 @@ export default function Challenges() {
                     placeholder="Pesquisar"
                     marginBottom="40px" />
 
-                <h6 style={{ marginBottom: "30px" }} className="h6-400 line-height-150">Desafios recebidos ({users.length})</h6>
+                <h6 style={{ marginBottom: '30px' }} className="h6-400 line-height-150">Desafios recebidos ({users.length})</h6>
 
 
-                <h6 style={{ marginBottom: "15px" }} className="h6-400 line-height-150">Março/2023</h6>
+                <h6 style={{ marginBottom: '15px' }} className="h6-400 line-height-150">Março/2023</h6>
 
                 <p style={{ marginBottom: '10px' }} className="color-black-7">
                     12 de Março
@@ -101,7 +101,7 @@ export default function Challenges() {
                             ))
                             :
                             <div>
-                                <p style={{ marginBottom: "10px" }} className='line-height-150 color-black-7'>Você ainda não está seguindo nenhum jogador.</p>
+                                <p style={{ marginBottom: '10px' }} className='line-height-150 color-black-7'>Você ainda não está seguindo nenhum jogador.</p>
                                 <p className='line-height-150 color-black-7' >Procure por um jogador para seguir e desafiar ou inicie um jogo rápido.</p>
                             </div>
                     }

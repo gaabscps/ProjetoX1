@@ -15,13 +15,11 @@ interface GameCardProps {
     v: number
     d: number
   }
-  modal: {
-    setOpenAddGame: (value: boolean) => void
-  }
+  setOpenAddGame: (value: boolean) => void
   setOpenDropdown: (value: boolean) => void
 }
 
-export default function GameCard({ openDropdown, data, modal, setOpenDropdown }: GameCardProps) {
+export default function GameCard({ openDropdown, data, setOpenAddGame, setOpenDropdown }: GameCardProps) {
   return (
     <Card
       borderRadius='5px'
@@ -70,7 +68,8 @@ export default function GameCard({ openDropdown, data, modal, setOpenDropdown }:
               {
                 icon: editar,
                 content: 'Editar',
-                onClick: () => modal.setOpenAddGame(true),
+                onClick: () =>
+                  setOpenAddGame(true),
               },
               {
                 icon: remover,

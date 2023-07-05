@@ -10,12 +10,10 @@ import { useState } from 'react'
 import GameCard from './GameCard'
 
 interface MyGamesSectionProps {
-  modal: {
-    setOpenAddGame: (value: boolean) => void
-  }
+  setOpenAddGame: (value: boolean) => void
 }
 
-export default function MyGamesSection({ modal }: MyGamesSectionProps) {
+export default function MyGamesSection({ setOpenAddGame }: MyGamesSectionProps) {
   const [openDropdown, setOpenDropdown] = useState<number | null>(null)
 
   const data = [
@@ -65,7 +63,7 @@ export default function MyGamesSection({ modal }: MyGamesSectionProps) {
       <div className='d-flex flex-gap-2 my-games-cards'>
         <Card
           color='#464448'
-          onClick={() => modal.setOpenAddGame(true)}
+          onClick={() => setOpenAddGame(true)}
           width='160px'
           height='170px'
           borderRadius='5px'
@@ -78,7 +76,7 @@ export default function MyGamesSection({ modal }: MyGamesSectionProps) {
         />
         {data.map((item, index) => (
           <GameCard
-            modal={modal}
+            setOpenAddGame={setOpenAddGame}
             key={index}
             data={item}
             openDropdown={openDropdown === index}

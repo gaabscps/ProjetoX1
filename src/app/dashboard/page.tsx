@@ -1,49 +1,67 @@
 'use client';
 import { Body } from '@/components/Body';
-import { Header } from '@/components/Header';
 import { Modal } from '@/components/Modal';
-import { useModal } from '@/hooks/useModal';
 
 import UserSection from './components/UserSection';
 import MyGamesSection from './components/MyGamesSection';
 import ArenaSection from './components/ArenaSection';
+import { Header } from '@/components/Header';
+import { useState } from 'react';
+import ModalAddGameBody from './components/ModalBody/AddGame';
+import ModalFastGameBody from '@/components/ModalBody/FastGame';
+import ModalSearchingFastGameBody from './components/ModalBody/SearchingFastGame';
 
 export default function Dashboard() {
-  const modal = useModal();
+
+  const [openAddGame, setOpenAddGame] = useState(false)
+  const [openFastGame, setOpenFastGame] = useState(false)
+  const [openSearchingFastGame, setOpenSearchingFastGame] = useState(false)
+
+
+  const handleSearchingFastGame = () => {
+    setOpenFastGame(false)
+    setOpenSearchingFastGame(true)
+  }
+
+  function handleModalBody() {
+
+    if (openAddGame) {
+      return <ModalAddGameBody setOpenAddGame={setOpenAddGame} />
+    }
+    if (openFastGame) {
+      return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
+    }
+    if (openSearchingFastGame) {
+      return <ModalSearchingFastGameBody setOpenSearchingFastGame={setOpenSearchingFastGame} />
+    }
+    return null
+  }
 
   return (
     <>
       <Modal
         open={
-          modal.openAddGame || modal.openFastGame || modal.openSearchingFastGame
+          openAddGame || openFastGame || openSearchingFastGame
         }
-        setOpen={modal.handleSetModal}
-        modalBody={modal.handleModalBody()}
-        modalHeader={
-          modal.openRegister ? (
-            <span
-              className="h-100 line-height-150 registerHeaderContent"
-              style={{}}
-            >
-              Crie a sua conta e ganhe R$ 50,00 para começar a desafiar outros
-              jogadores
-            </span>
-          ) : null
+        setOpen={
+          openAddGame ? setOpenAddGame :
+            openFastGame ? setOpenFastGame :
+              openSearchingFastGame ? setOpenSearchingFastGame
+                : null
         }
-        modalHeaderBg={modal.openRegister ? '#3E3B3F' : null}
+        modalBody={handleModalBody()}
+        modalHeaderBg={null}
       />
 
       <Header
-        setOpenRegister={modal.setOpenRegister}
-        setOpenLogin={modal.handleSetModal}
       />
       <div className="pageBody">
         <UserSection />
-        <MyGamesSection modal={modal} />
+        <MyGamesSection setOpenAddGame={setOpenAddGame} />
         <Body marginBottom="60px">
           <hr style={{ background: '#3E3B3F' }} className="hr-line" />
         </Body>
-        <ArenaSection setOpenFastGame={modal.setOpenFastGame} />
+        <ArenaSection setOpenFastGame={setOpenFastGame} />
       </div>
     </>
   );

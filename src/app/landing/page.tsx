@@ -12,17 +12,31 @@ import { Body } from '@/components/Body'
 import HowToPlay from './components/HowToPlay'
 import LandingPageFaq from './components/FAQ'
 import { Footer } from '@/components/Footer'
-import { useModal } from '@/hooks/useModal'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ModalLoginBody } from './components/ModalBody/Login'
+import { ModalRegisterBody } from './components/ModalBody/Register'
+import useLanding from './useLanding'
 
 export default function Landing() {
-  const modal = useModal()
+  const landing = useLanding();
+
+  const modal = landing.modal;
 
   return (
     <>
       <Modal
         open={modal.openLogin || modal.openRegister}
-        setOpen={modal.handleSetModal}
-        modalBody={modal.handleModalBody()}
+        setOpen={
+          modal.openLogin ? modal.setOpenLogin :
+            modal.openRegister ? modal.setOpenRegister : null
+
+        }
+        modalBody={modal.openLogin ? (
+          <ModalLoginBody handleRegisterButton={landing.handleRegisterButton} />) : (
+          <ModalRegisterBody handleLoginButton={landing.handleLoginButton} />
+        )
+        }
         modalHeader={
           modal.openRegister ? (
             <span className='h-100 line-height-150 registerHeaderContent' style={{}}>
@@ -32,7 +46,7 @@ export default function Landing() {
         }
         modalHeaderBg={modal.openRegister ? '#3E3B3F' : null}
       />
-      <Header setOpenRegister={modal.setOpenRegister} setOpenLogin={modal.handleSetModal} />
+      <Header setOpenRegister={modal.setOpenRegister} setOpenLogin={modal.setOpenLogin} />
       <VideoSection setOpenRegister={modal.setOpenRegister} />
       <StatsSection />
       <hr className='statsLine' />
@@ -50,6 +64,16 @@ export default function Landing() {
 
       <LandingPageFaq />
       <Footer />
+      <ToastContainer theme='dark' toastStyle={{
+        background: '#29272A',
+        fontSize: '14px',
+        boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
+      }}
+        progressStyle={{
+          background: '#963BFF',
+        }}
+        autoClose={10000}
+      />
     </>
   )
 }

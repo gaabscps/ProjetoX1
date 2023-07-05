@@ -1,6 +1,6 @@
 'use client'
 
-import React, { ReactElement } from 'react'
+import React, { Dispatch, ReactElement, SetStateAction } from 'react'
 import { ModalHeader } from './components/ModalHeader'
 import useScrollLock from '@/hooks/useScrollLock'
 
@@ -9,7 +9,7 @@ interface ModalProps {
   modalHeaderBg?: string | null
   modalBody: ReactElement | null
   modalFooter?: ReactElement
-  setOpen: (open: boolean) => void
+  setOpen: Dispatch<SetStateAction<boolean>> | null
   open?: boolean
 }
 
@@ -22,26 +22,6 @@ export const Modal: React.FC<ModalProps> = ({
   open,
 }) => {
   useScrollLock(!!open)
-
-  {
-    /* 
-    Para usar este componente, copie exemplo abaixo, adicione novos body pelo hook useModal:
-      import { Modal } from "@/components/Modal";
-      import { useModal } from "@/hooks/useModal";
-
-      const modal = useModal();
-
-      return (
-    {(modal.openLogin || modal.openRegister) && (
-      <Modal
-        setOpen={modal.handleSetModal}
-        modalBody={modal.handleModalBody()}
-      />
-      )}
-      )
-  */
-  }
-
   return (
     <>
       <div
