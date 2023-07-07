@@ -8,8 +8,9 @@ import Image from 'next/image';
 import back from '@/assets/svg/back.svg';
 import Input from '@/components/Input';
 import { Modal } from '@/components/Modal';
-import ReceivedChallenges from './components/FollowingCard';
+
 import useChallenges from './useChallenges';
+import ReceivedChallenges from './components/ReceivedChallengesCard';
 
 export default function Challenges() {
 

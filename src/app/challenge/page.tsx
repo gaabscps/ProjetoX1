@@ -1,6 +1,5 @@
 'use client';
 
-
 import { Body } from '@/components/Body';
 import Image from 'next/image';
 import back from '@/assets/svg/back.svg';
@@ -13,15 +12,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useChallenge from './useChallenge';
 
-
-
-
 export default function Challenge() {
   const { users, openTag, handleOpenTag, modal } = useChallenge();
   const { openFastGame, openSearchingFastGame, setOpenFastGame, handleCloseModal, handleModalBody, handleOpenModal, openModal } = modal;
 
-
-  
   return (
     <>
       <Modal

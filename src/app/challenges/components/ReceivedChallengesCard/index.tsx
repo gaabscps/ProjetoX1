@@ -1,12 +1,10 @@
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
-import { StaticImageData } from 'next/image';
 import UserImage from '@/components/UserImage';
 import TagGroup from '@/app/challenge/components/TagGroup';
-import { Status } from '@/types/Status';
 import { Challenges } from '@/types/Challenges';
 
-interface FollowingCardProps {
+interface ReceivedChallengesProps {
   challenge: Challenges;
   openTag: boolean;
   handleOpenCounterProposal: (open: boolean) => void;
@@ -22,7 +20,7 @@ export default function ReceivedChallenges({
   handleOpenRefuse,
   setOpenTag,
   setOpenModal,
-}: FollowingCardProps) {
+}: ReceivedChallengesProps) {
 
   const { game, user, value } = challenge;
   const { userImage, userName, gamesPlayed, gamesVictory, gamesDefeat, status } = user;
