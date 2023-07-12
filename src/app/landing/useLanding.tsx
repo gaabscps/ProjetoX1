@@ -7,8 +7,10 @@ const useLanding = () => {
     const [values, setValues] = useState({
         name: '',
         email: '',
+        cpf: '',
         password: '',
         confirmPassword: '',
+        birthDate: '',
     });
 
 

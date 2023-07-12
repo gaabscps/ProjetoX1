@@ -1,0 +1,31 @@
+.welcome-header-container {
+  height: 80px;
+  background: #19181a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.welcome-header-logo {
+  position: absolute;
+  left: 10%;
+}
+
+.welcome-body {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .welcome-header-logo {
+    left: 3%;
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .welcome-header-logo {
+    display: none;
+  }
+}

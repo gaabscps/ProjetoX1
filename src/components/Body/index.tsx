@@ -5,6 +5,7 @@ interface BodyProps {
   marginBottom?: string;
   marginTop?: string;
   carousel?: boolean;
+  small?: boolean;
 }
 export function Body({
   children,
@@ -12,11 +13,13 @@ export function Body({
   marginBottom,
   marginTop,
   carousel,
+  small,
 }: BodyProps) {
   return (
     <section
       className={`${className || ''} ${
         carousel ? 'carouselSectionBody' : 'sectionBody'
+      } ${small ? 'smallSectionBody' : ''
       }`}
       style={{
         marginBottom: marginBottom || '0px',

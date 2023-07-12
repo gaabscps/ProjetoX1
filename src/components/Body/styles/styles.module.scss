@@ -5,14 +5,25 @@
   margin: 0 auto;
 }
 
+.smallSectionBody {
+  max-width: 540px;
+}
+
 @media screen and (max-width: 1110px) {
   .sectionBody {
     // max-width: 600px;
     margin: 0 20px;
   }
+  .smallSectionBody {
+    margin: 0 auto;
+  }
 }
 @media screen and (max-width: 768px) {
   .sectionBody {
     margin: 0 20px;
+  }
+  .smallSectionBody {
+    margin: 0 auto;
+    max-width: 90%
   }
 }

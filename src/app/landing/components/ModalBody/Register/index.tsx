@@ -7,6 +7,9 @@ import facebook from '@/assets/svg/facebookModal.svg';
 import apple from '@/assets/svg/appleModal.svg';
 import twitch from '@/assets/svg/twitchModal.svg';
 import steam from '@/assets/svg/steamModal.svg';
+import { Button } from '@/components/Button';
+import Link from 'next/link';
+import useLanding from '@/app/landing/useLanding';
 
 interface ModalRegisterBodyProps {
   handleLoginButton: () => void;
@@ -14,6 +17,8 @@ interface ModalRegisterBodyProps {
 
 export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps) {
 
+  const landing = useLanding()
+  const disabledConditions = !landing.values.email || !landing.values.cpf || !landing.values.password || !landing.values.confirmPassword || !landing.values.birthDate
 
 
   return (
@@ -21,9 +26,16 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
       <Image src={logo} className="modal-logo" alt="" />
       <h5 className="h5-500 h5-modal-margin h5-modal">Crie a sua conta</h5>
       <form className="loginRegisterForm" action="">
-        <Input placeholder="Seu e-mail" type="email" name="email" />
-        <Input placeholder="Seu CPF" type="text" name="cpf" />
-        <Input placeholder="Sua senha" type="password" name="password" />
+        <Input
+          value={landing.values.email}
+          onChange={(e) => landing.handleChange(e)}
+          placeholder="Seu e-mail"
+          type="email"
+          name="email"
+        />
+        <Input
+          value={landing.values.cpf} onChange={(e) => landing.handleChange(e)} placeholder="Seu CPF" type="text" name="cpf" />
+        <Input value={landing.values.password} onChange={(e) => landing.handleChange(e)} placeholder="Sua senha" type="password" name="password" />
         <div className="mb-2">Sua senha deve conter:</div>
         <ul className="password-requirements ">
           <li className="line-height-150 color-black-7">
@@ -37,19 +49,28 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
           </li>
         </ul>
         <Input
+          value={landing.values.confirmPassword}
+          onChange={(e) => landing.handleChange(e)}
           placeholder="Confirme a sua senha"
           type="password"
-          name="password"
+          name="confirmPassword"
         />
-        <Input placeholder="Data de nascimento" type="date" name="password" />
+        <Input
+          value={landing.values.birthDate}
+          onChange={(e) => landing.handleChange(e)}
+          placeholder="Data de nascimento"
+          type="date"
+          name="birthDate" />
         <p className="registerTerms line-height-150 color-black-7">
           Ao criar uma conta, você concorda com os nossos{' '}
           <span style={{ color: 'white' }}>Termos de Uso</span> e{' '}
           <span style={{ color: 'white' }}>Política de Privacidade</span>
         </p>
-        <div className="d-flex align-items-center justify-content-center">
-          <button className="loginRegisterButton"> Criar a minha conta </button>
-        </div>
+        <Link href="/welcome">
+          <div className="d-flex align-items-center justify-content-center w-100">
+            <Button disabled={disabledConditions} width='100%' theme='primary' size='large' content="Criar a minha conta" />
+          </div>
+        </Link>
       </form>
       <div className="d-flex justify-content-center w-100 align-items-center modal-separator">
         <div style={{ width: '40%', borderBottom: '1.5px solid #5F5C6B' }} />
