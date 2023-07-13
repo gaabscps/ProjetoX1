@@ -7,10 +7,12 @@ interface UserImageProps {
     status?: Status;
     width?: number;
     height?: number;
-    hasStatus?: boolean;
+    statusPosition?: {
+        right: string;
+    }
 }
 
-export default function UserImage({ userImage, width, height, status }: UserImageProps) {
+export default function UserImage({ userImage, width, height, status, statusPosition }: UserImageProps) {
 
     const handleStatus = () => {
         switch (status) {
@@ -29,7 +31,7 @@ export default function UserImage({ userImage, width, height, status }: UserImag
     return (
         <div className="user-image-container">
             <Image className="user-image" src={userImage} width={width || 48} height={height || 48} alt="use image" />
-            <div style={{ background: handleStatus() }} className="status" />
+            <div style={{ background: handleStatus(), right: statusPosition?.right || '' }} className="status" />
         </div>
     )
 

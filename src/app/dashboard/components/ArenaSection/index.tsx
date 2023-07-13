@@ -5,15 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import arrowCard from '@/assets/svg/arrowCard.svg';
 import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
-import FastGameInput from '@/components/FastGameInput';
+import FastGameInputBody from '@/components/FastGameInputBody';
 
 interface ArenaSectionProps {
-    setOpenFastGame: (value: boolean) => void;
+  setOpenFastGame: (value: boolean) => void;
 }
 
 export default function ArenaSection({ setOpenFastGame }: ArenaSectionProps) {
-
-
   const isTablet = useTabletHook();
 
   return (
@@ -41,11 +39,11 @@ export default function ArenaSection({ setOpenFastGame }: ArenaSectionProps) {
 
       {/* Procure jogador ou jogo rapido */}
       <Body className="d-flex flex-gap-1" marginBottom="40px">
-       <FastGameInput setOpenFastGame={setOpenFastGame} />
+        <FastGameInputBody setOpenFastGame={setOpenFastGame} />
       </Body>
 
       {/* Ações */}
-      <Body marginBottom="60px">
+      <Body marginBottom="250px">
         <div className="d-flex flex-gap-2 home-action-card-container">
           {/* Desafiar */}
           <Card

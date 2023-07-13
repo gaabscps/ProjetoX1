@@ -1,13 +1,10 @@
 import { Button } from '@/components/Button';
-import useChallenges from '../../../useChallenges';
 
 interface RefuseModalBodyProps {
     handleCloseModal: () => void;
 }
 
 export default function RefuseModalBody({ handleCloseModal }: RefuseModalBodyProps) {
-
-    const { handleChange } = useChallenges()
 
     return (
         <>

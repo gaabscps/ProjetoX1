@@ -7,7 +7,7 @@ import { Modal } from '@/components/Modal';
 import FollowingCard from './components/FollowingCard';
 import { Header } from '@/components/Header';
 import Link from 'next/link';
-import FastGameInput from '@/components/FastGameInput';
+import FastGameInputBody from '@/components/FastGameInputBody';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useChallenge from './useChallenge';
@@ -36,7 +36,7 @@ export default function Challenge() {
           </div>
           <p className='color-black-7' style={{ marginBottom: '30px' }}>Desafie os jogadores que você segue</p>
         </div>
-        <FastGameInput setOpenFastGame={setOpenFastGame} />
+        <FastGameInputBody setOpenFastGame={setOpenFastGame} />
 
         <h6 style={{ marginBottom: '10px' }} className='h6-400 line-height-150'>Seguindo ({users.length})</h6>
 
