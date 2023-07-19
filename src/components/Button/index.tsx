@@ -11,7 +11,7 @@ interface ButtonProps {
   className?: string;
   icon?: React.ReactNode | string;
   size?: 'large' | 'standard' | 'small';
-  theme?: 'standard' | 'primary' | 'primaryOutline' | 'outline' | 'secondary';
+  theme?: 'standard' | 'primary' | 'primaryOutline' | 'outline' | 'secondary' | 'selected';
   type?: 'button' | 'submit' | 'reset';
   width?: string;
   height?: string;
@@ -101,7 +101,7 @@ export const Button: React.FC<ButtonProps> = ({
         onClick={() => (onClick && onClick()) || undefined}
         className={`buttonContainer text-small-700 ${theme === 'standard' && hover ? styles.buttonContainerHover : ''
           } ${theme === 'standard' && active ? styles.buttonContainerActive : ''} button-size-${size || ''
-          } button-${theme || 'theme'} ${className || ''}`}
+          } button-${theme || 'theme'} ${className || ''}  `}
         style={styleValidation()}
       >
         {icon && <div className="buttonIcon">{icon}</div>}

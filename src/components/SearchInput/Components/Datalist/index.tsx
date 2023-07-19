@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import UserImage from '@/components/UserImage';
 import { StaticImageData } from 'next/image';
+import Link from 'next/link';
 
 type Recents = {
     id: number;
@@ -23,10 +24,6 @@ interface DatalistProps {
 
 export const Datalist = ({ recent, recomendation, onlineUserSearch, value, handleRemove, handleRemoveAll, setValue, onClick, ref }: DatalistProps) => {
 
-
-
-
-
     return (
         <div ref={ref} onClick={onClick} className='datalist-container'>
             {!value && (
@@ -40,22 +37,24 @@ export const Datalist = ({ recent, recomendation, onlineUserSearch, value, handl
                 {!value && (
                     recent && recent.length > 0 ? (
                         <>
-
                             <ul>
                                 {recent?.map((item, index) => (
-                                    <li key={index} className='datalist-item'>
-                                        <div className="d-flex align-items-center action-icon">
-                                            <UserImage statusPosition={{ right: '0px' }} status={item.status} userImage={item.image} width={20} height={20} />
-                                            <p onClick={() => setValue({
-                                                search: item.name
-                                            })} style={{ marginLeft: '6px' }} className='text-small-400'>
-                                                {item.name}
+                                    <Link key={Math.random()} href={`user/${item.id}`}>
+                                        <li className='datalist-item'>
+                                            <div className="d-flex align-items-center action-icon">
+                                                <UserImage statusPosition={{ right: '0px' }} status={item.status} userImage={item.image} width={20} height={20} />
+                                                <p onClick={() => setValue({
+                                                    search: item.name
+                                                })} style={{ marginLeft: '6px' }} className='text-small-400'>
+                                                    {item.name}
+                                                </p>
+                                            </div>
+                                            <p onClick={() => handleRemove(item.id)} className='color-black-7 action-icon' style={{ fontSize: '14px' }}>
+                                                x
                                             </p>
-                                        </div>
-                                        <p onClick={() => handleRemove(item.id)} className='color-black-7 action-icon' style={{ fontSize: '14px' }}>
-                                            x
-                                        </p>
-                                    </li>))}
+                                        </li>
+                                    </Link>
+                                ))}
                             </ul>
                         </>
                     ) : (
@@ -68,7 +67,27 @@ export const Datalist = ({ recent, recomendation, onlineUserSearch, value, handl
                         <p className='text-small-400 color-black-6 datalist-category-title'>Oponentes recomendados</p>
                     </div><ul>
                         {recomendation?.map((item, index) => (
-                            <li key={index} className='datalist-item'>
+                            <Link key={Math.random()} href={`user/${item.id}`}>
+                                <li className='datalist-item'>
+                                    <div className="d-flex align-items-center action-icon">
+                                        <UserImage statusPosition={{ right: '0px' }} status={item.status} userImage={item.image} width={20} height={20} />
+                                        <p onClick={() => setValue({
+                                            search: item.name
+                                        })} style={{ marginLeft: '6px' }} className='text-small-400'>
+                                            {item.name}
+                                        </p>
+                                    </div>
+                                </li>
+                            </Link>
+                        ))}
+                    </ul>
+                </>
+            )}
+            {value && (
+                onlineUserSearch && onlineUserSearch?.length > 0 ? (
+                    onlineUserSearch?.map((item, index) => (
+                        <Link key={Math.random()} href={`user/${item.id}`}>
+                            <li className='datalist-item'>
                                 <div className="d-flex align-items-center action-icon">
                                     <UserImage statusPosition={{ right: '0px' }} status={item.status} userImage={item.image} width={20} height={20} />
                                     <p onClick={() => setValue({
@@ -78,23 +97,7 @@ export const Datalist = ({ recent, recomendation, onlineUserSearch, value, handl
                                     </p>
                                 </div>
                             </li>
-                        ))}
-                    </ul>
-                </>
-            )}
-            {value && (
-                onlineUserSearch && onlineUserSearch?.length > 0 ? (
-                    onlineUserSearch?.map((item, index) => (
-                        <li key={index} className='datalist-item'>
-                            <div className="d-flex align-items-center action-icon">
-                                <UserImage statusPosition={{ right: '0px' }} status={item.status} userImage={item.image} width={20} height={20} />
-                                <p onClick={() => setValue({
-                                    search: item.name
-                                })} style={{ marginLeft: '6px' }} className='text-small-400'>
-                                    {item.name}
-                                </p>
-                            </div>
-                        </li>
+                        </Link>
                     ))
                 ) : (<p className='text-small-400 color-black-6 datalist-category-title'>Nenhum resultado encontrado</p>)
             )}

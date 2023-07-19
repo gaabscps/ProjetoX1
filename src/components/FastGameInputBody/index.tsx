@@ -9,9 +9,10 @@ import gabs from '@/assets/svg/gabs.jpg';
 
 interface FastGameInputBodyProps {
   setOpenFastGame: (value: boolean) => void;
+  isVisiting?: boolean;
 }
 
-export default function FastGameInputBody({ setOpenFastGame }: FastGameInputBodyProps) {
+export default function FastGameInputBody({ setOpenFastGame, isVisiting }: FastGameInputBodyProps) {
   const recents = [
     {
       id: 1,
@@ -232,39 +233,42 @@ export default function FastGameInputBody({ setOpenFastGame }: FastGameInputBody
   return (
 
     <div className="d-flex w-100 flex-gap-1 fast-game-container">
-      <div style={{ width: isMobile ? '100%' : '85%' }}>
-        <div
-        >
+      <div style={{ width: isMobile ? '100%' : isVisiting ? '100%' : '85%' }}>
+        <div>
           <SearchInput setIsOpenDatalist={setIsOpenDatalist} isOpenDatalist={isOpenDatalist} setValue={setSearch} recent={recent} recomendation={recomendation} onlineUserSearch={onlineUserSearch} handleRemove={handleRemove} handleRemoveAll={handleRemoveAll} name={'search'} onChange={(e) => handleChange(e)} value={search.search} />
         </div>
       </div>
-      <div style={{ position: 'relative' }}>
-        <Card
-          onClick={() => setOpenFastGame(true)}
-          borderRadius="5px"
-          background={buttonImage.src}
-          width={isMobile ? '100%' : '153px'}
-          height={isMobile ? '100px' : '44px'}
-          content={<> </>}
-          className={`fast-game-card ${isHovered ? 'fast-game-card-hover' : ''
-            } ${isActive ? 'fast-game-card-active' : ''}`}
-        />
-        <p
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={() => {
-            setIsActive(true);
-            setTimeout(() => {
-              setIsActive(false);
-            }, 100);
-            setOpenFastGame(true);
-          }}
-          className="fast-game text-small-700"
-        >
-          Jogo rápido
-        </p>
-      </div>
-    </div>
+      {
+        !isVisiting && (
+          <div style={{ position: 'relative' }}>
+            <Card
+              onClick={() => setOpenFastGame(true)}
+              borderRadius="5px"
+              background={buttonImage.src}
+              width={isMobile ? '100%' : '153px'}
+              height={isMobile ? '100px' : '44px'}
+              content={<> </>}
+              className={`fast-game-card ${isHovered ? 'fast-game-card-hover' : ''
+                } ${isActive ? 'fast-game-card-active' : ''}`}
+            />
+            <p
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onClick={() => {
+                setIsActive(true);
+                setTimeout(() => {
+                  setIsActive(false);
+                }, 100);
+                setOpenFastGame(true);
+              }}
+              className="fast-game text-small-700"
+            >
+              Jogo rápido
+            </p>
+          </div>
+        )
+      }
+    </div >
 
   )
 }

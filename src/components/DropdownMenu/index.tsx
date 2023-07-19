@@ -46,12 +46,10 @@ export default function DropdownMenu({
       {!list && <hr className='h-100 w-100' style={{ borderBottom: '1.5px solid #525054' }} />}
       <div className='dropdown-item-content' style={{ maxHeight: '220px', overflow: 'auto' }}>
         {tabs.map((item, index) => (
-          <>
+          <div key={Math.random()}>
             <div
               onClick={item.onClick}
-              key={index}
-              className='dropdown-menu-content d-flex align-items-center justify-content-between'
-            >
+              className='dropdown-menu-content d-flex align-items-center justify-content-between'>
               <div className='d-flex align-items-center w-100'>
                 {item.icon && (
                   <Image style={{ marginRight: '8px' }} src={item.icon} alt='edit icon' />
@@ -67,7 +65,7 @@ export default function DropdownMenu({
             {!list && index !== tabs.length - 1 && (
               <hr className='h-100 w-100' style={{ borderBottom: '1.5px solid #525054' }} />
             )}
-          </>
+          </div>
         ))}
       </div>
     </div>
