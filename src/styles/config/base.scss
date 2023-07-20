@@ -1,3 +1,21 @@
+//scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--color-black-4);
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--color-black-2);
+  border-radius: 10px;
+}
+
 body {
   min-width: 1110px;
   background: var(--background-color);
@@ -354,6 +372,10 @@ body {
 //texts
 .text-center {
   text-align: center;
+}
+
+.text-start {
+  text-align: start;
 }
 
 .h1-400 {

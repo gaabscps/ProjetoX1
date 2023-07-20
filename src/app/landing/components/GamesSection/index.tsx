@@ -1,12 +1,11 @@
-import { EmptyBanner } from "@/assets/svg/EmptyBanner";
-import { Body } from "@/components/Body";
-import { Carrossel } from "@/components/Carousel";
-import { Element } from "react-scroll";
-import Image from "next/image";
-import mock1 from "@/assets/svg/mockGame1.svg";
-import mock2 from "@/assets/svg/mockGame2.svg";
-import mock3 from "@/assets/svg/mockGame3.svg";
-import mock4 from "@/assets/svg/mockGame4.svg";
+import { Body } from '@/components/Body';
+import { Carrossel } from '@/components/Carousel';
+import { Element } from 'react-scroll';
+import Image from 'next/image';
+import mock1 from '@/assets/svg/mockGame1.svg';
+import mock2 from '@/assets/svg/mockGame2.svg';
+import mock3 from '@/assets/svg/mockGame3.svg';
+import mock4 from '@/assets/svg/mockGame4.svg';
 
 export function GamesSection() {
   type GamesImage = {
@@ -34,7 +33,7 @@ export function GamesSection() {
   const availableGames = gamesMock.map((item) => (
     <div
       className="h-100 d-flex justify-content-center align-items-center games-carousel"
-      style={{ width: "231px", height: "126px" }}
+      style={{ width: '231px', height: '126px' }}
       key={1}
     >
       {item.image}

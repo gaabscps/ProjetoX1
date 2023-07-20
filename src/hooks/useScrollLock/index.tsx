@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const useScrollLock = (open: boolean): void => {
   useEffect(() => {
@@ -9,13 +9,13 @@ const useScrollLock = (open: boolean): void => {
     };
 
     if (open) {
-      document.addEventListener("scroll", handleScroll, { passive: false });
-      document.body.style.overflow = "hidden";
+      document.addEventListener('scroll', handleScroll, { passive: false });
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      document.removeEventListener("scroll", handleScroll);
-      document.body.style.overflow = "auto";
+      document.removeEventListener('scroll', handleScroll);
+      document.body.style.overflow = 'auto';
     };
   }, [open]);
 };

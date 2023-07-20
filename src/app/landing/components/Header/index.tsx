@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
-import { Link } from "react-scroll";
-import Image from "next/image";
-import logo from "@/assets/svg/X1_logo_vertical_branco 1.svg";
-import { Button } from "@/components/Button";
+import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-scroll';
+import Image from 'next/image';
+import logo from '@/assets/svg/X1_logo_vertical_branco 1.svg';
+import { Button } from '@/components/Button';
 
 interface HeaderProps {
   setOpenLogin: (open: boolean) => void;
@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
   const desktop = useMediaQuery({
-    query: "(min-width: 1110px)",
+    query: '(min-width: 1110px)',
   });
   const [isDesktop, setIsDesktop] = useState(false);
   const [isOpacity, setIsOpacity] = useState(false);
@@ -30,36 +30,36 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const headerList = [
     {
-      name: "Início",
-      link: "home",
+      name: 'Início',
+      link: 'home',
     },
     {
-      name: "Últimas notícias e atualizações",
-      link: "news",
+      name: 'Últimas notícias e atualizações',
+      link: 'news',
     },
     {
-      name: "Jogos disponíveis",
-      link: "games",
+      name: 'Jogos disponíveis',
+      link: 'games',
     },
     {
-      name: "Funcionalidades",
-      link: "features",
+      name: 'Funcionalidades',
+      link: 'features',
     },
     {
-      name: "Como jogar",
-      link: "howToPlay",
+      name: 'Como jogar',
+      link: 'howToPlay',
     },
     {
-      name: "FAQ",
-      link: "faq",
+      name: 'FAQ',
+      link: 'faq',
     },
   ];
 
@@ -77,13 +77,24 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
         </div>
       )}
       <header
-        className={`headerModule ${isOpacity ? "header-opacity" : ""} ${
-          !isDesktop && !isOpen ? "headerMobileOff" : "headerMobileOn"
-        }`}
+        onClick={() => isOpen && setIsOpen(false)}
+        className={`landing-headerModule ${
+          isOpacity && isDesktop ? 'landing-header-opacity' : ''
+        } ${
+          !isDesktop && !isOpen
+            ? 'landing-headerOpacityOff'
+            : 'landing-headerOpacityOn'
+        } `}
       >
-        <nav className={`headerContainer `}>
-          <ul className="headerItemsContainer">
-            <li className="headerLogo">
+        <nav
+          className={`landing-headerContainer ${
+            !isDesktop && !isOpen
+              ? 'landing-headerMobileOff'
+              : 'landing-headerMobileOn'
+          } `}
+        >
+          <ul className="landing-headerItemsContainer">
+            <li className="landing-headerLogo">
               <Image src={logo} alt="Logo" />
             </li>
             {headerList.map((item, key) => (
@@ -94,13 +105,13 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                 duration={500}
                 offset={-100} // Ajuste opcional de compensação para o cabeçalho
               >
-                <li className="action-icon text-small-400 headerItem">
+                <li className="action-icon text-small-400 landing-headerItem">
                   {item.name}
                 </li>
               </Link>
             ))}
           </ul>
-          <div className="headerButtonGroup d-flex">
+          <div className="landing-headerButtonGroup d-flex">
             <Button
               onClick={() => setOpenLogin(true)}
               content="Entrar"

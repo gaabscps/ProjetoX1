@@ -12,7 +12,7 @@ export function LeftArrowHover() {
         d="M25.479 30.9774L16.9772 22.5L25.479 14.0226L26.9773 15.5166L19.9852 22.4886L19.9738 22.5L19.9852 22.5114L26.9773 29.4834L25.479 30.9774Z"
         fill="white"
         stroke="#DCDADD"
-        stroke-width="0.0320634"
+        strokeWidth="0.0320634"
       />
     </svg>
   );

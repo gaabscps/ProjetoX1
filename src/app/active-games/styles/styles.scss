@@ -1,0 +1,28 @@
+.versus-container {
+  width: 65px;
+  height: 65px;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+
+  border: 0.5px solid var(--preto-e-cinza-preto-6, #99959b);
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.versus {
+  transform: rotate(-45deg);
+  font-size: 37px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.teeste {
+  position: absolute;
+  left: 140px;
+  top: -20px;
+}

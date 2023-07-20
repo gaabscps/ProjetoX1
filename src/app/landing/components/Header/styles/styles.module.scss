@@ -1,4 +1,4 @@
-.headerModule {
+.landing-headerModule {
   background: rgb(25, 24, 26, 0.8);
   min-height: 80px;
   position: fixed;
@@ -6,7 +6,7 @@
   z-index: 100;
   top: 0;
   transform: translateX(0);
-  .headerContainer {
+  .landing-headerContainer {
     margin: 0 165px;
     display: flex;
     justify-content: space-between;
@@ -15,24 +15,24 @@
     min-height: 80px;
     margin: 0 auto;
     align-items: center;
-    .headerLogo {
+    .landing-headerLogo {
       padding: 0 30px;
     }
-    .headerItemsContainer {
+    .landing-headerItemsContainer {
       display: flex;
       width: 100%;
       gap: 25px;
       align-items: center;
       justify-content: space-between;
     }
-    .headerButtonGroup {
+    .landing-headerButtonGroup {
       gap: 15px;
       margin: 0 35px;
     }
   }
 }
 
-.headerItem {
+.landing-headerItem {
   &:hover {
     font-weight: var(--font-weight-medium);
   }
@@ -40,10 +40,6 @@
     font-weight: var(--font-weight-medium);
     color: var(--color-black-5);
   }
-}
-.header-opacity {
-  background: rgb(25, 24, 26);
-  transition: all ease 0.2s;
 }
 
 @media screen and (max-width: 1110px) {
@@ -57,33 +53,47 @@
       background-color: var(--color-primary-3);
     }
   }
-  .headerMobileOff {
+
+  .landing-headerOpacityOff {
+    opacity: 0%;
+    transition: all ease 0.2s;
+  }
+  .landing-headerOpacityOn {
+    opacity: 100%;
+    transition: all ease 0.2s;
+  }
+
+  .landing-headerMobileOff {
     transform: translateX(-100%);
     transition: all ease 0.2s;
   }
-  .headerMobileOn {
+  .landing-headerMobileOn {
+    transform: translateX(0%);
     transition: all ease 0.2s;
   }
-  .headerModule {
-    width: auto;
+  .landing-headerModule {
+    width: 100%;
     height: 100vh;
-    opacity: 95%;
-    .headerContainer {
+    .landing-headerContainer {
+      width: fit-content;
       padding: 40px 0;
       min-width: 0px;
       flex-direction: column;
       height: 100%;
-      .headerItemsContainer {
+      align-items: flex-start;
+      margin: 0;
+      background-color: var(--color-black1);
+      .landing-headerItemsContainer {
         flex-direction: column;
         gap: 30px;
         width: auto;
         align-items: normal;
-        .headerLogo {
+        .landing-headerLogo {
           margin-bottom: 20px;
           display: flex;
           justify-content: center;
         }
-        .headerItem {
+        .landing-headerItem {
           padding: 10px 10px;
           border-radius: 10px;
           font-size: var(--text-size-normal);
@@ -102,4 +112,8 @@
   }
 }
 @media screen and (max-width: 768px) {
+}
+.landing-header-opacity {
+  background: rgb(25, 24, 26);
+  transition: all ease 0.2s;
 }

@@ -1,13 +1,13 @@
 interface CardProps {
-  className?: string;
-  content: React.ReactNode;
-  width?: string;
-  height?: string;
-  color?: string;
-  borderRadius?: string;
-  background?: any;
-  theme?: "outline" | "filled" | "dotted";
-  onClick?: () => void;
+  className?: string
+  content: React.ReactNode
+  width?: string
+  height?: string
+  color?: string
+  borderRadius?: string
+  background?: string
+  theme?: 'outline' | 'filled' | 'dotted'
+  onClick?: () => void
 }
 
 export function Card({
@@ -18,7 +18,7 @@ export function Card({
   color,
   borderRadius,
   background,
-  theme = "filled",
+  theme = 'filled',
   onClick,
 }: CardProps) {
   return (
@@ -27,17 +27,17 @@ export function Card({
       style={{
         width: width,
         height: height || 0,
-        backgroundImage: background ? `url(${background})` : "none",
-        borderRadius: borderRadius || "10px",
+        backgroundImage: background ? `url(${background})` : 'none',
+        borderRadius: borderRadius || '10px',
         borderColor: color,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
       }}
-      className={`cardContainer card-${theme || ""} ${
-        onClick ? "action-icon" : ""
-      } ${className || ""}`}
+      className={`cardContainer card-${theme || ''} ${onClick ? 'action-icon' : ''} ${
+        className || ''
+      }`}
     >
-      <div className="w-100 h-100">{content}</div>
+      <div className='w-100 h-100'>{content}</div>
     </div>
-  );
+  )
 }

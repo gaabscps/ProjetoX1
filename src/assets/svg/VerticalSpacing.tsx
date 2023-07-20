@@ -1,6 +1,6 @@
 export default function VerticalSpacing() {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <svg
         width="6"
         height="30"
@@ -24,9 +24,9 @@ export default function VerticalSpacing() {
             y2="33.5924"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#963BFF" />
-            <stop offset="0.479167" stop-color="#963BFF" stop-opacity="0.5" />
-            <stop offset="1" stop-color="#963BFF" stop-opacity="0" />
+            <stop stopColor="#963BFF" />
+            <stop offset="0.479167" stopColor="#963BFF" stopOpacity="0.5" />
+            <stop offset="1" stopColor="#963BFF" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>

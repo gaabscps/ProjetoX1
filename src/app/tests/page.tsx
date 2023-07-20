@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
-"use client";
+'use client';
 
-import Accordion from "@/components/Accordion";
-import { Button } from "@/components/Button";
-import { Carrossel } from "@/components/Carousel";
-import { Modal } from "@/components/Modal";
-import { useState } from "react";
+import Accordion from '@/components/Accordion';
+import { Button } from '@/components/Button';
+import { Carrossel } from '@/components/Carousel';
+import { Modal } from '@/components/Modal';
+import { useState } from 'react';
 
 export default function Tests() {
   const [isModalOpen, setisModalOpen] = useState(false);
@@ -30,10 +30,10 @@ export default function Tests() {
             <>
               <div
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  height: "100%",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  height: '100%',
                 }}
               >
                 <div>Hello World!</div>
@@ -51,13 +51,12 @@ export default function Tests() {
       <div
         onClick={() => {
           setisModalOpen(true);
-          console.log(isModalOpen);
         }}
-        style={{ cursor: "pointer", color: "black" }}
+        style={{ cursor: 'pointer', color: 'black' }}
       >
         Hello World!
       </div>
-      <div style={{ maxWidth: "1110px", margin: "0 auto" }}>
+      <div style={{ maxWidth: '1110px', margin: '0 auto' }}>
         <Carrossel items={items} />
       </div>
       <div>
