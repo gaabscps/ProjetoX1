@@ -1,10 +1,12 @@
-import { Button } from "@/components/Button";
-import { Card } from "@/components/Card";
-import TagGroup from "../TagGroup";
+import { Button } from '@/components/Button';
+import { Card } from '@/components/Card';
+import TagGroup from '../TagGroup';
+import { StaticImageData } from 'next/image';
+import UserImage from '@/components/UserImage';
 
 interface FollowingCardProps {
   openTag: boolean;
-  userImage: string;
+  userImage: StaticImageData;
   userName: string;
   gamesPlayed: string;
   gamesVictory: string;
@@ -31,18 +33,18 @@ export default function FollowingCard({
         <div className="h-100">
           <div className="d-flex align-items-center justify-content-between mr-1 ml-1">
             <div
-              style={{ height: "74px" }}
+              style={{ height: '74px' }}
               className="d-flex align-items-center flex-gap-1"
             >
-              <p>{userImage}</p>
+              <UserImage userImage={userImage} />
               <div>
-                <p style={{ marginBottom: "9px" }} className="text-small-400">
+                <p style={{ marginBottom: '9px' }} className="text-small-400">
                   {userName}
                 </p>
-                <div className="d-flex text-small-400">
-                  <p className="mr-1">JR: {gamesPlayed}</p>
-                  <p className="mr-1">V: {gamesVictory}</p>
-                  <p>D: {gamesDefeat}</p>
+                <div className="text-small-400 color-black-7 challenge-stats-content">
+                  <p className="">JR: {gamesPlayed}</p>
+                  <p className="">V: {gamesVictory}</p>
+                  <p className=''>D: {gamesDefeat}</p>
                 </div>
               </div>
             </div>
@@ -51,12 +53,12 @@ export default function FollowingCard({
                 onClick={() => setOpenModal(true)}
                 height="22px"
                 width="72px"
-                content={"Desafiar"}
+                content={'Desafiar'}
                 size="small"
               />
             </div>
           </div>
-          <hr style={{ borderBottom: "1.5px solid #464448" }} />
+          <hr style={{ borderBottom: '1.5px solid #464448' }} />
           <TagGroup open={openTag} setOpen={setOpenTag} />
         </div>
       }

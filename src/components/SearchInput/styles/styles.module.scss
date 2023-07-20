@@ -1,0 +1,29 @@
+.datalist-container {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px 15px;
+  border-radius: 5px;
+  background: rgba(62, 59, 63, 0.8);
+  backdrop-filter: blur(25px);
+  position: absolute;
+  z-index: 100;
+}
+.datalist-category-title {
+  padding-left: 13px;
+  padding-bottom: 5px;
+}
+.datalist-item {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  align-items: center;
+}
+
+.datalist-recent {
+  transition: all 0.3s ease-in-out;
+}
+
+.datalist-recomendations {
+  transition: all 0.3s ease-in-out;
+}

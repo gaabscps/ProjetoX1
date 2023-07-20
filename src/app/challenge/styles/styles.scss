@@ -1,1 +1,27 @@
 @import "../components/TagGroup/styles/styles.module.scss";
+@import "../components/FollowingCard/styles/styles.module.scss";
+
+.user-card-challenge-container{
+    display: flex;
+    gap:20px 30px;
+}
+
+.user-card-challenge{
+    width: 31.52%;
+}    
+
+@media screen and (max-width: 1110px) {
+    .user-card-challenge-container{
+        justify-content: space-between;
+        gap: 20px 0;
+    }
+    .user-card-challenge{
+        width: 48%;
+    }    
+}
+@media screen and (max-width: 768px) {
+    .user-card-challenge{
+
+        width: 100%;
+    }
+}

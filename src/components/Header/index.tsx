@@ -1,24 +1,19 @@
-import { Button } from "../Button";
-import Notifications from "@/assets/svg/notifications.svg";
-import NotificationsActive from "@/assets/svg/notificationActive.svg";
-import Config from "@/assets/svg/config.svg";
+import { Button } from '../Button';
+import Notifications from '@/assets/svg/notifications.svg';
+import NotificationsActive from '@/assets/svg/notificationActive.svg';
+import Config from '@/assets/svg/config.svg';
 
-import Image from "next/image";
-import logo from "@/assets/svg/X1_logo_vertical_branco 1.svg";
-import NationalityTag from "../NationalityTag";
-import { useTabletHook } from "@/hooks/useMediaQuery/isTablet";
-import { useMobileHook } from "@/hooks/useMediaQuery/isMobile";
-import Link from "next/link";
-import { useState } from "react";
-import DropdownMenu from "../DropdownMenu";
-import { useMediaQuery } from "react-responsive";
+import Image from 'next/image';
+import logo from '@/assets/svg/X1_logo_vertical_branco 1.svg';
+import NationalityTag from '../NationalityTag';
+import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
+import Link from 'next/link';
+import { useState } from 'react';
+import DropdownMenu from '../DropdownMenu';
+import { useMediaQuery } from 'react-responsive';
 
-interface HeaderProps {
-  setOpenLogin: (open: boolean) => void;
-  setOpenRegister: (open: boolean) => void;
-}
 
-export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
+export function Header() {
   const mobile = useMobileHook();
   const is565 = useMediaQuery({ maxWidth: 565 });
 
@@ -30,24 +25,22 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
 
   return (
     <>
-      <header className={`headerModule  `}>
-        <nav className={`headerContainer`}>
+      <header className={'headerModule  '}>
+        <nav className={'headerContainer'}>
           <Link href="/dashboard">
             <Image className="headerImage" src={logo} alt="Logo" />
           </Link>
           <div className="d-flex align-items-center header-items-container">
             <div className="headerButtonGroup d-flex">
               <Button
-                onClick={() => setOpenLogin(true)}
                 content="Sacar"
                 theme="outline"
-                width={mobile ? "70px" : "94px"}
+                width={mobile ? '70px' : '94px'}
                 height="35px"
               />
               <Button
-                onClick={() => setOpenRegister(true)}
                 content="Depositar"
-                width={mobile ? "70px" : "94px"}
+                width={mobile ? '70px' : '94px'}
                 height="35px"
               />
             </div>
@@ -62,7 +55,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                 <Image
                   onClick={() => handleNotification()}
                   className="action-icon "
-                  style={{ margin: "0 10px" }}
+                  style={{ margin: '0 10px' }}
                   src={openDropdown ? NotificationsActive : Notifications}
                   alt="notifications icon"
                 />
@@ -76,13 +69,13 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                   header={
                     <>
                       <div
-                        style={{ padding: "15px 10px" }}
+                        style={{ padding: '15px 10px' }}
                         className="d-flex flex-gap-1 justify-content-between text-extra-small-400 w-100"
                       >
-                        <p style={{ whiteSpace: "nowrap" }}>Notificações</p>
+                        <p style={{ whiteSpace: 'nowrap' }}>Notificações</p>
                         <p
                           className="color-black-7 action-icon"
-                          style={{ whiteSpace: "nowrap" }}
+                          style={{ whiteSpace: 'nowrap' }}
                         >
                           Limpar tudo
                         </p>
@@ -95,7 +88,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                         <div className="d-flex w-100 justify-content-between text-extra-small-400 ">
                           <div
                             className="d-flex flex-column"
-                            style={{ width: "175px", gap: "5px" }}
+                            style={{ width: '175px', gap: '5px' }}
                           >
                             <p className="line-height-150">
                               O valor de R$ 200,00 foi depositado em sua conta
@@ -113,7 +106,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                         <div className="d-flex w-100 justify-content-between text-extra-small-400">
                           <div
                             className="d-flex flex-column"
-                            style={{ width: "175px", gap: "5px" }}
+                            style={{ width: '175px', gap: '5px' }}
                           >
                             <p className="line-height-150">
                               O valor de R$ 200,00 foi depositado em sua conta
@@ -131,7 +124,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                         <div className="d-flex w-100 justify-content-between text-extra-small-400">
                           <div
                             className="d-flex flex-column"
-                            style={{ width: "175px", gap: "5px" }}
+                            style={{ width: '175px', gap: '5px' }}
                           >
                             <p className="line-height-150">
                               O valor de R$ 200,00 foi depositado em sua conta
@@ -149,7 +142,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                         <div className="d-flex w-100 justify-content-between text-extra-small-400">
                           <div
                             className="d-flex flex-column"
-                            style={{ width: "175px", gap: "5px" }}
+                            style={{ width: '175px', gap: '5px' }}
                           >
                             <p className="line-height-150">
                               O valor de R$ 200,00 foi depositado em sua conta
@@ -166,7 +159,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
                 />
                 <Image
                   className="action-icon"
-                  style={{ margin: "0 15px" }}
+                  style={{ margin: '0 15px' }}
                   src={Config}
                   alt="notifications icon"
                 />

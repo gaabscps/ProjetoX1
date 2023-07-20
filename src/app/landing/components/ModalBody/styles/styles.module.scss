@@ -41,15 +41,19 @@
   padding: 20px !important;
   width: 100%;
   text-align: center;
-  background: var(--color-black-2);
+  background: var(--color-primary-2);
   border-radius: 5px;
 
   &:hover {
-    background: var(--color-black-3);
+    background: var(--color-primary-3);
   }
 
   &:active {
-    background: var(--color-black-4);
+    background: var(--color-primary1);
+  }
+  &:disabled {
+    background: var(--color-black-2);
+    color: var(--color-black-6);
   }
 }
 
