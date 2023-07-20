@@ -4,8 +4,12 @@ import Arrow from '../../assets/svg/arrowCard.svg'
 
 interface SelectProps {
   value?: string
+  onSelect?: (event: React.ChangeEvent<HTMLSelectElement>) => void
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void
-  option?: string[]
+  option?: {
+    value: string | number
+    label: string
+  }[]
   label?: string
   placeholder?: string
   type?: string
@@ -19,6 +23,7 @@ interface SelectProps {
 
 export default function Select({
   value,
+  onSelect,
   onChange,
   option,
   label,
@@ -35,11 +40,11 @@ export default function Select({
     <div style={{ marginBottom: marginBottom }} className='d-flex flex-column input-container'>
       {label && <label htmlFor={name}>{label}</label>}
       <select
+        onSelect={onSelect}
         onChange={onChange}
         placeholder={placeholder}
-        className={`${className} input-${type} ${disabled ? 'disabled' : ''} ${
-          !value ? 'SelectPlaceholder' : ''
-        } input`}
+        className={`${className} input-${type} ${disabled ? 'disabled' : ''} ${!value ? 'SelectPlaceholder' : ''
+          } input`}
         id={name}
         name={name}
         style={style}
@@ -50,8 +55,8 @@ export default function Select({
           {placeholder}
         </option>
         {option?.map((option, index) => (
-          <option style={{ color: 'white' }} key={index} value={option}>
-            {option}
+          <option style={{ color: 'white' }} key={index} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>

@@ -170,6 +170,13 @@
 //Standard
 .button-standard {
   transition: all 0.3s ease;
+  &:disabled {
+    background: var(--color-black-2);
+    cursor: not-allowed;
+    div {
+      color: var(--color-black-5);
+    }
+  }
 }
 .button-size-standard {
   height: 60px;

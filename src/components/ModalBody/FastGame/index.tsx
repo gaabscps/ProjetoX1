@@ -22,6 +22,28 @@ export default function ModalFastGameBody({ handleSearchingFastGame }: ModalFast
     },
   })
 
+  const games = [
+    {
+      value: 0,
+      label: 'League of Legends',
+    },
+    {
+      value: 1,
+      label: 'Valorant',
+    },
+  ]
+
+  const levels = [
+    {
+      value: 0,
+      label: 'Facil',
+    },
+    {
+      value: 1,
+      label: 'Intermediario',
+    },
+  ]
+
 
   return (
     <>
@@ -36,12 +58,12 @@ export default function ModalFastGameBody({ handleSearchingFastGame }: ModalFast
           onChange={handleChange}
           value={values.game}
           placeholder='Jogo a ser jogado'
-          option={['Jogo 1', 'Jogo 2']}
+          option={games}
         />
         <Select
           name='level'
           placeholder='Nível do oponente'
-          option={['Facil', 'Intermediario']}
+          option={levels}
           value={values.level}
           onChange={handleChange}
         />
