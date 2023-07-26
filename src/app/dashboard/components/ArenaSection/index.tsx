@@ -27,9 +27,11 @@ export default function ArenaSection({ setOpenFastGame }: ArenaSectionProps) {
             />
             <p>Arena</p>
           </div>
-          <p className="text-small-400 action-icon">
-            Ver todos os jogos realizados
-          </p>
+          <Link href={'/games-history'}>
+            <p className="text-small-400 action-icon">
+              Ver todos os jogos realizados
+            </p>
+          </Link>
         </div>
         <p className="color-black-7 my-games-subtitle">
           Gerencie os seus desafios, procure por oponentes ou inicie um jogo

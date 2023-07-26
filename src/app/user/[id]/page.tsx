@@ -5,7 +5,7 @@ import { Modal } from '@/components/Modal';
 
 import UserSection from '../components/UserSection';
 import MyGamesSection from '../components/MyGamesSection';
-import ArenaSection from '../components/ArenaSection';
+import UserArenaSection from '../components/ArenaSection';
 import { Header } from '@/components/Header';
 import useDashboard from '../useDashboard';
 import { useEffect } from 'react';
@@ -44,7 +44,7 @@ export default function User({ params }: { params: { id: string } }) {
         <Body marginBottom="60px">
           <hr style={{ background: '#3E3B3F' }} className="hr-line" />
         </Body>
-        <ArenaSection isVisiting setOpenFastGame={setOpenFastGame} />
+        <UserArenaSection isVisiting setOpenFastGame={setOpenFastGame} />
       </div>
     </>
   );

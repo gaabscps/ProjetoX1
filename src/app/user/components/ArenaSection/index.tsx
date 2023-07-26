@@ -12,7 +12,7 @@ interface ArenaSectionProps {
   isVisiting?: boolean;
 }
 
-export default function ArenaSection({ setOpenFastGame, isVisiting }: ArenaSectionProps) {
+export default function UserArenaSection({ setOpenFastGame, isVisiting }: ArenaSectionProps) {
   const isTablet = useTabletHook();
 
   return (
@@ -28,9 +28,11 @@ export default function ArenaSection({ setOpenFastGame, isVisiting }: ArenaSecti
             />
             <p>Arena</p>
           </div>
-          <p className="text-small-400 action-icon">
-            Ver todos os jogos realizados
-          </p>
+          <Link href={'/games-history'}>
+            <a className="text-small-400 action-icon">
+              Ver todos os jogos realizados
+            </a>
+          </Link>
         </div>
         <p className="color-black-7 my-games-subtitle">
           Gerencie os seus desafios, procure por oponentes ou inicie um jogo
