@@ -77,13 +77,15 @@ export default function Textarea({
                     }
                 />
             </div>
-            <div
-                style={{ marginBottom: marginBottom }}
-                className="d-flex justify-content-end">
-                <p>
-                    {characterCount}/{maxCharacters}
-                </p>
-            </div>
+            {maxCharacters && (
+                <div
+                    style={{ marginBottom: marginBottom }}
+                    className="d-flex justify-content-end">
+                    <p>
+                        {characterCount}/{maxCharacters}
+                    </p>
+                </div>
+            )}
         </>
     );
 }
