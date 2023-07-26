@@ -11,7 +11,7 @@ interface ButtonProps {
   className?: string;
   icon?: React.ReactNode | string;
   size?: 'large' | 'standard' | 'small';
-  theme?: 'standard' | 'primary' | 'primaryOutline' | 'outline' | 'secondary' | 'selected';
+  theme?: 'standard' | 'primary' | 'primaryOutline' | 'outline' | 'secondary' | 'selected' | 'tertiary';
   type?: 'button' | 'submit' | 'reset';
   width?: string;
   height?: string;
