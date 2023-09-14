@@ -17,6 +17,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .landingEffect {
+    height: 100%;
+  }
   .features-section {
     display: flex;
     flex-direction: column;
