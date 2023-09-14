@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-scroll';
 import Image from 'next/image';
 import logo from '@/assets/svg/X1_logo_vertical_branco 1.svg';
 import { Button } from '@/components/Button';
+import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
+import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
 
 interface HeaderProps {
   setOpenLogin: (open: boolean) => void;
@@ -36,6 +38,8 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
     };
   }, []);
 
+
+
   const headerList = [
     {
       name: 'Início',
@@ -67,6 +71,7 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
     setIsDesktop(desktop);
   }, [desktop]);
 
+
   return (
     <>
       {!isDesktop && (
@@ -77,21 +82,19 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
         </div>
       )}
       <header
+        id='header'
         onClick={() => isOpen && setIsOpen(false)}
-        className={`landing-headerModule ${
-          isOpacity && isDesktop ? 'landing-header-opacity' : ''
-        } ${
-          !isDesktop && !isOpen
+        className={`landing-headerModule ${!isDesktop && !isOpen
+          ? 'landing-headerMobileOff'
+          : 'landing-headerMobileOn'
+          } ${isOpacity && isDesktop ? 'landing-header-opacity' : ''
+          } ${!isDesktop && !isOpen
             ? 'landing-headerOpacityOff'
             : 'landing-headerOpacityOn'
-        } `}
+          } `}
       >
         <nav
-          className={`landing-headerContainer ${
-            !isDesktop && !isOpen
-              ? 'landing-headerMobileOff'
-              : 'landing-headerMobileOn'
-          } `}
+          className={'landing-headerContainer  '}
         >
           <ul className="landing-headerItemsContainer">
             <li className="landing-headerLogo">

@@ -17,13 +17,8 @@ export function VideoSection({ setOpenRegister }: VideoSectionProps) {
           autoPlay
           loop
           muted
+          preload="auto"
         >
-          {/* <source
-            src={
-              "https://drive.google.com/uc?export=download&id=19AuvmqPNNJeyfZE2wh8LJ9iJePJ9Jk3r"
-            }
-            type="video/mp4"
-          /> */}
           Desculpe, seu navegador não suporta vídeos HTML5.
         </video>
         <div className="centered-content">
