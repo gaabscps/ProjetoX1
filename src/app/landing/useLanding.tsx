@@ -1,3 +1,4 @@
+import api from '@/services/api';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -12,6 +13,8 @@ const useLanding = () => {
         confirmPassword: '',
         birthDate: '',
     });
+    const [errors, setErrors] = useState(false);
+
 
 
     // FORMS
@@ -27,11 +30,52 @@ const useLanding = () => {
         })
     }
 
-    const handleLogin = () => {
-        values.email === 'admin@email.com' && values.password === '123'
-            ? toast.success('Entrou')
-            : toast.error('Credenciais inválidas')
+    const handleLogin = async () => {
+        try {
+            const auth = {
+                email: values.email,
+                password: values.password
+            }
+            const response = await api.post('/auth/login', auth)
+            const userJSON = JSON.stringify(response?.data?._id);
+            window.localStorage.setItem('userId', userJSON)
+            console.log(response?.data)
+            window.sessionStorage.setItem('sessionToken', response?.data?.authentication?.sessionToken)
+            toast.success('Entrou')
+            if (response?.data?.username) {
+                window.location.href = '/dashboard'
+            } else {
+                window.location.href = '/welcome'
+            }
+        } catch (error) {
+            console.log(error)
+            setErrors(true)
+            toast.error('Credenciais inválidas')
+        }
     }
+
+    const handleRegister = async () => {
+        try {
+            const user = {
+                name: values.name,
+                email: values.email,
+                cpf: values.cpf,
+                password: values.password,
+                dateBirthday: values.birthDate,
+                username: ''
+            }
+            const response = await api.post('/auth/register', user)
+            const userJSON = JSON.stringify(response.data._id);
+            window.localStorage.setItem('userId', userJSON)
+            console.log(response?.data)
+            toast.success('Cadastrado')
+        } catch (error) {
+            console.log(error)
+            setErrors(true)
+            toast.error('Erro ao cadastrar')
+        }
+    }
+
 
     // MODAL
     const handleRegisterButton = () => {
@@ -51,12 +95,13 @@ const useLanding = () => {
         setOpenRegister,
     }
 
-
     return {
         // FORMS
         values,
         handleChange,
         handleLogin,
+        handleRegister,
+        errors,
 
         // MODAL
         modal,

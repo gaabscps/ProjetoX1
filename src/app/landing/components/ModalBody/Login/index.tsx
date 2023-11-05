@@ -42,7 +42,7 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
         <div className='action-icon forgotPassword'>Esqueceu a sua senha?</div>
         <Link
           onClick={() => landing.handleLogin()}
-          href={landing.values.email === 'admin@email.com' && landing.values.password === '123' ? '/dashboard' : ''}
+          href={''}
         >
           <div className='d-flex align-items-center justify-content-center'>
             <button disabled={!landing.values.email || !landing.values.password} className='loginRegisterButton'>

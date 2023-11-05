@@ -27,6 +27,12 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
       <h5 className="h5-500 h5-modal-margin h5-modal">Crie a sua conta</h5>
       <form className="loginRegisterForm" action="">
         <Input
+          value={landing.values.name}
+          onChange={(e) => landing.handleChange(e)}
+          placeholder="Seu nome"
+          name="name"
+        />
+        <Input
           value={landing.values.email}
           onChange={(e) => landing.handleChange(e)}
           placeholder="Seu e-mail"
@@ -66,7 +72,11 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
           <span style={{ color: 'white' }}>Termos de Uso</span> e{' '}
           <span style={{ color: 'white' }}>Política de Privacidade</span>
         </p>
-        <Link href="/welcome">
+        <Link onClick={async () => {
+          await landing.handleRegister()
+        }}
+          href={"/welcome"}
+        >
           <div className="d-flex align-items-center justify-content-center w-100">
             <Button disabled={disabledConditions} width='100%' theme='primary' size='large' content="Criar a minha conta" />
           </div>
