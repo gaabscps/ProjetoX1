@@ -1,6 +1,6 @@
-import { FormValues } from "@/hooks/useForm";
-import { validateCPF } from "./validatorCpf";
-import { validateBirthDate } from "./validator18+";
+import { FormValues } from '@/hooks/useForm';
+import { validateCPF } from './validatorCpf';
+import { validateBirthDate } from './validator18+';
 
 interface ValidationErrors {
     [key: string]: string;

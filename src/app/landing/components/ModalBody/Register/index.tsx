@@ -101,7 +101,7 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
         <Link onClick={async () => {
           await landing.handleRegister()
         }}
-          href={""}
+          href={''}
         >
           <div className="d-flex align-items-center justify-content-center w-100">
             <Button disabled={disabledConditions} width='100%' theme='primary' size='large' content="Criar a minha conta" />
