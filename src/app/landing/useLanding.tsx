@@ -1,11 +1,10 @@
+import useForm from '@/hooks/useForm';
 import api from '@/services/api';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 const useLanding = () => {
-    const [openLogin, setOpenLogin] = useState(false)
-    const [openRegister, setOpenRegister] = useState(false)
-    const [values, setValues] = useState({
+    const { values, errorMessage, errors, handleChange, handleBlur, setErrors } = useForm({
         name: '',
         email: '',
         cpf: '',
@@ -13,22 +12,10 @@ const useLanding = () => {
         confirmPassword: '',
         birthDate: '',
     });
-    const [errors, setErrors] = useState(false);
 
+    const [openLogin, setOpenLogin] = useState(false)
+    const [openRegister, setOpenRegister] = useState(false)
 
-
-    // FORMS
-    const handleChange = (event: any) => {
-        const fieldValue = event.target.value
-        const fieldName = event.target.name
-
-        setValues((currentValues) => {
-            return {
-                ...currentValues,
-                [fieldName]: fieldValue,
-            }
-        })
-    }
 
     const handleLogin = async () => {
         try {
@@ -64,11 +51,15 @@ const useLanding = () => {
                 dateBirthday: values.birthDate,
                 username: ''
             }
+            if (errors) {
+                return
+            }
             const response = await api.post('/auth/register', user)
             const userJSON = JSON.stringify(response.data._id);
             window.localStorage.setItem('userId', userJSON)
             console.log(response?.data)
             toast.success('Cadastrado')
+            window.location.href = '/welcome'
         } catch (error) {
             console.log(error)
             setErrors(true)
@@ -99,9 +90,11 @@ const useLanding = () => {
         // FORMS
         values,
         handleChange,
+        handleBlur,
         handleLogin,
         handleRegister,
         errors,
+        errorMessage,
 
         // MODAL
         modal,

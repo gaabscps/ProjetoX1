@@ -10,6 +10,7 @@ import steam from '@/assets/svg/steamModal.svg';
 import { Button } from '@/components/Button';
 import Link from 'next/link';
 import useLanding from '@/app/landing/useLanding';
+import { maskCpf } from '@/utils/mask/maskCpf';
 
 interface ModalRegisterBodyProps {
   handleLoginButton: () => void;
@@ -31,6 +32,8 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
           onChange={(e) => landing.handleChange(e)}
           placeholder="Seu nome"
           name="name"
+          error={landing.errorMessage.name}
+          onBlur={(e) => landing.handleBlur(e)}
         />
         <Input
           value={landing.values.email}
@@ -38,10 +41,28 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
           placeholder="Seu e-mail"
           type="email"
           name="email"
+          error={landing.errorMessage.email}
+          onBlur={(e) => landing.handleBlur(e)}
         />
         <Input
-          value={landing.values.cpf} onChange={(e) => landing.handleChange(e)} placeholder="Seu CPF" type="text" name="cpf" />
-        <Input value={landing.values.password} onChange={(e) => landing.handleChange(e)} placeholder="Sua senha" type="password" name="password" />
+          value={maskCpf(landing.values.cpf)}
+          onChange={(e) => landing.handleChange(e)}
+          placeholder="Seu CPF"
+          type="text"
+          name="cpf"
+          error={landing.errorMessage.cpf}
+          onBlur={(e) => landing.handleBlur(e)}
+          maxLength={14}
+        />
+        <Input
+          value={landing.values.password}
+          onChange={(e) => landing.handleChange(e)}
+          placeholder="Sua senha"
+          type="password"
+          name="password"
+          error={landing.errorMessage.password}
+          onBlur={(e) => landing.handleBlur(e)}
+        />
         <div className="mb-2">Sua senha deve conter:</div>
         <ul className="password-requirements ">
           <li className="line-height-150 color-black-7">
@@ -60,13 +81,18 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
           placeholder="Confirme a sua senha"
           type="password"
           name="confirmPassword"
+          error={landing.errorMessage.confirmPassword}
+          onBlur={(e) => landing.handleBlur(e)}
         />
         <Input
           value={landing.values.birthDate}
           onChange={(e) => landing.handleChange(e)}
           placeholder="Data de nascimento"
           type="date"
-          name="birthDate" />
+          name="birthDate"
+          error={landing.errorMessage.birthDate}
+          onBlur={(e) => landing.handleBlur(e)}
+        />
         <p className="registerTerms line-height-150 color-black-7">
           Ao criar uma conta, você concorda com os nossos{' '}
           <span style={{ color: 'white' }}>Termos de Uso</span> e{' '}
@@ -75,7 +101,7 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
         <Link onClick={async () => {
           await landing.handleRegister()
         }}
-          href={"/welcome"}
+          href={""}
         >
           <div className="d-flex align-items-center justify-content-center w-100">
             <Button disabled={disabledConditions} width='100%' theme='primary' size='large' content="Criar a minha conta" />

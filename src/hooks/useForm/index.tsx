@@ -1,42 +1,65 @@
-import { useState, ChangeEvent, FormEvent } from 'react'
+// useForm.ts
+import { validator } from '@/utils/validators/validator';
+import React, { useState, ChangeEvent, FocusEvent } from 'react';
 
-interface useFormProps {
-  initialValues: any
-  onSubmit: (values: any) => void
+export interface FormValues {
+    [key: string]: string;
 }
 
-const useForm = ({ initialValues, onSubmit }: useFormProps) => {
-  const [values, setValues] = useState(initialValues)
-
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value, type, checked, files }: any = event.target
-
-    if (type === 'checkbox') {
-      setValues((prevValues: any) => ({
-        ...prevValues,
-        [name]: checked,
-      }))
-    } else if (type === 'file') {
-      setValues((prevValues: any) => ({
-        ...prevValues,
-        [name]: files && files[0],
-      }))
-    } else {
-      setValues((prevValues: any) => ({
-        ...prevValues,
-        [name]: value,
-      }))
-    }
-  }
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    onSubmit(values)
-  }
-
-  return { values, handleChange, handleSubmit }
+export interface ErrorMessages {
+    [key: string]: string;
+}
+interface UseFormReturn {
+    values: FormValues;
+    errors: boolean;
+    errorMessage: ErrorMessages;
+    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
+    setErrors: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default useForm
+const useForm = (initialValues: FormValues): UseFormReturn => {
+    const [values, setValues] = useState<FormValues>(initialValues);
+    const [errors, setErrors] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<ErrorMessages>(
+        Object.keys(initialValues).reduce((acc: Record<string, string>, key) => {
+            acc[key] = '';
+            return acc;
+        }, {})
+    );
+
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        const { name, value } = event.target;
+
+        setValues(prevValues => ({
+            ...prevValues,
+            [name]: value,
+        }));
+    };
+
+    const handleBlur = (event: FocusEvent<HTMLInputElement>): void => {
+        const { name, value } = event.target;
+        const validationErrors = validator(name, value, values);
+
+        setErrorMessage(prevErrors => ({
+            ...prevErrors,
+            [name]: validationErrors[name] || '',
+        }));
+
+        const hasErrors = Object.values(validationErrors).some(error => error);
+
+        setErrors(hasErrors);
+    };
+
+    return {
+        values,
+        errors,
+        errorMessage,
+        handleChange,
+        handleBlur,
+        setErrors,
+    };
+};
+
+export default useForm;

@@ -31,6 +31,8 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
           name='email'
           value={landing.values.email}
           onChange={(e) => landing.handleChange(e)}
+          error={landing.errorMessage.email}
+          onBlur={(e) => landing.handleBlur(e)}
         />
         <Input
           placeholder='Sua senha'
