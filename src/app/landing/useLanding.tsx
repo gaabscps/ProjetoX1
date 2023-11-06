@@ -17,6 +17,7 @@ const useLanding = () => {
 
     const [openLogin, setOpenLogin] = useState(false)
     const [openRegister, setOpenRegister] = useState(false)
+    const [openTerms, setOpenTerms] = useState(false)
     const [selectedNewsIndex, setSelectedNewsIndex] = useState(-1); // Estado para controlar qual notícia foi clicada
     const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar se o modal de notícias está aberto
 
@@ -86,12 +87,14 @@ const useLanding = () => {
     const modal = {
         openLogin,
         openRegister,
+        selectedNewsIndex,
+        openTerms,
+        isModalOpen,
         setOpenLogin,
         setOpenRegister,
         setIsModalOpen,
-        isModalOpen,
         setSelectedNewsIndex,
-        selectedNewsIndex
+        setOpenTerms,
     }
 
     return {
