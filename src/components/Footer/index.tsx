@@ -4,7 +4,12 @@ import { Youtube } from '@/assets/svg/Youtube';
 import Image from 'next/image';
 import logo from '@/assets/svg/X1_logo_horizontal_branco 3.png';
 
-export function Footer() {
+interface FooterProps {
+  setOpenTerms: (open: boolean) => void;
+}
+
+export function Footer({ setOpenTerms }: FooterProps) {
+
   return (
     <>
       <footer className="footer-module">
@@ -39,10 +44,10 @@ export function Footer() {
           </div>
 
           <div className="d-flex justify-content-around w-100 footer-terms">
-            <a className="text-small-400 color-black-6 action-icon">
+            <a onClick={() => setOpenTerms(true)} className="text-small-400 color-black-6 action-icon">
               Termos de uso
             </a>
-            <a className="text-small-400 color-black-6 action-icon">
+            <a onClick={() => setOpenTerms(true)} className="text-small-400 color-black-6 action-icon">
               Privacidade
             </a>
           </div>

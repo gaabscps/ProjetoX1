@@ -17,13 +17,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ModalLoginBody } from './components/ModalBody/Login'
 import { ModalRegisterBody } from './components/ModalBody/Register'
 import useLanding from './useLanding'
-import { useState } from 'react'
 import { newsMock } from './components/LastNewsSection/mockNews'
 import LastNewsModalBody from './components/LastNewsSection/ModalBody'
+import { TermsConditionBody } from '@/components/ModalBody/TermsCondition'
 
 export default function Landing() {
   const landing = useLanding();
-  const { openLogin, openRegister, isModalOpen, selectedNewsIndex, setOpenLogin, setOpenRegister, setIsModalOpen, setSelectedNewsIndex } = landing.modal;
+  const { openLogin, openRegister, isModalOpen, selectedNewsIndex, setOpenLogin, setOpenRegister, setIsModalOpen, setSelectedNewsIndex, openTerms, setOpenTerms } = landing.modal;
 
 
 
@@ -38,7 +38,7 @@ export default function Landing() {
         }
         modalBody={openLogin ? (
           <ModalLoginBody handleRegisterButton={landing.handleRegisterButton} />) : (
-          <ModalRegisterBody handleLoginButton={landing.handleLoginButton} />
+          <ModalRegisterBody setOpenTerms={setOpenTerms} handleLoginButton={landing.handleLoginButton} />
         )
         }
         modalHeader={
@@ -50,7 +50,7 @@ export default function Landing() {
         }
         modalHeaderBg={openRegister ? '#3E3B3F' : null}
       />
-
+      <Modal modalHeader={<h5 className='h5-500'>Termos e Condições</h5>} setOpen={setOpenTerms} modalBody={<TermsConditionBody />} open={openTerms} />
       <Header setOpenRegister={setOpenRegister} setOpenLogin={setOpenLogin} />
       <VideoSection setOpenRegister={setOpenRegister} />
       {/* <StatsSection /> */}
@@ -70,7 +70,7 @@ export default function Landing() {
         <LastNewsSection setOpen={setIsModalOpen} newsMock={newsMock} setIsModalOpen={setIsModalOpen} setSelectedNewsIndex={setSelectedNewsIndex} />
       </>
       <LandingPageFaq />
-      <Footer />
+      <Footer setOpenTerms={setOpenTerms} />
       <ToastContainer theme='dark' toastStyle={{
         background: '#29272A',
         fontSize: '14px',

@@ -25,7 +25,7 @@ export default function DropdownMenu({
   right,
   bottom,
   width,
-  background = 'rgba(255, 255, 255, 0.05)',
+  background = 'rgba(255, 255, 255, 0.20)',
   open,
   list = true,
   tabs,

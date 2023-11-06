@@ -14,9 +14,10 @@ import { maskCpf } from '@/utils/mask/maskCpf';
 
 interface ModalRegisterBodyProps {
   handleLoginButton: () => void;
+  setOpenTerms: (open: boolean) => void;
 }
 
-export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps) {
+export function ModalRegisterBody({ handleLoginButton, setOpenTerms }: ModalRegisterBodyProps) {
 
   const landing = useLanding()
   const disabledConditions = !landing.values.email || !landing.values.cpf || !landing.values.password || !landing.values.confirmPassword || !landing.values.birthDate
@@ -95,8 +96,8 @@ export function ModalRegisterBody({ handleLoginButton }: ModalRegisterBodyProps)
         />
         <p className="registerTerms line-height-150 color-black-7">
           Ao criar uma conta, você concorda com os nossos{' '}
-          <span style={{ color: 'white' }}>Termos de Uso</span> e{' '}
-          <span style={{ color: 'white' }}>Política de Privacidade</span>
+          <a onClick={() => setOpenTerms(true)} className='action-icon' style={{ color: 'white' }}>Termos de Uso</a> e{' '}
+          <a onClick={() => setOpenTerms(true)} className='action-icon' style={{ color: 'white' }}>Política de Privacidade</a>
         </p>
         <Link onClick={async () => {
           await landing.handleRegister()
