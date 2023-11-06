@@ -1,5 +1,7 @@
 import useForm from '@/hooks/useForm';
 import api from '@/services/api';
+import { unmaskCpf } from '@/utils/mask/maskCpf';
+import { unmaskDate } from '@/utils/mask/maskDate';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -46,9 +48,9 @@ const useLanding = () => {
             const user = {
                 name: values.name,
                 email: values.email,
-                cpf: values.cpf,
+                cpf: unmaskCpf(values.cpf),
                 password: values.password,
-                dateBirthday: values.birthDate,
+                dateBirthday: unmaskDate(values.birthDate),
                 username: ''
             }
             if (errors) {

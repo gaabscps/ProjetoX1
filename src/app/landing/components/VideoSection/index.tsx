@@ -12,7 +12,7 @@ export function VideoSection({ setOpenRegister }: VideoSectionProps) {
     <Element name="home">
       <section id="videoSection" className="videoSection">
         <video
-          src="https://drive.google.com/uc?export=download&id=19AuvmqPNNJeyfZE2wh8LJ9iJePJ9Jk3r"
+          src="https://drive.google.com/u/0/uc?id=1CrYOYuvFAOa8lgcpcdcXJtIXzu-rqCY7&export=download"
           className="background-video"
           autoPlay
           loop

@@ -47,9 +47,8 @@ export default function Landing() {
       />
       <Header setOpenRegister={setOpenRegister} setOpenLogin={setOpenLogin} />
       <VideoSection setOpenRegister={setOpenRegister} />
-      <StatsSection />
+      {/* <StatsSection /> */}
       <hr className='statsLine' />
-      <LastNewsSection />
       <GamesSection />
       <FeaturesSection />
       <Body marginBottom='130px' className='d-flex justify-content-center'>
@@ -60,7 +59,7 @@ export default function Landing() {
         />
       </Body>
       <HowToPlay />
-
+      <LastNewsSection />
       <LandingPageFaq />
       <Footer />
       <ToastContainer theme='dark' toastStyle={{

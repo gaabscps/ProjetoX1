@@ -42,7 +42,7 @@ export function GamesSection() {
 
   return (
     <Element name="games">
-      <Body carousel marginBottom="130px">
+      <Body carousel marginBottom="130px" marginTop='130px'>
         <Carrossel isBanner title="Jogos disponíveis" items={availableGames} />
       </Body>
     </Element>
