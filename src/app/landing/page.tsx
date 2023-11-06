@@ -17,10 +17,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ModalLoginBody } from './components/ModalBody/Login'
 import { ModalRegisterBody } from './components/ModalBody/Register'
 import useLanding from './useLanding'
+import { useState } from 'react'
+import { newsMock } from './components/LastNewsSection/mockNews'
+import LastNewsModalBody from './components/LastNewsSection/ModalBody'
 
 export default function Landing() {
   const landing = useLanding();
-  const { openLogin, openRegister, setOpenLogin, setOpenRegister } = landing.modal;
+  const { openLogin, openRegister, isModalOpen, selectedNewsIndex, setOpenLogin, setOpenRegister, setIsModalOpen, setSelectedNewsIndex } = landing.modal;
+
+
 
   return (
     <>
@@ -45,6 +50,7 @@ export default function Landing() {
         }
         modalHeaderBg={openRegister ? '#3E3B3F' : null}
       />
+
       <Header setOpenRegister={setOpenRegister} setOpenLogin={setOpenLogin} />
       <VideoSection setOpenRegister={setOpenRegister} />
       {/* <StatsSection /> */}
@@ -59,7 +65,10 @@ export default function Landing() {
         />
       </Body>
       <HowToPlay />
-      <LastNewsSection />
+      <>
+        <Modal modalHeaderBg={openRegister ? '#3E3B3F' : null} open={isModalOpen} modalBody={<LastNewsModalBody news={newsMock[selectedNewsIndex]} />} setOpen={setIsModalOpen} />
+        <LastNewsSection setOpen={setIsModalOpen} newsMock={newsMock} setIsModalOpen={setIsModalOpen} setSelectedNewsIndex={setSelectedNewsIndex} />
+      </>
       <LandingPageFaq />
       <Footer />
       <ToastContainer theme='dark' toastStyle={{
