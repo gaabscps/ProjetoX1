@@ -1,8 +1,9 @@
 import useForm from '@/hooks/useForm';
 import api from '@/services/api';
+import { News } from '@/types/LandingNews';
 import { unmaskCpf } from '@/utils/mask/maskCpf';
 import { unmaskDate } from '@/utils/mask/maskDate';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const useLanding = () => {
@@ -20,34 +21,50 @@ const useLanding = () => {
     const [openTerms, setOpenTerms] = useState(false)
     const [selectedNewsIndex, setSelectedNewsIndex] = useState(-1); // Estado para controlar qual notícia foi clicada
     const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar se o modal de notícias está aberto
+    const [news, setNews] = useState<News[]>([]);
 
+
+    const getNews = async () => {
+        try {
+            const response = await api.get('/notice/noticesReturn')
+            if (response?.status === 200) {
+                setNews(response?.data)
+            }
+        } catch (error) {
+            toast.error('Erro ao buscar notícias')
+            // console.error(error)
+        }
+    }
 
     const handleLogin = async () => {
         try {
-            const auth = {
+            const credentials = {
                 email: values.email,
                 password: values.password
             }
-            const response = await api.post('/auth/login', auth)
-            const userJSON = JSON.stringify(response?.data?._id);
-            window.localStorage.setItem('userId', userJSON)
-            console.log(response?.data)
-            window.sessionStorage.setItem('sessionToken', response?.data?.authentication?.sessionToken)
-            toast.success('Entrou')
-            if (response?.data?.username) {
-                window.location.href = '/dashboard'
-            } else {
-                window.location.href = '/welcome'
+
+            const response = await api.post('/auth/login', credentials)
+            if (response?.status === 200) {
+                const userJSON = JSON.stringify(response?.data?.id);
+                window.localStorage.setItem('userId', userJSON)
+                window.sessionStorage.setItem('sessionToken', response?.data?.Token)
+                if (response?.data?.username) {
+                    window.location.href = '/dashboard'
+                } else {
+                    window.location.href = '/welcome'
+                }
             }
         } catch (error) {
-            console.log(error)
-            setErrors(true)
             toast.error('Credenciais inválidas')
+            // console.error(error)
+            setErrors(true)
         }
     }
 
     const handleRegister = async () => {
         try {
+            if (errors) return
+
             const user = {
                 name: values.name,
                 email: values.email,
@@ -56,22 +73,23 @@ const useLanding = () => {
                 dateBirthday: unmaskDate(values.birthDate),
                 username: ''
             }
-            if (errors) {
-                return
-            }
+
             const response = await api.post('/auth/register', user)
-            const userJSON = JSON.stringify(response.data._id);
-            window.localStorage.setItem('userId', userJSON)
-            console.log(response?.data)
-            toast.success('Cadastrado')
-            window.location.href = '/welcome'
-        } catch (error) {
-            console.log(error)
-            setErrors(true)
+            if (response?.status === 200) {
+                await handleLogin()
+            }
+        }
+        catch (error) {
             toast.error('Erro ao cadastrar')
+            // console.error(error)
+            setErrors(true)
         }
     }
 
+
+    useEffect(() => {
+        getNews()
+    }, [])
 
     // MODAL
     const handleRegisterButton = () => {
@@ -98,6 +116,9 @@ const useLanding = () => {
     }
 
     return {
+        //Data
+        news,
+
         // FORMS
         values,
         handleChange,

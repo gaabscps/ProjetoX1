@@ -17,7 +17,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ModalLoginBody } from './components/ModalBody/Login'
 import { ModalRegisterBody } from './components/ModalBody/Register'
 import useLanding from './useLanding'
-import { newsMock } from './components/LastNewsSection/mockNews'
 import LastNewsModalBody from './components/LastNewsSection/ModalBody'
 import { TermsConditionBody } from '@/components/ModalBody/TermsCondition'
 
@@ -50,7 +49,12 @@ export default function Landing() {
         }
         modalHeaderBg={openRegister ? '#3E3B3F' : null}
       />
-      <Modal modalHeader={<h5 className='h5-500'>Termos e Condições</h5>} setOpen={setOpenTerms} modalBody={<TermsConditionBody />} open={openTerms} />
+      <Modal
+        modalHeader={<h5 className='h5-500'>Termos e Condições</h5>}
+        modalHeaderBg={'#0e0e0f'}
+        setOpen={setOpenTerms}
+        modalBody={<TermsConditionBody />}
+        open={openTerms} />
       <Header setOpenRegister={setOpenRegister} setOpenLogin={setOpenLogin} />
       <VideoSection setOpenRegister={setOpenRegister} />
       {/* <StatsSection /> */}
@@ -66,8 +70,13 @@ export default function Landing() {
       </Body>
       <HowToPlay />
       <>
-        <Modal modalHeaderBg={openRegister ? '#3E3B3F' : null} open={isModalOpen} modalBody={<LastNewsModalBody news={newsMock[selectedNewsIndex]} />} setOpen={setIsModalOpen} />
-        <LastNewsSection setOpen={setIsModalOpen} newsMock={newsMock} setIsModalOpen={setIsModalOpen} setSelectedNewsIndex={setSelectedNewsIndex} />
+        <Modal
+          open={isModalOpen}
+          modalBody={<LastNewsModalBody news={landing.news[selectedNewsIndex]} />}
+          modalHeaderBg='#0e0e0f'
+          modalHeader={<h5 className='h5-500 text-center plr-2'>  {landing?.news[selectedNewsIndex]?.tittle || ''}</h5>}
+          setOpen={setIsModalOpen} />
+        <LastNewsSection setOpen={setIsModalOpen} news={landing.news} setIsModalOpen={setIsModalOpen} setSelectedNewsIndex={setSelectedNewsIndex} />
       </>
       <LandingPageFaq />
       <Footer setOpenTerms={setOpenTerms} />

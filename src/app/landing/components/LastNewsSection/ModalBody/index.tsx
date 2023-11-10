@@ -15,15 +15,16 @@ const LastNewsModalBody: React.FC<LastNewsModalBodyProps> = ({ news }) => {
     return (
         <>
             <div className='d-flex flex-column align-items-center'>
-                <h5 className='h5-500 text-center mt-2'>{news.title}</h5>
                 <div className='mtb-4'>
                     <Image
                         style={{ transform: 'scale(1.3)', userSelect: 'none' }}
-                        width={500}
-                        src={news.image} alt={''} />
+                        width={300}
+                        height={200}
+                        src={news.photoUrl} alt={''} />
                 </div>
             </div>
-            <p>Data: {news.date}</p>
+            <p className='mb-2'>Data: {news.content}</p>
+            <p>Data: {news.createdAt}</p>
         </>
     );
 };
