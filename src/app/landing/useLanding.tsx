@@ -45,9 +45,12 @@ const useLanding = () => {
 
             const response = await api.post('/auth/login', credentials)
             if (response?.status === 200) {
-                const userJSON = JSON.stringify(response?.data?.id);
-                window.localStorage.setItem('userId', userJSON)
-                window.sessionStorage.setItem('sessionToken', response?.data?.Token)
+                const userIdJSON = response?.data?.id;
+                const token = response?.data?.Token;
+
+                // window.localStorage.setItem('userId', userIdJSON)
+                // window.sessionStorage.setItem('sessionToken', token)
+
                 if (response?.data?.username) {
                     window.location.href = '/dashboard'
                 } else {
@@ -116,7 +119,7 @@ const useLanding = () => {
     }
 
     return {
-        //Data
+        // Data
         news,
 
         // FORMS

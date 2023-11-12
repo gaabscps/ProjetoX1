@@ -53,11 +53,11 @@ export const useWelcome = () => {
         //     }
         // }
         try {
-            const sessionToken = window.sessionStorage.getItem('sessionToken');
+            // const sessionToken = window.sessionStorage.getItem('sessionToken');
             const userIdJSON = window.localStorage.getItem('userId');
-            const userId = JSON.parse(userIdJSON as string); 
+            const userId = userIdJSON
             const user = {
-                sessionToken: sessionToken,
+                // sessionToken: sessionToken,
                 username: nickname.nickname
             };
             console.log(userId);
