@@ -91,14 +91,18 @@ export default function UserSection({ profile }: UserSectionProps) {
         <div className="ml-1 w-100 user-stats-container">
           <div className="nationalityTag-container">
             <p style={{ marginBottom: '10px' }}>{profile?.Profile?.nickname || '--'}</p>
-            <div className="nationalityTag">
-              <img style={{
-                maxWidth: '20px',
-                maxHeight: '20px',
-                marginRight: '5px',
-              }} src={profile?.Location?.CountryFlag || ''} alt="country flag" />
-              <p className="text-extra-small-400">{profile?.Location?.Country}</p>
-            </div>
+            {(profile?.Location?.CountryFlag && profile.Location.Country) &&
+              <div className="nationalityTag">
+                <>
+                  <img style={{
+                    maxWidth: '20px',
+                    maxHeight: '20px',
+                    marginRight: '5px',
+                  }} src={profile?.Location?.CountryFlag || ''} alt="country flag" />
+                  <p className="text-extra-small-400">{profile?.Location?.Country}</p>
+                </>
+              </div>
+            }
           </div>
           <div className="home-user-stats">
             <span className="color-black-7">{profile?.Profile?.followers || '--'} seguidores</span>
