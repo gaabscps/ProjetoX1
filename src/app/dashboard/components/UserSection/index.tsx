@@ -13,12 +13,17 @@ import gabs from '@/assets/svg/gabs.jpg';
 import brazil from '@/assets/svg/brazil.svg';
 import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
 import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
+import { Dashboard } from '@/types/Dashboard';
 
 interface CustomChartDataset extends ChartDataset<'pie', number[]> {
   cutout?: number | string;
 }
 
-export default function UserSection() {
+interface UserSectionProps {
+  profile: Dashboard | undefined;
+}
+
+export default function UserSection({ profile }: UserSectionProps) {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const isTablet = useTabletHook();
   const isMobile = useMobileHook();
@@ -65,12 +70,11 @@ export default function UserSection() {
 
           <div className="levelTag">23</div>
           <div
-            className={`levelStats ${
-              onHover ? 'levelStatsHover' : 'levelStatsOff'
-            }`}
+            className={`levelStats ${onHover ? 'levelStatsHover' : 'levelStatsOff'
+              }`}
           >
             <p style={{ marginBottom: '5px', marginTop: '3px' }}>70%</p>
-            <p>7.000/10.000 </p>
+            <p>{profile?.Profile?.xp}/10.000 </p>
           </div>
 
           <div
@@ -81,28 +85,32 @@ export default function UserSection() {
               zIndex: '-1',
             }}
           >
-            <Image className="profilePicture" src={gabs} alt="profile" />
+            <img className="profilePicture" src={profile?.Profile.urlPhoto || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} alt="profile" />
           </div>
         </div>
         <div className="ml-1 w-100 user-stats-container">
           <div className="nationalityTag-container">
-            <p style={{ marginBottom: '10px' }}>Alex da Silva Almeida Junior</p>
+            <p style={{ marginBottom: '10px' }}>{profile?.Profile?.nickname || '--'}</p>
             <div className="nationalityTag">
-              <Image src={brazil} alt="brazil" />
-              <p className="text-extra-small-400">Brasil</p>
+              <img style={{
+                maxWidth: '20px',
+                maxHeight: '20px',
+                marginRight: '5px',
+              }} src={profile?.Location?.CountryFlag || ''} alt="country flag" />
+              <p className="text-extra-small-400">{profile?.Location?.Country}</p>
             </div>
           </div>
           <div className="home-user-stats">
-            <span className="color-black-7">10 seguidores</span>
-            <span className="color-black-7">15 seguindo</span>
-            <span className="color-black-7">10x que desafiou</span>
-            <span className="color-black-7">5x que foi desafiado</span>
+            <span className="color-black-7">{profile?.Profile?.followers || '--'} seguidores</span>
+            <span className="color-black-7">{profile?.Profile?.following || '--'} seguindo</span>
+            <span className="color-black-7">{profile?.Profile?.timesyouChangelled || '--'}x que desafiou</span>
+            <span className="color-black-7">{profile?.Profile?.timesChangelled || '--'}x que foi desafiado</span>
             {(!isTablet || !isMobile) && (
               <span className="color-black-7">{'//'}</span>
             )}
-            <span className="color-black-7">5 jogos realizados</span>
-            <span className="color-black-7">2 vitórias</span>
-            <span className="color-black-7">3 derrotas</span>
+            <span className="color-black-7">{profile?.Profile?.gamesPlayed || '--'} jogos realizados</span>
+            {/* <span className="color-black-7">2 vitórias</span>
+            <span className="color-black-7">3 derrotas</span> */}
           </div>
         </div>
       </div>

@@ -1,19 +1,17 @@
 import { Body } from '@/components/Body';
 import { Carrossel } from '@/components/Carousel';
 import { News } from '@/types/LandingNews';
-import { useState } from 'react';
 import { Element } from 'react-scroll';
 import Image from 'next/image';
 
 
 interface LastNewsProps {
-  setOpen: (open: boolean) => void;
   news: News[];
   setSelectedNewsIndex: (index: number) => void;
   setIsModalOpen: (open: boolean) => void;
 }
 
-export function LastNewsSection({ setOpen, news, setSelectedNewsIndex, setIsModalOpen }: LastNewsProps) {
+export function LastNewsSection({ news, setSelectedNewsIndex, setIsModalOpen }: LastNewsProps) {
 
 
 

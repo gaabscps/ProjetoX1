@@ -1,50 +1,34 @@
 import { Body } from '@/components/Body';
 import { Carrossel } from '@/components/Carousel';
 import { Element } from 'react-scroll';
-import Image from 'next/image';
-import mock1 from '@/assets/svg/mockGame1.svg';
-import mock2 from '@/assets/svg/mockGame2.svg';
-import mock3 from '@/assets/svg/mockGame3.svg';
-import mock4 from '@/assets/svg/mockGame4.svg';
+import { GamesList } from '@/types/GamesList';
 
-export function GamesSection() {
-  type GamesImage = {
-    image: JSX.Element;
-  };
+interface GamesSectionProps {
+  games: GamesList[];
+}
 
-  const gamesMock: GamesImage[] = [
-    {
-      image: <Image src={mock1} alt="" />,
-    },
-    {
-      image: <Image src={mock2} alt="" />,
-    },
-    {
-      image: <Image src={mock3} alt="" />,
-    },
-    {
-      image: <Image src={mock4} alt="" />,
-    },
-    {
-      image: <Image src={mock1} alt="" />,
-    },
-  ];
+export function GamesSection({ games }: GamesSectionProps) {
 
-  const availableGames = gamesMock.map((item) => (
+  const availableGames = games.map((item) => (
     <div
       className="h-100 d-flex justify-content-center align-items-center games-carousel"
       style={{ width: '231px', height: '126px' }}
       key={1}
     >
-      {item.image}
+      <img src={item.thumbnail} />
     </div>
   ));
 
   return (
-    <Element name="games">
-      <Body carousel marginBottom="130px" marginTop='130px'>
-        <Carrossel isBanner title="Jogos disponíveis" items={availableGames} />
-      </Body>
-    </Element>
+    games && games.length > 0 ?
+      <>
+        <Element name="games">
+          <Body carousel marginBottom="130px" marginTop='130px'>
+            <Carrossel isBanner title="Jogos disponíveis" items={availableGames} />
+          </Body>
+        </Element>
+      </>
+      :
+      null
   );
 }

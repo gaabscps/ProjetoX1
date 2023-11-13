@@ -1,5 +1,6 @@
 import api from '@/services/api';
 import { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { toast } from 'react-toastify';
 
 export const useWelcome = () => {
@@ -8,6 +9,7 @@ export const useWelcome = () => {
     });
     const [error, setError] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+    const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
 
     // FORMS
     const handleChange = (event: any) => {
@@ -42,29 +44,19 @@ export const useWelcome = () => {
     }
 
     const handleSubmit = async () => {
-        // if (error) {
-        //     if (nickname.nickname === 'admin') {
-        //         setError(true)
-        //         setErrorMessage('Apelido indisponível')
-        //     }
-        //     else {
-        //         toast.error('Preencha os campos corretamente')
-        //         return
-        //     }
-        // }
         try {
-            // const sessionToken = window.sessionStorage.getItem('sessionToken');
-            const userIdJSON = window.localStorage.getItem('userId');
-            const userId = userIdJSON
             const user = {
-                // sessionToken: sessionToken,
                 username: nickname.nickname
             };
-            console.log(userId);
-            const response = await api.patch(`/users/${userId as string}`, user);
-            localStorage.removeItem('userId')
-            console.log(response?.data);
-            toast.success('Cadastrado');
+            const response = await api.patch(`/users/${cookies.idUser as string}`, user, {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth
+                }
+            });
+            if (response?.status === 200) {
+                toast.success('Cadastrado');
+                window.location.href = '/dashboard'
+            }
         } catch (error) {
             console.log(error);
             toast.error('Erro ao cadastrar');

@@ -11,10 +11,8 @@ import useDashboard from './useDashboard';
 
 export default function Dashboard() {
 
-  const dashboard = useDashboard();
-  const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = dashboard.modal;
-
-
+  const { modal, profile } = useDashboard();
+  const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = modal;
 
   return (
     <>
@@ -35,12 +33,12 @@ export default function Dashboard() {
       <Header
       />
       <div className="pageBody">
-        <UserSection />
-        <MyGamesSection setOpenAddGame={setOpenAddGame} />
+        <UserSection profile={profile} />
+        <MyGamesSection profile={profile} setOpenAddGame={setOpenAddGame} />
         <Body marginBottom="60px">
           <hr style={{ background: '#3E3B3F' }} className="hr-line" />
         </Body>
-        <ArenaSection setOpenFastGame={setOpenFastGame} />
+        <ArenaSection profile={profile} setOpenFastGame={setOpenFastGame} />
       </div>
     </>
   );

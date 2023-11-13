@@ -5,6 +5,11 @@ import { unmaskCpf } from '@/utils/mask/maskCpf';
 import { unmaskDate } from '@/utils/mask/maskDate';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useCookies } from 'react-cookie';
+import useDashboard from '../dashboard/useDashboard';
+import { Auth } from '@/types/Auth';
+import { useAuth } from '@/hooks/useAuth';
+import { GamesList } from '@/types/GamesList';
 
 const useLanding = () => {
     const { values, errorMessage, errors, handleChange, handleBlur, setErrors } = useForm({
@@ -22,7 +27,9 @@ const useLanding = () => {
     const [selectedNewsIndex, setSelectedNewsIndex] = useState(-1); // Estado para controlar qual notícia foi clicada
     const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar se o modal de notícias está aberto
     const [news, setNews] = useState<News[]>([]);
+    const [games, setGames] = useState<GamesList[]>([]);
 
+    const { auth, setAuth, cookies, setCookie } = useAuth()
 
     const getNews = async () => {
         try {
@@ -36,6 +43,18 @@ const useLanding = () => {
         }
     }
 
+    const getGames = async () => {
+        try {
+            const response = await api.get('/games/gamesReturn')
+            if (response?.status === 200) {
+                setGames(response?.data)
+            }
+        } catch (error) {
+            toast.error('Erro ao buscar jogos')
+            // console.error(error)
+        }
+    }
+
     const handleLogin = async () => {
         try {
             const credentials = {
@@ -45,13 +64,15 @@ const useLanding = () => {
 
             const response = await api.post('/auth/login', credentials)
             if (response?.status === 200) {
+                setAuth(response?.data)
                 const userIdJSON = response?.data?.id;
                 const token = response?.data?.Token;
+                setCookie('TokenAuth', token, { path: '/' })
+                setCookie('idUser', userIdJSON, { path: '/' })
 
-                // window.localStorage.setItem('userId', userIdJSON)
-                // window.sessionStorage.setItem('sessionToken', token)
+                const hasNickname = response?.data?.hasNickname
 
-                if (response?.data?.username) {
+                if (hasNickname) {
                     window.location.href = '/dashboard'
                 } else {
                     window.location.href = '/welcome'
@@ -92,6 +113,7 @@ const useLanding = () => {
 
     useEffect(() => {
         getNews()
+        getGames()
     }, [])
 
     // MODAL
@@ -121,6 +143,9 @@ const useLanding = () => {
     return {
         // Data
         news,
+        games,
+        cookies,
+        auth,
 
         // FORMS
         values,

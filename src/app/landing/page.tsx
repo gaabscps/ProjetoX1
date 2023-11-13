@@ -59,7 +59,7 @@ export default function Landing() {
       <VideoSection setOpenRegister={setOpenRegister} />
       {/* <StatsSection /> */}
       <hr className='statsLine' />
-      <GamesSection />
+      <GamesSection games={landing.games} />
       <FeaturesSection />
       <Body marginBottom='130px' className='d-flex justify-content-center'>
         <Button
@@ -76,7 +76,7 @@ export default function Landing() {
           modalHeaderBg='#0e0e0f'
           modalHeader={<h5 className='h5-500 text-center plr-2'>  {landing?.news[selectedNewsIndex]?.tittle || ''}</h5>}
           setOpen={setIsModalOpen} />
-        <LastNewsSection setOpen={setIsModalOpen} news={landing.news} setIsModalOpen={setIsModalOpen} setSelectedNewsIndex={setSelectedNewsIndex} />
+        <LastNewsSection news={landing.news} setIsModalOpen={setIsModalOpen} setSelectedNewsIndex={setSelectedNewsIndex} />
       </>
       <LandingPageFaq />
       <Footer setOpenTerms={setOpenTerms} />

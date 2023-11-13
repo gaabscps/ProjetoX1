@@ -6,12 +6,14 @@ import Link from 'next/link';
 import arrowCard from '@/assets/svg/arrowCard.svg';
 import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
 import FastGameInputBody from '@/components/FastGameInputBody';
+import { Dashboard } from '@/types/Dashboard';
 
 interface ArenaSectionProps {
   setOpenFastGame: (value: boolean) => void;
+  profile: Dashboard | undefined;
 }
 
-export default function ArenaSection({ setOpenFastGame }: ArenaSectionProps) {
+export default function ArenaSection({ setOpenFastGame, profile }: ArenaSectionProps) {
   const isTablet = useTabletHook();
 
   return (

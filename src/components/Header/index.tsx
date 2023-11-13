@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '../Button';
 import Notifications from '@/assets/svg/notifications.svg';
 import NotificationsActive from '@/assets/svg/notificationActive.svg';
@@ -11,6 +13,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import DropdownMenu from '../DropdownMenu';
 import { useMediaQuery } from 'react-responsive';
+import { Dashboard } from '@/types/Dashboard';
+import { maskBRL } from '@/utils/mask/maskMoney';
 
 
 export function Header() {
@@ -22,6 +26,9 @@ export function Header() {
   const handleNotification = () => {
     setOpenDropdown(!openDropdown);
   };
+
+  const profile: Dashboard | null = typeof window !== 'undefined' && window.sessionStorage.getItem('profile') ? JSON.parse(window.sessionStorage.getItem('profile') || '') : null;
+  const balance = maskBRL(profile?.Profile.balance || '0')
 
   return (
     <>
@@ -48,7 +55,7 @@ export function Header() {
             <div className="d-flex align-items-center header-share ">
               <div className="tag-container">
                 <p className="balance">Saldo:</p>
-                <p>R$100,00</p>
+                <p>{balance}</p>
               </div>
               <NationalityTag />
               <div className="d-flex align-items-center header-icons">
