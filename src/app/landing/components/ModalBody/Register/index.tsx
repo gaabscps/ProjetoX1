@@ -116,7 +116,7 @@ export function ModalRegisterBody({ handleLoginButton, setOpenTerms }: ModalRegi
         </div>
         <div style={{ width: '40%', borderBottom: '1.5px solid #5F5C6B' }} />
       </div>
-      <div className="d-flex w-100 justify-content-between modal-socialMedia">
+      {/* <div className="d-flex w-100 justify-content-between modal-socialMedia">
         <Card
           theme="outline"
           width="80px"
@@ -167,7 +167,7 @@ export function ModalRegisterBody({ handleLoginButton, setOpenTerms }: ModalRegi
             </div>
           }
         />
-      </div>
+      </div> */}
       <div>
         <span>Já tem uma conta? </span>
         <span

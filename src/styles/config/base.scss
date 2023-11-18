@@ -7,7 +7,8 @@
 /* Track */
 ::-webkit-scrollbar-track {
   background: var(--color-black-2);
-  border-radius: 8px;
+  // border-radius: 8px;
+  border: none;
 }
 
 /* Handle */

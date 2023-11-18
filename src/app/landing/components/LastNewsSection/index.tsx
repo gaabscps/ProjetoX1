@@ -3,6 +3,7 @@ import { Carrossel } from '@/components/Carousel';
 import { News } from '@/types/LandingNews';
 import { Element } from 'react-scroll';
 import Image from 'next/image';
+import { formatDateISOtoBR } from '@/utils/mask/maskIsoDate';
 
 
 interface LastNewsProps {
@@ -30,7 +31,7 @@ export function LastNewsSection({ news, setSelectedNewsIndex, setIsModalOpen }: 
           <Image width={231} height={126} style={{ objectFit: 'cover' }} src={item.photoUrl} alt={''} />
         </div>
         <div className="d-flex flex-column bannerCardText">
-          <span className="text-small-400">{item.createdAt}</span>
+          <span className="text-small-400">{formatDateISOtoBR(item.createdAt)}</span>
           <p className="line-height-150 text-normal-400">{item.tittle}</p>
         </div>
       </div>

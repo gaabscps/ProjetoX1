@@ -2,7 +2,7 @@ import useForm from '@/hooks/useForm';
 import api from '@/services/api';
 import { News } from '@/types/LandingNews';
 import { unmaskCpf } from '@/utils/mask/maskCpf';
-import { unmaskDate } from '@/utils/mask/maskDate';
+import { unmaskDate } from '@/utils/mask/maskBirthday';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useCookies } from 'react-cookie';
