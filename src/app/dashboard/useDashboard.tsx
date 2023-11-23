@@ -8,12 +8,14 @@ import { toast } from 'react-toastify';
 import { Dashboard, Location } from '@/types/Dashboard';
 import { LocationService } from '@/types/LocationService';
 import { useHeader } from '@/components/Header/useHeader';
+import { GamesList } from '@/types/GamesList';
 
 const useDashboard = () => {
     const [openAddGame, setOpenAddGame] = useState(false)
     const [openFastGame, setOpenFastGame] = useState(false)
     const [openSearchingFastGame, setOpenSearchingFastGame] = useState(false)
     const [profile, setProfile] = useState<Dashboard>()
+    const [games, setGames] = useState<GamesList[]>([]);
     const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
 
     const { logOut } = useHeader();
@@ -33,7 +35,7 @@ const useDashboard = () => {
             }
         } catch (error) {
             setTimeout(() => {
-                toast.error('Erro ao buscar notícias, tente entrar novamente')
+                toast.error('Erro ao buscar seu perfil, tente entrar novamente')
             }, 1000)
             logOut()
         }
@@ -64,6 +66,18 @@ const useDashboard = () => {
         }
     };
 
+    const getGames = async () => {
+        try {
+            const response = await api.get('/games/gamesReturn', {
+            })
+            if (response?.status === 200) {
+                setGames(response?.data)
+            }
+        } catch (error) {
+            console.error('Erro ao buscar lista de jogos')
+        }
+    }
+
 
     // MODAL
     const handleSearchingFastGame = () => {
@@ -74,7 +88,7 @@ const useDashboard = () => {
     function handleModalBody() {
 
         if (openAddGame) {
-            return <ModalAddGameBody setOpenAddGame={setOpenAddGame} />
+            return <ModalAddGameBody games={games} setOpenAddGame={setOpenAddGame} />
         }
         if (openFastGame) {
             return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
@@ -85,8 +99,29 @@ const useDashboard = () => {
         return null
     }
 
+    const handleRemoveGame = async (gameId: string) => {
+        try {
+            const response = await api.delete('/dashboard/myProfile/removeGame', {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                },
+                data: {
+                    gameId
+                }
+            })
+            if (response?.status === 200) {
+                toast.success('Jogo removido com sucesso')
+                getProfile()
+            }
+        } catch (error) {
+            toast.error('Erro ao remover jogo')
+        }
+    }
+
     useEffect(() => {
         getProfile();
+        getGames();
     }, [])
 
     const modal = {
@@ -103,6 +138,7 @@ const useDashboard = () => {
         modal,
         profile,
         getProfile,
+        handleRemoveGame,
     }
 };
 

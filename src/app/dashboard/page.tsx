@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Dashboard() {
 
-  const { modal, profile } = useDashboard();
+  const { modal, profile, handleRemoveGame } = useDashboard();
   const { logOut } = useHeader();
   const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = modal;
 
@@ -37,7 +37,7 @@ export default function Dashboard() {
       />
       <div className="pageBody">
         <UserSection profile={profile} />
-        <MyGamesSection profile={profile} setOpenAddGame={setOpenAddGame} />
+        <MyGamesSection handleRemoveGame={handleRemoveGame} profile={profile} setOpenAddGame={setOpenAddGame} />
         <Body marginBottom="60px">
           <hr style={{ background: '#3E3B3F' }} className="hr-line" />
         </Body>

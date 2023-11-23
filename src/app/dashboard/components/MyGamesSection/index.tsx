@@ -12,10 +12,11 @@ import { Dashboard } from '@/types/Dashboard'
 
 interface MyGamesSectionProps {
   setOpenAddGame: (value: boolean) => void
+  handleRemoveGame?: (gameId: string) => void
   profile: Dashboard | undefined
 }
 
-export default function MyGamesSection({ setOpenAddGame, profile }: MyGamesSectionProps) {
+export default function MyGamesSection({ setOpenAddGame, handleRemoveGame, profile }: MyGamesSectionProps) {
   const [openDropdown, setOpenDropdown] = useState<number | null>(null)
 
   const data = profile?.Profile?.games || []
@@ -45,6 +46,7 @@ export default function MyGamesSection({ setOpenAddGame, profile }: MyGamesSecti
         />
         {data.map((item, index) => (
           <GameCard
+            handleRemoveGame={handleRemoveGame}
             setOpenAddGame={setOpenAddGame}
             key={index}
             data={item}

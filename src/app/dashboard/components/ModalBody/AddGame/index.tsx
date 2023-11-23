@@ -1,76 +1,24 @@
 import Accordion from '@/components/Accordion'
 import { Button } from '@/components/Button'
 import RadioGroup from '@/components/RadioGroup'
+import { GamesList } from '@/types/GamesList'
 import { GamesRank } from '@/types/GamesRank'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import useAddGame from './useAddGame'
+import useDashboard from '@/app/dashboard/useDashboard'
 
 interface ModalAddGameBodyProps {
   setOpenAddGame: (value: boolean) => void
+  games: GamesList[]
 }
 
-export default function ModalAddGameBody({ setOpenAddGame }: ModalAddGameBodyProps) {
-  const [selectedValues, setSelectedValues] = useState<{ [key: string]: any }>({})
+export default function ModalAddGameBody({ setOpenAddGame, games }: ModalAddGameBodyProps) {
 
-  const handleOptionChange = (game: any, value: any) => {
-    setSelectedValues((prevValues) => ({
-      ...prevValues,
-      [game]: value,
-    }))
-  }
+  const { selectedValues, gamesWithRanks, handleOptionChange, handleAddGame, } = useAddGame(games)
+  const { profile } = useDashboard()
 
-  const games: GamesRank[] = [
-    {
-      name: 'League of Legends',
-      rank: [
-        {
-          value: 'Iniciante',
-          label: 'Iniciante',
-        },
-        {
-          value: 'Intermediário',
-          label: 'Intermediário',
-        },
-        {
-          value: 'Expert',
-          label: 'Expert',
-        },
-      ],
-    },
-    {
-      name: 'Valorant',
-      rank: [
-        {
-          value: 'Iniciante',
-          label: 'Iniciante',
-        },
-        {
-          value: 'Intermediário',
-          label: 'Intermediário',
-        },
-        {
-          value: 'Expert',
-          label: 'Expert',
-        },
-      ],
-    },
-    {
-      name: 'CS:GO',
-      rank: [
-        {
-          value: 'Iniciante',
-          label: 'Iniciante',
-        },
-        {
-          value: 'Intermediário',
-          label: 'Intermediário',
-        },
-        {
-          value: 'Expert',
-          label: 'Expert',
-        },
-      ],
-    },
-  ]
+  const profileGames = profile?.Profile?.games
+  const gamesNotAdded = gamesWithRanks.filter((game) => !profileGames?.find((item) => item.gameId === game._id))
 
   return (
     <>
@@ -85,7 +33,7 @@ export default function ModalAddGameBody({ setOpenAddGame }: ModalAddGameBodyPro
             </span>
           </div>
           <div>
-            {games.map((game) => (
+            {gamesNotAdded.map((game) => (
               <Accordion
                 key={game.name}
                 style={{ marginBottom: '20px' }}
@@ -94,9 +42,10 @@ export default function ModalAddGameBody({ setOpenAddGame }: ModalAddGameBodyPro
                   <div className='addGameContent'>
                     <p className='rankTitle'>Rank</p>
                     <RadioGroup
+                      name={game.name}
                       options={game.rank}
-                      selectedValue={selectedValues[game.name] || ''}
-                      setSelectedValue={(value) => handleOptionChange(game.name, value)}
+                      selectedValue={selectedValues.find((item) => item.gameId === game._id)?.level || ''}
+                      setSelectedValue={(value) => handleOptionChange(game._id, value)}
                     />
                   </div>
                 }
@@ -113,7 +62,7 @@ export default function ModalAddGameBody({ setOpenAddGame }: ModalAddGameBodyPro
             disabled={Object.keys(selectedValues).length === 0}
             theme='primary'
             onClick={() => {
-              console.log(selectedValues)
+              handleAddGame()
               setOpenAddGame(false)
             }}
             width='100%'
