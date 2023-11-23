@@ -7,11 +7,15 @@ import MyGamesSection from './components/MyGamesSection';
 import ArenaSection from './components/ArenaSection';
 import { Header } from '@/components/Header';
 import useDashboard from './useDashboard';
+import { useHeader } from '@/components/Header/useHeader';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Dashboard() {
 
   const { modal, profile } = useDashboard();
+  const { logOut } = useHeader();
   const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = modal;
 
   return (
@@ -29,7 +33,6 @@ export default function Dashboard() {
         modalBody={handleModalBody()}
         modalHeaderBg={null}
       />
-
       <Header
       />
       <div className="pageBody">
@@ -40,6 +43,16 @@ export default function Dashboard() {
         </Body>
         <ArenaSection profile={profile} setOpenFastGame={setOpenFastGame} />
       </div>
+      <ToastContainer theme='dark' toastStyle={{
+        background: '#29272A',
+        fontSize: '14px',
+        boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
+      }}
+        progressStyle={{
+          background: '#963BFF',
+        }}
+        autoClose={10000}
+      />
     </>
   );
 }

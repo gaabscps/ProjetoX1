@@ -32,7 +32,7 @@ export default function UserSection({ profile }: UserSectionProps) {
 
   const dataSet: CustomChartDataset = {
     // Exp ativo, exp inativo, tamanho tag
-    data: [80, 10, 10],
+    data: [0, 90, 10],
     backgroundColor: ['#963BFF', 'transparent', 'transparent'],
     hoverBackgroundColor: ['#963BFF', 'transparent', 'transparent'],
     borderWidth: 0,
@@ -73,7 +73,7 @@ export default function UserSection({ profile }: UserSectionProps) {
             className={`levelStats ${onHover ? 'levelStatsHover' : 'levelStatsOff'
               }`}
           >
-            <p style={{ marginBottom: '5px', marginTop: '3px' }}>70%</p>
+            <p style={{ marginBottom: '5px', marginTop: '3px' }}>0%</p>
             <p>{profile?.Profile?.xp}/10.000 </p>
           </div>
 
@@ -85,18 +85,18 @@ export default function UserSection({ profile }: UserSectionProps) {
               zIndex: '-1',
             }}
           >
-            <img className="profilePicture" src={profile?.Profile.urlPhoto || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} alt="profile" />
+            <img className="profilePicture" src={profile?.Profile?.urlPhoto || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} alt="profile" />
           </div>
         </div>
         <div className="ml-1 w-100 user-stats-container">
           <div className="nationalityTag-container">
             <p style={{ marginBottom: '10px' }}>{profile?.Profile?.nickname || '--'}</p>
-            {(profile?.Location?.CountryFlag && profile.Location.Country) &&
+            {(profile?.Location?.CountryFlag && profile?.Location.Country) &&
               <div className="nationalityTag">
                 <>
                   <img style={{
-                    maxWidth: '20px',
-                    maxHeight: '20px',
+                    maxWidth: '15px',
+                    maxHeight: '15px',
                     marginRight: '5px',
                   }} src={profile?.Location?.CountryFlag || ''} alt="country flag" />
                   <p className="text-extra-small-400">{profile?.Location?.Country}</p>

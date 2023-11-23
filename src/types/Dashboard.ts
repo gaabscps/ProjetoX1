@@ -17,7 +17,7 @@ interface Profile {
   __v: number
 }
 
-interface Location {
+export interface Location {
   Country: string
   CountryFlag: string
 }
