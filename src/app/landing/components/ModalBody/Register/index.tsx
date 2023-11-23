@@ -94,6 +94,14 @@ export function ModalRegisterBody({ handleLoginButton, setOpenTerms }: ModalRegi
           error={landing.errorMessage.birthDate}
           onBlur={(e) => landing.handleBlur(e)}
         />
+        <Input
+          value={landing.values.promoCode}
+          onChange={(e) => landing.handleChange(e)}
+          placeholder="Código Promocional (opcional)"
+          name="promoCode"
+          error={landing.errorMessage.promoCode}
+          onBlur={(e) => landing.handleBlur(e)}
+        />
         <p className="registerTerms line-height-150 color-black-7">
           Ao criar uma conta, você concorda com os nossos{' '}
           <a onClick={() => setOpenTerms(true)} className='action-icon' style={{ color: 'white' }}>Termos de Uso</a> e{' '}

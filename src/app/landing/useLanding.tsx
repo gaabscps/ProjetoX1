@@ -19,6 +19,7 @@ const useLanding = () => {
         password: '',
         confirmPassword: '',
         birthDate: '',
+        promoCode: '',
     });
 
     const [openLogin, setOpenLogin] = useState(false)
@@ -95,7 +96,8 @@ const useLanding = () => {
                 cpf: unmaskCpf(values.cpf),
                 password: values.password,
                 dateBirthday: unmaskDate(values.birthDate),
-                username: ''
+                username: '',
+                promoCode: values.promoCode
             }
 
             const response = await api.post('/auth/register', user)
