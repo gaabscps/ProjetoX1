@@ -8,37 +8,15 @@ import ConfigActive from '@/assets/svg/config-active.svg';
 import Image from 'next/image';
 import logo from '@/assets/svg/X1_logo_vertical_branco 1.svg';
 import NationalityTag from '../NationalityTag';
-import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
 import Link from 'next/link';
-import { useState } from 'react';
-import { Dashboard } from '@/types/Dashboard';
-import { maskBRL } from '@/utils/mask/maskMoney';
 import { DropdownNotification } from './components/DropdownNotification';
 import { DropdownConfig } from './components/DropdownConfig';
+import { useHeader } from './useHeader';
 
 
 export function Header() {
-  const mobile = useMobileHook();
 
-  const [openNotification, setOpenNotification] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
-
-  const handleNotification = () => {
-    if (openSettings) {
-      setOpenSettings(!openSettings);
-    }
-    setOpenNotification(!openNotification);
-  };
-
-  const handleSettings = () => {
-    if (openNotification) {
-      setOpenNotification(!openNotification);
-    }
-    setOpenSettings(!openSettings);
-  };
-
-  const profile: Dashboard | null = typeof window !== 'undefined' && window.sessionStorage.getItem('profile') ? JSON.parse(window.sessionStorage.getItem('profile') || '') : null;
-  const balance = maskBRL(profile?.Profile.balance || '0')
+  const { balance, handleNotification, handleSettings, logOut, mobile, openNotification, openSettings, profile } = useHeader();
 
   return (
     <>
@@ -84,7 +62,7 @@ export function Header() {
                   src={openSettings ? ConfigActive : Config}
                   alt="config icon"
                 />
-                <DropdownConfig openSettings={openSettings} />
+                <DropdownConfig logout={logOut} openSettings={openSettings} />
               </div>
             </div>
           </div>
