@@ -1,5 +1,5 @@
-import DropdownMenu from "@/components/DropdownMenu"
-import { useMediaQuery } from "react-responsive";
+import DropdownMenu from '@/components/DropdownMenu'
+import { useMediaQuery } from 'react-responsive';
 
 interface DropdownNotificationProps {
     openNotification: boolean;

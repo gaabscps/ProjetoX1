@@ -1,6 +1,6 @@
-import DropdownMenu from "@/components/DropdownMenu"
-import { useMediaQuery } from "react-responsive";
-import Image from "next/image";
+import DropdownMenu from '@/components/DropdownMenu'
+import { useMediaQuery } from 'react-responsive';
+import Image from 'next/image';
 import arrowCard from '@/assets/svg/arrowCard.svg';
 import lupa from '@/assets/svg/lupa.svg';
 
@@ -44,7 +44,7 @@ export const DropdownConfig: React.FC<DropdownConfigProps> = ({ openSettings }) 
 
     return (
         <DropdownMenu
-            header={<div style={{ padding: "15px 10px" }} className="text-extra-small-400">Configurações</div>}
+            header={<div style={{ padding: '15px 10px' }} className="text-extra-small-400">Configurações</div>}
             list={false}
             overflow={false}
             open={openSettings}
