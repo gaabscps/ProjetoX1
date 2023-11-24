@@ -13,9 +13,10 @@ interface UseFormReturn {
     values: FormValues;
     errors: boolean;
     errorMessage: ErrorMessages;
-    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    handleChange: (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => void;
     handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
     setErrors: React.Dispatch<React.SetStateAction<boolean>>;
+    setValues: React.Dispatch<React.SetStateAction<FormValues>>;
 }
 
 const useForm = (initialValues: FormValues): UseFormReturn => {
@@ -29,7 +30,7 @@ const useForm = (initialValues: FormValues): UseFormReturn => {
     );
 
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>): void => {
         const { name, value } = event.target;
 
         setValues(prevValues => ({
@@ -59,6 +60,7 @@ const useForm = (initialValues: FormValues): UseFormReturn => {
         handleChange,
         handleBlur,
         setErrors,
+        setValues,
     };
 };
 

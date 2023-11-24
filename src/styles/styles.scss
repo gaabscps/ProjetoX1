@@ -29,6 +29,10 @@
   border-radius: 500px;
 }
 
+.bet-classactive {
+  border-color: var(--color-primary-2) !important;
+}
+
 @media screen and (max-width: 1110px) {
   .pageBody {
     // padding-top: 60px;

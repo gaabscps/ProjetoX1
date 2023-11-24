@@ -6,13 +6,21 @@ import { GamesRank } from '@/types/GamesRank'
 import { useEffect, useState } from 'react'
 import useAddGame from './useAddGame'
 import useDashboard from '@/app/dashboard/useDashboard'
+import alert from '../../../../../assets/svg/alert.svg'
+import Image from 'next/image'
 
 interface ModalAddGameBodyProps {
   setOpenAddGame: (value: boolean) => void
   games: GamesList[]
+  addGamesAppend?: {
+    selectedValues: { gameId: string; level: string }[]
+    gamesWithRanks: GamesList[]
+    handleOptionChange: (gameId: string, level: string) => void
+    handleAddGame: () => void
+  }
 }
 
-export default function ModalAddGameBody({ setOpenAddGame, games }: ModalAddGameBodyProps) {
+export default function ModalAddGameBody({ setOpenAddGame, games, addGamesAppend }: ModalAddGameBodyProps) {
 
   const { selectedValues, gamesWithRanks, handleOptionChange, handleAddGame, } = useAddGame(games)
   const { profile } = useDashboard()
@@ -31,6 +39,12 @@ export default function ModalAddGameBody({ setOpenAddGame, games }: ModalAddGame
             <span className='color-black-6'>
               Selecione o(s) jogo(s) que você quer adicionar e depois o rank
             </span>
+          </div>
+          <div className='text-extra-small-500 d-flex align-items-center flex-gap-1' style={{ padding: '10px 20px', background: 'rgba(66, 147, 221, 0.10)', borderRadius: '5px', marginBottom: '40px' }}>
+            <Image src={alert} alt='alert' width={15} height={15} />
+            <div style={{ color: '#4293DD' }}>
+              O nosso sistema irá reajustar o rank dos seus jogos automaticamente depois de 10 partidas.
+            </div>
           </div>
           <div>
             {gamesNotAdded.map((game) => (

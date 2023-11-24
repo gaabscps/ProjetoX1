@@ -1,4 +1,3 @@
-import useDashboard from '@/app/dashboard/useDashboard';
 import api from '@/services/api';
 import { GamesList } from '@/types/GamesList';
 import { useState } from 'react';
@@ -10,8 +9,6 @@ import { toast } from 'react-toastify';
 const useAddGame = (games: GamesList[]) => {
     const [selectedValues, setSelectedValues] = useState<{ gameId: string; level: string }[]>([]);
     const [cookies, setCookies] = useCookies(['TokenAuth', 'idUser']);
-
-    const { getProfile } = useDashboard();
 
     const handleOptionChange = (gameId: string, level: string) => {
         setSelectedValues((prevValues) => {
@@ -40,7 +37,8 @@ const useAddGame = (games: GamesList[]) => {
 
             if (response?.status === 200) {
                 toast.success('Jogo adicionado com sucesso')
-                getProfile()
+                // refrescar a página
+                window.location.href = '/dashboard'
             }
         } catch (error) {
             toast.error('Erro ao adicionar jogo')

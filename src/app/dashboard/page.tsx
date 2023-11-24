@@ -10,6 +10,7 @@ import useDashboard from './useDashboard';
 import { useHeader } from '@/components/Header/useHeader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
 
 
 export default function Dashboard() {
@@ -18,6 +19,7 @@ export default function Dashboard() {
   const { logOut } = useHeader();
   const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = modal;
 
+  
   return (
     <>
       <Modal

@@ -1,5 +1,6 @@
 import { Button } from '@/components/Button';
 import Timer from '@/components/Timer';
+import { maskBRL } from '@/utils/mask/maskMoney';
 
 interface ModalSearchingFastGameBodyProps {
   setOpenSearchingFastGame: (value: boolean) => void;
@@ -8,6 +9,8 @@ interface ModalSearchingFastGameBodyProps {
 export default function ModalSearchingFastGameBody({
   setOpenSearchingFastGame,
 }: ModalSearchingFastGameBodyProps) {
+
+  const game = JSON.parse(sessionStorage.getItem('fastGame') || '{}');
 
   return (
     <>
@@ -19,17 +22,17 @@ export default function ModalSearchingFastGameBody({
         <div className="mb-2">
           <div className="searchingFastGameDetails d-flex align-items-center justify-content-between">
             <p className="color-black-7">Jogo a ser jogado</p>
-            <p>League of Legends</p>
+            <p>{game.game}</p>
           </div>
-
+          {/* 
           <div className="searchingFastGameDetails d-flex align-items-center justify-content-between">
             <p className="color-black-7">Nível do oponente</p>
             <p>Profissional</p>
-          </div>
+          </div> */}
 
           <div className="searchingFastGameDetails d-flex align-items-center justify-content-between">
             <p className="color-black-7">Aposta:</p>
-            <p>R$ 100.000,00</p>
+            <p>{maskBRL(game.bet)}</p>
           </div>
         </div>
 

@@ -24,10 +24,10 @@ export const useHeader = () => {
     };
 
     const logOut = () => {
-        document.cookie.split(";").forEach((c) => {
+        document.cookie.split(';').forEach((c) => {
             document.cookie = c
-                .replace(/^ +/, "")
-                .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                .replace(/^ +/, '')
+                .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
         }
         );
         window.location.href = '/';

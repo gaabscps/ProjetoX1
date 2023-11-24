@@ -9,7 +9,7 @@ interface GameCardProps {
   openDropdown: boolean
   data: {
     gameId: string;
-    photoUrl: string;
+    urlPhoto: string;
     gameName: string;
     matchPlayed: string;
     matchWin: string;
@@ -21,7 +21,7 @@ interface GameCardProps {
   handleRemoveGame?: (gameId: string) => void
 }
 
-export default function GameCard({ openDropdown, data, setOpenAddGame, setOpenDropdown, handleRemoveGame }: GameCardProps) {
+export default function GameCard({ openDropdown, data, setOpenDropdown, handleRemoveGame }: GameCardProps) {
   return (
     <Card
       borderRadius='5px'
@@ -36,7 +36,7 @@ export default function GameCard({ openDropdown, data, setOpenAddGame, setOpenDr
               maxWidth: '90px',
               maxHeight: '40px',
             }}
-            src={data.photoUrl}
+            src={data.urlPhoto}
             alt='valorant logo'
             className='my-games-image'
           />
@@ -63,6 +63,7 @@ export default function GameCard({ openDropdown, data, setOpenAddGame, setOpenDr
             alt='valorant logo'
           />
           <DropdownMenu
+            onMouseLeave={() => setOpenDropdown(false)}
             open={openDropdown}
             top={32}
             right={9}
@@ -76,7 +77,7 @@ export default function GameCard({ openDropdown, data, setOpenAddGame, setOpenDr
               {
                 icon: remover,
                 content: 'Remover',
-                onClick: () => handleRemoveGame && handleRemoveGame(data.gameId)
+                onClick: () => { handleRemoveGame && handleRemoveGame(data.gameId); setOpenDropdown(false) }
               },
             ]}
           />
