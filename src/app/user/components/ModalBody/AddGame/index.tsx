@@ -94,6 +94,7 @@ export default function ModalAddGameBody({ setOpenAddGame }: ModalAddGameBodyPro
                   <div className='addGameContent'>
                     <p className='rankTitle'>Rank</p>
                     <RadioGroup
+                      name={game.name}
                       options={game.rank}
                       selectedValue={selectedValues[game.name] || ''}
                       setSelectedValue={(value) => handleOptionChange(game.name, value)}

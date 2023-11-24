@@ -8,48 +8,18 @@ import myGames from '@/assets/svg/myGames.svg'
 import Image from 'next/image'
 import { useState } from 'react'
 import GameCard from './GameCard'
+import { Dashboard } from '@/types/Dashboard'
 
 interface MyGamesSectionProps {
   setOpenAddGame: (value: boolean) => void
+  handleRemoveGame?: (gameId: string) => void
+  profile: Dashboard | undefined
 }
 
-export default function MyGamesSection({ setOpenAddGame }: MyGamesSectionProps) {
+export default function MyGamesSection({ setOpenAddGame, handleRemoveGame, profile }: MyGamesSectionProps) {
   const [openDropdown, setOpenDropdown] = useState<number | null>(null)
 
-  const data = [
-    {
-      nome: 'Valorant',
-      logo: games1,
-      rank: 'Profissional',
-      jr: 10,
-      v: 1,
-      d: 0,
-    },
-    {
-      nome: 'CS:GO',
-      logo: games2,
-      rank: 'Intermediário',
-      jr: 10,
-      v: 1,
-      d: 0,
-    },
-    {
-      nome: 'League of Legends',
-      logo: games3,
-      rank: 'Iniciante',
-      jr: 10,
-      v: 1,
-      d: 0,
-    },
-    {
-      nome: 'Fortnite',
-      logo: games4,
-      rank: 'Iniciante',
-      jr: 10,
-      v: 1,
-      d: 0,
-    },
-  ]
+  const data = profile?.Profile?.games || []
 
   return (
     <Body marginBottom='60px'>
@@ -76,6 +46,7 @@ export default function MyGamesSection({ setOpenAddGame }: MyGamesSectionProps) 
         />
         {data.map((item, index) => (
           <GameCard
+            handleRemoveGame={handleRemoveGame}
             setOpenAddGame={setOpenAddGame}
             key={index}
             data={item}

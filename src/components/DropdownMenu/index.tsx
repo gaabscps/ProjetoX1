@@ -11,6 +11,8 @@ interface DropdownMenuProps {
   background?: string
   open?: boolean
   list?: boolean
+  overflow?: boolean
+  onMouseLeave?: () => void
   tabs: {
     icon?: string
     content: string | JSX.Element
@@ -25,13 +27,16 @@ export default function DropdownMenu({
   right,
   bottom,
   width,
-  background = 'rgba(255, 255, 255, 0.05)',
+  background = 'rgba(255, 255, 255, 0.20)',
   open,
   list = true,
+  overflow = true,
   tabs,
+  onMouseLeave,
 }: DropdownMenuProps) {
   return (
     <div
+      onMouseLeave={onMouseLeave}
       style={{
         top: top,
         left: left,
@@ -44,7 +49,7 @@ export default function DropdownMenu({
     >
       {header && <div className='d-flex align-items-center w-100'>{header}</div>}
       {!list && <hr className='h-100 w-100' style={{ borderBottom: '1.5px solid #525054' }} />}
-      <div className='dropdown-item-content' style={{ maxHeight: '220px', overflow: 'auto' }}>
+      <div className='dropdown-item-content' style={overflow ? { maxHeight: '220px', overflow: 'auto' } : {}}>
         {tabs.map((item, index) => (
           <div key={Math.random()}>
             <div

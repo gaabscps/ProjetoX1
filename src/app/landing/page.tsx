@@ -17,10 +17,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ModalLoginBody } from './components/ModalBody/Login'
 import { ModalRegisterBody } from './components/ModalBody/Register'
 import useLanding from './useLanding'
+import LastNewsModalBody from './components/LastNewsSection/ModalBody'
+import { TermsConditionBody } from '@/components/ModalBody/TermsCondition'
 
 export default function Landing() {
   const landing = useLanding();
-  const { openLogin, openRegister, setOpenLogin, setOpenRegister } = landing.modal;
+  const { openLogin, openRegister, isModalOpen, selectedNewsIndex, setOpenLogin, setOpenRegister, setIsModalOpen, setSelectedNewsIndex, openTerms, setOpenTerms } = landing.modal;
+
+
 
   return (
     <>
@@ -33,7 +37,7 @@ export default function Landing() {
         }
         modalBody={openLogin ? (
           <ModalLoginBody handleRegisterButton={landing.handleRegisterButton} />) : (
-          <ModalRegisterBody handleLoginButton={landing.handleLoginButton} />
+          <ModalRegisterBody setOpenTerms={setOpenTerms} handleLoginButton={landing.handleLoginButton} />
         )
         }
         modalHeader={
@@ -45,12 +49,17 @@ export default function Landing() {
         }
         modalHeaderBg={openRegister ? '#3E3B3F' : null}
       />
+      <Modal
+        modalHeader={<h5 className='h5-500'>Termos e Condições</h5>}
+        modalHeaderBg={'#0e0e0f'}
+        setOpen={setOpenTerms}
+        modalBody={<TermsConditionBody />}
+        open={openTerms} />
       <Header setOpenRegister={setOpenRegister} setOpenLogin={setOpenLogin} />
       <VideoSection setOpenRegister={setOpenRegister} />
-      <StatsSection />
+      {/* <StatsSection /> */}
       <hr className='statsLine' />
-      <LastNewsSection />
-      <GamesSection />
+      <GamesSection games={landing.games} />
       <FeaturesSection />
       <Body marginBottom='130px' className='d-flex justify-content-center'>
         <Button
@@ -60,9 +69,17 @@ export default function Landing() {
         />
       </Body>
       <HowToPlay />
-
+      <>
+        <Modal
+          open={isModalOpen}
+          modalBody={<LastNewsModalBody news={landing.news[selectedNewsIndex]} />}
+          modalHeaderBg='#0e0e0f'
+          modalHeader={<h5 className='h5-500 text-center plr-2'>  {landing?.news[selectedNewsIndex]?.tittle || ''}</h5>}
+          setOpen={setIsModalOpen} />
+        <LastNewsSection news={landing.news} setIsModalOpen={setIsModalOpen} setSelectedNewsIndex={setSelectedNewsIndex} />
+      </>
       <LandingPageFaq />
-      <Footer />
+      <Footer setOpenTerms={setOpenTerms} />
       <ToastContainer theme='dark' toastStyle={{
         background: '#29272A',
         fontSize: '14px',

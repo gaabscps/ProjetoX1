@@ -1,4 +1,4 @@
-@import "../components/ModalBody/styles/styles.module.scss";
+@import '../components/ModalBody/styles/styles.module.scss';
 
 .user-section-container {
   display: flex;
@@ -118,7 +118,9 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 60px;
+  min-width: 60px;
+  width: fit-content;
+  padding: 0 5px;
   height: 21px;
   background: #3e3b3f;
   border-radius: 100px;
@@ -128,7 +130,7 @@
 .home-user-stats {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
   width: 100%;
   gap: 10px;
 }

@@ -7,15 +7,19 @@ import MyGamesSection from './components/MyGamesSection';
 import ArenaSection from './components/ArenaSection';
 import { Header } from '@/components/Header';
 import useDashboard from './useDashboard';
+import { useHeader } from '@/components/Header/useHeader';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
 
 
 export default function Dashboard() {
 
-  const dashboard = useDashboard();
-  const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = dashboard.modal;
+  const { modal, profile, handleRemoveGame } = useDashboard();
+  const { logOut } = useHeader();
+  const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = modal;
 
-
-
+  
   return (
     <>
       <Modal
@@ -31,17 +35,26 @@ export default function Dashboard() {
         modalBody={handleModalBody()}
         modalHeaderBg={null}
       />
-
       <Header
       />
       <div className="pageBody">
-        <UserSection />
-        <MyGamesSection setOpenAddGame={setOpenAddGame} />
+        <UserSection profile={profile} />
+        <MyGamesSection handleRemoveGame={handleRemoveGame} profile={profile} setOpenAddGame={setOpenAddGame} />
         <Body marginBottom="60px">
           <hr style={{ background: '#3E3B3F' }} className="hr-line" />
         </Body>
-        <ArenaSection setOpenFastGame={setOpenFastGame} />
+        <ArenaSection profile={profile} setOpenFastGame={setOpenFastGame} />
       </div>
+      <ToastContainer theme='dark' toastStyle={{
+        background: '#29272A',
+        fontSize: '14px',
+        boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
+      }}
+        progressStyle={{
+          background: '#963BFF',
+        }}
+        autoClose={10000}
+      />
     </>
   );
 }
