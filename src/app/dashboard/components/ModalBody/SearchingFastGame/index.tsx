@@ -47,7 +47,7 @@ export default function ModalSearchingFastGameBody({
           className="d-flex justify-content-center"
         >
           <p className="color-black-7">Tempo estimado:&nbsp;</p>
-          <p>2:13</p>
+          <p>{game.expectedTime}</p>
         </div>
 
         <Button
