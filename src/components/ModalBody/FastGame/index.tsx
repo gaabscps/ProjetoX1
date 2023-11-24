@@ -55,7 +55,7 @@ export default function ModalFastGameBody({ handleSearchingFastGame }: ModalFast
     try {
       const response = await api.post('/arena/enterQueue', {
         playerId: cookies.idUser,
-        game: 'EAFC 24',
+        game: values.game,
         value: unmaskBRL(values.bet),
       }, {
         headers: {
