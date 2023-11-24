@@ -68,7 +68,7 @@ export default function UserArenaSection({ setOpenFastGame, isVisiting }: ArenaS
                         style={{ marginLeft: '8px' }}
                         className="text-small-400 color-black-6"
                       >
-                        10 jogadores online
+                        0 jogadores online
                       </p>
                     </div>
                     {!isTablet && (
@@ -108,7 +108,7 @@ export default function UserArenaSection({ setOpenFastGame, isVisiting }: ArenaS
                 <div className="home-action-card">
                   <p style={{ marginBottom: '10px' }}>Desafios enviados</p>
                   <p className="text-small-400 color-black-6">
-                    10 desafios enviados
+                    0 desafios enviados
                   </p>
                   {!isTablet && (
                     <Image className="arrowCard" src={arrowCard} alt="" />

@@ -37,7 +37,7 @@ export function FeaturesSection() {
   return (
     <Element name="features">
       <Body marginBottom="50px">
-        <h4 className="h4-500 h4-mb">Tudo o que você precisa</h4>
+        <h4 className="h4-500 h4-mb mt-3">Tudo o que você precisa</h4>
         <div className="d-flex flex-gap-2 features-section">
           {featuresMock.map((item, index) => (
             <Card

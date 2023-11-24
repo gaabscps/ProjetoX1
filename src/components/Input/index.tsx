@@ -4,6 +4,7 @@ import lupa from '@/assets/svg/lupa.svg';
 
 interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   value?: any;
   label?: string;
   placeholder?: string;
@@ -28,6 +29,7 @@ interface InputProps {
 
 export default function Input({
   onChange,
+  onBlur,
   maxHeight,
   value,
   label,
@@ -80,7 +82,9 @@ export default function Input({
         style={{ ...style, maxHeight: maxHeight }}
         disabled={disabled}
         required={required}
-        maxLength={maxLength} />
+        maxLength={maxLength}
+        onBlur={onBlur}
+      />
       {type === 'password' && (
         <>
           <button

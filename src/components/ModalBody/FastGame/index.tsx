@@ -1,7 +1,13 @@
 import { Button } from '@/components/Button'
+import { Card } from '@/components/Card';
 import Input from '@/components/Input'
 import Select from '@/components/Select'
-import useForm from '@/hooks/useForm'
+import useForm from '@/hooks/useForm';
+import api from '@/services/api';
+import { maskBRL, unmaskBRL } from '@/utils/mask/maskMoney';
+import { _isClickEvent } from 'chart.js/dist/helpers/helpers.core';
+import { useCookies } from 'react-cookie';
+import { toast } from 'react-toastify';
 
 interface ModalFastGameBodyProps {
   handleSearchingFastGame: () => void
@@ -9,41 +15,70 @@ interface ModalFastGameBodyProps {
 
 export default function ModalFastGameBody({ handleSearchingFastGame }: ModalFastGameBodyProps) {
   // const { form, setForm, handleInputChange } = useFormFastGameBody();
+  const profile = JSON.parse(sessionStorage.getItem('profile') || '{}');
+  const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
+
+
   const initialValues = {
     game: '',
-    level: '',
     bet: '',
   }
 
-  const { values, handleChange } = useForm({
-    initialValues: initialValues,
-    onSubmit: (values) => {
-      console.log(values)
-    },
+  const { handleChange, values, setValues } = useForm(initialValues);
+
+  const games = profile.Profile?.games.map((game: any) => {
+    return {
+      value: game.gameId,
+      label: game.gameName,
+    }
   })
 
-  const games = [
+  const bets = [
     {
-      value: 0,
-      label: 'League of Legends',
+      bet: '20',
     },
     {
-      value: 1,
-      label: 'Valorant',
-    },
-  ]
-
-  const levels = [
-    {
-      value: 0,
-      label: 'Facil',
+      bet: '50',
     },
     {
-      value: 1,
-      label: 'Intermediario',
+      bet: '100',
+    },
+    {
+      bet: '150',
+    },
+    {
+      bet: '200',
     },
   ]
 
+  const handleFastGame = async () => {
+    try {
+      const response = await api.post('/arena/enterQueue', {
+        playerId: cookies.idUser,
+        game: 'EAFC 24',
+        value: unmaskBRL(values.bet),
+      }, {
+        headers: {
+          'TokenAuth': cookies.TokenAuth,
+          'idUser': cookies.idUser as string
+        }
+      })
+      if (response?.status === 200) {
+        console.log(response)
+        const fastGame = JSON.parse(sessionStorage.getItem('fastGame') || '{}');
+        const gameQueue = {
+          ...fastGame,
+          expectedTime: response?.data?.expectedTime,
+        }
+        sessionStorage.setItem('fastGame', JSON.stringify(gameQueue));
+        handleSearchingFastGame();
+      }
+
+    }
+    catch (error: any) {
+      toast.error(error.response.data.Error)
+    }
+  }
 
   return (
     <>
@@ -55,37 +90,51 @@ export default function ModalFastGameBody({ handleSearchingFastGame }: ModalFast
         </div>
         <Select
           name='game'
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           value={values.game}
           placeholder='Jogo a ser jogado'
           option={games}
         />
-        <Select
-          name='level'
-          placeholder='Nível do oponente'
-          option={levels}
-          value={values.level}
-          onChange={handleChange}
-        />
-        <Input
+        <div className='d-flex flex-gap-1'>
+          {bets.map((bet, index) => (
+            <Card key={index} borderRadius='5px' theme='outline' width='120px' color='#464448' content={<div className='color-black-6 text-small-400 d-flex justify-content-center align-items-center h-100'>{maskBRL(bet.bet)}</div>}
+              onClick={() => setValues({
+                ...values,
+                bet: bet.bet,
+              })}
+              className={`mb-1 bet-class${values.bet === bet.bet
+                ? 'active' : ''}`} />
+          ))}
+        </div>
+        {/* <Input
           name='bet'
           value={values.bet}
           onChange={handleChange}
           type='number'
           placeholder='Valor da aposta (BRL)'
           marginBottom='40px'
-        />
+          disabled
+        /> */}
         <Button
           theme='primary'
-          onClick={() => {
-            handleSearchingFastGame()
+          onClick={async () => {
+            const selectedGame = games.find((game: any) => game.value === values.game);
+            const gameLabel = selectedGame ? selectedGame.label : ''; // Se o jogo for encontrado, obtenha o label, caso contrário, deixe vazio
+
+            const fastGameValues = {
+              game: gameLabel,
+              bet: values.bet,
+            };
+
+            window.sessionStorage.setItem('fastGame', JSON.stringify(fastGameValues));
+            await handleFastGame();
           }}
           width='100%'
           size='large'
           content='Procurar jogo rápido'
-          disabled={!values.game || !values.level || !values.bet}
+          disabled={!values.game || !values.bet}
         />
-      </div>
+      </div >
     </>
   )
 }

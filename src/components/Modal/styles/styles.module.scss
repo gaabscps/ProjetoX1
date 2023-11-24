@@ -24,13 +24,14 @@
 }
 
 .modalHeader {
+  user-select: none;
   // min-height: 70px;
   display: flex;
   align-items: center;
   width: 100%;
   padding: 0 30px 0 40px;
   border-radius: 10px 10px 0 0;
-  background-color: var(--color-black);
+  background-color: var(--background-color);
   transition: opacity ease 0.3s, transform ease 0.3s;
 
   .buttonRoundEffect {
@@ -78,7 +79,7 @@
 .modalBodyFooterContainer {
   // padding: 20px 0;
   width: 100%;
-  background-color: var(--color-black);
+  background-color: var(--background-color);
   border-radius: 0 0 10px 10px;
   overflow: auto;
 }

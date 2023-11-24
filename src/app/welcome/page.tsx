@@ -69,7 +69,7 @@ export default function Welcome() {
                     </ul>
                 </div>
                 <div className="d-flex justify-content-center">
-                    <Link className="w-100" onClick={() => handleSubmit()} href={error ? '/welcome' : '/dashboard'}>
+                    <Link className="w-100" onClick={() => handleSubmit()} href={'/welcome'}>
                         <Button disabled={!nickname.nickname} width="100%" size="large" theme="primary" content="Começar" />
                     </Link>
                 </div>

@@ -46,10 +46,6 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
       link: 'home',
     },
     {
-      name: 'Últimas notícias e atualizações',
-      link: 'news',
-    },
-    {
       name: 'Jogos disponíveis',
       link: 'games',
     },
@@ -60,6 +56,10 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
     {
       name: 'Como jogar',
       link: 'howToPlay',
+    },
+    {
+      name: 'Últimas notícias e atualizações',
+      link: 'news',
     },
     {
       name: 'FAQ',

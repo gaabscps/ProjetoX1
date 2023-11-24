@@ -31,6 +31,8 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
           name='email'
           value={landing.values.email}
           onChange={(e) => landing.handleChange(e)}
+          error={landing.errorMessage.email}
+          onBlur={(e) => landing.handleBlur(e)}
         />
         <Input
           placeholder='Sua senha'
@@ -42,7 +44,7 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
         <div className='action-icon forgotPassword'>Esqueceu a sua senha?</div>
         <Link
           onClick={() => landing.handleLogin()}
-          href={landing.values.email === 'admin@email.com' && landing.values.password === '123' ? '/dashboard' : ''}
+          href={''}
         >
           <div className='d-flex align-items-center justify-content-center'>
             <button disabled={!landing.values.email || !landing.values.password} className='loginRegisterButton'>
@@ -58,7 +60,7 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
         </div>
         <div style={{ width: '40%', borderBottom: '1.5px solid #5F5C6B' }} />
       </div>
-      <div className='d-flex w-100 justify-content-between modal-socialMedia'>
+      {/* <div className='d-flex w-100 justify-content-between modal-socialMedia'>
         <Card
           theme='outline'
           width='80px'
@@ -109,7 +111,7 @@ export function ModalLoginBody({ handleRegisterButton }: ModalLoginBodyProps) {
             </div>
           }
         />
-      </div>
+      </div> */}
       <div>
         <span>Ainda não tem uma conta? </span>
 

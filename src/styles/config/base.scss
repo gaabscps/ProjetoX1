@@ -6,13 +6,14 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--color-black-4);
-  border-radius: 8px;
+  background: var(--color-black-2);
+  // border-radius: 8px;
+  border: none;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--color-black-2);
+  background: var(--color-black-4);
   border-radius: 10px;
 }
 
@@ -246,6 +247,21 @@ body {
 }
 
 // Padding
+.p-1 {
+  padding: 1rem;
+}
+.p-2 {
+  padding: 2rem;
+}
+.p-3 {
+  padding: 3rem;
+}
+.p-4 {
+  padding: 4rem;
+}
+.p-5 {
+  padding: 5rem;
+}
 .pt-5 {
   padding-top: 5rem;
 }
