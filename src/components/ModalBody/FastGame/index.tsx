@@ -68,6 +68,7 @@ export default function ModalFastGameBody({ handleSearchingFastGame }: ModalFast
         const fastGame = JSON.parse(sessionStorage.getItem('fastGame') || '{}');
         const gameQueue = {
           ...fastGame,
+          game: values.game,
           expectedTime: response?.data?.expectedTime,
         }
         sessionStorage.setItem('fastGame', JSON.stringify(gameQueue));

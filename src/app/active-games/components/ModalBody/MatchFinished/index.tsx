@@ -1,5 +1,4 @@
 import { Button } from '@/components/Button'
-import Input from '@/components/Input'
 
 interface MatchFinishedProps {
     setMatchFinished: (value: boolean) => void;

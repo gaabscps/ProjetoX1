@@ -2,8 +2,6 @@ import Accordion from '@/components/Accordion'
 import { Button } from '@/components/Button'
 import RadioGroup from '@/components/RadioGroup'
 import { GamesList } from '@/types/GamesList'
-import { GamesRank } from '@/types/GamesRank'
-import { useEffect, useState } from 'react'
 import useAddGame from './useAddGame'
 import useDashboard from '@/app/dashboard/useDashboard'
 import alert from '../../../../../assets/svg/alert.svg'
@@ -12,15 +10,9 @@ import Image from 'next/image'
 interface ModalAddGameBodyProps {
   setOpenAddGame: (value: boolean) => void
   games: GamesList[]
-  addGamesAppend?: {
-    selectedValues: { gameId: string; level: string }[]
-    gamesWithRanks: GamesList[]
-    handleOptionChange: (gameId: string, level: string) => void
-    handleAddGame: () => void
-  }
 }
 
-export default function ModalAddGameBody({ setOpenAddGame, games, addGamesAppend }: ModalAddGameBodyProps) {
+export default function ModalAddGameBody({ setOpenAddGame, games }: ModalAddGameBodyProps) {
 
   const { selectedValues, gamesWithRanks, handleOptionChange, handleAddGame, } = useAddGame(games)
   const { profile } = useDashboard()

@@ -7,16 +7,13 @@ import MyGamesSection from './components/MyGamesSection';
 import ArenaSection from './components/ArenaSection';
 import { Header } from '@/components/Header';
 import useDashboard from './useDashboard';
-import { useHeader } from '@/components/Header/useHeader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
 
 
 export default function Dashboard() {
 
   const { modal, profile, handleRemoveGame } = useDashboard();
-  const { logOut } = useHeader();
   const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = modal;
 
   

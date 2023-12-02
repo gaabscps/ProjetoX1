@@ -2,7 +2,6 @@ import { Card } from '@/components/Card'
 import DropdownMenu from '@/components/DropdownMenu'
 import Image from 'next/image'
 import dot from '@/assets/svg/verticalDot.svg'
-import editar from '@/assets/svg/editar.svg'
 import remover from '@/assets/svg/remover.svg'
 
 interface GameCardProps {

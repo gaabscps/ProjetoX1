@@ -5,9 +5,6 @@ import { unmaskCpf } from '@/utils/mask/maskCpf';
 import { unmaskDate } from '@/utils/mask/maskBirthday';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useCookies } from 'react-cookie';
-import useDashboard from '../dashboard/useDashboard';
-import { Auth } from '@/types/Auth';
 import { useAuth } from '@/hooks/useAuth';
 import { GamesList } from '@/types/GamesList';
 

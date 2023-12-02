@@ -67,7 +67,7 @@ export default function ArenaSection({ setOpenFastGame, profile }: ArenaSectionP
                       style={{ marginLeft: '8px' }}
                       className="text-small-400 color-black-6"
                     >
-                      0 jogadores online
+                      {profile?.MatchArena?.onlinePlayers || 0} jogadores online
                     </p>
                   </div>
                   {!isTablet && (
@@ -87,7 +87,7 @@ export default function ArenaSection({ setOpenFastGame, profile }: ArenaSectionP
                 <div className="home-action-card">
                   <p style={{ marginBottom: '10px' }}>Desafios recebidos</p>
                   <p className="text-small-400 color-black-6">
-                    0 desafios recebidos
+                    {profile?.MatchArena?.ChallengeReceive || 0} desafios recebidos
                   </p>
                   {!isTablet && (
                     <Image className="arrowCard" src={arrowCard} alt="" />
@@ -106,7 +106,7 @@ export default function ArenaSection({ setOpenFastGame, profile }: ArenaSectionP
                 <div className="home-action-card">
                   <p style={{ marginBottom: '10px' }}>Desafios enviados</p>
                   <p className="text-small-400 color-black-6">
-                    0 desafios enviados
+                    {profile?.MatchArena?.ChallangeInvited || 0} desafios enviados
                   </p>
                   {!isTablet && (
                     <Image className="arrowCard" src={arrowCard} alt="" />
@@ -133,7 +133,10 @@ export default function ArenaSection({ setOpenFastGame, profile }: ArenaSectionP
                       style={{ marginLeft: '8px' }}
                       className="text-small-400 color-black-6"
                     >
-                      Pronto para ser desafiado
+                      {
+                        // TODO - inverter a lógica para o status do jogo
+                      }
+                      {profile?.MatchArena?.status === "Player is not in any ongoing match" ? "Pronto para ser desafiado" : "Jogando"}
                     </p>
                   </div>
                   {!isTablet && (

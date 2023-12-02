@@ -8,7 +8,7 @@ import Image from 'next/image'
 import back from '@/assets/svg/back.svg';
 import { InGameSection } from './components/InGameSection'
 import { Modal } from '@/components/Modal';
-import { use, useEffect } from 'react'
+import { useEffect } from 'react'
 
 
 export default function ActiveGames() {

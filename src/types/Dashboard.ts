@@ -27,13 +27,16 @@ interface Notifications {
   Quantity: number
 }
 
-// interface MatchArena {
-//   // Propriedades de MatchArena
-// }
+interface MatchArena {
+  ChallengeReceive: number
+  ChallangeInvited: number
+  status: string
+  onlinePlayers: number
+}
 
 export interface Dashboard {
   Profile: Profile
   Location: Location
   Notifications: Notifications
-  // MatchArena: MatchArena
+  MatchArena: MatchArena
 }

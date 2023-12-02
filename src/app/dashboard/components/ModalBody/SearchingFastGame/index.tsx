@@ -1,16 +1,22 @@
 import { Button } from '@/components/Button';
 import Timer from '@/components/Timer';
 import { maskBRL } from '@/utils/mask/maskMoney';
+import { useEffect } from 'react';
 
 interface ModalSearchingFastGameBodyProps {
-  setOpenSearchingFastGame: (value: boolean) => void;
+  handleLeaveFastGameQueue: () => void;
+  handleFastGameQueue: () => void;
 }
 
 export default function ModalSearchingFastGameBody({
-  setOpenSearchingFastGame,
+  handleLeaveFastGameQueue,
+  handleFastGameQueue,
 }: ModalSearchingFastGameBodyProps) {
-
   const game = JSON.parse(sessionStorage.getItem('fastGame') || '{}');
+
+  useEffect(() => {
+      handleFastGameQueue();
+  }, []);
 
   return (
     <>
@@ -53,7 +59,7 @@ export default function ModalSearchingFastGameBody({
         <Button
           theme="primary"
           onClick={() => {
-            setOpenSearchingFastGame(false);
+            handleLeaveFastGameQueue();
           }}
           width="100%"
           size="large"

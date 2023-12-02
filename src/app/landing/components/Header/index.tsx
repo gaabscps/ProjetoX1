@@ -1,11 +1,9 @@
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-scroll';
 import Image from 'next/image';
 import logo from '@/assets/svg/X1_logo_vertical_branco 1.svg';
 import { Button } from '@/components/Button';
-import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
-import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
 
 interface HeaderProps {
   setOpenLogin: (open: boolean) => void;

@@ -6,9 +6,9 @@ import api from '@/services/api';
 import { useCookies } from 'react-cookie';
 import { toast } from 'react-toastify';
 import { Dashboard, Location } from '@/types/Dashboard';
-import { LocationService } from '@/types/LocationService';
 import { useHeader } from '@/components/Header/useHeader';
 import { GamesList } from '@/types/GamesList';
+import { unmaskBRL } from '@/utils/mask/maskMoney';
 
 const useDashboard = () => {
     const [openAddGame, setOpenAddGame] = useState(false)
@@ -19,6 +19,14 @@ const useDashboard = () => {
     const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
 
     const { logOut } = useHeader();
+    const fastGame = JSON?.parse(sessionStorage.getItem('fastGame') || '{}');
+
+    function extractMatchId(creatingMatch: string | null) {
+        const regex = /Match Id: (?<matchId>\w+)/;
+        const match = creatingMatch?.match(regex);
+        return match ? match.groups?.matchId : null;
+    }
+
 
     const getProfile = async () => {
         try {
@@ -78,6 +86,52 @@ const useDashboard = () => {
         }
     }
 
+    const handleLeaveFastGameQueue = async () => {
+        try {
+            const response = await api.delete(`/arena/exitQueu/${profile?.Profile.idUser}`, {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                sessionStorage.removeItem('fastGame')
+                setOpenSearchingFastGame(false)
+                setOpenFastGame(true)
+            }
+        } catch (error) {
+            console.error('Erro ao sair da fila de partida rápida')
+        }
+    }
+
+
+    const handleFastGameQueue = async () => {
+        try {
+            const response = await api.post('/arena/searchOponent', {
+                playerId: cookies.idUser,
+                game: fastGame.game,
+                value: unmaskBRL(fastGame.bet),
+            }, {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                const gameId = {
+                    ...fastGame,
+                    matchId: extractMatchId(response?.data?.creatingMatch),
+                    opponentId: response?.data?.oponenteId
+                }
+                sessionStorage.setItem('fastGame', JSON.stringify(gameId));
+                window.location.href = '/active-games'
+            }
+        }
+        catch (error: any) {
+            console.error('Erro ao entrar na fila de partida rápida:', error)
+            handleLeaveFastGameQueue()
+        }
+    }
 
     // MODAL
     const handleSearchingFastGame = () => {
@@ -94,7 +148,7 @@ const useDashboard = () => {
             return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
         }
         if (openSearchingFastGame) {
-            return <ModalSearchingFastGameBody setOpenSearchingFastGame={setOpenSearchingFastGame} />
+            return <ModalSearchingFastGameBody handleFastGameQueue={handleFastGameQueue} handleLeaveFastGameQueue={handleLeaveFastGameQueue} />
         }
         return null
     }

@@ -1,13 +1,11 @@
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
-import { Challenges } from '@/types/Challenges';
 
 interface ChallengeSentCardProps {
     handleOpenModal: (value: boolean) => void;
-    challenge: Challenges;
 }
 
-export default function ChallengeSentCard({ challenge, handleOpenModal }: ChallengeSentCardProps) {
+export default function ChallengeSentCard({  handleOpenModal }: ChallengeSentCardProps) {
     return (
         <div>
             <Card width="350px" height="195px" content={

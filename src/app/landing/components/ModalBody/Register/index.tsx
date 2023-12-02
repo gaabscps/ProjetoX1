@@ -1,12 +1,6 @@
-import { Card } from '@/components/Card';
 import Input from '@/components/Input';
 import Image from 'next/image';
 import logo from '@/assets/svg/X1_logo_horizontal_branco 3.png';
-import google from '@/assets/svg/googleModal.svg';
-import facebook from '@/assets/svg/facebookModal.svg';
-import apple from '@/assets/svg/appleModal.svg';
-import twitch from '@/assets/svg/twitchModal.svg';
-import steam from '@/assets/svg/steamModal.svg';
 import { Button } from '@/components/Button';
 import Link from 'next/link';
 import useLanding from '@/app/landing/useLanding';
