@@ -28,9 +28,9 @@ export default function UserSection({ profile }: UserSectionProps) {
   const [onHover, setOnHover] = useState(false);
 
   const profileXp = profile?.Profile?.xp || 0;
-  const profileLevel = Math.floor(Number(profileXp) / 10000);
-  const profileLevelProgress = Number(profileXp) % 10000;
-  const profileLevelProgressPercent = (profileLevelProgress / 10000) * 100;
+  const profileLevel = Math.floor(Number(profileXp) / 1000);
+  const profileLevelProgress = Number(profileXp) % 1000;
+  const profileLevelProgressPercent = (profileLevelProgress / 1000) * 100;
   const notLeveledExp = 100 - profileLevelProgressPercent;
 
   const dataSet: CustomChartDataset = {
@@ -76,8 +76,8 @@ export default function UserSection({ profile }: UserSectionProps) {
             className={`levelStats ${onHover ? 'levelStatsHover' : 'levelStatsOff'
               }`}
           >
-            <p style={{ marginBottom: '5px', marginTop: '3px' }}>0%</p>
-            <p>{profileLevelProgress}/10.000 </p>
+            <p style={{ marginBottom: '5px', marginTop: '3px' }}>{profileLevelProgressPercent}%</p>
+            <p>{profileLevelProgress}/1.000 </p>
           </div>
 
           <div

@@ -1,8 +1,8 @@
-export default function EmptyUserDashboard() {
+export default function EmptyUserDashboard({ width }: { width?: string }) {
   return (
     <svg
-      width="160"
-      height="160"
+      width={width || '160'}
+      height={width || '160'}
       viewBox="0 0 160 160"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

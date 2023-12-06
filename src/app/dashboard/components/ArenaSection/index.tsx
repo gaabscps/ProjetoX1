@@ -136,7 +136,7 @@ export default function ArenaSection({ setOpenFastGame, profile }: ArenaSectionP
                       {
                         // TODO - inverter a lógica para o status do jogo
                       }
-                      {profile?.MatchArena?.status === "Player is not in any ongoing match" ? "Pronto para ser desafiado" : "Jogando"}
+                      {profile?.MatchArena?.status === 'Player is not in any ongoing match' ? 'Pronto para ser desafiado' : 'Jogando'}
                     </p>
                   </div>
                   {!isTablet && (

@@ -1,9 +1,11 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { Status } from '@/types/Status';
+import { EmptyUser } from '@/assets/svg/EmptyUser';
+import EmptyUserDashboard from '@/assets/svg/EmptyUserDashboard';
 
 interface UserImageProps {
-    userImage: StaticImageData;
+    userImage: string;
     status?: Status;
     width?: number;
     height?: number;
@@ -31,7 +33,9 @@ export default function UserImage({ userImage, width, height, status, statusPosi
 
     return (
         <div className={`user-image-container ${className || ''}`}>
-            <Image className="user-image" src={userImage} width={width || 48} height={height || 48} alt="use image" />
+            {userImage == '' ? <EmptyUserDashboard width='40px' /> :
+                <img className="user-image" src={userImage} width={width || 48} height={height || 48} alt="use image" />
+            }
             <div style={{ background: handleStatus(), right: statusPosition?.right || '' }} className="status" />
         </div>
     )

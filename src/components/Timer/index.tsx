@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 interface TimerProps {
   seconds: number;
+  className?: string;
 }
 
-const Timer: React.FC<TimerProps> = ({ seconds }) => {
+const Timer: React.FC<TimerProps> = ({ seconds, className }) => {
   const [countdown, setCountdown] = useState(seconds);
 
 
@@ -29,7 +30,7 @@ const Timer: React.FC<TimerProps> = ({ seconds }) => {
     return `${formattedMinutes}:${formattedSeconds}`;
   };
 
-  return <h3 className="h3-400">{formatTime(countdown)}</h3>;
+  return <h3 className={`h3-400 ${className}`}>{formatTime(countdown)}</h3>;
 };
 
 export default Timer;

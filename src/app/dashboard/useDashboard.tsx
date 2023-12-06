@@ -19,7 +19,10 @@ const useDashboard = () => {
     const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
 
     const { logOut } = useHeader();
-    const fastGame = JSON?.parse(sessionStorage.getItem('fastGame') || '{}');
+    const fastGame = typeof sessionStorage !== 'undefined'
+        ? JSON.parse(sessionStorage.getItem('fastGame') || '{}')
+        : {};
+
 
     function extractMatchId(creatingMatch: string | null) {
         const regex = /Match Id: (?<matchId>\w+)/;
@@ -88,7 +91,7 @@ const useDashboard = () => {
 
     const handleLeaveFastGameQueue = async () => {
         try {
-            const response = await api.delete(`/arena/exitQueu/${profile?.Profile.idUser}`, {
+            const response = await api.delete(`/arena/exitQueue/${profile?.Profile.idUser}`, {
                 headers: {
                     'TokenAuth': cookies.TokenAuth,
                     'idUser': cookies.idUser as string

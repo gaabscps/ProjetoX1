@@ -13,18 +13,11 @@ import { useEffect } from 'react'
 
 export default function ActiveGames() {
 
-    const activeGames = useActiveGames()
-    const { handleModalBody, handleCloseModal, handleOpenMatchFinished, handleOpenCounterProposal, matchFinished, matchProof } = activeGames
-
-    useEffect(() => {
-        setTimeout(() => {
-            handleOpenMatchFinished()
-        }, 3000)
-    }, [])
+    const { handleModalBody, handleCloseModal, handleOpenCounterProposal, matchFinished, matchProof, match } = useActiveGames()
 
     return (
         <>
-            <Modal modalHeaderBg="#29272A" open={matchFinished || matchProof} modalBody={handleModalBody()} setOpen={handleCloseModal} />
+            <Modal modalHeaderBg="#0e0e0f" open={matchFinished || matchProof} modalBody={handleModalBody()} setOpen={handleCloseModal} />
             <Header />
             <Body>
                 <div className="pageBody">
@@ -36,8 +29,8 @@ export default function ActiveGames() {
                     </div>
                     <p className='color-black-7' style={{ marginBottom: '30px' }}>Confira os jogos ativos</p>
                 </div>
-                <h6 style={{ marginBottom: '20px' }} className="h6-400 line-height-150">League of Legends</h6>
-                <InGameSection handleOpenCounterProposal={handleOpenCounterProposal} />
+                <h6 style={{ marginBottom: '20px' }} className="h6-400 line-height-150">{match?.gameName || '--'}</h6>
+                <InGameSection match={match} handleOpenCounterProposal={handleOpenCounterProposal} />
             </Body>
         </>
     )

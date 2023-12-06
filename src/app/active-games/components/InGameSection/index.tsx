@@ -1,16 +1,18 @@
-import TagGroup from '@/app/challenge/components/TagGroup'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import UserImage from '@/components/UserImage';
-import userImage from '@/assets/svg/gabs.jpg'
 import { useEffect, useState } from 'react';
+import Timer from '@/components/Timer';
+import { maskBRL } from '@/utils/mask/maskMoney';
+import { ActiveGameMatch } from '@/types/ActiveGame';
+import GamesDropdown from '../GamesDropdown';
 
 interface InGameSectionProps {
     handleOpenCounterProposal: () => void
+    match: ActiveGameMatch
 }
 
-export const InGameSection = ({ handleOpenCounterProposal }: InGameSectionProps) => {
-
+export const InGameSection = ({ handleOpenCounterProposal, match, }: InGameSectionProps) => {
     const [disabled, setDisabled] = useState(true)
 
     useEffect(() => {
@@ -21,8 +23,10 @@ export const InGameSection = ({ handleOpenCounterProposal }: InGameSectionProps)
 
     return (
         <>
-            <div style={{ marginBottom: '6px' }} className="d-flex justify-content-center">
-                <p>Partida em andamento... 10:57</p>
+            <div style={{ marginBottom: '6px' }} className="d-flex justify-content-center align-items-center">
+                <p>Partida em andamento...</p>
+                <div style={{ width: '5px' }} />
+                <Timer className='h6-400' seconds={match.value} />
             </div>
             <div className="d-flex align-items-center justify-content-between">
                 <Card
@@ -35,21 +39,21 @@ export const InGameSection = ({ handleOpenCounterProposal }: InGameSectionProps)
                                 style={{ height: '74px' }}
                                 className="d-flex align-items-center flex-gap-1"
                             >
-                                <UserImage userImage={userImage} />
+                                <UserImage userImage={match?.player1?.urlPhoto || ''} />
                                 <div>
                                     <p style={{ marginBottom: '9px' }} className="text-small-400">
-                                        userName
+                                        {match?.player1?.name || '--'}
                                     </p>
                                     <div className="text-small-400 color-black-7 challenge-stats-content">
-                                        <p className="">JR: gamesPlayed</p>
-                                        <p className="">V: gamesVictor</p>
-                                        <p className=''>D: gamesDefeat</p>
+                                        <p className="">JR: {match?.player1?.JR || 0}</p>
+                                        <p className="">V: {match?.player1?.V || 0}</p>
+                                        <p className=''>D: {match?.player1?.D || 0}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr style={{ borderBottom: '1.5px solid #464448' }} />
-                        <TagGroup open={true} setOpen={() => undefined} />
+                        <GamesDropdown games={match?.player1?.myGames} />
                     </div>} />
                 <div className="versus-container">
                     <p className="versus">VS</p>
@@ -64,25 +68,25 @@ export const InGameSection = ({ handleOpenCounterProposal }: InGameSectionProps)
                                 style={{ height: '74px' }}
                                 className="d-flex align-items-center flex-gap-1"
                             >
-                                <UserImage userImage={userImage} />
+                                <UserImage userImage={match?.player2?.urlPhoto || ''} />
                                 <div>
                                     <p style={{ marginBottom: '9px' }} className="text-small-400">
-                                        userName
+                                        {match?.player2?.name || '--'}
                                     </p>
                                     <div className="text-small-400 color-black-7 challenge-stats-content">
-                                        <p className="">JR: gamesPlayed</p>
-                                        <p className="">V: gamesVictor</p>
-                                        <p className=''>D: gamesDefeat</p>
+                                        <p className="">JR: {match?.player2?.JR || 0}</p>
+                                        <p className="">V: {match?.player2?.V || 0}</p>
+                                        <p className=''>D: {match?.player2?.D || 0}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr style={{ borderBottom: '1.5px solid #464448' }} />
-                        <TagGroup open={true} setOpen={() => undefined} />
+                        <GamesDropdown games={match?.player2?.myGames} />
                     </div>} />
             </div>
             <div style={{ marginTop: '6px' }} className="d-flex justify-content-center">
-                <p>Aposta: R$ 1.500,00</p>
+                <p>Aposta:{maskBRL(String(match?.value)) || 0}</p>
             </div>
             <div style={{ marginTop: '40px' }} className="d-flex justify-content-center">
                 <Button disabled={disabled} onClick={() => handleOpenCounterProposal()} theme="standard" size="large" content={'Finalizar partida'} />

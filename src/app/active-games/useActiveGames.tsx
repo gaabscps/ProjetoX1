@@ -5,30 +5,59 @@ import api from '@/services/api';
 import { toast } from 'react-toastify';
 import { useCookies } from 'react-cookie';
 import useDashboard from '../dashboard/useDashboard';
+import { idExtractor } from '@/utils/idExtractor';
+import { ActiveGameMatch, ActiveGameResponse } from '@/types/ActiveGame';
+import { AxiosResponse } from 'axios';
 
 const useActiveGames = () => {
 
     const [matchFinished, setMatchFinished] = useState(false);
     const [matchProof, setMatchProof] = useState(false);
     const [openRefuse, setOpenRefuse] = useState<boolean[]>([]);
-    const [match, setMatch] = useState<any>(null);
+    const [match, setMatch] = useState<ActiveGameMatch>({} as any);
     const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
 
     const { profile } = useDashboard()
+    const matchId = idExtractor(profile?.MatchArena?.status || '')
+    console.log(matchFinished)
 
-    const handleGetMatch = async (match: string) => {
+    const handleGetMatch = async (matchId: string) => {
         try {
-            const response = await api.get(`/arena/matchStatus/${match}`, {
+            const response: AxiosResponse = await api.get(`/arena/matchStatus/${matchId}`, {
                 headers: {
                     'TokenAuth': cookies.TokenAuth,
                     'idUser': cookies.idUser as string
                 }
             })
             if (response?.status === 200) {
-                setMatch(response?.data)
+                const data: ActiveGameResponse = response?.data
+                setMatch(data.match)
             }
         } catch (error) {
             toast.error('Erro ao carregar partida')
+        }
+    }
+
+    const handleFinishGame = async (matchId: string, result: string, image: File) => {
+        try {
+            const formData = new FormData()
+            formData.append('result', result);
+            if (image) {
+                formData.append('image', image);
+            }
+            formData.forEach((value, key) => { console.log(key, value); });
+            const response: AxiosResponse = await api.post(`/arena/finishedGame/${matchId}`, formData, {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                toast.success('Partida finalizada com sucesso')
+                setMatchFinished(false)
+            }
+        } catch (error) {
+            toast.error('Erro ao finalizar partida')
         }
     }
 
@@ -40,7 +69,7 @@ const useActiveGames = () => {
         }
         if (matchProof) {
             return (
-                <MatchProof handleCloseModal={handleCloseModal} />
+                <MatchProof matchId={matchId} match={match} handleFinishGame={handleFinishGame} />
             );
         }
         if (openRefuse.some(Boolean)) {
@@ -72,15 +101,12 @@ const useActiveGames = () => {
     };
 
     useEffect(() => {
-        setTimeout(() => {
-            console.log(profile?.Profile.nickname)
-            if (profile?.MatchArena.status !== (undefined)) {
-                handleGetMatch(profile?.MatchArena.status as string)
-            } else {
-                setMatch(undefined)
-            }
-        }, 3000)
-    }, [])
+        if (profile && profile?.MatchArena.status !== 'Player is not in any ongoing match') {
+            handleGetMatch(matchId)
+        } else {
+            setMatch({} as any)
+        }
+    }, [profile])
 
     return {
         matchFinished,
@@ -89,6 +115,7 @@ const useActiveGames = () => {
         handleOpenCounterProposal,
         handleModalBody,
         handleCloseModal,
+        match,
     }
 }
 
