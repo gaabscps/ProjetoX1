@@ -15,8 +15,8 @@ export interface ActiveGamePlayer {
 export interface ActiveGameMatch {
   chatData: any[]
   gameName: string
-  player1: ActiveGamePlayer
-  player2: ActiveGamePlayer
+  myData: ActiveGamePlayer
+  adversaryData: ActiveGamePlayer
   time: number
   value: number
 }

@@ -9,6 +9,7 @@ import { Dashboard, Location } from '@/types/Dashboard';
 import { useHeader } from '@/components/Header/useHeader';
 import { GamesList } from '@/types/GamesList';
 import { unmaskBRL } from '@/utils/mask/maskMoney';
+import { AxiosError } from 'axios';
 
 const useDashboard = () => {
     const [openAddGame, setOpenAddGame] = useState(false)
@@ -98,12 +99,13 @@ const useDashboard = () => {
                 }
             })
             if (response?.status === 200) {
+                toast.success(response.data.mensagem)
                 sessionStorage.removeItem('fastGame')
                 setOpenSearchingFastGame(false)
                 setOpenFastGame(true)
             }
-        } catch (error) {
-            console.error('Erro ao sair da fila de partida rápida')
+        } catch (error: AxiosError | any) {
+            toast.error(error.response.data.mensagem)
         }
     }
 

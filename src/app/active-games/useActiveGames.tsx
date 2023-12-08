@@ -53,8 +53,11 @@ const useActiveGames = () => {
                 }
             })
             if (response?.status === 200) {
+                handleCloseModal()
                 toast.success('Partida finalizada com sucesso')
-                setMatchFinished(false)
+                setTimeout(() => {
+                    window.location.href = '/dashboard'
+                }, 1000)
             }
         } catch (error) {
             toast.error('Erro ao finalizar partida')

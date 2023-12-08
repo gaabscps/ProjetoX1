@@ -41,7 +41,7 @@ export default function Input({
   style,
   disabled,
   required,
-  marginBottom = type !== "file" && '20px' || '',
+  marginBottom = type !== 'file' && '20px' || '',
   maxLength,
   showMaxLength,
   searchIcon,
@@ -80,7 +80,7 @@ export default function Input({
         className="d-flex flex-column input-container"
       >
         {label && <label className={`${error ? 'input-error' : ''} ${styledLabel ? 'styled-label' : ''}`} htmlFor={name}>{label}</label>}
-        {type !== "file" &&
+        {type !== 'file' &&
           <input
             onChange={onChange}
             value={value || ''}
@@ -135,7 +135,7 @@ export default function Input({
                 <div className='input-file-button color-black-7 text-small-400'>
                   Escolher Arquivo
                 </div>
-                <div className='text-normal-400 color-black-6' style={{ padding: "0 20px" }}>
+                <div className='text-normal-400 color-black-6' style={{ padding: '0 20px' }}>
                   {fileLabel}
                 </div>
               </div>

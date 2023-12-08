@@ -9,6 +9,8 @@ import back from '@/assets/svg/back.svg';
 import { InGameSection } from './components/InGameSection'
 import { Modal } from '@/components/Modal';
 import { useEffect } from 'react'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function ActiveGames() {
@@ -32,6 +34,16 @@ export default function ActiveGames() {
                 <h6 style={{ marginBottom: '20px' }} className="h6-400 line-height-150">{match?.gameName || '--'}</h6>
                 <InGameSection match={match} handleOpenCounterProposal={handleOpenCounterProposal} />
             </Body>
+            <ToastContainer theme='dark' toastStyle={{
+                background: '#29272A',
+                fontSize: '14px',
+                boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
+            }}
+                progressStyle={{
+                    background: '#963BFF',
+                }}
+                autoClose={10000}
+            />
         </>
     )
 

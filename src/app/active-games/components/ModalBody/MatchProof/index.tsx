@@ -57,7 +57,7 @@ export const MatchProof = ({ handleFinishGame, match, matchId }: MatchProofProps
 
             <div className="searchingFastGameDetails d-flex align-items-center justify-content-between">
                 <p className="color-black-7">Jogador desafiado:</p>
-                <p>{match?.player2?.name}</p>
+                <p>{match?.adversaryData?.name}</p>
             </div>
             <div className="searchingFastGameDetails d-flex align-items-center justify-content-between">
                 <p className="color-black-7">Jogo escolhido:</p>
@@ -93,7 +93,7 @@ export const MatchProof = ({ handleFinishGame, match, matchId }: MatchProofProps
                         handleFileChange(e);
                     }}
                 />
-                <div style={{ marginTop: "10px" }} className="d-flex align-items-center flex-gap-1">
+                <div style={{ marginTop: '10px' }} className="d-flex align-items-center flex-gap-1">
                     <p className="text-small-400 color-black-7">{file?.name}</p>
                     {file?.name && (
                         <div className='action-icon' onClick={() => setFile(null)}>
