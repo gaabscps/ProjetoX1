@@ -44,15 +44,17 @@ const useChallenge = () => {
     }
 
     const handleInviteChallenge = async (playerGuestId: string, gameId: string) => {
+        const body = {
+            gameId: gameId,
+            playerGuestId: playerGuestId || '',
+            playerHostId: cookies.idUser,
+            value: Number(bet),
+            durationInvite: Number(duration),
+            message: textarea
+        }
         try {
-            const response: AxiosResponse = await api.post('challange/createChallange', {
-                gameId,
-                playerGuestId,
-                playerHostId: cookies.idUser,
-                value: bet,
-                durationInvite: duration,
-                message: textarea
-            }, {
+            console.log(body)
+            const response: AxiosResponse = await api.post('challange/createChallange', body, {
                 headers: {
                     'TokenAuth': cookies.TokenAuth,
                     'idUser': cookies.idUser as string
@@ -137,7 +139,9 @@ const useChallenge = () => {
 
 
     const handleConfirmChallenge = () => {
-        handleInviteChallenge(followers[openModal.findIndex(Boolean)]?.idUser, game)
+        handleInviteChallenge(
+            followers[openModal.findIndex(Boolean)]?._id
+            , game)
         handleCloseModal();
         toast.success('Desafio enviado com sucesso ! Agora é só aguardar o seu oponente aceitar o seu desafio.');
     }
