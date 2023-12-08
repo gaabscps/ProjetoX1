@@ -1,4 +1,4 @@
-interface Profile {
+export interface Profile {
   _id: string
   nickname: string
   following: string
@@ -15,6 +15,7 @@ interface Profile {
   createdAt: string
   updatedAt: string
   __v: number
+  
 }
 
 export interface Location {
@@ -36,7 +37,7 @@ interface MatchArena {
 
 export interface Dashboard {
   Profile: Profile
-  Location: Location
-  Notifications: Notifications
-  MatchArena: MatchArena
+  Location?: Location
+  Notifications?: Notifications
+  MatchArena?: MatchArena
 }

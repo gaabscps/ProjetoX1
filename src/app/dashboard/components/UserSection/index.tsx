@@ -10,24 +10,29 @@ import {
 import { useState } from 'react';
 import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
 import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
-import { Dashboard } from '@/types/Dashboard';
+import { Dashboard, Location, Profile } from '@/types/Dashboard';
+import { Button } from '@/components/Button';
+import api from '@/services/api';
 
 interface CustomChartDataset extends ChartDataset<'pie', number[]> {
   cutout?: number | string;
 }
 
 interface UserSectionProps {
-  profile: Dashboard | undefined;
+  profile: Profile | undefined;
+  location?: Location | undefined;
+  isVisiting?: boolean;
+  handleFollow?: (idUser: string, youFollow: boolean) => void;
 }
 
-export default function UserSection({ profile }: UserSectionProps) {
+export default function UserSection({ profile, location, isVisiting, handleFollow }: UserSectionProps) {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const isTablet = useTabletHook();
   const isMobile = useMobileHook();
 
   const [onHover, setOnHover] = useState(false);
 
-  const profileXp = profile?.Profile?.xp || 0;
+  const profileXp = profile?.xp || 0;
   const profileLevel = Math.floor(Number(profileXp) / 1000);
   const profileLevelProgress = Number(profileXp) % 1000;
   const profileLevelProgressPercent = (profileLevelProgress / 1000) * 100;
@@ -44,6 +49,7 @@ export default function UserSection({ profile }: UserSectionProps) {
     borderJoinStyle: 'round',
     borderRadius: 10,
   };
+
 
   return (
     <Body>
@@ -88,34 +94,46 @@ export default function UserSection({ profile }: UserSectionProps) {
               zIndex: '-1',
             }}
           >
-            <img className="profilePicture" src={profile?.Profile?.urlPhoto || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} alt="profile" />
+            <img className="profilePicture" src={profile?.urlPhoto || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} alt="profile" />
           </div>
         </div>
         <div className="ml-1 w-100 user-stats-container">
-          <div className="nationalityTag-container">
-            <p style={{ marginBottom: '10px' }}>{profile?.Profile?.nickname || '--'}</p>
-            {(profile?.Location?.CountryFlag && profile?.Location.Country) &&
-              <div className="nationalityTag">
-                <>
-                  <img style={{
-                    maxWidth: '15px',
-                    maxHeight: '15px',
-                    marginRight: '5px',
-                  }} src={profile?.Location?.CountryFlag || ''} alt="country flag" />
-                  <p className="text-extra-small-400">{profile?.Location?.Country}</p>
-                </>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }} className="nationalityTag-container">
+            <div className='d-flex align-items-center'>
+              <p style={{ textAlign: 'center' }}>{profile?.nickname || '--'}</p>
+              {(location?.CountryFlag && location.Country) &&
+                <div className="nationalityTag">
+                  <>
+                    <img style={{
+                      maxWidth: '15px',
+                      maxHeight: '15px',
+                      marginRight: '5px',
+                    }} src={location?.CountryFlag || ''} alt="country flag" />
+                    <p className="text-extra-small-400">{location?.Country}</p>
+                  </>
+                </div>
+              }
+            </div>
+            {isVisiting && (
+              <div className='d-flex align-items-center' style={{ marginLeft: '25px' }}>
+                <Button disabled={!profile?.youFollow} theme='outline' margin='0 4px' width='80px' height='25px' content="Desafiar" />
+                <Button onClick={() => handleFollow ? handleFollow(window.location.pathname.split('/')[2] || '', false) : undefined} theme={profile?.youFollow ? 'selected' : 'standard'} margin='0 4px' width='80px' height='25px' content={profile?.youFollow ? 'Seguindo' : 'Seguir'}
+                />
+                {profile?.youFollow && (
+                  <p onClick={() => handleFollow ? handleFollow(window.location.pathname.split('/')[2] || '', true) : undefined} className='button-tertiary' style={{ margin: '0 4px' }}>Deixar de seguir</p>
+                )}
               </div>
-            }
+            )}
           </div>
           <div className="home-user-stats">
-            <span className="color-black-7">{profile?.Profile?.followers || '--'} seguidores</span>
-            <span className="color-black-7">{profile?.Profile?.following || '--'} seguindo</span>
-            <span className="color-black-7">{profile?.Profile?.timesyouChangelled || '--'}x que desafiou</span>
-            <span className="color-black-7">{profile?.Profile?.timesChangelled || '--'}x que foi desafiado</span>
+            <span className="color-black-7">{profile?.followers || '--'} seguidores</span>
+            <span className="color-black-7">{profile?.following || '--'} seguindo</span>
+            <span className="color-black-7">{profile?.timesyouChangelled || '--'}x que desafiou</span>
+            <span className="color-black-7">{profile?.timesChangelled || '--'}x que foi desafiado</span>
             {(!isTablet || !isMobile) && (
               <span className="color-black-7">{'//'}</span>
             )}
-            <span className="color-black-7">{profile?.Profile?.gamesPlayed || '--'} jogos realizados</span>
+            <span className="color-black-7">{profile?.gamesPlayed || '--'} jogos realizados</span>
             {/* <span className="color-black-7">2 vitórias</span>
             <span className="color-black-7">3 derrotas</span> */}
           </div>

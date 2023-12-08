@@ -4,6 +4,7 @@ import buttonImage from '@/assets/svg/buttonImage.png';
 import { Card } from '../Card';
 import { SearchInput } from '../SearchInput';
 import gabs from '@/assets/svg/gabs.jpg';
+import useDashboard from '@/app/dashboard/useDashboard';
 
 
 
@@ -13,6 +14,9 @@ interface FastGameInputBodyProps {
 }
 
 export default function FastGameInputBody({ setOpenFastGame, isVisiting }: FastGameInputBodyProps) {
+
+  const { onlineUsers } = useDashboard()
+
   const recents = [
     {
       id: 1,
@@ -55,7 +59,7 @@ export default function FastGameInputBody({ setOpenFastGame, isVisiting }: FastG
     },
   ]
 
-  const onlineUsers = [
+  const onlineUsers2 = [
     {
       id: 1,
       name: 'Bibi',
@@ -191,7 +195,7 @@ export default function FastGameInputBody({ setOpenFastGame, isVisiting }: FastG
 
   const handleSearch = (value: string) => {
     if (value.length > 0) {
-      const newOnlineUser = onlineUsers.filter((item) => item.name && item.name.toLowerCase().includes(value.toLowerCase()));
+      const newOnlineUser = onlineUsers.filter((item) => item.nickname && item.nickname.toLowerCase().includes(value.toLowerCase()));
       setOnlineUserSearch(newOnlineUser);
     } else {
       setOnlineUserSearch(onlineUsers);
@@ -229,6 +233,10 @@ export default function FastGameInputBody({ setOpenFastGame, isVisiting }: FastG
   useEffect(() => {
     handleSearch(search.search)
   }, [search.search])
+
+  useEffect(() => {
+    setOnlineUserSearch(onlineUsers)
+  }, [onlineUsers])
 
   return (
 

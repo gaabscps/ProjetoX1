@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import lupa from '@/assets/svg/lupa.svg';
 import { Datalist } from './Components/Datalist';
+import useDashboard from '@/app/dashboard/useDashboard';
+import { SearchPlayersByName } from '@/types/SearchPlayersByName';
 interface SearchInputProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     value?: any;
@@ -10,7 +12,7 @@ interface SearchInputProps {
     recomendation: any;
     handleRemove: (id: number) => void;
     handleRemoveAll: () => void;
-    onlineUserSearch?: any;
+    onlineUserSearch?: SearchPlayersByName[];
     setValue: (value: any) => void;
     isOpenDatalist: boolean;
     setIsOpenDatalist: (value: boolean) => void
@@ -30,10 +32,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     setValue
 }) => {
 
+
     return (
         <div className='input-container ' onClick={() => undefined}>
             <div
-                onClick={() => setIsOpenDatalist(!isOpenDatalist)}
+                onClick={() => {
+                    setIsOpenDatalist(!isOpenDatalist)
+                }}
             >
                 <input
                     autoComplete='off'

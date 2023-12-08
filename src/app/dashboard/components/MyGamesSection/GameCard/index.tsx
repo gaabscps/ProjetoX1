@@ -18,9 +18,10 @@ interface GameCardProps {
   setOpenAddGame: (value: boolean) => void
   setOpenDropdown: (value: boolean) => void
   handleRemoveGame?: (gameId: string) => void
+  isVisiting?: boolean
 }
 
-export default function GameCard({ openDropdown, data, setOpenDropdown, handleRemoveGame }: GameCardProps) {
+export default function GameCard({ openDropdown, data, isVisiting, setOpenDropdown, handleRemoveGame }: GameCardProps) {
   return (
     <Card
       borderRadius='5px'
@@ -48,19 +49,22 @@ export default function GameCard({ openDropdown, data, setOpenDropdown, handleRe
             <p className='text-small-400'>V: {data.matchWin}</p>
             <p className='text-small-400'>D: {data.matchDeafet}</p>
           </div>
-          <Image
-            onClick={() => setOpenDropdown(!openDropdown)}
-            className='action-icon'
-            style={{
-              position: 'absolute',
-              right: '5px',
-              width: '15px',
-              transform: openDropdown ? 'rotate(90deg)' : 'rotate(0deg)',
-              transition: 'all 0.2s ease',
-            }}
-            src={dot}
-            alt='valorant logo'
-          />
+          {!isVisiting && (
+            <Image
+              onClick={() => setOpenDropdown(!openDropdown)}
+              className='action-icon'
+              style={{
+                position: 'absolute',
+                right: '5px',
+                width: '15px',
+                transform: openDropdown ? 'rotate(90deg)' : 'rotate(0deg)',
+                transition: 'all 0.2s ease',
+              }}
+              src={dot}
+              alt='valorant logo'
+            />
+          )}
+
           <DropdownMenu
             onMouseLeave={() => setOpenDropdown(false)}
             open={openDropdown}

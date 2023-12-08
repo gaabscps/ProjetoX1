@@ -3,12 +3,12 @@
 import { Body } from '@/components/Body';
 import { Modal } from '@/components/Modal';
 
-import UserSection from '../components/UserSection';
-import MyGamesSection from '../components/MyGamesSection';
-import UserArenaSection from '../components/ArenaSection';
 import { Header } from '@/components/Header';
-import useDashboard from '../useDashboard';
 import { useEffect } from 'react';
+import useDashboard from '@/app/dashboard/useDashboard';
+import UserSection from '@/app/dashboard/components/UserSection';
+import MyGamesSection from '@/app/dashboard/components/MyGamesSection';
+import UserArenaSection from '../components/ArenaSection';
 
 export default function User({ params }: { params: { id: string } }) {
 
@@ -17,8 +17,8 @@ export default function User({ params }: { params: { id: string } }) {
     console.log(params.id)
   }, [params.id]);
 
-  const dashboard = useDashboard();
-  const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = dashboard.modal;
+  const { modal, profile, handleFollow } = useDashboard();
+  const { openAddGame, openFastGame, openSearchingFastGame, setOpenAddGame, setOpenFastGame, setOpenSearchingFastGame, handleModalBody } = modal;
 
   return (
     <>
@@ -39,12 +39,11 @@ export default function User({ params }: { params: { id: string } }) {
       <Header
       />
       <div className="pageBody">
-        <UserSection isVisiting />
-        <MyGamesSection setOpenAddGame={setOpenAddGame} />
+        <UserSection handleFollow={handleFollow} isVisiting profile={profile} />
+        <MyGamesSection isVisiting profile={profile} setOpenAddGame={setOpenAddGame} />
         <Body marginBottom="60px">
           <hr style={{ background: '#3E3B3F' }} className="hr-line" />
         </Body>
-        <UserArenaSection isVisiting setOpenFastGame={setOpenFastGame} />
       </div>
     </>
   );

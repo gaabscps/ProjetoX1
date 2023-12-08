@@ -29,9 +29,9 @@ export default function UserArenaSection({ setOpenFastGame, isVisiting }: ArenaS
             <p>Arena</p>
           </div>
           <Link href={'/games-history'}>
-            <a className="text-small-400 action-icon">
+            <div className="text-small-400 action-icon">
               Ver todos os jogos realizados
-            </a>
+            </div>
           </Link>
         </div>
         <p className="color-black-7 my-games-subtitle">
