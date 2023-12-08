@@ -35,7 +35,7 @@ export default function ReceivedChallenges({
               style={{ height: '74px' }}
               className="d-flex align-items-center flex-gap-1"
             >
-              <UserImage status={status} userImage={userImage} />
+              <UserImage status={status} userImage={''} />
               <div>
                 <p style={{ marginBottom: '9px' }} className="text-small-400">
                   {userName}

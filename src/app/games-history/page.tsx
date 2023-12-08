@@ -54,7 +54,7 @@ export default function ChallengeSent() {
         </p>
         <div style={{ flexWrap: 'wrap' }} className="user-card-challenge-container">
           {Challenges.map((challenge, index) => (
-            <ChallengeSentCard key={index} challenge={challenge} handleOpenModal={() => handleOpenModal(index)} />
+            <ChallengeSentCard key={index} handleOpenModal={() => handleOpenModal(index)} />
           ))
           }
         </div>

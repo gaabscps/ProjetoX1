@@ -17,8 +17,8 @@ const useActiveGames = () => {
     const [match, setMatch] = useState<ActiveGameMatch>({} as any);
     const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
 
-    const { profile } = useDashboard()
-    const matchId = idExtractor(profile?.MatchArena?.status || '')
+    const { profile, dashboard } = useDashboard()
+    const matchId = idExtractor(dashboard?.MatchArena?.status || '')
     console.log(matchFinished)
 
     const handleGetMatch = async (matchId: string) => {
@@ -104,7 +104,7 @@ const useActiveGames = () => {
     };
 
     useEffect(() => {
-        if (profile && profile?.MatchArena.status !== 'Player is not in any ongoing match') {
+        if (dashboard && dashboard?.MatchArena?.status !== 'Player is not in any ongoing match') {
             handleGetMatch(matchId)
         } else {
             setMatch({} as any)

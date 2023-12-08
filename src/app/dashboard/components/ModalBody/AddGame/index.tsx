@@ -17,7 +17,7 @@ export default function ModalAddGameBody({ setOpenAddGame, games }: ModalAddGame
   const { selectedValues, gamesWithRanks, handleOptionChange, handleAddGame, } = useAddGame(games)
   const { profile } = useDashboard()
 
-  const profileGames = profile?.Profile?.games
+  const profileGames = profile?.games
   const gamesNotAdded = gamesWithRanks.filter((game) => !profileGames?.find((item) => item.gameId === game._id))
 
   return (
