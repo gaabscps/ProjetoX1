@@ -21,9 +21,10 @@ interface DatalistProps {
     setValue: (value: any) => void;
     onClick?: () => void;
     ref?: any;
+    setIsOpenDatalist: (value: boolean) => void
 }[]
 
-export const Datalist = ({ recent, recomendation, onlineUserSearch, value, handleRemove, handleRemoveAll, setValue, onClick, ref }: DatalistProps) => {
+export const Datalist = ({ recent, recomendation, onlineUserSearch, value, handleRemove, handleRemoveAll, setValue, onClick, setIsOpenDatalist, ref }: DatalistProps) => {
 
     // console.log(onlineUserSearch)
     return (
@@ -89,7 +90,7 @@ export const Datalist = ({ recent, recomendation, onlineUserSearch, value, handl
                 onlineUserSearch && onlineUserSearch?.length > 0 ? (
                     <div className="scrollable-container">
                         {onlineUserSearch?.slice(0, 5).map((item, index) => (
-                            <a key={Math.random()} href={`user/${item.idUser}`}>
+                            <Link key={Math.random()} href={`user/${item.idUser}`}>
                                 <li className='datalist-item'>
                                     <div className="d-flex align-items-center action-icon">
                                         <UserImage statusPosition={{ right: '0px' }} status={1} userImage={''} width={20} height={20} />
@@ -98,7 +99,7 @@ export const Datalist = ({ recent, recomendation, onlineUserSearch, value, handl
                                         </p>
                                     </div>
                                 </li>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 ) : (

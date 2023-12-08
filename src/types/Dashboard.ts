@@ -1,4 +1,7 @@
 export interface Profile {
+  V?: number
+  JR?: number
+  D?: number
   _id: string
   nickname: string
   following: string
@@ -15,7 +18,6 @@ export interface Profile {
   createdAt: string
   updatedAt: string
   __v: number
-  
 }
 
 export interface Location {

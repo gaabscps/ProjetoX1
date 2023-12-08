@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { User } from '@/types/Users';
 import ModalBodyChallenge from './components/ModalBodyChallenge';
 import gabs from '@/assets/svg/gabs.jpg';
 import ModalFastGameBody from '@/components/ModalBody/FastGame';
 import ModalSearchingFastGameBody from '../dashboard/components/ModalBody/SearchingFastGame';
 import { toast } from 'react-toastify';
+import api from '@/services/api';
+import { useCookies } from 'react-cookie';
+import { Profile } from '@/types/Dashboard';
+import { AxiosResponse } from 'axios';
+import useDashboard from '../dashboard/useDashboard';
 
 
 const useChallenge = () => {
@@ -12,45 +17,54 @@ const useChallenge = () => {
     const [openSearchingFastGame, setOpenSearchingFastGame] = useState(false)
     const [openTag, setOpenTag] = useState<boolean[]>([]);
     const [openModal, setOpenModal] = useState<boolean[]>([]);
+    const [followers, setFollowers] = useState<Profile[]>([]);
 
-    // MOCK
-    const users: User[] = [
-        {
-            userImage: gabs,
-            userName: 'John',
-            gamesPlayed: '10',
-            gamesVictory: '7',
-            gamesDefeat: '3',
-        },
-        {
-            userImage: gabs,
-            userName: 'Emily',
-            gamesPlayed: '15',
-            gamesVictory: '9',
-            gamesDefeat: '6',
-        },
-        {
-            userImage: gabs,
-            userName: 'David',
-            gamesPlayed: '8',
-            gamesVictory: '4',
-            gamesDefeat: '4',
-        },
-        {
-            userImage: gabs,
-            userName: 'Sarah',
-            gamesPlayed: '12',
-            gamesVictory: '10',
-            gamesDefeat: '2',
-        },
-        {
-            userImage: gabs,
-            userName: 'Michael',
-            gamesPlayed: '20',
-            gamesVictory: '15',
-            gamesDefeat: '5',
-        },
-    ];
+    const [game, setGame] = useState('');
+    const [bet, setBet] = useState('');
+    const [duration, setDuration] = useState('');
+    const [textarea, setTextarea] = useState('');
+
+    const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
+    const { handleFastGameQueue, handleLeaveFastGameQueue } = useDashboard()
+
+    const handleGetFollowers = async () => {
+        try {
+            const response: AxiosResponse = await api.get('challange/returnMyFollowers', {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                setFollowers(response?.data.returnMyFollowers as Profile[])
+            }
+        } catch (error) {
+            console.error('Erro ao buscar usuário')
+        }
+    }
+
+    const handleInviteChallenge = async (playerGuestId: string, gameId: string) => {
+        try {
+            const response: AxiosResponse = await api.post('challange/createChallange', {
+                gameId,
+                playerGuestId,
+                playerHostId: cookies.idUser,
+                value: bet,
+                durationInvite: duration,
+                message: textarea
+            }, {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                toast.success('Desafio enviado com sucesso ! Agora é só aguardar o seu oponente aceitar o seu desafio.');
+            }
+        } catch (error) {
+            console.error('Erro ao buscar usuário')
+        }
+    }
 
 
     // MODAL
@@ -59,11 +73,17 @@ const useChallenge = () => {
             return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
         }
         if (openSearchingFastGame) {
-            return <ModalSearchingFastGameBody setOpenSearchingFastGame={setOpenSearchingFastGame} />
+            return <ModalSearchingFastGameBody handleFastGameQueue={handleFastGameQueue} handleLeaveFastGameQueue={handleLeaveFastGameQueue} />
         }
         if (openModal.some(Boolean)) {
             return <ModalBodyChallenge
-                userName={users[openModal.findIndex(Boolean)]?.userName}
+                bet={bet}
+                duration={duration}
+                textarea={textarea}
+                game={game}
+                games={followers[openModal.findIndex(Boolean)]?.games}
+                handleChange={handleChange}
+                userName={followers[openModal.findIndex(Boolean)]?.nickname}
                 handleConfirmChallenge={handleConfirmChallenge}
             />
         }
@@ -94,13 +114,37 @@ const useChallenge = () => {
         setOpenTag(newOpenTag);
     };
 
+    const handleChange = (event: any) => {
+        const { name, value } = event.target;
 
+        switch (name) {
+            case 'game':
+                setGame(value);
+                break;
+            case 'bet':
+                setBet(value);
+                break;
+            case 'duration':
+                setDuration(value);
+                break;
+            case 'textarea':
+                setTextarea(value);
+                break;
+            default:
+                break;
+        }
+    };
 
 
     const handleConfirmChallenge = () => {
+        handleInviteChallenge(followers[openModal.findIndex(Boolean)]?.idUser, game)
         handleCloseModal();
         toast.success('Desafio enviado com sucesso ! Agora é só aguardar o seu oponente aceitar o seu desafio.');
     }
+
+    useEffect(() => {
+        handleGetFollowers()
+    }, [])
 
     const modal = {
         openFastGame,
@@ -114,10 +158,15 @@ const useChallenge = () => {
 
 
     return {
-        users,
+        followers,
         openTag,
         handleOpenTag,
+        handleChange,
         modal,
+        game,
+        bet,
+        duration,
+        textarea,
     }
 };
 

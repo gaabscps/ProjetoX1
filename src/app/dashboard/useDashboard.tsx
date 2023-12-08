@@ -152,7 +152,7 @@ const useDashboard = () => {
     }
 
     const handleGetUser = async (userId: string) => {
-        if (window.location.pathname !== '/dashboard') {
+        if (window.location.pathname.includes('/user/')) {
             try {
                 const response = await api.get(`/dashboard/othersProfile/${userId}`, {
                     headers: {
@@ -261,6 +261,8 @@ const useDashboard = () => {
         handleRemoveGame,
         handleGetOnlineUsers,
         handleFollow,
+        handleLeaveFastGameQueue,
+        handleFastGameQueue,
     }
 };
 

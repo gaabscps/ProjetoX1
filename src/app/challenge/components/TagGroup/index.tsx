@@ -20,7 +20,7 @@ export default function TagGroup({ open, games, setOpen }: TagGroupProps) {
             index < 2 &&
             <Tag key={index}>
               <p className="text-extra-small-400">
-                {game.game}: {game.gameRank}
+                {game.gameName}: {game.level}
               </p>
             </Tag>
           ))
@@ -30,7 +30,7 @@ export default function TagGroup({ open, games, setOpen }: TagGroupProps) {
             </p>
           </Tag>}
       </div>
-      {games && games.length > 0 &&
+      {games && games.length > 2 &&
         <>
           <p
             onClick={() => setOpen(!open)}
@@ -45,7 +45,7 @@ export default function TagGroup({ open, games, setOpen }: TagGroupProps) {
               index >= 2 &&
               <Tag key={index}>
                 <p className="text-extra-small-400">
-                  {game.game}: {game.gameRank}
+                  {game.gameName}: {game.level}
                 </p>
               </Tag>
             ))}

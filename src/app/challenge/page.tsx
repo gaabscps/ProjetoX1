@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useChallenge from './useChallenge';
 
 export default function Challenge() {
-  const { users, openTag, handleOpenTag, modal } = useChallenge();
+  const { openTag, handleOpenTag, modal, followers } = useChallenge();
   const { openFastGame, openSearchingFastGame, setOpenFastGame, handleCloseModal, handleModalBody, handleOpenModal, openModal } = modal;
 
   return (
@@ -38,22 +38,23 @@ export default function Challenge() {
         </div>
         <FastGameInputBody setOpenFastGame={setOpenFastGame} />
 
-        <h6 style={{ marginBottom: '10px' }} className='h6-400 line-height-150'>Seguindo ({users.length})</h6>
+        <h6 className='h6-400 line-height-150 mt-2 mb-1'>Seguindo ({followers.length})</h6>
 
         <div style={{ flexWrap: 'wrap' }} className='user-card-challenge-container'>
           {
-            users && users.length > 0 ?
-              users.map((user, index) => (
+            followers && followers.length > 0 ?
+              followers.map((user, index) => (
                 <div key={index} className='user-card-challenge'>
                   <FollowingCard
+                    games={user.games}
                     openTag={openTag[index]}
                     setOpenTag={() => handleOpenTag(index)}
                     setOpenModal={() => handleOpenModal(index)}
-                    userImage={user.userImage}
-                    userName={user.userName}
-                    gamesPlayed={user.gamesPlayed}
-                    gamesVictory={user.gamesVictory}
-                    gamesDefeat={user.gamesDefeat}
+                    userImage={user.urlPhoto}
+                    userName={user.nickname}
+                    gamesPlayed={user.JR}
+                    gamesVictory={user.V}
+                    gamesDefeat={user.D}
                   />
                 </div>
               ))

@@ -10,9 +10,11 @@ import {
 import { useState } from 'react';
 import { useTabletHook } from '@/hooks/useMediaQuery/isTablet';
 import { useMobileHook } from '@/hooks/useMediaQuery/isMobile';
-import { Dashboard, Location, Profile } from '@/types/Dashboard';
+import { Location, Profile } from '@/types/Dashboard';
 import { Button } from '@/components/Button';
-import api from '@/services/api';
+import back from '@/assets/svg/back.svg';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface CustomChartDataset extends ChartDataset<'pie', number[]> {
   cutout?: number | string;
@@ -53,6 +55,11 @@ export default function UserSection({ profile, location, isVisiting, handleFollo
 
   return (
     <Body>
+      {isVisiting &&
+        <Link className='action-icon' href='/dashboard'>
+          <Image src={back} width={16} height={16} alt='' />
+        </Link>
+      }
       <div className="user-section-container">
         <div
           className="user-profile-picture"

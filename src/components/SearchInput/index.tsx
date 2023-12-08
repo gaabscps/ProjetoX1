@@ -58,6 +58,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             </div>
             {isOpenDatalist && (
                 <Datalist
+                    setIsOpenDatalist={setIsOpenDatalist}
                     setValue={setValue} value={value} recent={recent} recomendation={recomendation} onlineUserSearch={onlineUserSearch} handleRemove={handleRemove} handleRemoveAll={handleRemoveAll} />
             )}
         </div>

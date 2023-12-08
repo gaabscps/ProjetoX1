@@ -3,14 +3,16 @@ import { Card } from '@/components/Card';
 import TagGroup from '../TagGroup';
 import { StaticImageData } from 'next/image';
 import UserImage from '@/components/UserImage';
+import { GamesList } from '@/types/GamesList';
 
 interface FollowingCardProps {
   openTag: boolean;
-  userImage: StaticImageData;
+  userImage: string;
   userName: string;
-  gamesPlayed: string;
-  gamesVictory: string;
-  gamesDefeat: string;
+  gamesPlayed: number | undefined;
+  gamesVictory: number | undefined;
+  gamesDefeat: number | undefined;
+  games: GamesList[];
   setOpenTag: (open: boolean) => void;
   setOpenModal: (open: boolean) => void;
 }
@@ -22,6 +24,7 @@ export default function FollowingCard({
   gamesPlayed,
   gamesVictory,
   gamesDefeat,
+  games,
   setOpenTag,
   setOpenModal,
 }: FollowingCardProps) {
@@ -59,7 +62,7 @@ export default function FollowingCard({
             </div>
           </div>
           <hr style={{ borderBottom: '1.5px solid #464448' }} />
-          <TagGroup open={openTag} setOpen={setOpenTag} />
+          <TagGroup games={games} open={openTag} setOpen={setOpenTag} />
         </div>
       }
     />

@@ -2,7 +2,6 @@
 
 import { Body } from '@/components/Body';
 import { Modal } from '@/components/Modal';
-
 import { Header } from '@/components/Header';
 import { useEffect } from 'react';
 import useDashboard from '@/app/dashboard/useDashboard';
