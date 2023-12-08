@@ -14,24 +14,25 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function ChallengeSent() {
 
-  const challengesSent = useChallengesSent()
   const {
     Challenges,
     openCancel,
-    handleSubmit,
+    challengesSent,
     handleOpenModal,
     handleCloseModal,
-  } = challengesSent
+    handleRejectChallenge,
+  } = useChallengesSent()
 
   return (
     <>
       <Modal
         modalHeaderBg={'#29272a'}
         open={openCancel.some(Boolean)}
-        modalBody={<CancelModalBody handleCloseModal={handleSubmit} />}
+        modalBody={<CancelModalBody challengesSent={challengesSent[openCancel.findIndex(Boolean)]} handleCloseModal={handleCloseModal} handleRejectChallenge={handleRejectChallenge} />}
         setOpen={handleCloseModal}
       />
       <Header />
+
       <Body>
         <div className='pageBody'>
           <div className='d-flex align-items-center flex-gap-1'>
@@ -42,14 +43,14 @@ export default function ChallengeSent() {
           </div>
           <p className='color-black-7' style={{ marginBottom: '30px' }}>Consulte os desafios que você enviou</p>
         </div>
-        <h6 style={{ marginBottom: '15px' }} className="h6-400 line-height-150">Março/2023</h6>
+        {/* <h6 style={{ marginBottom: '15px' }} className="h6-400 line-height-150">Março/2023</h6>
 
         <p style={{ marginBottom: '30px' }} className="color-black-7">
           12 de Março
-        </p>
+        </p> */}
         <div style={{ flexWrap: 'wrap' }} className="user-card-challenge-container">
 
-          {Challenges.map((challenge, index) => (
+          {challengesSent.map((challenge, index) => (
 
             <ChallengeSentCard key={index} challenge={challenge} handleOpenModal={() => handleOpenModal(index)} />
           ))

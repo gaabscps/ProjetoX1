@@ -1,17 +1,19 @@
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { Challenges } from '@/types/Challenges';
+import { ChallengesSent } from '@/types/ChallengesSent';
+import { maskBRL } from '@/utils/mask/maskMoney';
 
 interface ChallengeSentCardProps {
     handleOpenModal: (value: boolean) => void;
-    challenge: Challenges;
+    challenge: ChallengesSent;
 }
 
 export default function ChallengeSentCard({ challenge, handleOpenModal }: ChallengeSentCardProps) {
     return (
         <div>
             <p style={{ marginBottom: '10px' }}>
-                Fifa 2023
+                {challenge.gameId}
             </p>
             <Card width="350px" height="195px" content={
                 <>
@@ -21,7 +23,7 @@ export default function ChallengeSentCard({ challenge, handleOpenModal }: Challe
                                 Oponente:
                             </p>
                             <p>
-                                {challenge.user.userName}
+                                {challenge?.playerGuestId}
                             </p>
                         </div>
                         <div className="d-flex justify-content-between">
@@ -29,7 +31,7 @@ export default function ChallengeSentCard({ challenge, handleOpenModal }: Challe
                                 Aposta:
                             </p>
                             <p>
-                                R$ {challenge.value}
+                                {maskBRL(String(challenge?.value))}
                             </p>
                         </div>
                         <div className="d-flex justify-content-between">
@@ -37,7 +39,7 @@ export default function ChallengeSentCard({ challenge, handleOpenModal }: Challe
                                 Mensagem:
                             </p>
                             <p>
-                                -
+                                {challenge.message}
                             </p>
                         </div>
                     </div>

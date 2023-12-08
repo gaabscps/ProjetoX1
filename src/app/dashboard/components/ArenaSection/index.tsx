@@ -15,6 +15,9 @@ interface ArenaSectionProps {
 
 export default function ArenaSection({ setOpenFastGame, dashboard }: ArenaSectionProps) {
   const isTablet = useTabletHook();
+  const userAvailable: boolean = dashboard?.MatchArena?.status === 'Player is not in any ongoing match' ? true : false
+  const userInvited: boolean = dashboard?.MatchArena?.ChallangeInvited === 0
+  const userReceivedChallenge: boolean = dashboard?.MatchArena?.ChallengeReceive === 0
 
   return (
     <>
@@ -79,12 +82,20 @@ export default function ArenaSection({ setOpenFastGame, dashboard }: ArenaSectio
           />
           {/* Desafios Recebidos */}
           <Card
+            disabled={!!userReceivedChallenge}
             className="home-action-card-content"
             borderRadius="5px"
             height="100px"
             content={
-              <Link href={'/challenges'}>
-                <div className="home-action-card">
+              <div className='h-100' onClick={() => {
+                if (userReceivedChallenge) {
+                  return
+                }
+                window.location.href = '/challenges'
+              }}>
+                <div style={{
+                  cursor: userReceivedChallenge ? 'not-allowed' : 'pointer'
+                }} className="home-action-card">
                   <p style={{ marginBottom: '10px' }}>Desafios recebidos</p>
                   <p className="text-small-400 color-black-6">
                     {dashboard?.MatchArena?.ChallengeReceive || 0} desafios recebidos
@@ -93,17 +104,25 @@ export default function ArenaSection({ setOpenFastGame, dashboard }: ArenaSectio
                     <Image className="arrowCard" src={arrowCard} alt="" />
                   )}
                 </div>
-              </Link>
+              </div>
             }
           />
           {/* Desafios Enviados */}
           <Card
+            disabled={!!userInvited}
             className="home-action-card-content"
             borderRadius="5px"
             height="100px"
             content={
-              <Link href={'/challenges-sent'}>
-                <div className="home-action-card">
+              <div className='h-100' onClick={() => {
+                if (userInvited) {
+                  return
+                }
+                window.location.href = '/challenges-sent'
+              }}>
+                <div style={{
+                  cursor: userInvited ? 'not-allowed' : 'pointer'
+                }} className="home-action-card">
                   <p style={{ marginBottom: '10px' }}>Desafios enviados</p>
                   <p className="text-small-400 color-black-6">
                     {dashboard?.MatchArena?.ChallangeInvited || 0} desafios enviados
@@ -112,17 +131,25 @@ export default function ArenaSection({ setOpenFastGame, dashboard }: ArenaSectio
                     <Image className="arrowCard" src={arrowCard} alt="" />
                   )}
                 </div>
-              </Link>
+              </div>
             }
           />
           {/* Jogos Ativos */}
           <Card
+            disabled={!!userAvailable}
             className="home-action-card-content"
             borderRadius="5px"
             height="100px"
             content={
-              <Link href={'/active-games'}>
-                <div className="home-action-card">
+              <div className='h-100' onClick={() => {
+                if (userAvailable) {
+                  return
+                }
+                window.location.href = '/active-games'
+              }}>
+                <div style={{
+                  cursor: userAvailable ? 'not-allowed' : 'pointer'
+                }} className="home-action-card">
                   <p style={{ marginBottom: '10px' }}>Jogos ativos</p>
                   <div className="arena-action-card-content">
                     <div
@@ -136,18 +163,18 @@ export default function ArenaSection({ setOpenFastGame, dashboard }: ArenaSectio
                       {
                         // TODO - inverter a lógica para o status do jogo
                       }
-                      {dashboard?.MatchArena?.status === 'Player is not in any ongoing match' ? 'Pronto para ser desafiado' : 'Jogando'}
+                      {userAvailable ? 'Pronto para ser desafiado' : 'Jogando'}
                     </p>
                   </div>
                   {!isTablet && (
                     <Image className="arrowCard" src={arrowCard} alt="" />
                   )}
                 </div>
-              </Link>
+              </div>
             }
           />
         </div>
-      </Body>
+      </Body >
     </>
   );
 }

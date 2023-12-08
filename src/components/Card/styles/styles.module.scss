@@ -21,3 +21,9 @@
   border: 1.5px dashed #5f5c6b;
   border-radius: 5px;
 }
+
+.cardContainerDisabled {
+  background-color: var(--color-black);
+  opacity: 0.8;
+  cursor: not-allowed;
+}

@@ -1,13 +1,54 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import gabs from '@/assets/svg/gabs.jpg';
-import { Challenges } from '@/types/Challenges';
 import { toast } from 'react-toastify';
+import { AxiosResponse } from 'axios';
+import api from '@/services/api';
+import { useCookies } from 'react-cookie';
+import { ChallengesSent } from '@/types/ChallengesSent';
 
 
 const useChallengesSent = () => {
     const [openCancel, setOpenCancel] = useState<boolean[]>([]);
+    const [challengesSent, setChallengesSent] = useState<ChallengesSent[]>([]);
+    const [cookies, setCookies] = useCookies(['TokenAuth', 'idUser']);
 
-    const Challenges: Challenges[] = [{
+    const handleGetChallenges = async () => {
+        try {
+            const response: AxiosResponse = await api.get('challange/invitesByMe', {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                setChallengesSent(response?.data.returnMyInvites as ChallengesSent[])
+            }
+        } catch (error) {
+            console.error('Erro ao buscar usuário')
+        }
+    }
+
+    const handleRejectChallenge = async (id: string) => {
+        try {
+            const response: AxiosResponse = await api.patch(`challange/rejectChallange/`, {
+                inviteId: id
+            }, {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                toast.success('Desafio cancelado com sucesso. O seu oponente não verá mais esse desafio.');
+                handleGetChallenges();
+            }
+        } catch (error) {
+            console.error('Erro ao buscar usuário')
+        }
+    }
+
+
+    const Challenges = [{
         user: {
             userImage: gabs,
             userName: 'John',
@@ -162,19 +203,18 @@ const useChallengesSent = () => {
         setOpenCancel(newOpenCancel);
     };
 
-    const handleSubmit = () => {
-        console.log('submit');
-        toast.success('Desafio cancelado com sucesso. O seu oponente não verá mais esse desafio.');
-        handleCloseModal();
-    };
+    useEffect(() => {
+        handleGetChallenges();
+    }, [])
 
 
     return {
         Challenges,
         openCancel,
+        challengesSent,
         handleOpenModal,
         handleCloseModal,
-        handleSubmit,
+        handleRejectChallenge,
     };
 
 }

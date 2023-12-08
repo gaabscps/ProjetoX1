@@ -5,6 +5,7 @@ interface CardProps {
   height?: string
   color?: string
   borderRadius?: string
+  disabled?: boolean
   background?: string
   theme?: 'outline' | 'filled' | 'dotted'
   onClick?: () => void
@@ -17,13 +18,14 @@ export function Card({
   height,
   color,
   borderRadius,
+  disabled,
   background,
   theme = 'filled',
   onClick,
 }: CardProps) {
   return (
     <div
-      onClick={onClick}
+      onClick={!disabled ? onClick : undefined}
       style={{
         width: width,
         height: height || 0,
@@ -33,9 +35,8 @@ export function Card({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }}
-      className={`cardContainer card-${theme || ''} ${onClick ? 'action-icon' : ''} ${
-        className || ''
-      }`}
+      className={`${disabled && 'cardContainerDisabled'} cardContainer card-${theme || ''} ${onClick ? 'action-icon' : ''} ${className || ''
+        }`}
     >
       <div className='w-100 h-100'>{content}</div>
     </div>

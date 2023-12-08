@@ -143,7 +143,6 @@ const useChallenge = () => {
             followers[openModal.findIndex(Boolean)]?._id
             , game)
         handleCloseModal();
-        toast.success('Desafio enviado com sucesso ! Agora é só aguardar o seu oponente aceitar o seu desafio.');
     }
 
     useEffect(() => {

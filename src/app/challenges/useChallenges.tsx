@@ -4,6 +4,9 @@ import CounterProposal from './components/ModalBody/CounterProposalModalBody';
 import RefuseModalBody from './components/ModalBody/RefuseModalBody';
 import { Challenges } from '@/types/Challenges';
 import ModalSearchingFastGameBody from './components/ModalBody/SearchingFastGame';
+import { AxiosResponse } from 'axios';
+import api from '@/services/api';
+import { useCookies } from 'react-cookie';
 
 const useChallenges = () => {
     const [openAccept, setOpenAccept] = useState<boolean[]>([]);
@@ -16,7 +19,24 @@ const useChallenges = () => {
     const [counterProposal, setCounterProposal] = useState({
         counterProposal: '',
     });
+    const [cookies, setCookies] = useCookies(['TokenAuth', 'idUser']);
+    const [challenges, setChallenges] = useState<Challenges[]>([]);
 
+    const handleGetChallenges = async () => {
+        try {
+            const response: AxiosResponse = await api.get('challange/invitessentome', {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                setChallenges(response?.data.returnInvited as Challenges[])
+            }
+        } catch (error) {
+            console.error('Erro ao buscar usuário')
+        }
+    }
 
     // MOCK    
     const Challenges: Challenges[] = [{
