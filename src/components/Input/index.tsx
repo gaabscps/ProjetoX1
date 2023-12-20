@@ -82,6 +82,7 @@ export default function Input({
         {label && <label className={`${error ? 'input-error' : ''} ${styledLabel ? 'styled-label' : ''}`} htmlFor={name}>{label}</label>}
         {type !== 'file' &&
           <input
+            autoComplete='false'
             onChange={onChange}
             value={value || ''}
             placeholder={placeholder}

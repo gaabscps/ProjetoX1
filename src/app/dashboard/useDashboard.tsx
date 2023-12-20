@@ -47,7 +47,7 @@ const useDashboard = () => {
 
 
     const getProfile = async () => {
-        if (window.location.pathname === '/dashboard') {
+        if (window.location.pathname === '/dashboard' || window.location.pathname === '/active-games') {
             try {
                 const response = await api.get('/dashboard/myProfile', {
                     headers: {

@@ -34,7 +34,7 @@ export default function UserSection({ profile, location, isVisiting, handleFollo
 
   const [onHover, setOnHover] = useState(false);
 
-  const profileXp = profile?.xp || 0;
+  const profileXp = Math.round(Number(profile?.xp)) || 0;
   const profileLevel = Math.floor(Number(profileXp) / 1000);
   const profileLevelProgress = Number(profileXp) % 1000;
   const profileLevelProgressPercent = (profileLevelProgress / 1000) * 100;

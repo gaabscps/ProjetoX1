@@ -8,6 +8,7 @@ import useDashboard from '../dashboard/useDashboard';
 import { idExtractor } from '@/utils/idExtractor';
 import { ActiveGameMatch, ActiveGameResponse } from '@/types/ActiveGame';
 import { AxiosResponse } from 'axios';
+import { Dashboard } from '@/types/Dashboard';
 
 const useActiveGames = () => {
 
@@ -17,9 +18,13 @@ const useActiveGames = () => {
     const [match, setMatch] = useState<ActiveGameMatch>({} as any);
     const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser']);
 
-    const { profile, dashboard } = useDashboard()
-    const matchId = idExtractor(dashboard?.MatchArena?.status || '')
-    console.log(matchFinished)
+    const { profile, dashboard, getProfile } = useDashboard()
+    const profileStorage: Dashboard | null = typeof window !== 'undefined' && window.sessionStorage.getItem('profile') ? JSON.parse(window.sessionStorage.getItem('profile') || '') : null;
+
+
+    console.log('O valor do sessionStorage está vazio ou nulo.');
+    const matchId = idExtractor(String(profileStorage?.MatchArena?.status))
+
 
     const handleGetMatch = async (matchId: string) => {
         try {
@@ -34,7 +39,7 @@ const useActiveGames = () => {
                 setMatch(data.match)
             }
         } catch (error) {
-            toast.error('Erro ao carregar partida')
+            console.error(error)
         }
     }
 
@@ -104,11 +109,7 @@ const useActiveGames = () => {
     };
 
     useEffect(() => {
-        if (dashboard && dashboard?.MatchArena?.status !== 'Player is not in any ongoing match') {
-            handleGetMatch(matchId)
-        } else {
-            setMatch({} as any)
-        }
+        handleGetMatch(matchId)
     }, [profile])
 
     return {

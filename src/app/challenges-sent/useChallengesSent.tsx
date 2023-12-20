@@ -39,7 +39,8 @@ const useChallengesSent = () => {
                 }
             })
             if (response?.status === 200) {
-                toast.success('Desafio cancelado com sucesso. O seu oponente não verá mais esse desafio.');
+                toast.success(`Desafio recusado. Você recusou o desafio de ${challengesSent.find((challenge) => challenge._id === id)?.playerHostId}`)
+
                 handleGetChallenges();
             }
         } catch (error) {

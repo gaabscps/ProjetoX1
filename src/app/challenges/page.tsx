@@ -8,22 +8,24 @@ import Image from 'next/image';
 import back from '@/assets/svg/back.svg';
 import Input from '@/components/Input';
 import { Modal } from '@/components/Modal';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useChallenges from './useChallenges';
 import ReceivedChallenges from './components/ReceivedChallengesCard';
 
 export default function Challenges() {
 
 
-    const challenges = useChallenges()
-    const {
-        modal,
-        Challenges,
+    const { modal,
+        challenges,
         openTag,
         search,
         handleOpenTag,
         handleChange,
-    } = challenges
+        handleAcceptChallenge,
+        handleRejectChallange,
+    } = useChallenges()
+
     const { handleCloseModal,
         handleModalBody,
         handleOpenCounterProposal,
@@ -48,12 +50,12 @@ export default function Challenges() {
                         <Link href="/dashboard">
                             <Image src={back} width={16} height={16} alt="" />
                         </Link>
-                        <h5 style={{ marginBottom: '10px' }} className="h5-500">Desafios recebidos</h5>
+                        <h5 style={{ marginBottom: '10px' }} className="h5-500">Desafios recebidos ({challenges.length})</h5>
                     </div>
                     <p className='color-black-7' style={{ marginBottom: '30px' }}>Consulte os desafios que outros jogadores te enviaram</p>
                 </div>
                 <Input
-                    searchIcon={{ bottom: '12px' }}
+                    searchIcon={{ bottom: '22px' }}
                     maxHeight="44px"
                     name="search"
                     value={search.search}
@@ -62,37 +64,46 @@ export default function Challenges() {
                     placeholder="Pesquisar"
                     marginBottom="40px" />
 
-                <h6 style={{ marginBottom: '30px' }} className="h6-400 line-height-150">Desafios recebidos ({Challenges.length})</h6>
-
+                {/* <h6 style={{ marginBottom: '30px' }} className="h6-400 line-height-150">Desafios recebidos ({Challenges.length})</h6> */}
+                {/* 
 
                 <h6 style={{ marginBottom: '15px' }} className="h6-400 line-height-150">Março/2023</h6>
 
                 <p style={{ marginBottom: '10px' }} className="color-black-7">
                     12 de Março
-                </p>
+                </p> */}
                 <div style={{ flexWrap: 'wrap' }} className="user-card-challenge-container">
                     {
-                        Challenges && Challenges.length > 0 ? (
-                            Challenges.map((challenge, index) => (
+                        challenges && challenges.length > 0 ? (
+                            challenges.map((challenge, index) => (
                                 <div key={index} className='user-card-challenge'>
                                     <ReceivedChallenges
                                         challenge={challenge}
                                         openTag={openTag[index]}
                                         setOpenTag={() => handleOpenTag(index)}
-                                        setOpenModal={() => handleOpenModal(index)}
                                         handleOpenCounterProposal={() => handleOpenCounterProposal(index)}
-                                        handleOpenRefuse={() => handleOpenRefuse(index)}
+                                        handleRejectChallange={handleRejectChallange}
+                                        handleAcceptChallenge={handleAcceptChallenge}
                                     />
                                 </div>
                             )))
                             :
                             <div>
-                                <p style={{ marginBottom: '10px' }} className='line-height-150 color-black-7'>Você ainda não está seguindo nenhum jogador.</p>
-                                <p className='line-height-150 color-black-7' >Procure por um jogador para seguir e desafiar ou inicie um jogo rápido.</p>
+                                <p style={{ marginBottom: '10px' }} className='line-height-150 color-black-7'>Você ainda não tem desafios recebidos.</p>
                             </div>
                     }
                 </div>
             </Body>
+            <ToastContainer theme='dark' toastStyle={{
+                background: '#29272A',
+                fontSize: '14px',
+                boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
+            }}
+                progressStyle={{
+                    background: '#963BFF',
+                }}
+                autoClose={10000}
+            />
         </>
     )
 }

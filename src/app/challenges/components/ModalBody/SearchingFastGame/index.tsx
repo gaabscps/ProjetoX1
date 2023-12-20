@@ -24,12 +24,12 @@ export default function ModalSearchingFastGameBody({
         <div className="mb-2">
           <div className="searchingFastGameDetails d-flex align-items-center justify-content-between">
             <p className="color-black-7">Jogo a ser jogado</p>
-            <p>{challenges.some(Boolean) && challenges[index].game}</p>
+            <p>{challenges.some(Boolean) && challenges[index].gameId}</p>
           </div>
 
           <div className="searchingFastGameDetails d-flex align-items-center justify-content-between">
             <p className="color-black-7">Nível do oponente</p>
-            <p>{challenges.some(Boolean) && challenges[index].gameRank}</p>
+            {/* <p>{challenges.some(Boolean) && challenges[index].gameRank}</p> */}
           </div>
 
           <div className="searchingFastGameDetails d-flex align-items-center justify-content-between">

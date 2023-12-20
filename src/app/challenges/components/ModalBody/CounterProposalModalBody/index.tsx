@@ -20,7 +20,7 @@ export default function CounterProposal({ handleCloseModal, challenges, index }:
                         Desafio enviado por:
                     </p>
                     <p>
-                        {challenges.some(Boolean) && challenges[index].user.userName}
+                        {challenges.some(Boolean) && challenges[index].playerHostId}
                     </p>
                 </div>
                 <div className="d-flex justify-content-between">

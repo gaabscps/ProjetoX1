@@ -1,12 +1,13 @@
 import gabs from '@/assets/svg/gabs.jpg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CounterProposal from './components/ModalBody/CounterProposalModalBody';
 import RefuseModalBody from './components/ModalBody/RefuseModalBody';
-import { Challenges } from '@/types/Challenges';
 import ModalSearchingFastGameBody from './components/ModalBody/SearchingFastGame';
 import { AxiosResponse } from 'axios';
 import api from '@/services/api';
 import { useCookies } from 'react-cookie';
+import { Challenges } from '@/types/Challenges';
+import { toast } from 'react-toastify';
 
 const useChallenges = () => {
     const [openAccept, setOpenAccept] = useState<boolean[]>([]);
@@ -38,151 +39,43 @@ const useChallenges = () => {
         }
     }
 
-    // MOCK    
-    const Challenges: Challenges[] = [{
-        user: {
-            userImage: gabs,
-            userName: 'John',
-            gamesPlayed: '10',
-            gamesVictory: '7',
-            gamesDefeat: '3',
-            status: 0,
-            games: [
-                {
-                    game: 'FIFA 21',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'League of Legends',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'Valorant',
-                    gameRank: 'Profissional',
-                },
-                {
-                    game: 'CS:GO',
-                    gameRank: 'Profissional',
+    const handleAcceptChallenge = async (id: string) => {
+        try {
+            const response: AxiosResponse = await api.patch(`challange/acceptChallange`, {
+                inviteId: id
+            }, {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
                 }
-            ],
-        },
-        value: 100,
-        game: 'FIFA 21',
-        gameRank: 'Iniciante',
-    },
-    {
-        user: {
-            userImage: gabs,
-            userName: 'Emily',
-            gamesPlayed: '15',
-            gamesVictory: '9',
-            gamesDefeat: '6',
-            status: 0,
-            games: [
-                {
-                    game: 'FIFA 21',
-                    gameRank: 'Profissional',
-                },
-                {
-                    game: 'League of Legends',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'Valorant',
-                    gameRank: 'Profissional',
-                },
-                {
-                    game: 'CS:GO',
-                    gameRank: 'Intermediario',
-                }
-            ],
-        },
-        value: 200,
-        game: 'League of Legends',
-        gameRank: 'Iniciante',
-    },
-    {
-        user: {
-            userImage: gabs,
-            userName: 'David',
-            gamesPlayed: '8',
-            gamesVictory: '4',
-            gamesDefeat: '4',
-            status: 1,
-            games: [
-                {
-                    game: 'FIFA 21',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'League of Legends',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'Valorant',
-                    gameRank: 'Profissional',
-                },
-            ],
-        },
-        value: 300,
-        game: 'Valorant',
-        gameRank: 'Profissional',
-    },
-    {
-        user: {
-            userImage: gabs,
-            userName: 'Sarah',
-            gamesPlayed: '12',
-            gamesVictory: '10',
-            gamesDefeat: '2',
-            status: 1,
-            games: [
-                {
-                    game: 'FIFA 21',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'League of Legends',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'Valorant',
-                    gameRank: 'Profissional',
-                },
-            ],
-        },
-        value: 400,
-        game: 'FIFA 21',
-        gameRank: 'Profissional',
-    },
-    {
-        user: {
-            userImage: gabs,
-            userName: 'Michael',
-            gamesPlayed: '20',
-            gamesVictory: '15',
-            gamesDefeat: '5',
-            status: 2,
-            games: [
-                {
-                    game: 'FIFA 21',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'League of Legends',
-                    gameRank: 'Iniciante',
-                },
-                {
-                    game: 'Valorant',
-                    gameRank: 'Profissional',
-                },
-            ],
-        },
-        value: 500,
-        game: 'League of Legends',
-        gameRank: 'Intermediário',
+            })
+            if (response?.status === 200) {
+                handleGetChallenges()
+                window.location.href = '/active-games'
+            }
+        } catch (error) {
+            console.error('Erro ao aceitar desafio')
+        }
     }
-    ]
+
+    const handleRejectChallange = async (id: string) => {
+        try {
+            const response: AxiosResponse = await api.patch(`challange/rejectChallange`, {
+                inviteId: id
+            }, {
+                headers: {
+                    'TokenAuth': cookies.TokenAuth,
+                    'idUser': cookies.idUser as string
+                }
+            })
+            if (response?.status === 200) {
+                handleGetChallenges()
+                toast.error(`Desafio recusado. Você recusou o desafio de ${challenges.find((challenge) => challenge._id === id)?.playerHostId}`)
+            }
+        } catch (error) {
+            console.error('Erro ao recusar desafio')        
+        }
+    }
 
     // FORMS
     const handleChange = (event: any) => {
@@ -217,7 +110,7 @@ const useChallenges = () => {
                     setOpenSearchingFastGame={() => {
                         setOpenAccept([]);
                     }}
-                    challenges={Challenges}
+                    challenges={challenges}
                     index={index} />
             );
         }
@@ -225,7 +118,7 @@ const useChallenges = () => {
             const index = openCounterProposal.findIndex(Boolean);
             return (
                 <CounterProposal
-                    challenges={Challenges}
+                    challenges={challenges}
                     handleCloseModal={handleCloseModal}
                     index={index}
                 />
@@ -273,6 +166,10 @@ const useChallenges = () => {
         setOpenRefuse([]);
     };
 
+    useEffect(() => {
+        handleGetChallenges()
+    }, [])
+
 
     const modal = {
         openAccept,
@@ -286,13 +183,15 @@ const useChallenges = () => {
     }
 
     return {
-        Challenges,
+        challenges,
         modal,
         openTag,
         search,
         counterProposal,
         handleChange,
         handleOpenTag,
+        handleAcceptChallenge,
+        handleRejectChallange,
     }
 
 }

@@ -18,7 +18,7 @@ export default function CancelModalBody({ handleCloseModal, handleRejectChalleng
             </div>
             <div className="d-flex flex-gap-2 mb-2 justify-content-center">
                 <Button onClick={() => { handleCloseModal() }} size="standard" width="40%" theme="primaryOutline" content={<div> Voltar </div>} />
-                <Button onClick={() => { handleRejectChallenge(challengesSent._id), handleCloseModal() }} size="standard" width="40%" theme="primary" content={<div> Cancelar </div>} />
+                <Button onClick={() => { handleRejectChallenge(challengesSent?._id), handleCloseModal() }} size="standard" width="40%" theme="primary" content={<div> Cancelar </div>} />
             </div>
         </>
     )
