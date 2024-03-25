@@ -41,7 +41,7 @@ const useChallenges = () => {
 
     const handleAcceptChallenge = async (id: string) => {
         try {
-            const response: AxiosResponse = await api.patch(`challange/acceptChallange`, {
+            const response: AxiosResponse = await api.patch('challange/acceptChallange', {
                 inviteId: id
             }, {
                 headers: {
@@ -60,7 +60,7 @@ const useChallenges = () => {
 
     const handleRejectChallange = async (id: string) => {
         try {
-            const response: AxiosResponse = await api.patch(`challange/rejectChallange`, {
+            const response: AxiosResponse = await api.patch('challange/rejectChallange', {
                 inviteId: id
             }, {
                 headers: {
