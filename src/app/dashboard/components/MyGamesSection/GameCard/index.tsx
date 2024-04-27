@@ -9,7 +9,6 @@ interface GameCardProps {
   data: {
     gameId: string;
     urlPhoto: string;
-    gameName: string;
     matchPlayed: string;
     matchWin: string;
     matchDeafet: string;
