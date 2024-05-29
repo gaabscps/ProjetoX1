@@ -5,7 +5,7 @@ import ModalSearchingFastGameBody from './components/ModalBody/SearchingFastGame
 import api from '@/services/api'
 import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
-import { Dashboard, Location, Profile } from '@/types/Dashboard'
+import { AvailableGames, Dashboard, Location, Profile, UserGames } from '@/types/Dashboard'
 import { useHeader } from '@/components/Header/useHeader'
 import { GamesList } from '@/types/GamesList'
 import { unmaskBRL } from '@/utils/mask/maskMoney'
@@ -17,8 +17,6 @@ const useDashboard = () => {
     {
       _id: '1',
       urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
-      createdAt: '2021-10-05T16:00:00.000Z',
-      updatedAt: '2021-10-05T16:00:00.000Z',
       gameId: '1',
       level: 'Intermediário',
       matchDeafet: '10',
@@ -29,8 +27,6 @@ const useDashboard = () => {
     {
       _id: '2',
       urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
-      createdAt: '2021-10-05T16:00:00.000Z',
-      updatedAt: '2021-10-05T16:00:00.000Z',
       gameId: '2',
       level: 'Expert',
       matchDeafet: '30',
@@ -40,10 +36,74 @@ const useDashboard = () => {
     },
   ]
 
+  const availableGamesMock: AvailableGames[] = [
+    {
+      _id: '1',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '1',
+      name: 'League of Legends',
+    },
+    {
+      _id: '2',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '2',
+      name: 'Valorant',
+    },
+    {
+      _id: '3',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '3',
+      name: 'CS:GO',
+    },
+    {
+      _id: '4',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '4',
+      name: 'FIFA 22',
+    },
+    {
+      _id: '5',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '5',
+      name: 'Rocket League',
+    },
+    {
+      _id: '6',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '6',
+      name: 'Free Fire',
+    },
+    {
+      _id: '7',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '7',
+      name: 'PUBG',
+    },
+    {
+      _id: '8',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '8',
+      name: 'Fortnite',
+    },
+    {
+      _id: '9',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '9',
+      name: 'Among Us',
+    },
+    {
+      _id: '10',
+      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      gameId: '10',
+      name: 'Minecraft',
+    },
+  ]
+
   const [openAddGame, setOpenAddGame] = useState(false)
   const [openFastGame, setOpenFastGame] = useState(false)
   const [openSearchingFastGame, setOpenSearchingFastGame] = useState(false)
-  const [games, setGames] = useState<GamesList[]>(gamesMock)
+  const [games, setGames] = useState<UserGames[]>(gamesMock)
+  const [availableGames, setAvailableGames] = useState<AvailableGames[]>(availableGamesMock)
   const [profile, setProfile] = useState<Profile>()
   const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser'])
   const [onlineUsers, setOnlineUsers] = useState<SearchPlayersByName[]>([])
@@ -313,32 +373,32 @@ const useDashboard = () => {
     }
   }
 
-  const handleFollow = async (idUser: string, youFollow: boolean) => {
-    try {
-      if (youFollow) {
-        await api.delete(`/social/unfollowing/${idUser}`, {
-          headers: {
-            TokenAuth: cookies.TokenAuth,
-            idUser: cookies.idUser as string,
-          },
-        })
-      } else {
-        await api.post(
-          `/social/following/${idUser}`,
-          {},
-          {
-            headers: {
-              TokenAuth: cookies.TokenAuth,
-              idUser: cookies.idUser as string,
-            },
-          },
-        )
-      }
-      handleGetUser(window.location.pathname.split('/')[2])
-    } catch (error) {
-      console.error('Erro ao seguir usuário:', error)
-    }
-  }
+  // const handleFollow = async (idUser: string, youFollow: boolean) => {
+  //   try {
+  //     if (youFollow) {
+  //       await api.delete(`/social/unfollowing/${idUser}`, {
+  //         headers: {
+  //           TokenAuth: cookies.TokenAuth,
+  //           idUser: cookies.idUser as string,
+  //         },
+  //       })
+  //     } else {
+  //       await api.post(
+  //         `/social/following/${idUser}`,
+  //         {},
+  //         {
+  //           headers: {
+  //             TokenAuth: cookies.TokenAuth,
+  //             idUser: cookies.idUser as string,
+  //           },
+  //         },
+  //       )
+  //     }
+  //     handleGetUser(window.location.pathname.split('/')[2])
+  //   } catch (error) {
+  //     console.error('Erro ao seguir usuário:', error)
+  //   }
+  // }
 
   // MODAL
   const handleSearchingFastGame = () => {
@@ -348,7 +408,7 @@ const useDashboard = () => {
 
   function handleModalBody() {
     if (openAddGame) {
-      return <ModalAddGameBody games={games} setOpenAddGame={setOpenAddGame} />
+      return <ModalAddGameBody games={availableGames} setOpenAddGame={setOpenAddGame} />
     }
     if (openFastGame) {
       return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
@@ -364,24 +424,38 @@ const useDashboard = () => {
     return null
   }
 
+  // const handleRemoveGame = async (gameId: string) => {
+  //   try {
+  //     const response = await api.delete('/dashboard/myProfile/removeGame', {
+  //       headers: {
+  //         TokenAuth: cookies.TokenAuth,
+  //         idUser: cookies.idUser as string,
+  //       },
+  //       data: {
+  //         gameId,
+  //       },
+  //     })
+  //     if (response?.status === 200) {
+  //       toast.success('Jogo removido com sucesso')
+  //       getProfile()
+  //     }
+  //   } catch (error) {
+  //     toast.error('Erro ao remover jogo')
+  //   }
+  // }
+
   const handleRemoveGame = async (gameId: string) => {
-    try {
-      const response = await api.delete('/dashboard/myProfile/removeGame', {
-        headers: {
-          TokenAuth: cookies.TokenAuth,
-          idUser: cookies.idUser as string,
-        },
-        data: {
-          gameId,
-        },
-      })
-      if (response?.status === 200) {
-        toast.success('Jogo removido com sucesso')
-        getProfile()
-      }
-    } catch (error) {
-      toast.error('Erro ao remover jogo')
-    }
+    console.log({
+      headers: {
+        TokenAuth: cookies.TokenAuth,
+        idUser: cookies.idUser as string,
+      },
+      data: {
+        gameId,
+      },
+    })
+    toast.success('Jogo removido com sucesso')
+    toast.success('Integração mockada, demonstrativo no console')
   }
 
   useEffect(() => {
@@ -389,7 +463,6 @@ const useDashboard = () => {
     getProfile()
     handleGetOnlineUsers()
     handleGetUser(window.location.pathname.split('/')[2])
-    console.log(games, profile)
   }, [window.location.pathname])
 
   const modal = {
@@ -411,7 +484,6 @@ const useDashboard = () => {
     getProfile,
     handleRemoveGame,
     handleGetOnlineUsers,
-    handleFollow,
     handleLeaveFastGameQueue,
     handleFastGameQueue,
   }

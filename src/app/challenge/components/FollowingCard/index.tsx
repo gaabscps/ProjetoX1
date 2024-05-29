@@ -1,20 +1,19 @@
-import { Button } from '@/components/Button';
-import { Card } from '@/components/Card';
-import TagGroup from '../TagGroup';
-import { StaticImageData } from 'next/image';
-import UserImage from '@/components/UserImage';
-import { GamesList } from '@/types/GamesList';
+import { Button } from '@/components/Button'
+import { Card } from '@/components/Card'
+import TagGroup from '../TagGroup'
+import UserImage from '@/components/UserImage'
+import { UserGames } from '@/types/Dashboard'
 
 interface FollowingCardProps {
-  openTag: boolean;
-  userImage: string;
-  userName: string;
-  gamesPlayed: number | undefined;
-  gamesVictory: number | undefined;
-  gamesDefeat: number | undefined;
-  games: GamesList[];
-  setOpenTag: (open: boolean) => void;
-  setOpenModal: (open: boolean) => void;
+  openTag: boolean
+  userImage: string
+  userName: string
+  gamesPlayed: number | undefined
+  gamesVictory: number | undefined
+  gamesDefeat: number | undefined
+  games: UserGames[]
+  setOpenTag: (open: boolean) => void
+  setOpenModal: (open: boolean) => void
 }
 
 export default function FollowingCard({
@@ -28,25 +27,23 @@ export default function FollowingCard({
   setOpenTag,
   setOpenModal,
 }: FollowingCardProps) {
+  console.log(userImage)
   return (
     <Card
-      width="100%"
-      height="120px"
+      width='100%'
+      height='120px'
       content={
-        <div className="h-100">
-          <div className="d-flex align-items-center justify-content-between mr-1 ml-1">
-            <div
-              style={{ height: '74px' }}
-              className="d-flex align-items-center flex-gap-1"
-            >
+        <div className='h-100'>
+          <div className='d-flex align-items-center justify-content-between mr-1 ml-1'>
+            <div style={{ height: '74px' }} className='d-flex align-items-center flex-gap-1'>
               <UserImage userImage={userImage} />
               <div>
-                <p style={{ marginBottom: '9px' }} className="text-small-400">
+                <p style={{ marginBottom: '9px' }} className='text-small-400'>
                   {userName}
                 </p>
-                <div className="text-small-400 color-black-7 challenge-stats-content">
-                  <p className="">JR: {gamesPlayed}</p>
-                  <p className="">V: {gamesVictory}</p>
+                <div className='text-small-400 color-black-7 challenge-stats-content'>
+                  <p className=''>JR: {gamesPlayed}</p>
+                  <p className=''>V: {gamesVictory}</p>
                   <p className=''>D: {gamesDefeat}</p>
                 </div>
               </div>
@@ -54,10 +51,10 @@ export default function FollowingCard({
             <div>
               <Button
                 onClick={() => setOpenModal(true)}
-                height="22px"
-                width="72px"
+                height='22px'
+                width='72px'
                 content={'Desafiar'}
-                size="small"
+                size='small'
               />
             </div>
           </div>
@@ -66,5 +63,5 @@ export default function FollowingCard({
         </div>
       }
     />
-  );
+  )
 }

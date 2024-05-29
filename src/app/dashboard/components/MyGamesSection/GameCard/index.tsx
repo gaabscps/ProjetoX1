@@ -3,24 +3,24 @@ import DropdownMenu from '@/components/DropdownMenu'
 import Image from 'next/image'
 import dot from '@/assets/svg/verticalDot.svg'
 import remover from '@/assets/svg/remover.svg'
+import { UserGames } from '@/types/Dashboard'
 
 interface GameCardProps {
   openDropdown: boolean
-  data: {
-    gameId: string;
-    urlPhoto: string;
-    matchPlayed: string;
-    matchWin: string;
-    matchDeafet: string;
-    level: string;
-  }
+  data: UserGames
   setOpenAddGame: (value: boolean) => void
   setOpenDropdown: (value: boolean) => void
   handleRemoveGame?: (gameId: string) => void
   isVisiting?: boolean
 }
 
-export default function GameCard({ openDropdown, data, isVisiting, setOpenDropdown, handleRemoveGame }: GameCardProps) {
+export default function GameCard({
+  openDropdown,
+  data,
+  isVisiting,
+  setOpenDropdown,
+  handleRemoveGame,
+}: GameCardProps) {
   return (
     <Card
       borderRadius='5px'
@@ -79,7 +79,10 @@ export default function GameCard({ openDropdown, data, isVisiting, setOpenDropdo
               {
                 icon: remover,
                 content: 'Remover',
-                onClick: () => { handleRemoveGame && handleRemoveGame(data.gameId); setOpenDropdown(false) }
+                onClick: () => {
+                  handleRemoveGame && handleRemoveGame(data.gameId)
+                  setOpenDropdown(false)
+                },
               },
             ]}
           />

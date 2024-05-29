@@ -6,10 +6,11 @@ import useAddGame from './useAddGame'
 import useDashboard from '@/app/dashboard/useDashboard'
 import alert from '../../../../../assets/svg/alert.svg'
 import Image from 'next/image'
+import { AvailableGames, UserGames } from '@/types/Dashboard'
 
 interface ModalAddGameBodyProps {
   setOpenAddGame: (value: boolean) => void
-  games: GamesList[]
+  games: AvailableGames[]
 }
 
 export default function ModalAddGameBody({ setOpenAddGame, games }: ModalAddGameBodyProps) {

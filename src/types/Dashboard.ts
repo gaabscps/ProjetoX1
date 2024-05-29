@@ -1,3 +1,5 @@
+import { GamesList } from './GamesList'
+
 export interface Profile {
   V?: number
   JR?: number
@@ -7,7 +9,7 @@ export interface Profile {
   following: string
   followers: string
   xp: string
-  games: any[] // Substitua 'any' pelo tipo específico de jogo, se necessário
+  games: UserGames[]
   timesChangelled: string
   timesyouChangelled: string
   gamesPlayed: string
@@ -42,4 +44,22 @@ export interface Dashboard {
   Location?: Location
   Notifications?: Notifications
   MatchArena?: MatchArena
+}
+
+export interface UserGames {
+  _id: string
+  urlPhoto: string
+  level: string
+  matchPlayed: string
+  matchWin: string
+  matchDeafet: string
+  gameId: string
+  name: string
+}
+
+export interface AvailableGames {
+  _id: string
+  name: string
+  urlPhoto: string
+  gameId: string
 }

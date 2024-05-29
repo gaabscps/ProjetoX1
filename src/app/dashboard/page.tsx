@@ -9,9 +9,10 @@ import { Header } from '@/components/Header'
 import useDashboard from './useDashboard'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useState } from 'react'
 
 export default function Dashboard() {
-  const { modal, profile, handleRemoveGame, location, handleFollow, dashboard } = useDashboard()
+  const { modal, profile, handleRemoveGame, location, dashboard } = useDashboard()
   const {
     openAddGame,
     openFastGame,
@@ -40,7 +41,7 @@ export default function Dashboard() {
       />
       <Header />
       <div className='pageBody'>
-        <UserSection handleFollow={handleFollow} location={location} profile={profile} />
+        <UserSection location={location} profile={profile} />
         <MyGamesSection
           handleRemoveGame={handleRemoveGame}
           profile={profile}
