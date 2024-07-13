@@ -48,38 +48,87 @@ const useLanding = () => {
         content: 'Conteúdo da notícia 1',
         createdAt: '2021-10-10',
         updatedAt: '2021-10-10',
-        photoUrl: 'https://via.placeholder.com/150',
+        photoUrl:
+          'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/9eb028de391e65072d06e77f06d0955f66b9fa2c-736x316.png?auto=format&fit=fill&q=80&w=300',
         tittle: 'Notícia 1',
       },
-      {
-        _id: '2',
-        content: 'Conteúdo da notícia 2',
-        createdAt: '2021-10-10',
-        updatedAt: '2021-10-10',
-        photoUrl: 'https://via.placeholder.com/150',
-        tittle: 'Notícia 2',
-      },
-      {
-        _id: '3',
-        content: 'Conteúdo da notícia 3',
-        createdAt: '2021-10-10',
-        updatedAt: '2021-10-10',
-        photoUrl: 'https://via.placeholder.com/150',
-        tittle: 'Notícia 3',
-      },
+      // {
+      //   _id: '2',
+      //   content: 'Conteúdo da notícia 2',
+      //   createdAt: '2021-10-10',
+      //   updatedAt: '2021-10-10',
+      //   photoUrl: 'https://via.placeholder.com/150',
+      //   tittle: 'Notícia 2',
+      // },
+      // {
+      //   _id: '3',
+      //   content: 'Conteúdo da notícia 3',
+      //   createdAt: '2021-10-10',
+      //   updatedAt: '2021-10-10',
+      //   photoUrl: 'https://via.placeholder.com/150',
+      //   tittle: 'Notícia 3',
+      // },
     ])
   }
 
   const getGames = async () => {
-    try {
-      const response = await api.get('/games/gamesReturn')
-      if (response?.status === 200) {
-        setGames(response?.data)
-      }
-    } catch (error) {
-      toast.error('Erro ao buscar jogos')
-      // console.error(error)
-    }
+    // try {
+    //   const response = await api.get('/games/gamesReturn')
+    //   if (response?.status === 200) {
+    //     setGames(response?.data)
+    //   }
+    // } catch (error) {
+    //   toast.error('Erro ao buscar jogos')
+    //   // console.error(error)
+    // }
+    setGames([
+      {
+        _id: '1',
+        name: 'League of Legends',
+        thumbnail:
+          'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/9eb028de391e65072d06e77f06d0955f66b9fa2c-736x316.png?auto=format&fit=fill&q=80&w=300',
+        createdAt: '2021-10-10',
+        updatedAt: '2021-10-10',
+      },
+      {
+        _id: '2',
+        name: 'Valorant',
+        thumbnail:
+          'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/7b76209193f1bfe190d3ae6ef8728328870be9c3-736x138.png?auto=format&fit=fill&q=80&w=300',
+        createdAt: '2021-10-10',
+        updatedAt: '2021-10-10',
+      },
+      {
+        _id: '3',
+        name: 'Free Fire',
+        thumbnail:
+          'https://freefiremobile-a.akamaihd.net/common/web_event/official2.ff.garena.all/img/20226/01271f4d1ff8044f828510a833075744.png',
+        createdAt: '2021-10-10',
+        updatedAt: '2021-10-10',
+      },
+      {
+        _id: '4',
+        name: 'Call of Duty',
+        thumbnail:
+          'https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/global/cod-logo.svg',
+        createdAt: '2021-10-10',
+        updatedAt: '2021-10-10',
+      },
+      {
+        _id: '5',
+        name: 'Fortnite',
+        thumbnail: 'https://media.graphassets.com/ddDDGPriQHC1OyGYRAKO',
+        createdAt: '2021-10-10',
+        updatedAt: '2021-10-10',
+      },
+      {
+        _id: '6',
+        name: 'PUBG',
+        thumbnail: 'https://wstatic-prod.pubg.com/web/live/main_053cbfd/img/2256138.png',
+        createdAt: '2021-10-10',
+        updatedAt: '2021-10',
+      },
+    ])
   }
 
   // const handleLogin = async () => {
@@ -148,7 +197,7 @@ const useLanding = () => {
 
   useEffect(() => {
     // getNews()
-    // getGames()
+    getGames()
   }, [])
 
   // MODAL

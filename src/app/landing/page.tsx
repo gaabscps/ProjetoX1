@@ -11,8 +11,8 @@ import { Body } from '@/components/Body'
 import HowToPlay from './components/HowToPlay'
 import LandingPageFaq from './components/FAQ'
 import { Footer } from '@/components/Footer'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { ModalLoginBody } from './components/ModalBody/Login'
 import { ModalRegisterBody } from './components/ModalBody/Register'
 import useLanding from './useLanding'
@@ -20,24 +20,36 @@ import LastNewsModalBody from './components/LastNewsSection/ModalBody'
 import { TermsConditionBody } from '@/components/ModalBody/TermsCondition'
 
 export default function Landing() {
-  const landing = useLanding();
-  const { openLogin, openRegister, isModalOpen, selectedNewsIndex, setOpenLogin, setOpenRegister, setIsModalOpen, setSelectedNewsIndex, openTerms, setOpenTerms } = landing.modal;
+  const landing = useLanding()
+  const {
+    openLogin,
+    openRegister,
+    isModalOpen,
+    selectedNewsIndex,
+    setOpenLogin,
+    setOpenRegister,
+    setIsModalOpen,
+    setSelectedNewsIndex,
+    openTerms,
+    setOpenTerms,
+  } = landing.modal
 
-
+  console.log(landing.games)
 
   return (
     <>
       <Modal
         open={openLogin || openRegister}
-        setOpen={
-          openLogin ? setOpenLogin :
-            openRegister ? setOpenRegister : null
-
-        }
-        modalBody={openLogin ? (
-          <ModalLoginBody handleRegisterButton={landing.handleRegisterButton} />) : (
-          <ModalRegisterBody setOpenTerms={setOpenTerms} handleLoginButton={landing.handleLoginButton} />
-        )
+        setOpen={openLogin ? setOpenLogin : openRegister ? setOpenRegister : null}
+        modalBody={
+          openLogin ? (
+            <ModalLoginBody handleRegisterButton={landing.handleRegisterButton} />
+          ) : (
+            <ModalRegisterBody
+              setOpenTerms={setOpenTerms}
+              handleLoginButton={landing.handleLoginButton}
+            />
+          )
         }
         modalHeader={
           openRegister ? (
@@ -53,7 +65,8 @@ export default function Landing() {
         modalHeaderBg={'#0e0e0f'}
         setOpen={setOpenTerms}
         modalBody={<TermsConditionBody />}
-        open={openTerms} />
+        open={openTerms}
+      />
       <Header setOpenRegister={setOpenRegister} setOpenLogin={setOpenLogin} />
       <VideoSection setOpenRegister={setOpenRegister} />
       {/* <StatsSection /> */}
@@ -61,11 +74,7 @@ export default function Landing() {
       <GamesSection games={landing.games} />
       <FeaturesSection />
       <Body marginBottom='130px' className='d-flex justify-content-center'>
-        <Button
-          onClick={() => setOpenRegister(true)}
-          size='large'
-          content='Criar a minha conta'
-        />
+        <Button onClick={() => setOpenRegister(true)} size='large' content='Criar a minha conta' />
       </Body>
       <HowToPlay />
       <>
@@ -73,17 +82,29 @@ export default function Landing() {
           open={isModalOpen}
           modalBody={<LastNewsModalBody news={landing.news[selectedNewsIndex]} />}
           modalHeaderBg='#0e0e0f'
-          modalHeader={<h5 className='h5-500 text-center plr-2'>  {landing?.news[selectedNewsIndex]?.tittle || ''}</h5>}
-          setOpen={setIsModalOpen} />
-        <LastNewsSection news={landing.news} setIsModalOpen={setIsModalOpen} setSelectedNewsIndex={setSelectedNewsIndex} />
+          modalHeader={
+            <h5 className='h5-500 text-center plr-2'>
+              {' '}
+              {landing?.news[selectedNewsIndex]?.tittle || ''}
+            </h5>
+          }
+          setOpen={setIsModalOpen}
+        />
+        <LastNewsSection
+          news={landing.news}
+          setIsModalOpen={setIsModalOpen}
+          setSelectedNewsIndex={setSelectedNewsIndex}
+        />
       </>
       <LandingPageFaq />
       <Footer setOpenTerms={setOpenTerms} />
-      <ToastContainer theme='dark' toastStyle={{
-        background: '#29272A',
-        fontSize: '14px',
-        boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
-      }}
+      <ToastContainer
+        theme='dark'
+        toastStyle={{
+          background: '#29272A',
+          fontSize: '14px',
+          boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
+        }}
         progressStyle={{
           background: '#963BFF',
         }}

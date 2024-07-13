@@ -55,10 +55,10 @@ export function Header({ setOpenLogin, setOpenRegister }: HeaderProps) {
       name: 'Como jogar',
       link: 'howToPlay',
     },
-    {
-      name: 'Últimas notícias e atualizações',
-      link: 'news',
-    },
+    // {
+    //   name: 'Últimas notícias e atualizações',
+    //   link: 'news',
+    // },
     {
       name: 'FAQ',
       link: 'faq',
