@@ -9,7 +9,7 @@ import { Header } from '@/components/Header'
 import useDashboard from './useDashboard'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Dashboard() {
   const { modal, profile, handleRemoveGame, location, dashboard } = useDashboard()
@@ -22,8 +22,15 @@ export default function Dashboard() {
     setOpenSearchingFastGame,
     handleModalBody,
   } = modal
+  const [isLoading, setIsLoading] = useState(false)
 
-  return (
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsLoading(true)
+    }
+  }, [])
+
+  return isLoading ? null : (
     <>
       <Modal
         open={openAddGame || openFastGame || openSearchingFastGame}

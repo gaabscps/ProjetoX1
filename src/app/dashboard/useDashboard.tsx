@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import ModalAddGameBody from './components/ModalBody/AddGame'
 import ModalFastGameBody from '@/components/ModalBody/FastGame'
@@ -27,7 +28,8 @@ const useDashboard = () => {
     },
     {
       _id: '2',
-      urlPhoto: 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/7b76209193f1bfe190d3ae6ef8728328870be9c3-736x138.png?auto=format&fit=fill&q=80&w=300',
+      urlPhoto:
+        'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/7b76209193f1bfe190d3ae6ef8728328870be9c3-736x138.png?auto=format&fit=fill&q=80&w=300',
       gameId: '2',
       level: 'Expert',
       matchDeafet: '30',
@@ -113,7 +115,7 @@ const useDashboard = () => {
 
   const { logOut } = useHeader()
   const fastGame =
-    typeof sessionStorage !== 'undefined'
+    typeof window !== 'undefined' && typeof sessionStorage !== 'undefined'
       ? JSON.parse(sessionStorage.getItem('fastGame') || '{}')
       : {}
 
@@ -166,27 +168,29 @@ const useDashboard = () => {
   }
 
   const getProfile = () => {
-    setProfile({
-      V: 0,
-      JR: 0,
-      D: 0,
-      _id: '123456',
-      nickname: 'Gabriel',
-      following: '358',
-      followers: '500',
-      xp: '57432',
-      games: games,
-      timesChangelled: '100',
-      timesyouChangelled: '240',
-      gamesPlayed: '180',
-      balance: '900',
-      idUser: 'string',
-      urlPhoto: 'https://picsum.photos/201/300',
-      youFollow: false,
-      createdAt: 'string',
-      updatedAt: 'string',
-      __v: 0,
-    })
+    if (typeof window !== 'undefined') {
+      setProfile({
+        V: 0,
+        JR: 0,
+        D: 0,
+        _id: '123456',
+        nickname: 'Gabriel',
+        following: '358',
+        followers: '500',
+        xp: '57432',
+        games: games,
+        timesChangelled: '100',
+        timesyouChangelled: '240',
+        gamesPlayed: '180',
+        balance: '900',
+        idUser: 'string',
+        urlPhoto: 'https://picsum.photos/201/300',
+        youFollow: false,
+        createdAt: 'string',
+        updatedAt: 'string',
+        __v: 0,
+      })
+    }
   }
 
   //   const getGames = async () => {
@@ -269,18 +273,20 @@ const useDashboard = () => {
   //   }
 
   const handleGetOnlineUsers = () => {
-    setOnlineUsers([
-      {
-        nickname: 'João',
-        urlPhoto: 'https://picsum.photos/200/300',
-        idUser: '2',
-      },
-      {
-        nickname: 'Maria',
-        urlPhoto: 'https://picsum.photos/200/301',
-        idUser: '3',
-      },
-    ])
+    if (typeof window !== 'undefined') {
+      setOnlineUsers([
+        {
+          nickname: 'João',
+          urlPhoto: 'https://picsum.photos/200/300',
+          idUser: '2',
+        },
+        {
+          nickname: 'Maria',
+          urlPhoto: 'https://picsum.photos/200/301',
+          idUser: '3',
+        },
+      ])
+    }
   }
 
   //   const handleGetUser = async (userId: string) => {
@@ -303,74 +309,76 @@ const useDashboard = () => {
 
   const handleGetUser = (userId: string) => {
     // set profile based on id
-    if (userId === '1') {
-      setProfile({
-        V: 0,
-        JR: 0,
-        D: 0,
-        _id: '123',
-        nickname: 'Gabriel',
-        following: '358',
-        followers: '500',
-        xp: '57432',
-        games: games,
-        timesChangelled: '100',
-        timesyouChangelled: '240',
-        gamesPlayed: '180',
-        balance: '900',
-        idUser: 'string',
-        urlPhoto: 'https://picsum.photos/201/300',
-        youFollow: false,
-        createdAt: 'string',
-        updatedAt: 'string',
-        __v: 0,
-      })
-    }
-    if (userId === '2') {
-      setProfile({
-        V: 0,
-        JR: 0,
-        D: 0,
-        _id: '123',
-        nickname: 'João',
-        following: '100',
-        followers: '130',
-        xp: '3452',
-        games: games,
-        timesChangelled: '45',
-        timesyouChangelled: '23',
-        gamesPlayed: '44',
-        balance: '233356',
-        idUser: 'string',
-        urlPhoto: 'https://picsum.photos/200/300',
-        youFollow: false,
-        createdAt: 'string',
-        updatedAt: 'string',
-        __v: 0,
-      })
-    }
-    if (userId === '3') {
-      setProfile({
-        V: 0,
-        JR: 0,
-        D: 0,
-        _id: '123',
-        nickname: 'Maria',
-        following: '489',
-        followers: '334',
-        xp: '2234',
-        games: games,
-        timesChangelled: '67',
-        timesyouChangelled: '23',
-        gamesPlayed: '65',
-        balance: '33456',
-        idUser: 'string',
-        urlPhoto: 'https://picsum.photos/200/301',
-        youFollow: true,
-        createdAt: 'string',
-        updatedAt: 'string',
-        __v: 0,
-      })
+    if (typeof window !== 'undefined') {
+      if (userId === '1') {
+        setProfile({
+          V: 0,
+          JR: 0,
+          D: 0,
+          _id: '123',
+          nickname: 'Gabriel',
+          following: '358',
+          followers: '500',
+          xp: '57432',
+          games: games,
+          timesChangelled: '100',
+          timesyouChangelled: '240',
+          gamesPlayed: '180',
+          balance: '900',
+          idUser: 'string',
+          urlPhoto: 'https://picsum.photos/201/300',
+          youFollow: false,
+          createdAt: 'string',
+          updatedAt: 'string',
+          __v: 0,
+        })
+      }
+      if (userId === '2') {
+        setProfile({
+          V: 0,
+          JR: 0,
+          D: 0,
+          _id: '123',
+          nickname: 'João',
+          following: '100',
+          followers: '130',
+          xp: '3452',
+          games: games,
+          timesChangelled: '45',
+          timesyouChangelled: '23',
+          gamesPlayed: '44',
+          balance: '233356',
+          idUser: 'string',
+          urlPhoto: 'https://picsum.photos/200/300',
+          youFollow: false,
+          createdAt: 'string',
+          updatedAt: 'string',
+          __v: 0,
+        })
+      }
+      if (userId === '3') {
+        setProfile({
+          V: 0,
+          JR: 0,
+          D: 0,
+          _id: '123',
+          nickname: 'Maria',
+          following: '489',
+          followers: '334',
+          xp: '2234',
+          games: games,
+          timesChangelled: '67',
+          timesyouChangelled: '23',
+          gamesPlayed: '65',
+          balance: '33456',
+          idUser: 'string',
+          urlPhoto: 'https://picsum.photos/200/301',
+          youFollow: true,
+          createdAt: 'string',
+          updatedAt: 'string',
+          __v: 0,
+        })
+      }
     }
   }
 
@@ -460,11 +468,13 @@ const useDashboard = () => {
   }
 
   useEffect(() => {
-    getGames()
-    getProfile()
-    handleGetOnlineUsers()
-    handleGetUser(window.location.pathname.split('/')[2])
-  }, [window.location.pathname])
+    if (typeof window !== 'undefined') {
+      getGames()
+      getProfile()
+      handleGetOnlineUsers()
+      handleGetUser(window.location.pathname.split('/')[2])
+    }
+  }, [typeof window !== 'undefined' && window.location.pathname])
 
   const modal = {
     openAddGame,

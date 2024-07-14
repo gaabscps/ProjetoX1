@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react'
-import { User } from '@/types/Users'
+import { toast } from 'react-toastify'
 import ModalBodyChallenge from './components/ModalBodyChallenge'
-import gabs from '@/assets/svg/gabs.jpg'
 import ModalFastGameBody from '@/components/ModalBody/FastGame'
 import ModalSearchingFastGameBody from '../dashboard/components/ModalBody/SearchingFastGame'
-import { toast } from 'react-toastify'
-import api from '@/services/api'
 import { useCookies } from 'react-cookie'
 import { Profile } from '@/types/Dashboard'
-import { AxiosResponse } from 'axios'
-import useDashboard from '../dashboard/useDashboard'
 
 const useChallenge = () => {
   const [openFastGame, setOpenFastGame] = useState(false)
@@ -23,96 +18,54 @@ const useChallenge = () => {
   const [duration, setDuration] = useState('')
   const [textarea, setTextarea] = useState('')
 
-  const [cookies, setCookie] = useCookies(['TokenAuth', 'idUser'])
-  const { handleFastGameQueue, handleLeaveFastGameQueue } = useDashboard()
-
-  // const handleGetFollowers = async () => {
-  //     try {
-  //         const response: AxiosResponse = await api.get('challange/returnMyFollowers', {
-  //             headers: {
-  //                 'TokenAuth': cookies.TokenAuth,
-  //                 'idUser': cookies.idUser as string
-  //             }
-  //         })
-  //         if (response?.status === 200) {
-  //             setFollowers(response?.data.returnMyFollowers as Profile[])
-  //         }
-  //     } catch (error) {
-  //         console.error('Erro ao buscar usuário')
-  //     }
-  // }
+  const [cookies] = useCookies(['TokenAuth', 'idUser'])
 
   const handleGetFollowers = async () => {
-    setFollowers([
-      {
-        _id: '1',
-        nickname: 'Jorginho',
-        urlPhoto: 'https://picsum.photos/200/300',
-        JR: 10,
-        V: 5,
-        D: 5,
-        games: [
-          {
-            name: 'League of Legends',
-            gameId: '1',
-            matchDeafet: '5',
-            matchPlayed: '10',
-            level: 'expert',
-            urlPhoto: 'https://picsum.photos/200/300',
-            _id: '1',
-            matchWin: '5',
-          },
-        ],
-        following: '',
-        followers: '',
-        xp: '',
-        timesChangelled: '',
-        timesyouChangelled: '',
-        gamesPlayed: '',
-        balance: '',
-        idUser: '',
-        youFollow: false,
-        createdAt: '',
-        updatedAt: '',
-        __v: 0,
-      },
-    ])
+    if (typeof window !== 'undefined') {
+      setFollowers([
+        {
+          _id: '1',
+          nickname: 'Jorginho',
+          urlPhoto: 'https://picsum.photos/200/300',
+          JR: 10,
+          V: 5,
+          D: 5,
+          games: [
+            {
+              name: 'League of Legends',
+              gameId: '1',
+              matchDeafet: '5',
+              matchPlayed: '10',
+              level: 'expert',
+              urlPhoto: 'https://picsum.photos/200/300',
+              _id: '1',
+              matchWin: '5',
+            },
+          ],
+          following: '',
+          followers: '',
+          xp: '',
+          timesChangelled: '',
+          timesyouChangelled: '',
+          gamesPlayed: '',
+          balance: '',
+          idUser: '',
+          youFollow: false,
+          createdAt: '',
+          updatedAt: '',
+          __v: 0,
+        },
+      ])
+    }
   }
-
-  // const handleInviteChallenge = async (playerGuestId: string, gameId: string) => {
-  //   const body = {
-  //     gameId: gameId,
-  //     playerGuestId: playerGuestId || '',
-  //     playerHostId: cookies.idUser,
-  //     value: Number(bet),
-  //     durationInvite: Number(duration),
-  //     message: textarea,
-  //   }
-  //   try {
-  //     const response: AxiosResponse = await api.post('challange/createChallange', body, {
-  //       headers: {
-  //         TokenAuth: cookies.TokenAuth,
-  //         idUser: cookies.idUser as string,
-  //       },
-  //     })
-  //     if (response?.status === 200) {
-  //       toast.success(
-  //         'Desafio enviado com sucesso ! Agora é só aguardar o seu oponente aceitar o seu desafio.',
-  //       )
-  //     }
-  //   } catch (error) {
-  //     console.error('Erro ao buscar usuário')
-  //   }
-  // }
 
   const handleInviteChallenge = () => {
     toast.success(
-      'Desafio enviado com sucesso ! Agora é só aguardar o seu oponente aceitar o seu desafio.',
+      'Desafio enviado com sucesso! Agora é só aguardar o seu oponente aceitar o seu desafio.',
     )
     toast.success('Integração mockada, demonstrativo no console')
   }
 
-  // MODAL
   function handleModalBody() {
     if (openFastGame) {
       return <ModalFastGameBody handleSearchingFastGame={handleSearchingFastGame} />
@@ -120,21 +73,26 @@ const useChallenge = () => {
     if (openSearchingFastGame) {
       return (
         <ModalSearchingFastGameBody
-          handleFastGameQueue={handleFastGameQueue}
-          handleLeaveFastGameQueue={handleLeaveFastGameQueue}
+          handleFastGameQueue={() => {
+            undefined
+          }}
+          handleLeaveFastGameQueue={() => {
+            undefined
+          }}
         />
       )
     }
     if (openModal.some(Boolean)) {
+      const currentFollower = followers[openModal.findIndex(Boolean)]
       return (
         <ModalBodyChallenge
           bet={bet}
           duration={duration}
           textarea={textarea}
           game={game}
-          games={followers[openModal.findIndex(Boolean)]?.games}
+          games={currentFollower?.games}
           handleChange={handleChange}
-          userName={followers[openModal.findIndex(Boolean)]?.nickname}
+          userName={currentFollower?.nickname}
           handleConfirmChallenge={handleConfirmChallenge}
         />
       )
@@ -162,7 +120,6 @@ const useChallenge = () => {
     setOpenModal(newOpenModal)
   }
 
-  // TAG
   const handleOpenTag = (index: number) => {
     const newOpenTag = [...openTag]
     newOpenTag[index] = !newOpenTag[index]
@@ -171,7 +128,6 @@ const useChallenge = () => {
 
   const handleChange = (event: any) => {
     const { name, value } = event.target
-
     switch (name) {
       case 'game':
         setGame(value)
@@ -191,7 +147,7 @@ const useChallenge = () => {
   }
 
   const handleConfirmChallenge = () => {
-    // handleInviteChallenge(followers[openModal.findIndex(Boolean)]?._id, game)
+    handleInviteChallenge()
     handleCloseModal()
   }
 

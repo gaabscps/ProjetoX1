@@ -1,22 +1,38 @@
-'use client';
+'use client'
 
-import { Body } from '@/components/Body';
-import Image from 'next/image';
-import back from '@/assets/svg/back.svg';
-import { Modal } from '@/components/Modal';
-import FollowingCard from './components/FollowingCard';
-import { Header } from '@/components/Header';
-import Link from 'next/link';
-import FastGameInputBody from '@/components/FastGameInputBody';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import useChallenge from './useChallenge';
+import { Body } from '@/components/Body'
+import Image from 'next/image'
+import back from '@/assets/svg/back.svg'
+import { Modal } from '@/components/Modal'
+import FollowingCard from './components/FollowingCard'
+import { Header } from '@/components/Header'
+import Link from 'next/link'
+import FastGameInputBody from '@/components/FastGameInputBody'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import useChallenge from './useChallenge'
+import { useEffect, useState } from 'react'
 
 export default function Challenge() {
-  const { openTag, handleOpenTag, modal, followers } = useChallenge();
-  const { openFastGame, openSearchingFastGame, setOpenFastGame, handleCloseModal, handleModalBody, handleOpenModal, openModal } = modal;
+  const { openTag, handleOpenTag, modal, followers } = useChallenge()
+  const {
+    openFastGame,
+    openSearchingFastGame,
+    setOpenFastGame,
+    handleCloseModal,
+    handleModalBody,
+    handleOpenModal,
+    openModal,
+  } = modal
+  const [isLoading, setIsLoading] = useState(true)
 
-  return (
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsLoading(false)
+    }
+  }, [])
+
+  return isLoading ? null : (
     <>
       <Modal
         modalHeaderBg={'#29272a'}
@@ -24,59 +40,66 @@ export default function Challenge() {
         modalBody={handleModalBody()}
         setOpen={handleCloseModal}
       />
-      <Header
-      />
+      <Header />
       <Body>
         <div className='pageBody'>
           <div className='d-flex align-items-center flex-gap-1'>
             <Link href='/dashboard'>
               <Image src={back} width={16} height={16} alt='' />
             </Link>
-            <h5 style={{ marginBottom: '10px' }} className='h5-500'>Desafiar</h5>
+            <h5 style={{ marginBottom: '10px' }} className='h5-500'>
+              Desafiar
+            </h5>
           </div>
-          <p className='color-black-7' style={{ marginBottom: '30px' }}>Desafie os jogadores que você segue</p>
+          <p className='color-black-7' style={{ marginBottom: '30px' }}>
+            Desafie os jogadores que você segue
+          </p>
         </div>
         <FastGameInputBody setOpenFastGame={setOpenFastGame} />
 
         <h6 className='h6-400 line-height-150 mt-2 mb-1'>Seguindo ({followers.length})</h6>
 
         <div style={{ flexWrap: 'wrap' }} className='user-card-challenge-container'>
-          {
-            followers && followers.length > 0 ?
-              followers.map((user, index) => (
-                <div key={index} className='user-card-challenge'>
-                  <FollowingCard
-                    games={user.games}
-                    openTag={openTag[index]}
-                    setOpenTag={() => handleOpenTag(index)}
-                    setOpenModal={() => handleOpenModal(index)}
-                    userImage={user.urlPhoto}
-                    userName={user.nickname}
-                    gamesPlayed={user.JR}
-                    gamesVictory={user.V}
-                    gamesDefeat={user.D}
-                  />
-                </div>
-              ))
-              :
-              <div>
-                <p style={{ marginBottom: '10px' }} className='line-height-150 color-black-7'>Você ainda não está seguindo nenhum jogador.</p>
-                <p className='line-height-150 color-black-7' >Procure por um jogador para seguir e desafiar ou inicie um jogo rápido.</p>
+          {followers && followers.length > 0 ? (
+            followers.map((user, index) => (
+              <div key={index} className='user-card-challenge'>
+                <FollowingCard
+                  games={user.games}
+                  openTag={openTag[index]}
+                  setOpenTag={() => handleOpenTag(index)}
+                  setOpenModal={() => handleOpenModal(index)}
+                  userImage={user.urlPhoto}
+                  userName={user.nickname}
+                  gamesPlayed={user.JR}
+                  gamesVictory={user.V}
+                  gamesDefeat={user.D}
+                />
               </div>
-          }
-
+            ))
+          ) : (
+            <div>
+              <p style={{ marginBottom: '10px' }} className='line-height-150 color-black-7'>
+                Você ainda não está seguindo nenhum jogador.
+              </p>
+              <p className='line-height-150 color-black-7'>
+                Procure por um jogador para seguir e desafiar ou inicie um jogo rápido.
+              </p>
+            </div>
+          )}
         </div>
       </Body>
-      <ToastContainer theme='dark' toastStyle={{
-        background: '#29272A',
-        fontSize: '14px',
-        boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
-      }}
+      <ToastContainer
+        theme='dark'
+        toastStyle={{
+          background: '#29272A',
+          fontSize: '14px',
+          boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.25)',
+        }}
         progressStyle={{
           background: '#963BFF',
         }}
         autoClose={10000}
       />
     </>
-  );
+  )
 }
