@@ -16,7 +16,8 @@ const useDashboard = () => {
   const gamesMock = [
     {
       _id: '1',
-      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      urlPhoto:
+        'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/9eb028de391e65072d06e77f06d0955f66b9fa2c-736x316.png?auto=format&fit=fill&q=80&w=300',
       gameId: '1',
       level: 'Intermediário',
       matchDeafet: '10',
@@ -26,7 +27,7 @@ const useDashboard = () => {
     },
     {
       _id: '2',
-      urlPhoto: 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg?t=1631601068',
+      urlPhoto: 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/7b76209193f1bfe190d3ae6ef8728328870be9c3-736x138.png?auto=format&fit=fill&q=80&w=300',
       gameId: '2',
       level: 'Expert',
       matchDeafet: '30',
@@ -117,7 +118,7 @@ const useDashboard = () => {
       : {}
 
   function extractMatchId(creatingMatch: string | null) {
-    const regex = /Match Id: (?<matchId>\w+)/
+    const regex = /Match Id: (\w+)/
     const match = creatingMatch?.match(regex)
     return match ? match.groups?.matchId : null
   }
