@@ -168,29 +168,27 @@ const useDashboard = () => {
   }
 
   const getProfile = () => {
-    if (typeof window !== 'undefined') {
-      setProfile({
-        V: 0,
-        JR: 0,
-        D: 0,
-        _id: '123456',
-        nickname: 'Gabriel',
-        following: '358',
-        followers: '500',
-        xp: '57432',
-        games: games,
-        timesChangelled: '100',
-        timesyouChangelled: '240',
-        gamesPlayed: '180',
-        balance: '900',
-        idUser: 'string',
-        urlPhoto: 'https://picsum.photos/201/300',
-        youFollow: false,
-        createdAt: 'string',
-        updatedAt: 'string',
-        __v: 0,
-      })
-    }
+    setProfile({
+      V: 0,
+      JR: 0,
+      D: 0,
+      _id: '123456',
+      nickname: 'Gabriel',
+      following: '358',
+      followers: '500',
+      xp: '57432',
+      games: games,
+      timesChangelled: '100',
+      timesyouChangelled: '240',
+      gamesPlayed: '180',
+      balance: '900',
+      idUser: 'string',
+      urlPhoto: 'https://picsum.photos/201/300',
+      youFollow: false,
+      createdAt: 'string',
+      updatedAt: 'string',
+      __v: 0,
+    })
   }
 
   //   const getGames = async () => {
@@ -273,20 +271,18 @@ const useDashboard = () => {
   //   }
 
   const handleGetOnlineUsers = () => {
-    if (typeof window !== 'undefined') {
-      setOnlineUsers([
-        {
-          nickname: 'João',
-          urlPhoto: 'https://picsum.photos/200/300',
-          idUser: '2',
-        },
-        {
-          nickname: 'Maria',
-          urlPhoto: 'https://picsum.photos/200/301',
-          idUser: '3',
-        },
-      ])
-    }
+    setOnlineUsers([
+      {
+        nickname: 'João',
+        urlPhoto: 'https://picsum.photos/200/300',
+        idUser: '2',
+      },
+      {
+        nickname: 'Maria',
+        urlPhoto: 'https://picsum.photos/200/301',
+        idUser: '3',
+      },
+    ])
   }
 
   //   const handleGetUser = async (userId: string) => {
@@ -309,76 +305,74 @@ const useDashboard = () => {
 
   const handleGetUser = (userId: string) => {
     // set profile based on id
-    if (typeof window !== 'undefined') {
-      if (userId === '1') {
-        setProfile({
-          V: 0,
-          JR: 0,
-          D: 0,
-          _id: '123',
-          nickname: 'Gabriel',
-          following: '358',
-          followers: '500',
-          xp: '57432',
-          games: games,
-          timesChangelled: '100',
-          timesyouChangelled: '240',
-          gamesPlayed: '180',
-          balance: '900',
-          idUser: 'string',
-          urlPhoto: 'https://picsum.photos/201/300',
-          youFollow: false,
-          createdAt: 'string',
-          updatedAt: 'string',
-          __v: 0,
-        })
-      }
-      if (userId === '2') {
-        setProfile({
-          V: 0,
-          JR: 0,
-          D: 0,
-          _id: '123',
-          nickname: 'João',
-          following: '100',
-          followers: '130',
-          xp: '3452',
-          games: games,
-          timesChangelled: '45',
-          timesyouChangelled: '23',
-          gamesPlayed: '44',
-          balance: '233356',
-          idUser: 'string',
-          urlPhoto: 'https://picsum.photos/200/300',
-          youFollow: false,
-          createdAt: 'string',
-          updatedAt: 'string',
-          __v: 0,
-        })
-      }
-      if (userId === '3') {
-        setProfile({
-          V: 0,
-          JR: 0,
-          D: 0,
-          _id: '123',
-          nickname: 'Maria',
-          following: '489',
-          followers: '334',
-          xp: '2234',
-          games: games,
-          timesChangelled: '67',
-          timesyouChangelled: '23',
-          gamesPlayed: '65',
-          balance: '33456',
-          idUser: 'string',
-          urlPhoto: 'https://picsum.photos/200/301',
-          youFollow: true,
-          createdAt: 'string',
-          updatedAt: 'string',
-          __v: 0,
-        })
-      }
+    if (userId === '1') {
+      setProfile({
+        V: 0,
+        JR: 0,
+        D: 0,
+        _id: '123',
+        nickname: 'Gabriel',
+        following: '358',
+        followers: '500',
+        xp: '57432',
+        games: games,
+        timesChangelled: '100',
+        timesyouChangelled: '240',
+        gamesPlayed: '180',
+        balance: '900',
+        idUser: 'string',
+        urlPhoto: 'https://picsum.photos/201/300',
+        youFollow: false,
+        createdAt: 'string',
+        updatedAt: 'string',
+        __v: 0,
+      })
+    }
+    if (userId === '2') {
+      setProfile({
+        V: 0,
+        JR: 0,
+        D: 0,
+        _id: '123',
+        nickname: 'João',
+        following: '100',
+        followers: '130',
+        xp: '3452',
+        games: games,
+        timesChangelled: '45',
+        timesyouChangelled: '23',
+        gamesPlayed: '44',
+        balance: '233356',
+        idUser: 'string',
+        urlPhoto: 'https://picsum.photos/200/300',
+        youFollow: false,
+        createdAt: 'string',
+        updatedAt: 'string',
+        __v: 0,
+      })
+    }
+    if (userId === '3') {
+      setProfile({
+        V: 0,
+        JR: 0,
+        D: 0,
+        _id: '123',
+        nickname: 'Maria',
+        following: '489',
+        followers: '334',
+        xp: '2234',
+        games: games,
+        timesChangelled: '67',
+        timesyouChangelled: '23',
+        gamesPlayed: '65',
+        balance: '33456',
+        idUser: 'string',
+        urlPhoto: 'https://picsum.photos/200/301',
+        youFollow: true,
+        createdAt: 'string',
+        updatedAt: 'string',
+        __v: 0,
+      })
     }
   }
 
@@ -468,12 +462,10 @@ const useDashboard = () => {
   }
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      getGames()
-      getProfile()
-      handleGetOnlineUsers()
-      handleGetUser(window.location.pathname.split('/')[2])
-    }
+    getGames()
+    getProfile()
+    handleGetOnlineUsers()
+    handleGetUser(window.location.pathname.split('/')[2])
   }, [typeof window !== 'undefined' && window.location.pathname])
 
   const modal = {

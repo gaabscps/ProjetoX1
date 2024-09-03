@@ -24,15 +24,7 @@ export default function Challenge() {
     handleOpenModal,
     openModal,
   } = modal
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsLoading(false)
-    }
-  }, [])
-
-  return isLoading ? null : (
+  return (
     <>
       <Modal
         modalHeaderBg={'#29272a'}

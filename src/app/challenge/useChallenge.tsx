@@ -21,42 +21,40 @@ const useChallenge = () => {
   const [cookies] = useCookies(['TokenAuth', 'idUser'])
 
   const handleGetFollowers = async () => {
-    if (typeof window !== 'undefined') {
-      setFollowers([
-        {
-          _id: '1',
-          nickname: 'Jorginho',
-          urlPhoto: 'https://picsum.photos/200/300',
-          JR: 10,
-          V: 5,
-          D: 5,
-          games: [
-            {
-              name: 'League of Legends',
-              gameId: '1',
-              matchDeafet: '5',
-              matchPlayed: '10',
-              level: 'expert',
-              urlPhoto: 'https://picsum.photos/200/300',
-              _id: '1',
-              matchWin: '5',
-            },
-          ],
-          following: '',
-          followers: '',
-          xp: '',
-          timesChangelled: '',
-          timesyouChangelled: '',
-          gamesPlayed: '',
-          balance: '',
-          idUser: '',
-          youFollow: false,
-          createdAt: '',
-          updatedAt: '',
-          __v: 0,
-        },
-      ])
-    }
+    setFollowers([
+      {
+        _id: '1',
+        nickname: 'Jorginho',
+        urlPhoto: 'https://picsum.photos/200/300',
+        JR: 10,
+        V: 5,
+        D: 5,
+        games: [
+          {
+            name: 'League of Legends',
+            gameId: '1',
+            matchDeafet: '5',
+            matchPlayed: '10',
+            level: 'expert',
+            urlPhoto: 'https://picsum.photos/200/300',
+            _id: '1',
+            matchWin: '5',
+          },
+        ],
+        following: '',
+        followers: '',
+        xp: '',
+        timesChangelled: '',
+        timesyouChangelled: '',
+        gamesPlayed: '',
+        balance: '',
+        idUser: '',
+        youFollow: false,
+        createdAt: '',
+        updatedAt: '',
+        __v: 0,
+      },
+    ])
   }
 
   const handleInviteChallenge = () => {

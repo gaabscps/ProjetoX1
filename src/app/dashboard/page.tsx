@@ -22,15 +22,8 @@ export default function Dashboard() {
     setOpenSearchingFastGame,
     handleModalBody,
   } = modal
-  const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsLoading(true)
-    }
-  }, [])
-
-  return isLoading ? null : (
+  return (
     <>
       <Modal
         open={openAddGame || openFastGame || openSearchingFastGame}
